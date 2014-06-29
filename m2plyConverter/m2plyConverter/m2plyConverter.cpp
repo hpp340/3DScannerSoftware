@@ -2,6 +2,7 @@
 This project is used to convert the m file to ply file used for Hoppe's Poisson Surface Reconstruction
 We need vertex and its associated normal vector
 Author : Jerome(Jian) Jiang
+Date : 06/27/2014
 */
 
 #include "stdafx.h"
@@ -21,10 +22,11 @@ using namespace MeshLib;
 using namespace std;
 int main(int argc, char** argv)
 {
-	std::cout << "Useage : m2plyConverter.ext input.m output.ply" << std::endl;
+
 	if (argc < 3)
 	{
 		std::cout << "Not enough parameters. See useage." << std::endl;
+		std::cout << "Useage : m2plyConverter.ext input.m output.ply" << std::endl;
 		return 0;
 	}
 

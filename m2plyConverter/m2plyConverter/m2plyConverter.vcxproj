@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>W:\Codes\2014SummerMSC\m2plyConverter\m2plyConverter\m2plyConverter\MeshLib\core\Parser;W:\Codes\2014SummerMSC\m2plyConverter\m2plyConverter\m2plyConverter\MeshLib\core\Mesh;W:\Codes\2014SummerMSC\m2plyConverter\m2plyConverter\m2plyConverter\MeshLib\core\Geometry;W:\Codes\2014SummerMSC\m2plyConverter\m2plyConverter\m2plyConverter\MeshLib\core;$(IncludePath)</IncludePath>
+    <IncludePath>W:\Codes\2014SummerMSC\3DScannerSoftware\m2plyConverter\m2plyConverter\MeshLib\core\Parser;W:\Codes\2014SummerMSC\3DScannerSoftware\m2plyConverter\m2plyConverter\MeshLib\core\Mesh;W:\Codes\2014SummerMSC\3DScannerSoftware\m2plyConverter\m2plyConverter\MeshLib\core\Geometry;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
