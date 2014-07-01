@@ -69,7 +69,8 @@ int main(int argc, char** argv)
 	for (ConvMesh::MeshVertexIterator viter(mesh); !viter.end(); viter++)
 	{
 		CVertex * pV = *viter;
-		cout << pV->id() << endl;
+		// for debugging
+		// cout << pV->id() << endl;
 		CPoint vertexNormal;
 		vertexNormal[0] = vertexNormal[1] = vertexNormal[2] = 0.0;
 		for (ConvMesh::VertexFaceIterator vfIter(pV); !vfIter.end(); vfIter++)

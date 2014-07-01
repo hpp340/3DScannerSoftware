@@ -45,6 +45,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>W:\Codes\2014SummerMSC\3DScannerSoftware\m2plyConverter\m2plyConverter\MeshLib\core\Mesh;W:\Codes\2014SummerMSC\3DScannerSoftware\m2plyConverter\m2plyConverter\MeshLib\core\Geometry;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
