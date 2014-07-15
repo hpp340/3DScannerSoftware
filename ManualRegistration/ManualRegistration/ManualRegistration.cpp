@@ -16,12 +16,12 @@
 #include "header\PlyCloud.h"
 #include "header\Point.h"
 
-#define WIDTH 1280
-#define HEIGHT 800
-#define PI 3.14159265
-#define FOVY 80
-#define ZNEAR 1.0
-#define ZFAR 5.0
+#define WIDTH 1280	// width of glut window
+#define HEIGHT 800	// height of glut window
+#define PI 3.14159265	// pi
+#define FOVY 80		// view angle used for gluLookAt
+#define ZNEAR 1.0	// z near plane of view field
+#define ZFAR 5.0	// z far plane of view field
 
 const char * filename;
 int mouseX, mouseY; // last time mouse click coordinates
@@ -31,8 +31,10 @@ bool isSelectMode = false;
 double horizontalAngle = 0;
 double verticalAngle = 0;
 double viewDist;
-PlyCloud * pointCloud = new PlyCloud();
 
+PlyCloud * pointCloud = new PlyCloud();		// point cloud class
+
+// call back functions
 void display(void);
 void drawPointCloud(void);
 void mouseClick(int, int, int, int);
@@ -120,15 +122,14 @@ void selectPoint(void)
 	glm::dvec3 objNearPt = glm::dvec3(objNearX, objNearY, objNearZ); // 3D coordinates of near plane
 	glm::dvec3 objFarPt = glm::dvec3(objFarX, objFarY, objFarZ); // 3D coordinates of far plan
 	glm::dvec3 rayVector = objFarPt - objNearPt;
-	std::cout << rayVector.x << " " << rayVector.y << " " << rayVector.z << std::endl;
-	system("PAUSE");
+	// std::cout << rayVector.x << " " << rayVector.y << " " << rayVector.z << std::endl;
+	// system("PAUSE");
 	// then we should do the collision detect
 	// iteration every point
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<int> vertexOnTheRay;
 	for (size_t i = 0; i < vertexList.size(); i++)
 	{
-		std::cout << "vertex size " << vertexList.size() << std::endl;
 		CPoint vert = vertexList[i];
 		glm::dvec3 vertVec = glm::dvec3(vert[0], vert[1], vert[2]);
 		glm::dvec3 vertVecFromStart = vertVec - objNearPt;
@@ -144,7 +145,7 @@ void selectPoint(void)
 			system("PAUSE");
 			vertexOnTheRay.push_back(i);
 		}
-		std::cout << "233 " << i << std::endl;
+		// std::cout << "233 " << i << std::endl;
 	}
 }
 
@@ -260,9 +261,11 @@ void keyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case 's': // enter select mode
+		std::cout << "Enter Selection Mode..." << std::endl;
 		isSelectMode = true;
 		break;
 	case 'u': // quit select mode
+		std::cout << "Quit Selection Mode..." << std::endl;
 		isSelectMode = false;
 		break;
 	default:

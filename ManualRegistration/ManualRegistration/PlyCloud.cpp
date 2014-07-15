@@ -24,6 +24,10 @@ PlyCloud::~PlyCloud()
 
 bool PlyCloud::read_ply(const char * filename)
 {
+	if (vertex_list.size() > 0) // already read have the point cloud
+	{
+		return false;
+	}
 	std::ifstream plyfile;
 	plyfile.open(filename);
 	if (plyfile.fail())
