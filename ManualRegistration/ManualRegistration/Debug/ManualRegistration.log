@@ -1,19 +1,15 @@
-﻿Build started 7/16/2014 2:02:29 PM.
-Project "W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\ManualRegistration\ManualRegistration.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 7/16/2014 4:41:06 PM.
+Project "W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\ManualRegistration\ManualRegistration.vcxproj" on node 2 (Build target(s)).
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\ManualRegistration.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
-  stdafx.cpp
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\ManualRegistration.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ManualRegistration.cpp PlyCloud.cpp
-  PlyCloud.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\ManualRegistration.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ManualRegistration.cpp
   ManualRegistration.cpp
-  Generating Code...
 Link:
   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\Debug\ManualRegistration.exe" /INCREMENTAL /NOLOGO GlU32.lib OpenGL32.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\Debug\ManualRegistration.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\Debug\ManualRegistration.lib" /MACHINE:X86 Debug\ManualRegistration.obj
   Debug\PlyCloud.obj
   Debug\stdafx.obj
   ManualRegistration.vcxproj -> W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\Debug\ManualRegistration.exe
-Done Building Project "W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\ManualRegistration\ManualRegistration.vcxproj" (Rebuild target(s)).
+Done Building Project "W:\Codes\2014SummerMSC\3DScannerSoftware\ManualRegistration\ManualRegistration\ManualRegistration.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.63
+Time Elapsed 00:00:03.75

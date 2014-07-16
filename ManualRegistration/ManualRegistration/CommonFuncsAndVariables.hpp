@@ -1,3 +1,8 @@
+/*
+This hpp file includes all global variables and common functions used by the two windows
+Author:Jerome Jiang
+*/
+
 #pragma once
 
 #include <stdlib.h>
@@ -13,22 +18,30 @@
 #include <gl\glu.h>
 #include <vector>
 
-#define WIDTH 1280	// width of glut window
-#define HEIGHT 800	// height of glut window
+#define WIDTH 600	// width of glut window
+#define HEIGHT 600	// height of glut window
 #define PI 3.14159265	// pi
 #define FOVY 80		// view angle used for gluLookAt
 #define ZNEAR 1.0	// z near plane of view field
 #define ZFAR 5.0	// z far plane of view field
+#define MOVING_THRES 6 // if the mouse button is held and moved more than MOVING_THRES pixes, we regard it as a motion
 
 const char *filename1, *filename2;
 int mouseX, mouseY; // last time mouse click coordinates
+
 int mouseButton;
+
 int window1, window2; // two glut window
-bool isMouseMoving = false;
-bool isSelectMode = false;
-double horizontalAngle = 0;
-double verticalAngle = 0;
+bool isMouseMoving1 = false;	// judge if the mouse button is held and moving
+bool isMouseMoving2 = false;
+bool isSelectMode1 = false;		// judge if we should enter selection mode, control by keyboard
+bool isSelectMode2 = false;
+double horizontalAngle1 = 0.0;
+double horizontalAngle2 = 0.0;
+double verticalAngle1 = 0.0;
+double verticalAngle2 = 0.0;
 double viewDist;
+std::vector<int> selectedPts1, selectedPts2;
 
 PlyCloud * pointCloud1 = new PlyCloud();		// point cloud class
 PlyCloud * pointCloud2 = new PlyCloud();
@@ -38,6 +51,14 @@ void displayInit(void); // display initialize
 void initLight(void);
 // draw point cloud using OPENGL
 void drawPointCloud(PlyCloud * pointCloud);
+// select point function
+void selectPoint(PlyCloud * pointCloud);
+
+// keyboard function
+// this is a call back function used by two window
+// using glutGetWindow() to distinguish the two window
+void keyboard(unsigned char, int, int);
+
 
 /*
 displayInit, initialize the display call back function
@@ -92,8 +113,7 @@ void selectPoint(PlyCloud * pointCloud)
 	glm::dvec3 objNearPt = glm::dvec3(objNearX, objNearY, objNearZ); // 3D coordinates of near plane
 	glm::dvec3 objFarPt = glm::dvec3(objFarX, objFarY, objFarZ); // 3D coordinates of far plan
 	glm::dvec3 rayVector = objFarPt - objNearPt;
-	// std::cout << rayVector.x << " " << rayVector.y << " " << rayVector.z << std::endl;
-	// system("PAUSE");
+
 	// then we should do the collision detect
 	// iteration every point
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
@@ -117,6 +137,21 @@ void selectPoint(PlyCloud * pointCloud)
 		}
 		// std::cout << "233 " << i << std::endl;
 	}
+
+	// judge which point cloud the selected points belong to
+	if (glutGetWindow() != 0)
+	{
+		if (glutGetWindow() == 1)
+		{
+			std::cout << "Hit in Window 1" << std::endl;
+			selectedPts1 = vertexOnTheRay;	// this is a hard copy
+		}
+		else if (glutGetWindow() == 2)
+		{
+			std::cout << "Hit in Window 2" << std::endl;
+			selectedPts2 = vertexOnTheRay;
+		}
+	}
 }
 
 // draw point cloud
@@ -136,5 +171,39 @@ void drawPointCloud(PlyCloud * pointCloud)
 		glVertex3d(vert[0], vert[1], vert[2]);
 		glNormal3d(norl[0], norl[1], norl[2]);
 		glEnd();
+	}
+}
+
+// call back function - keyboard
+void keyboard(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case 's': // enter select mode
+		if (glutGetWindow() == 1)
+		{
+			std::cout << "Window 1 Enter Selection Mode..." << std::endl;
+			isSelectMode1 = true;
+		}
+		else if (glutGetWindow() == 2)
+		{
+			std::cout << "Window 2 Enter Selection Mode..." << std::endl;
+			isSelectMode2 = true;
+		}
+		break;
+	case 'u': // quit select mode
+		if (glutGetWindow() == 1)
+		{
+			std::cout << "Window 1 Quit Selection Mode..." << std::endl;
+			isSelectMode1 = false;
+		}
+		else if (glutGetWindow() == 2)
+		{
+			std::cout << "Window 2 Quit Selection Mode..." << std::endl;
+			isSelectMode2 = false;
+		}
+		break;
+	default:
+		break;
 	}
 }
