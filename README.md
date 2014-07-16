@@ -1,7 +1,7 @@
 3D Scanner Software
 =================
 
-This is the software created for 3D scanner used for 3D scan lab in sbu
+This is the software created for 3D scanner used for 3D scan lab in SBU. This software will be used for 3D scanners developed by our lab.
 
 CopyRight Claim
 ----
