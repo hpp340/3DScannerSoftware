@@ -81,6 +81,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CallBackFunc1.hpp" />
+    <ClInclude Include="CallBackFunc2.hpp" />
+    <ClInclude Include="CommonFuncsAndVariables.hpp" />
     <ClInclude Include="header\glut.h" />
     <ClInclude Include="header\PlyCloud.h" />
     <ClInclude Include="header\Point.h" />

@@ -33,6 +33,15 @@
     <ClInclude Include="header\Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CallBackFunc1.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonFuncsAndVariables.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CallBackFunc2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
