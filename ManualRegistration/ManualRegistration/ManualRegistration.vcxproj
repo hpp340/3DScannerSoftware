@@ -85,6 +85,10 @@
     <ClInclude Include="CallBackFunc2.hpp" />
     <ClInclude Include="CommonFuncsAndVariables.hpp" />
     <ClInclude Include="header\glut.h" />
+    <ClInclude Include="header\openglut.h" />
+    <ClInclude Include="header\openglut_exp.h" />
+    <ClInclude Include="header\openglut_ext.h" />
+    <ClInclude Include="header\openglut_std.h" />
     <ClInclude Include="header\PlyCloud.h" />
     <ClInclude Include="header\Point.h" />
     <ClInclude Include="stdafx.h" />

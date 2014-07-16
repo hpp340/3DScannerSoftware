@@ -23,7 +23,6 @@ void display2()
 	glm::vec3 rightVec = glm::vec3(-cos(horizontalAngle2), 0.0, 1.0*sin(horizontalAngle2));
 	glm::vec3 upVector = glm::cross(-viewPoint, rightVec);
 
-	viewDist = 2.0;
 	gluLookAt(viewDist*sin(horizontalAngle2), viewDist*sin(verticalAngle2), viewDist*cos(horizontalAngle2), 0.0, 0.0, 0.0, upVector.x, upVector.y, upVector.z);
 	glPushMatrix();
 	// draw point cloud
