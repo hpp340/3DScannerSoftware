@@ -7,6 +7,7 @@ Author:Jerome Jiang
 
 #include <stdlib.h>
 #include "header\glut.h"
+//#include "header\openglut.h"
 #include "header\glm\glm.hpp"
 #include "header\glm\gtx\norm.hpp"
 #include "header\PlyCloud.h"
@@ -25,6 +26,7 @@ Author:Jerome Jiang
 #define ZNEAR 1.0	// z near plane of view field
 #define ZFAR 5.0	// z far plane of view field
 #define MOVING_THRES 6 // if the mouse button is held and moved more than MOVING_THRES pixes, we regard it as a motion
+#define ZOOM_DIFF 0.2
 
 const char *filename1, *filename2;
 int mouseX, mouseY; // last time mouse click coordinates
@@ -40,7 +42,7 @@ double horizontalAngle1 = 0.0;
 double horizontalAngle2 = 0.0;
 double verticalAngle1 = 0.0;
 double verticalAngle2 = 0.0;
-double viewDist;
+double viewDist = 2.0;
 std::vector<int> selectedPts1, selectedPts2;
 
 PlyCloud * pointCloud1 = new PlyCloud();		// point cloud class
@@ -59,6 +61,8 @@ void selectPoint(PlyCloud * pointCloud);
 // using glutGetWindow() to distinguish the two window
 void keyboard(unsigned char, int, int);
 
+// call back function of mouse scroll
+// void scroll(void);
 
 /*
 displayInit, initialize the display call back function
@@ -80,7 +84,7 @@ void initLight(void)
 {
 	GLfloat lightPos[] = { 0.0, 0.0, 1.0, 1.0 };
 	GLfloat lightColor[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat ambient[] = { 0.1, 0.1, 0.1, 1.0 };
+	GLfloat ambient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
 	glShadeModel(GL_SMOOTH);
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor);
@@ -191,6 +195,7 @@ void keyboard(unsigned char key, int x, int y)
 			isSelectMode2 = true;
 		}
 		break;
+
 	case 'u': // quit select mode
 		if (glutGetWindow() == 1)
 		{
@@ -203,7 +208,41 @@ void keyboard(unsigned char key, int x, int y)
 			isSelectMode2 = false;
 		}
 		break;
+
+	case 'i': // zoom in
+		if (glutGetWindow() == 1)
+		{
+			std::cout << "Zoom In Window 1..." << std::endl;
+			viewDist += ZOOM_DIFF;
+		}
+		else if (glutGetWindow() == 2)
+		{
+			std::cout << "Zoom In Window 1..." << std::endl;
+			viewDist += ZOOM_DIFF;
+		}
+		glutPostRedisplay();
+		break;
+		
+	case 'o': // zoom out
+		if (glutGetWindow() == 1)
+		{
+			std::cout << "Zoom Out Window 1..." << std::endl;
+			viewDist -= ZOOM_DIFF;
+		}
+		else if (glutGetWindow() == 2)
+		{
+			std::cout << "Zoom Out Window 1..." << std::endl;
+			viewDist -= ZOOM_DIFF;
+		}
+		glutPostRedisplay();
+		break;
 	default:
 		break;
 	}
 }
+
+// call back function - mouse scroll
+//void scroll(void)
+//{
+//
+//}

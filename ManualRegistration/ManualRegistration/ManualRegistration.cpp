@@ -4,15 +4,11 @@
  * Date : 7/8/2014
  */
 
+// pre-compiled header
 #include "stdafx.h"
 
 #include "CallBackFunc1.hpp"
 #include "CallBackFunc2.hpp"
-
-// call back functions
-
-
-
 
 
 int main(int argc, char** argv)
@@ -28,7 +24,7 @@ int main(int argc, char** argv)
 		exit(0);
 	}
 
-	glutInit(&argc, argv);
+	//glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(WIDTH, HEIGHT);
 
@@ -40,6 +36,7 @@ int main(int argc, char** argv)
 	glutMouseFunc(mouseClick1);
 	glutMotionFunc(mouseMove1);
 	glutKeyboardFunc(keyboard);
+	//glutMouseWheelFunc(mouseScroll);
 
 	glutInitWindowPosition(700, 100);
 	// second window

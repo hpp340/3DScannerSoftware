@@ -19,13 +19,11 @@ void display1()
 	pointCloud1->read_ply(filename1);
 
 	displayInit();
-
 	// to calculate the up vector used for gluLookAt
 	glm::vec3 viewPoint = glm::vec3(1.0 * sin(horizontalAngle1), 1.0 * sin(verticalAngle1), 1.0*cos(horizontalAngle1));
 	glm::vec3 rightVec = glm::vec3(-cos(horizontalAngle1), 0.0, 1.0*sin(horizontalAngle1));
 	glm::vec3 upVector = glm::cross(-viewPoint, rightVec);
 
-	viewDist = 2.0;
 	gluLookAt(viewDist*sin(horizontalAngle1), viewDist*sin(verticalAngle1), viewDist*cos(horizontalAngle1), 0.0, 0.0, 0.0, upVector.x, upVector.y, upVector.z);
 	glPushMatrix();
 	// draw point cloud
@@ -51,6 +49,10 @@ void mouseClick1(int button, int state, int x, int y)
 			selectPoint(pointCloud1);
 		}
 	}
+	//else if ((button == ) && (state == GLUT_DOWN)) // button=3 means scroll up
+	//{
+	//	std::cout << "Scrolling up..." << std::endl;
+	//}
 }
 
 // call back function for mouse move event - dragging
