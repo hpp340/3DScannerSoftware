@@ -1,2 +1,5 @@
 
 *.ply
+*.sdf
+*.opensdf
+
