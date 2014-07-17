@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/File">
+        <file>images/Files.ico</file>
+        <file>images/Documents Folder.ico</file>
+        <file>images/Save.ico</file>
+        <file>images/Search.ico</file>
+    </qresource>
+</RCC>
