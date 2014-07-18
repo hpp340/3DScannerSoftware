@@ -1,0 +1,14 @@
+﻿Build started 7/17/2014 3:06:09 PM.
+Project "W:\Codes\2014SummerMSC\3DScannerSoftware\mainWindow\mainWindow.vcxproj" on node 2 (Build target(s)).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_mainwindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_mainwindow.cpp, GeneratedFiles\Release\moc_mainwindow.cpp.
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"W:\Codes\2014SummerMSC\3DScannerSoftware\mainWindow\x64\Debug\\mainWindow.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64\lib C:\Qt\Qt5.3.1\5.3\msvc2013_64\lib\qtmaind.lib C:\Qt\Qt5.3.1\5.3\msvc2013_64\lib\Qt5Cored.lib C:\Qt\Qt5.3.1\5.3\msvc2013_64\lib\Qt5Widgetsd.lib C:\Qt\Qt5.3.1\5.3\msvc2013_64\lib\Qt5Guid.lib libEGLd.lib libGLESv2d.lib gdi32.lib user32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"W:\Codes\2014SummerMSC\3DScannerSoftware\mainWindow\x64\Debug\mainWindow.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Debug\moc_mainwindow.obj
+  x64\Debug\qrc_menu.obj
+  x64\Debug\main.obj
+  x64\Debug\mainwindow.obj
+  mainWindow.vcxproj -> W:\Codes\2014SummerMSC\3DScannerSoftware\mainWindow\x64\Debug\mainWindow.exe
+Done Building Project "W:\Codes\2014SummerMSC\3DScannerSoftware\mainWindow\mainWindow.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.32

@@ -1,13 +1,13 @@
 #include "mainwindow.h"
+#include "showmesh.h"
 #include <QApplication>
-
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-
-        w.show();
-        return a.exec();
-
+    showMesh gl;
+    w.show();
+    gl.show();
+    return a.exec();
 }
