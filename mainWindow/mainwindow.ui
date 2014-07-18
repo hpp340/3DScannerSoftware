@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1611</width>
-    <height>1022</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1611</width>
-     <height>38</height>
+     <width>400</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile_F">
@@ -55,8 +55,18 @@
     <addaction name="action_6"/>
     <addaction name="separator"/>
    </widget>
+   <widget class="QMenu" name="menu_O">
+    <property name="title">
+     <string>操作(&amp;O)</string>
+    </property>
+    <addaction name="actionRecon"/>
+    <addaction name="actionHole_filling"/>
+    <addaction name="actionRemeshing"/>
+    <addaction name="separator"/>
+   </widget>
    <addaction name="menuFile_F"/>
    <addaction name="menuEdit_E"/>
+   <addaction name="menu_O"/>
    <addaction name="menuHelp_H"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -153,6 +163,21 @@
   <action name="action_6">
    <property name="text">
     <string>版本说明</string>
+   </property>
+  </action>
+  <action name="actionRecon">
+   <property name="text">
+    <string>Recon</string>
+   </property>
+  </action>
+  <action name="actionHole_filling">
+   <property name="text">
+    <string>Hole filling</string>
+   </property>
+  </action>
+  <action name="actionRemeshing">
+   <property name="text">
+    <string>Remeshing</string>
    </property>
   </action>
  </widget>

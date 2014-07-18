@@ -20,6 +20,8 @@ public:
     ~MainWindow();
 public slots:
     void testClick();
+private slots:
+    void on_actionRemeshing_triggered();
 private:
     Ui::MainWindow *ui;
 };
