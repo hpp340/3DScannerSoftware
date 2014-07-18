@@ -13,7 +13,8 @@ Development
 * GUI will be written in Qt for cross platform use
 * Now we have added m2plyConverter to the project. See README file in that project.
 * We will have Registration algorithm, Poisson Surface Reconstruction, Hole Filling and Remeshing to be added to our software in the future, which makes it usable for our 3D scanning cameras.
-* Registration is finished by selecting some points manually since ICP algorithm has been proved not proper for human face applications.
+* We have ManualRegistration Project which complete registration, as indicated by the name. Registration is finished by selecting some points manually since ICP algorithm has been proved not proper for human face applications. Now this project uses GLUT as GUI to interact with mouse and keyboard. Now we are trying to implement OpenGL in Qt to support complex interaction.
+* mainWindow is a project written in Qt by Shawn, which is the basic UI framework for our software. This project will be enriched with all other codes and features to make a complete and useable software.
 * OpenGL 2.1 and above is supported. Also, you will need to have OpenGL installed on your computer to run the software. For installation guide, check back later.
 
 Authors
