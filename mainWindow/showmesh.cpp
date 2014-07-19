@@ -1,8 +1,10 @@
 #include "showmesh.h"
 
 showMesh::showMesh(QWidget *parent) :
-    QWidget(parent)
+    QGLWidget(parent)
 {
+    initGL();
+    loadPointCloud("W:\\Codes\\2014SummerMSC\\3DScannerSoftware\\mainWindow\\genus2ply.ply");
 }
 
 showMesh::~showMesh()
@@ -18,9 +20,9 @@ void showMesh::initGL()
 
 void showMesh::initDisplay()
 {
-    //initializeGLFunctions();
-    //qglClearColor(Qt::black);
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    std::cout << "widget wh " << this->width() << " " << this->height() << std::endl;
     glViewport(0, 0, this->width(), this->height());
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -50,14 +52,34 @@ void showMesh::loadPointCloud(const char * filename)
     pointCloud->read_ply(filename);
 }
 
-void showMesh::displayMesh()
+void showMesh::paintGL()
 {
+    double horizontalAngle1 = 0.0;
+    // double horizontalAngle2 = 0.0;
+    double verticalAngle1 = 0.0;
+    // double verticalAngle2 = 0.0;
+    double viewDist = 2.0;
+
+    std::cout << "23333" << std::endl;
+
+    // to calculate the up vector used for gluLookAt
+    glm::vec3 viewPoint = glm::vec3(1.0 * sin(horizontalAngle1), 1.0 * sin(verticalAngle1), 1.0*cos(horizontalAngle1));
+    glm::vec3 rightVec = glm::vec3(-cos(horizontalAngle1), 0.0, 1.0*sin(horizontalAngle1));
+    glm::vec3 upVector = glm::cross(-viewPoint, rightVec);
+
+    gluLookAt(viewDist*sin(horizontalAngle1), viewDist*sin(verticalAngle1), viewDist*cos(horizontalAngle1), 0.0, 0.0, 0.0, upVector.x, upVector.y, upVector.z);
+    glPushMatrix();
+
+    // draw point cloud
+    // drawPointCloud(pointCloud1);
+
     std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
     std::vector<CPoint> normalList = pointCloud->get_normal_list();
     for (size_t i = 0; i < vertexList.size(); i++)
     {
         CPoint vertex = vertexList[i];
         CPoint normal = normalList[i];
+        // std::cout << vertex[0] << vertex[1] << vertex[2] << std::endl;
         glPointSize(2.5);
         glBegin(GL_POINTS);
         glColor3d(1.0, 1.0, 1.0);
@@ -65,4 +87,9 @@ void showMesh::displayMesh()
         glNormal3d(normal[0], normal[1], normal[2]);
         glEnd();
     }
+    glPopMatrix();
+
+    //glFlush();
+
+    // glutSwapBuffers();
 }

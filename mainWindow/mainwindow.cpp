@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->actionSave_S, SIGNAL(triggered()), this, SLOT(testClick()));
+    showMesh *gl = new showMesh();
+    gl->show();
 }
 
 MainWindow::~MainWindow()

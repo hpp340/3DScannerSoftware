@@ -3,28 +3,29 @@
 
 #include <Windows.h>
 
-#include <QWidget>
-
 #include "headers/PlyCloud.h"
 #include "headers/Point.h"
 
-//#include <QGLWidget>
+#include <QGLWidget>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-//#include <QGLFunctions>
+
+#include "headers/glm/glm.hpp"
+#include "headers/glm/gtx/norm.hpp"
 
 using namespace MeshLib;
 
-class showMesh : public QWidget //, protected QGLFunctions
+class showMesh : public QGLWidget
 {
     Q_OBJECT
 public:
     explicit showMesh(QWidget *parent = 0);
     ~showMesh();
     void loadPointCloud(const char *);
-    void displayMesh();
+
 protected:
     void initGL(void);
+    void paintGL(void);
 
 private:
     void initDisplay(void);
