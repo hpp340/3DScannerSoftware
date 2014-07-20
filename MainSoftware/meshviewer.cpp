@@ -55,6 +55,8 @@ void MeshViewer::initializeGL()
 	glGetDoublev(GL_MODELVIEW_MATRIX, matModelView);
 	glGetIntegerv(GL_VIEWPORT, viewPort);
 
+	glEnable(GL_POINT_SMOOTH);
+
 	// set scene center and size of view. 1.0 for radius
 	setScene(center, 1.0);
 	std::cout << "iinitializeGL" << std::endl;
@@ -175,9 +177,9 @@ void MeshViewer::drawMesh()
 		CPoint vert = vertexList[i];
 		CPoint norl = normalList[i];
 
-		glPointSize(2.5);
+		glPointSize(10);
+		glColor3d(0.0, 1.0, 1.0);
 		glBegin(GL_POINTS);
-		glColor3d(1.0, 1.0, 1.0);
 		glVertex3d(vert[0], vert[1], vert[2]);
 		glNormal3d(norl[0], norl[1], norl[2]);
 		glEnd();
@@ -343,7 +345,7 @@ bool MeshViewer::arcball(QPoint screenPos, glm::vec3 &new3Dpos)
 {
 	std::cout << "arcball" << std::endl;
 	double x = (2.0 * screenPos.x() - width()) / (double)width();
-	double y = -(2.0 * screenPos.x() - height()) / (double)height();
+	double y = -(2.0 * screenPos.y() - height()) / (double)height();
 	double norm = x * x + y * y;
 	
 	double trackballRSqr = trackballRadius * trackballRadius;
