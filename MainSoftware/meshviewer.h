@@ -5,10 +5,13 @@
 #include <QGLWidget>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QMouseEvent>
 #include "OpenGLHeader.h"
 #include "header\PlyCloud.h"
 #include "header\glm\glm.hpp"
-#include "header\glm\gtx\normal.hpp"
+#include "header\glm\gtx\norm.hpp"
+
+#define PI 3.14159265
 
 class MeshViewer : public QGLWidget
 {
@@ -26,6 +29,8 @@ public:
 
 	// return radius
 	GLdouble getRadius() { return radius; }
+	// return trackball radius
+	double getTrackballRadius() { return trackballRadius; }
 
 	// size hint
 	QSize sizeHint() const;
@@ -44,6 +49,9 @@ private:
 	// center is used as the fixed point for rotation and adjustion for camera&view
 	void setScene(glm::vec3, GLdouble);
 
+	// do the rotation specified by axis and angle
+	void rotate(glm::vec3, double);
+
 protected:
 	// initialize display functions
 	void initDisplay();
@@ -55,6 +63,11 @@ protected:
 	float zNear() { return 1.0f; }
 	// return zFar
 	float zFar() { return 5.0f; }
+	// return modelview matrix
+	GLdouble * getModelViewMatrix() { return matModelView; }
+	// return projection matrix
+	GLdouble * getProjectionMatrix() { return matProjection; }
+
 
 	// method for draw mesh
 	void drawMesh();
@@ -62,6 +75,28 @@ protected:
 	// update projection matrix and make the whole scene visiable on the scene
 	// make camera/eye far enough 
 	void updateProjectionMatrix();
+
+	// QT mouse event
+	// use virtual method in case we would need to inheritate the class in the future
+	// override qt pre-defined method - cant be changed to other names
+	virtual void mousePressEvent(QMouseEvent *);
+	virtual void mouseReleaseEvent(QMouseEvent *);
+	virtual void mouseMoveEvent(QMouseEvent *);
+	//virtual void wheelEvent(QWheelEvent *);
+	//virtual void keyPressEvent(QKeyEvent *);
+
+	// rotation and translation 
+	// rotate and translate the view, instead of the point cloud itself
+	void rotationView(QPoint newMousePos);
+	//void translateView(QPoint newMousePos);
+
+	// arcball algorithm, used to rotation & translation
+	// map a 2D screen position to a unit sphere
+	bool arcball(QPoint screenPos, glm::vec3 &new3DPos);
+
+protected:
+	// trackball radius, used for controll rotation
+	double trackballRadius;
 
 private:
 	// point cloud
@@ -81,6 +116,12 @@ private:
 	// projection matrix and modelview matrix
 	GLdouble matModelView[16], matProjection[16];
 	GLint viewPort[4];
+
+	// mouse related variable
+	int mouseButton; // which mouse button
+	QPoint latestMousePos; // latest mouse position
+	glm::vec3 latestMouse3DPos;	// latest mouse 3D position
+	bool isLatestMouseOK;
 };
 
 #endif // MESHVIEWER_H

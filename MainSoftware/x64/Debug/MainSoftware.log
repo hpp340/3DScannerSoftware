@@ -1,8 +1,2 @@
-﻿  Moc'ing meshviewer.h...
-  moc_mainwindow.cpp
-  moc_meshviewer.cpp
-  main.cpp
-  mainwindow.cpp
-  meshviewer.cpp
-  Generating Code...
+﻿  meshviewer.cpp
   MainSoftware.vcxproj -> W:\Codes\2014SummerMSC\MainSoftware\x64\Debug\MainSoftware.exe
