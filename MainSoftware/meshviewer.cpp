@@ -29,7 +29,6 @@ void MeshViewer::init()
 	viewDist = 2.0;
 
 	std::cout << "init" << std::endl;
-
 }
 
 QSize MeshViewer::sizeHint() const
@@ -38,8 +37,6 @@ QSize MeshViewer::sizeHint() const
 	return QSize(int(rectangle.width()*0.96), int(rectangle.height()));
 	std::cout << "sizeHint" << std::endl;
 }
-
-
 
 void MeshViewer::loadFile(const char * meshfile)
 {
@@ -153,12 +150,7 @@ void MeshViewer::updateProjectionMatrix()
 void MeshViewer::paintGL()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glm::vec3 viewPoint = glm::vec3(1.0 * sin(horizontalAngle2), 1.0 * sin(verticalAngle2), 1.0*cos(horizontalAngle2));
-	//glm::vec3 rightVec = glm::vec3(-cos(horizontalAngle2), 0.0, 1.0*sin(horizontalAngle2));
-	//glm::vec3 upVector = glm::cross(-viewPoint, rightVec);
-	//std::cout << "233" << std::endl;
-	// to calculate the up vector used for gluLookAt
-	// gluLookAt(viewDist*sin(horizontalAngle2), viewDist*sin(verticalAngle2), viewDist*cos(horizontalAngle2), 0.0, 0.0, 0.0, upVector.x, upVector.y, upVector.z);
+	
 	glPushMatrix();
 	// draw mesh(point cloud)
 	drawMesh();
@@ -228,7 +220,7 @@ void MeshViewer::mouseMoveEvent(QMouseEvent * mouseEvent)
 		case Qt::RightButton:
 			std::cout << "Mouse Right Moving..." << std::endl;
 			// translate the view
-			// translateView(newMousePos);
+			translateView(newMousePos);
 			break;
 		default:
 			break;
@@ -238,7 +230,6 @@ void MeshViewer::mouseMoveEvent(QMouseEvent * mouseEvent)
 	latestMousePos = newMousePos;
 	std::cout << "starting debugging ..." << std::endl;
 	isLatestMouseOK= arcball(latestMousePos, latestMouse3DPos);
-	std::cout << "latestmouse3dpos " << latestMouse3DPos[0] << " " << latestMouse3DPos[1] << " " << latestMouse3DPos[2] << std::endl;;
 	// update OpenGL, trigger re-draw
 	updateGL();
 }
@@ -322,10 +313,31 @@ void MeshViewer::rotate(glm::vec3 axis, double angle)
 }
 
 // translate the view
-//void MeshViewer::translateView(QPoint newPos)
-//{
-//
-//}
+void MeshViewer::translateView(QPoint newPos)
+{
+	double zVal = -(matModelView[2] * center[0] + matModelView[6] * center[1] + matModelView[10] * center[2] + matModelView[14]) /
+		(matModelView[3] * center[0] + matModelView[7] * center[1] + matModelView[11] * center[2] + matModelView[15]);
+	double screenAspect = width() / height();
+	double top = tan(fovy() / 2.0f * PI / 180.0f) * zNear();
+	double right = screenAspect * top;
+	QPoint posDiff = latestMousePos - newPos;
+	glm::vec3 transVector = glm::vec3(2.0*posDiff.x() / width() * right / zNear() * zVal, 
+									-2.0*posDiff.y() / height() * top / zNear() * zVal,
+									0.0f);
+
+	translate(transVector);
+	//2.0*dx / w*right / near_plane*z,
+	//	-2.0*dy / h*top / near_plane*z,
+}
+
+void MeshViewer::translate(glm::vec3 transVector)
+{
+	makeCurrent();
+	glLoadIdentity();
+	glTranslated(-transVector[0], -transVector[1], -transVector[2]);
+	glMultMatrixd(matModelView);
+	glGetDoublev(GL_MODELVIEW_MATRIX, matModelView);
+}
 
 bool MeshViewer::arcball(QPoint screenPos, glm::vec3 &new3Dpos)
 {
@@ -349,6 +361,6 @@ bool MeshViewer::arcball(QPoint screenPos, glm::vec3 &new3Dpos)
 	new3Dpos[0] = modelPostion[0];
 	new3Dpos[1] = modelPostion[1];
 	new3Dpos[2] = modelPostion[2];
-	std::cout << "new3Dpos " << new3Dpos[0] << " " << new3Dpos[1] << " " << new3Dpos[2] << std::endl;
+
 	return true;
 }

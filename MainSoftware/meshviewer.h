@@ -51,6 +51,8 @@ private:
 
 	// do the rotation specified by axis and angle
 	void rotate(glm::vec3, double);
+	// do the translation specified by the transVector
+	void translate(glm::vec3 transVector);
 
 protected:
 	// initialize display functions
@@ -58,11 +60,11 @@ protected:
 	// initialize light functioins - we may need 3 lights
 	void initLights();
 	// return fovy
-	float fovy() { return 45.0f; }
+	float fovy() const { return 45.0f; }
 	// return zNear
-	float zNear() { return 1.0f; }
+	float zNear() { return 0.01 * radius; }
 	// return zFar
-	float zFar() { return 5.0f; }
+	float zFar() { return 100 * radius; }
 	// return modelview matrix
 	GLdouble * getModelViewMatrix() { return matModelView; }
 	// return projection matrix
@@ -88,7 +90,7 @@ protected:
 	// rotation and translation 
 	// rotate and translate the view, instead of the point cloud itself
 	void rotationView(QPoint newMousePos);
-	//void translateView(QPoint newMousePos);
+	void translateView(QPoint newMousePos);
 
 	// arcball algorithm, used to rotation & translation
 	// map a 2D screen position to a unit sphere
