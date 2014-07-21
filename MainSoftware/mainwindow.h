@@ -24,9 +24,8 @@ private:
 	// show mesh with filename
 	void showMesh(const char * filename);
 
-//private slots:
-    //bool save();
-    //bool saveas();
+private slots:
+	void showAlignWindow();
 
 private:
     void initWindow();
@@ -60,6 +59,8 @@ private:
 
 	// mesh viewer
 	MeshViewer * viewer;
+	
+
 };
 
 #endif // MAINWINDOW_H

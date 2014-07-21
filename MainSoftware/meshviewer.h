@@ -86,7 +86,7 @@ protected:
 	virtual void mousePressEvent(QMouseEvent *);
 	virtual void mouseReleaseEvent(QMouseEvent *);
 	virtual void mouseMoveEvent(QMouseEvent *);
-	//virtual void wheelEvent(QWheelEvent *);
+	virtual void wheelEvent(QWheelEvent *);
 	//virtual void keyPressEvent(QKeyEvent *);
 
 	// rotation and translation 

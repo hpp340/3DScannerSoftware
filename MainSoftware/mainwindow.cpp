@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "alignWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -78,6 +79,7 @@ void MainWindow::createActions()
 	alignMeshes = new QAction(tr("Align Two &Mesh"), this);
 	alignMeshes->setShortcut(tr("Ctrl+M"));
 	alignMeshes->setIcon(QIcon(":/icons/images/align.png"));
+	connect(alignMeshes, SIGNAL(triggered()), this, SLOT(showAlignWindow()));
 }
 
 void MainWindow::createToolbar()
@@ -113,4 +115,11 @@ void MainWindow::createMenus()
     // helpmenu
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(showAboutAction);
+}
+
+// slots
+void MainWindow::showAlignWindow()
+{
+	alignWindow * registration = new alignWindow();
+	registration->show();
 }

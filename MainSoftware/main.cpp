@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
     mainWin.resize(mainWin.sizeHint());
     mainWin.showMaximized();
 	
-	alignWindow *registration = new alignWindow();
-	registration->show();
+
     return scannerApp.exec();
 }

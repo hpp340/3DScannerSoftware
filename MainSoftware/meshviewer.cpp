@@ -257,10 +257,14 @@ void MeshViewer::mouseReleaseEvent(QMouseEvent * /*mouseEvent*/)
 	std::cout << "Mouse Release..." << std::endl;
 }
 
-//void MeshViewer::wheelEvent(QWheelEvent * mouseEvent)
-//{
-//	// todo
-//}
+void MeshViewer::wheelEvent(QWheelEvent * mouseEvent)
+{
+	// scroll the wheel to scale the view port
+	double moveAmount = - (double)mouseEvent->delta() / (120.0*8.0);
+	translate(glm::vec3(0.0, 0.0, moveAmount));
+	updateGL();
+	mouseEvent->accept();
+}
 //void MeshViewer::keyPressEvent(QKeyEvent * mouseEvent)
 //{
 //	// todo
