@@ -6,5 +6,6 @@
         <file>images/Search.ico</file>
         <file>images/snap.png</file>
         <file>images/align.png</file>
+        <file>images/select.png</file>
     </qresource>
 </RCC>

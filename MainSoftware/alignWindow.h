@@ -23,6 +23,7 @@ private:
 	QAction * openFirstMesh;
 	QAction * openSecondMesh;
 	QAction * alignButton;
+	QAction * enterSelection;
 
 	QToolBar * alignToolbar;
 	MeshViewer * firstMesh;

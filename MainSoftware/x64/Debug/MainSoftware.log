@@ -1,15 +1,2 @@
-﻿  Moc'ing alignWindow.h...
-  Moc'ing mainwindow.h...
-  Moc'ing meshviewer.h...
-  Rcc'ing resources.qrc...
-  alignWindow.cpp
-  moc_alignWindow.cpp
-  moc_mainwindow.cpp
-  moc_meshviewer.cpp
-  main.cpp
-  mainwindow.cpp
-  meshviewer.cpp
-  PlyCloud.cpp
-  Generating Code...
-  qrc_resources.cpp
+﻿  alignWindow.cpp
   MainSoftware.vcxproj -> W:\Codes\2014SummerMSC\MainSoftware\x64\Debug\MainSoftware.exe

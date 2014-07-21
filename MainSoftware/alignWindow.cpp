@@ -38,10 +38,17 @@ void alignWindow::createActions()
 	openSecondMesh->setStatusTip(tr("Open Second Mesh"));
 	// todo: connect
 
-	alignButton = new QAction(tr("Align"), this);
+	alignButton = new QAction(tr("&Align"), this);
 	alignButton->setIcon(QIcon(":/icons/images/align.png"));
 	alignButton->setStatusTip(tr("Align Two Meshes"));
 	alignButton->setShortcut(tr("Ctrl+l"));
+	// todo: connect
+
+	enterSelection = new QAction(tr("&Select"), this);
+	enterSelection->setIcon(QIcon(":/icons/images/select.png"));
+	enterSelection->setStatusTip(tr("Enter Selection Mode"));
+	enterSelection->setCheckable(true);
+	enterSelection->setChecked(false);
 	// todo: connect
 }
 
@@ -51,4 +58,5 @@ void alignWindow::createToolbar()
 	alignToolbar->addAction(openFirstMesh);
 	alignToolbar->addAction(openSecondMesh);
 	alignToolbar->addAction(alignButton);
+	alignToolbar->addAction(enterSelection);
 }
