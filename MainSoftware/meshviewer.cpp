@@ -38,6 +38,14 @@ QSize MeshViewer::sizeHint() const
 	std::cout << "sizeHint" << std::endl;
 }
 
+void MeshViewer::resizeGL(int width, int height)
+{
+	std::cout << "resizeing...." << std::endl;
+	glViewport(0, 0, width, height);
+	updateProjectionMatrix();
+	updateGL();
+}
+
 void MeshViewer::loadFile(const char * meshfile)
 {
 	pointCloud->read_ply(meshfile);
@@ -120,6 +128,8 @@ void MeshViewer::setScene(glm::vec3 scenePosCenter, GLdouble sceneRadius)
 	radius = sceneRadius;
 
 	updateProjectionMatrix();
+	makeWholeSceneVisible();
+
 	std::cout << "setScene" << std::endl;
 }
 
@@ -133,8 +143,12 @@ void MeshViewer::updateProjectionMatrix()
 	glGetDoublev(GL_PROJECTION_MATRIX, matProjection);
 	glMatrixMode(GL_MODELVIEW);
 
-	// update scene model view matrix
+	std::cout << "updateProjectionMatrix" << std::endl;
+}
 
+void MeshViewer::makeWholeSceneVisible()
+{
+	// update scene model view matrix
 	GLdouble translation0 = matModelView[0] * center[0] + matModelView[4] * center[1] + matModelView[8] * center[2] + matModelView[12];
 	GLdouble translation1 = matModelView[1] * center[0] + matModelView[5] * center[1] + matModelView[9] * center[2] + matModelView[13];
 	GLdouble translation2 = matModelView[2] * center[0] + matModelView[6] * center[1] + matModelView[10] * center[2] + matModelView[14] + 3.0*radius;
@@ -146,7 +160,7 @@ void MeshViewer::updateProjectionMatrix()
 	glMultMatrixd(matModelView);
 	glGetDoublev(GL_MODELVIEW_MATRIX, matModelView);
 
-	std::cout << "updateProjectionMatrix" << std::endl;
+	std::cout << "makeWholeSceneVisible" << std::endl;
 }
 
 void MeshViewer::paintGL()

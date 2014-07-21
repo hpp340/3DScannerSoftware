@@ -43,7 +43,7 @@ private:
 	// draw scene - triggered by Qt
 	void paintGL();
 	// resize - triggered by Qt
-	void resizeGL();
+	void resizeGL(int width, int height);
 
 	// set scene position and radius(size) 
 	// center is used as the fixed point for rotation and adjustion for camera&view
@@ -70,13 +70,15 @@ protected:
 	// return projection matrix
 	GLdouble * getProjectionMatrix() { return matProjection; }
 
-
 	// method for draw mesh
 	void drawMesh();
 
-	// update projection matrix and make the whole scene visiable on the scene
-	// make camera/eye far enough 
+	// update projection matrix  
 	void updateProjectionMatrix();
+
+	// make the whole scene visiable on the scene
+	// make camera/eye far enough
+	void makeWholeSceneVisible();
 
 	// QT mouse event
 	// use virtual method in case we would need to inheritate the class in the future

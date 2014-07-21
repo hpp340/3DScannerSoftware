@@ -1,4 +1,5 @@
 // #include "stdafx.h"
+// updated: 7/21/2014
 #include "header\PlyCloud.h"
 
 PlyCloud::PlyCloud()
@@ -58,20 +59,12 @@ bool PlyCloud::read_ply(const char * filename)
 		string normalSecondPosition = inS.substr(fourthSpace + 1, fifthSpace - fourthSpace);
 		string normalThirdPosition = inS.substr(fifthSpace + 1, inS.length() - fifthSpace);
 
-		//cout << inS << endl;
-		//cout << firstSpace << firstPosition << endl;
-		//cout << secondSpace << secondPosition << endl;
-		//cout << thirdSpace << thirdPosition << endl;
-
 		double x = atof(firstPosition.c_str());
 		double y = atof(secondPosition.c_str());
 		double z = atof(thirdPosition.c_str());
 		double nx = atof(normalFirstPosition.c_str());
 		double ny = atof(normalSecondPosition.c_str());
 		double nz = atof(normalThirdPosition.c_str());
-
-		// cout << x << y << z << endl;
-		//system("PAUSE");
 
 		CPoint vertexPosition;
 		vertexPosition[0] = x; vertexPosition[1] = y; vertexPosition[2] = z;

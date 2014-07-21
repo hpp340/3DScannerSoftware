@@ -72,7 +72,16 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="PlyCloud.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_alignWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_alignWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="alignWindow.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,25 +94,16 @@
     <CustomBuild Include="meshviewer.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="header\PlyCloud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\Search.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="images\open.ico">
-      <Filter>Resource Files</Filter>
-    </None>
     <CustomBuild Include="resources.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <None Include="images\save.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="images\saveas.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="images\snap.png">
-      <Filter>Resource Files</Filter>
-    </None>
+    <CustomBuild Include="alignWindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

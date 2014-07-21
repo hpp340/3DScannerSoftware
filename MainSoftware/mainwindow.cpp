@@ -74,6 +74,10 @@ void MainWindow::createActions()
     showAboutAction->setShortcut(tr("Ctrl+o"));
     showAboutAction->setStatusTip(tr("About"));
     // todo:connect
+
+	alignMeshes = new QAction(tr("Align Two &Mesh"), this);
+	alignMeshes->setShortcut(tr("Ctrl+M"));
+	alignMeshes->setIcon(QIcon(":/icons/images/align.png"));
 }
 
 void MainWindow::createToolbar()
@@ -82,6 +86,8 @@ void MainWindow::createToolbar()
     fileToolbar->addAction(openAction);
     fileToolbar->addAction(saveAction);
     fileToolbar->addAction(saveasAction);
+	editToolbar = addToolBar(tr("&Edit"));
+	editToolbar->addAction(alignMeshes);
 }
 
 void MainWindow::createMenus()

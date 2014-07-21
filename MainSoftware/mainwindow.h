@@ -46,6 +46,7 @@ private:
     QAction * showToolbarAction;
     QAction * showStatusAction;
     QAction * showAboutAction;
+	QAction * alignMeshes;
 
     // menus
     QMenu * fileMenu;
@@ -55,6 +56,7 @@ private:
 
     // toolbars
     QToolBar * fileToolbar;
+	QToolBar * editToolbar;
 
 	// mesh viewer
 	MeshViewer * viewer;

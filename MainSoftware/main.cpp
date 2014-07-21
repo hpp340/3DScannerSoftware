@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "alignWindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -8,6 +9,8 @@ int main(int argc, char *argv[])
     mainWin.setGeometry(100, 100, mainWin.sizeHint().width(), mainWin.sizeHint().height());
     mainWin.resize(mainWin.sizeHint());
     mainWin.showMaximized();
-
+	
+	alignWindow *registration = new alignWindow();
+	registration->show();
     return scannerApp.exec();
 }

@@ -2,6 +2,7 @@
  * Used as the class of point cloud
  * Author: Jerome Jiang
  * Date: 6/27/2014
+ * Updated: 7/21/2014
 */
 
 #pragma once
