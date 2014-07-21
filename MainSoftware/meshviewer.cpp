@@ -138,7 +138,7 @@ void MeshViewer::updateProjectionMatrix()
 	makeCurrent();
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	// std::cout << "width " << width() << " height " << height() << std::endl;
+	//std::cout << "width " << width() << " height " << height() << std::endl;
 	gluPerspective(fovy(), (GLdouble)width() / (GLdouble)height(), 0.01 * radius, 100.0 * radius);
 	glGetDoublev(GL_PROJECTION_MATRIX, matProjection);
 	glMatrixMode(GL_MODELVIEW);
