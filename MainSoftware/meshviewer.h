@@ -35,6 +35,9 @@ public:
 	// size hint
 	QSize sizeHint() const;
 
+	// get point cloud
+	PlyCloud * getMesh() { return pointCloud; };
+
 private:
 	// initialize the members
 	void init();
@@ -69,6 +72,8 @@ protected:
 	GLdouble * getModelViewMatrix() { return matModelView; }
 	// return projection matrix
 	GLdouble * getProjectionMatrix() { return matProjection; }
+	// return viewport matrix
+	GLint * getViewPort() { return viewPort; }
 
 	// method for draw mesh
 	void drawMesh();
@@ -102,20 +107,13 @@ protected:
 	// trackball radius, used for controll rotation
 	double trackballRadius;
 
-private:
+protected:
 	// point cloud
 	PlyCloud * pointCloud;
 	// scene center
 	glm::vec3 center;
 	// scene radius
 	GLdouble radius;
-
-	// view angles and distances
-	GLdouble horizontalAngle1;
-	GLdouble horizontalAngle2;
-	GLdouble verticalAngle1;
-	GLdouble verticalAngle2;
-	GLdouble viewDist;
 
 	// projection matrix and modelview matrix
 	GLdouble matModelView[16], matProjection[16];

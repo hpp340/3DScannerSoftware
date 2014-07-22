@@ -1,0 +1,103 @@
+#include "interactiveMeshViewer.h"
+
+interactiveMeshViewer::interactiveMeshViewer()
+{
+	isSelectionMode = false;
+}
+
+
+interactiveMeshViewer::~interactiveMeshViewer()
+{
+}
+
+void interactiveMeshViewer::mousePressEvent(QMouseEvent * mouseEvent)
+{
+	mouseButton = mouseEvent->button();
+	latestMousePos = mouseEvent->pos();
+	isLatestMouseOK = arcball(latestMousePos, latestMouse3DPos);
+
+	// debug output
+	if (mouseButton == Qt::LeftButton)
+	{
+		std::cout << "Mouse Left Press..." << std::endl;
+	}
+	else if (mouseButton == Qt::RightButton)
+	{
+		std::cout << "Mouse Right Press..." << std::endl;
+	}
+	// entered selection mode
+	if (isSelectionMode)
+	{
+		std::cout << "selecting..." << std::endl;
+		int selectedVertexId = selectVertex();
+		std::cout << selectedVertexId << std::endl;
+	}
+}
+
+int interactiveMeshViewer::selectVertex()
+{
+	GLdouble mousePosX = latestMousePos.x();
+	GLdouble mousePosY = latestMousePos.y();
+	// local variables used for glUnproject to determine the actual 3D postion of mouse
+	//GLint _viewport[4];
+	//GLdouble _matModelView[16];
+	//GLdouble _matProjection[16];
+	GLdouble objNearX, objNearY, objNearZ;
+	GLdouble objFarX, objFarY, objFarZ;
+	// get the 3D coordinates of the position of mouse click on both near plane and far plane, so that we know the ray vector
+	gluUnProject(mousePosX, mousePosY, 0.0, matModelView, matProjection, viewPort, &objNearX, &objNearY, &objNearZ);
+	gluUnProject(mousePosX, mousePosY, 1.0, matModelView, matProjection, viewPort, &objFarX, &objFarY, &objFarZ);
+
+	glm::dvec3 objNearPt = glm::dvec3(objNearX, objNearY, objNearZ); // 3D coordinates of near plane
+	glm::dvec3 objFarPt = glm::dvec3(objFarX, objFarY, objFarZ); // 3D coordinates of far plan
+	glm::dvec3 rayVector = objFarPt - objNearPt;
+
+	// then we should do the collision detect
+	// iteration every point
+	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<int> vertexOnTheRay;
+	double minAngle = PI;
+	int minVertexId = 0;
+	for (size_t i = 0; i < vertexList.size(); i++)
+	{
+		CPoint vert = vertexList[i];
+		glm::dvec3 vertVec = glm::dvec3(vert[0], vert[1], vert[2]);
+		glm::dvec3 vertVecFromStart = vertVec - objNearPt;
+		// judge whether the vertex is on the ray described by rayVector
+		// see the inner product. if zero, yes
+		double dotProduct = glm::dot(vertVecFromStart, rayVector);
+		double angle = dotProduct / (glm::l2Norm(vertVecFromStart) * glm::l2Norm(rayVector));
+		std::cout << "angle " << acos(angle) << std::endl;
+		if (abs(acos(angle) - 0.0) < 0.03)  // to avoid the error produced by double type
+		{
+			std::cout << "Hit points " << i << std::endl;
+			system("PAUSE");
+			vertexOnTheRay.push_back((int)i);
+		}
+		if (abs(acos(angle)) < minAngle)
+		{
+			minVertexId = (int)i;
+			minAngle = abs(acos(angle));
+		}
+	}
+	return minVertexId;
+}
+
+// slots
+void interactiveMeshViewer::enterSelectionMode()
+{
+	if (!isSelectionMode)
+	{
+		std::cout << "MeshViewer: Enter Selection Mode" << std::endl;
+		isSelectionMode = true;
+	}
+}
+
+void interactiveMeshViewer::quitSelectionMode()
+{
+	if (isSelectionMode)
+	{
+		std::cout << "MeshViewer: Leaving Selection Mode" << std::endl;
+		isSelectionMode = false;
+	}
+}

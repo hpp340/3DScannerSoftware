@@ -22,12 +22,6 @@ void MeshViewer::init()
 	radius = 0.0;
 	trackballRadius = 0.6;
 
-	horizontalAngle1 = 0.0;
-	horizontalAngle2 = 0.0;
-	verticalAngle1 = 0.0;
-	verticalAngle2 = 0.0;
-	viewDist = 2.0;
-
 	std::cout << "init" << std::endl;
 }
 
