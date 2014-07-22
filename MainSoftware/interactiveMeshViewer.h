@@ -26,5 +26,6 @@ protected:
 private:
 	bool isSelectionMode;
 	int selectVertex();
+	void drawSelectedVertex(int vertexId);
 };
 

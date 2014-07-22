@@ -35,7 +35,9 @@ QSize MeshViewer::sizeHint() const
 void MeshViewer::resizeGL(int width, int height)
 {
 	std::cout << "resizeing...." << std::endl;
+	std::cout << "width " << width << "height " << height << std::endl;
 	glViewport(0, 0, width, height);
+	glGetIntegerv(GL_VIEWPORT, viewPort);
 	updateProjectionMatrix();
 	updateGL();
 }
@@ -58,10 +60,10 @@ void MeshViewer::initializeGL()
 	glGetIntegerv(GL_VIEWPORT, viewPort);
 
 	glEnable(GL_POINT_SMOOTH);
-
+	glEnable(GL_COLOR_MATERIAL);
 	// set scene center and size of view. 1.0 for radius
 	setScene(center, 1.0);
-	std::cout << "iinitializeGL" << std::endl;
+	std::cout << "initializeGL" << std::endl;
 }
 
 void MeshViewer::initDisplay()
@@ -132,11 +134,10 @@ void MeshViewer::updateProjectionMatrix()
 	makeCurrent();
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	//std::cout << "width " << width() << " height " << height() << std::endl;
+	std::cout << "width " << width() << " height " << height() << std::endl;
 	gluPerspective(fovy(), (GLdouble)width() / (GLdouble)height(), 0.01 * radius, 100.0 * radius);
 	glGetDoublev(GL_PROJECTION_MATRIX, matProjection);
-	glMatrixMode(GL_MODELVIEW);
-
+	glGetDoublev(GL_MODELVIEW_MATRIX, matModelView);
 	std::cout << "updateProjectionMatrix" << std::endl;
 }
 
@@ -149,6 +150,7 @@ void MeshViewer::makeWholeSceneVisible()
 	glm::vec3 transVector = glm::vec3(-translation0, -translation1, -translation2);
 	// change matrix and translation
 	makeCurrent();
+	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glTranslated(transVector[0], transVector[1], transVector[2]);
 	glMultMatrixd(matModelView);

@@ -16,7 +16,7 @@ display - call back function
 */
 void display1()
 {
-	pointCloud1->read_ply("genus2ply.ply");
+	pointCloud1->read_ply("testx.ply");
 
 	displayInit();
 	// to calculate the up vector used for gluLookAt

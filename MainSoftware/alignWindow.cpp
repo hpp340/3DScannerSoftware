@@ -12,11 +12,11 @@ alignWindow::~alignWindow()
 
 void alignWindow::initAlignWindow()
 {
-	this->setGeometry(100, 100, 1000, 800);
+	this->setGeometry(100, 100, 1400, 1000);
 	firstMesh = new interactiveMeshViewer();
-	firstMesh->loadFile("genus2ply.ply");
+	firstMesh->loadFile("testx.ply");
 	secondMesh = new interactiveMeshViewer();
-	secondMesh->loadFile("genus2ply.ply");
+	secondMesh->loadFile("testx.ply");
 	createActions();
 	createToolbar();
 	QGridLayout * alignLayout = new QGridLayout();

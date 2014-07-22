@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     createActions();
     createToolbar();
     createMenus();
-	showMesh("genus2ply.ply");
+	showMesh("testx.ply");
 }
 
 MainWindow::~MainWindow()

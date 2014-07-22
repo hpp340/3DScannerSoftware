@@ -31,19 +31,18 @@ void interactiveMeshViewer::mousePressEvent(QMouseEvent * mouseEvent)
 		std::cout << "selecting..." << std::endl;
 		int selectedVertexId = selectVertex();
 		std::cout << selectedVertexId << std::endl;
+		drawSelectedVertex(selectedVertexId);
 	}
 }
 
 int interactiveMeshViewer::selectVertex()
 {
 	GLdouble mousePosX = latestMousePos.x();
-	GLdouble mousePosY = latestMousePos.y();
-	// local variables used for glUnproject to determine the actual 3D postion of mouse
-	//GLint _viewport[4];
-	//GLdouble _matModelView[16];
-	//GLdouble _matProjection[16];
+	GLdouble mousePosY = height() - latestMousePos.y();
+
 	GLdouble objNearX, objNearY, objNearZ;
 	GLdouble objFarX, objFarY, objFarZ;
+
 	// get the 3D coordinates of the position of mouse click on both near plane and far plane, so that we know the ray vector
 	gluUnProject(mousePosX, mousePosY, 0.0, matModelView, matProjection, viewPort, &objNearX, &objNearY, &objNearZ);
 	gluUnProject(mousePosX, mousePosY, 1.0, matModelView, matProjection, viewPort, &objFarX, &objFarY, &objFarZ);
@@ -71,7 +70,7 @@ int interactiveMeshViewer::selectVertex()
 		if (abs(acos(angle) - 0.0) < 0.03)  // to avoid the error produced by double type
 		{
 			std::cout << "Hit points " << i << std::endl;
-			system("PAUSE");
+			//system("PAUSE");
 			vertexOnTheRay.push_back((int)i);
 		}
 		if (abs(acos(angle)) < minAngle)
@@ -81,6 +80,21 @@ int interactiveMeshViewer::selectVertex()
 		}
 	}
 	return minVertexId;
+}
+
+void interactiveMeshViewer::drawSelectedVertex(int selectedId)
+{
+	makeCurrent();
+	std::cout << "painting selected vertex " << selectedId << std::endl;
+	CPoint selectedVertex = pointCloud->get_vertex(selectedId);
+	CPoint selectedNormal = pointCloud->get_normal(selectedId);
+	glPointSize(20);
+	glColor3d(1.0, 0.5, 0.0);
+	glBegin(GL_POINT);
+	glVertex3d(selectedVertex[0], selectedVertex[1], selectedVertex[2]);
+	glNormal3d(selectedNormal[0], selectedNormal[1], selectedNormal[2]);
+	glEnd();
+
 }
 
 // slots
