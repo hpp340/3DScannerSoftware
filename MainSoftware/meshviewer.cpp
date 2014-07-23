@@ -379,3 +379,20 @@ bool MeshViewer::arcball(QPoint screenPos, glm::vec3 &new3Dpos)
 
 	return true;
 }
+
+// slots
+void MeshViewer::openMesh()
+{
+	filename = QFileDialog::getOpenFileName(this,
+		tr("Open mesh file"),
+		tr("../models/"),
+		tr("PLY Files (*.ply);;"
+		"All Files (*)"));
+	if (!filename.isEmpty())
+	{
+		QByteArray byteArray = filename.toUtf8();
+		const char * _filename = byteArray.constData();
+		printf("%s\n", _filename);
+		loadFile(_filename);
+	}
+}

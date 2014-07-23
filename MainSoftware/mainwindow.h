@@ -22,7 +22,7 @@ public:
 
 private:
 	// show mesh with filename
-	void showMesh(const char * filename);
+	// void showMesh(const char * filename);
 
 private slots:
 	void showAlignWindow();

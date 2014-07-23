@@ -6,6 +6,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QMouseEvent>
+#include <QFileDialog>
 #include "OpenGLHeader.h"
 #include "header\PlyCloud.h"
 #include "header\glm\glm.hpp"
@@ -124,6 +125,12 @@ protected:
 	QPoint latestMousePos; // latest mouse position
 	glm::vec3 latestMouse3DPos;	// latest mouse 3D position
 	bool isLatestMouseOK;
+
+private:
+	QString filename;
+
+public slots:
+	void openMesh();
 };
 
 #endif // MESHVIEWER_H

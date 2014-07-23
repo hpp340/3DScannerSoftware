@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     createActions();
     createToolbar();
     createMenus();
-	showMesh("testx.ply");
+	// showMesh("testx.ply");
 }
 
 MainWindow::~MainWindow()
@@ -21,10 +21,10 @@ void MainWindow::initWindow()
 {
 }
 
-void MainWindow::showMesh(const char * filename)
-{
-	viewer->loadFile(filename);
-}
+//void MainWindow::showMesh(const char * filename)
+//{
+//	//viewer->loadFile(filename);
+//}
 
 void MainWindow::createActions()
 {
@@ -32,6 +32,7 @@ void MainWindow::createActions()
     openAction->setIcon(QIcon(":/icons/images/open.ico"));
     openAction->setShortcut(QKeySequence::Open);
     openAction->setStatusTip(tr("Open a mesh file"));
+	connect(openAction, SIGNAL(triggered()), viewer, SLOT(openMesh()));
     // todo:connect
 
     saveAction = new QAction(tr("&Save"), this);

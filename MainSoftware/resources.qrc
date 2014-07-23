@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/icons">
         <file>images/open.ico</file>
+        <file>images/open1.png</file>
+        <file>images/open2.png</file>
         <file>images/save.ico</file>
         <file>images/saveas.ico</file>
         <file>images/Search.ico</file>

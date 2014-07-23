@@ -14,9 +14,9 @@ void alignWindow::initAlignWindow()
 {
 	this->setGeometry(100, 100, 1400, 1000);
 	firstMesh = new interactiveMeshViewer();
-	firstMesh->loadFile("testx.ply");
+	//firstMesh->loadFile("testx.ply");
 	secondMesh = new interactiveMeshViewer();
-	secondMesh->loadFile("testx.ply");
+	//secondMesh->loadFile("testx.ply");
 	createActions();
 	createToolbar();
 	QGridLayout * alignLayout = new QGridLayout();
@@ -24,19 +24,20 @@ void alignWindow::initAlignWindow()
 	alignLayout->addWidget(firstMesh, 1, 0, 1, 1);
 	alignLayout->addWidget(secondMesh, 1, 1, 1, 1);
 	this->setLayout(alignLayout);
-
 }
 
 void alignWindow::createActions()
 {
 	openFirstMesh = new QAction(tr("Open &First Mesh"), this);
-	openFirstMesh->setIcon(QIcon(":/icons/images/open.ico"));
+	openFirstMesh->setIcon(QIcon(":/icons/images/open1.png"));
 	openFirstMesh->setStatusTip(tr("Open First Mesh"));
+	connect(openFirstMesh, SIGNAL(triggered()), firstMesh, SLOT(openMesh()));
 	// todo: connect
 
 	openSecondMesh = new QAction(tr("Open &Second Mesh"), this);
-	openSecondMesh->setIcon(QIcon(":/icons/images/open.ico"));
+	openSecondMesh->setIcon(QIcon(":/icons/images/open2.png"));
 	openSecondMesh->setStatusTip(tr("Open Second Mesh"));
+	connect(openSecondMesh, SIGNAL(triggered()), secondMesh, SLOT(openMesh()));
 	// todo: connect
 
 	alignButton = new QAction(tr("&Align"), this);
