@@ -76,7 +76,7 @@ protected:
 	GLint * getViewPort() { return viewPort; }
 
 	// method for draw mesh
-	void drawMesh();
+	virtual void drawMesh();
 
 	// update projection matrix  
 	void updateProjectionMatrix();

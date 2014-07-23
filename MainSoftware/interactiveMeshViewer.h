@@ -22,9 +22,12 @@ public slots:
 protected:
 	// override 
 	void mousePressEvent(QMouseEvent *);
+	void drawMesh();
 
 private:
 	bool isSelectionMode;
+	std::vector<int> allSelectedVertex;
+private:
 	int selectVertex();
 	void drawSelectedVertex(int vertexId);
 };

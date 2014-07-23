@@ -161,15 +161,14 @@ void MeshViewer::makeWholeSceneVisible()
 
 void MeshViewer::paintGL()
 {
+	std::cout << "paintGL" << std::endl;
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
 	glPushMatrix();
 	// draw mesh(point cloud)
 	drawMesh();
 	glPopMatrix();
 	//glFlush();
-
-	std::cout << "paintGL" << std::endl;
 }
 
 void MeshViewer::drawMesh()
@@ -194,7 +193,7 @@ void MeshViewer::drawMesh()
 		glNormal3d(norl[0], norl[1], norl[2]);
 		glEnd();
 	}
-	std::cout << "drawMesh" << std::endl;
+	std::cout << "meshviewer:drawMesh" << std::endl;
 }
 
 void MeshViewer::mousePressEvent(QMouseEvent * mouseEvent)

@@ -79,6 +79,16 @@ int interactiveMeshViewer::selectVertex()
 			minAngle = abs(acos(angle));
 		}
 	}
+	std::vector<int>::iterator findResult = std::find(allSelectedVertex.begin(), allSelectedVertex.end(), minVertexId);
+	if (findResult != allSelectedVertex.end()) // this vertex has been selected
+	{
+		allSelectedVertex.erase(findResult);
+	}
+	else
+	{
+		allSelectedVertex.push_back(minVertexId);
+	}
+	updateGL();
 	return minVertexId;
 }
 
@@ -90,11 +100,47 @@ void interactiveMeshViewer::drawSelectedVertex(int selectedId)
 	CPoint selectedNormal = pointCloud->get_normal(selectedId);
 	glPointSize(20);
 	glColor3d(1.0, 0.5, 0.0);
-	glBegin(GL_POINT);
+	glBegin(GL_POINTS);
 	glVertex3d(selectedVertex[0], selectedVertex[1], selectedVertex[2]);
 	glNormal3d(selectedNormal[0], selectedNormal[1], selectedNormal[2]);
 	glEnd();
+}
 
+// override the original method to draw selected vertex
+void interactiveMeshViewer::drawMesh()
+{
+	std::cout << "interactiveMeshViewer:drawMesh" << std::endl;
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixd(matProjection);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixd(matModelView);
+
+	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+
+	for (size_t i = 0; i < vertexList.size(); i++)
+	{
+		CPoint vert = vertexList[i];
+		CPoint norl = normalList[i];
+		if (std::find(allSelectedVertex.begin(), allSelectedVertex.end(), i) != allSelectedVertex.end()) // this vertex is selected
+		{
+			glPointSize(12);
+			glColor3d(1.0, 0.5, 0.0);
+			glBegin(GL_POINTS);
+			glVertex3d(vert[0], vert[1], vert[2]);
+			glNormal3d(norl[0], norl[1], norl[2]);
+			glEnd();
+		}
+		else
+		{
+			glPointSize(10);
+			glColor3d(0.0, 1.0, 1.0);
+			glBegin(GL_POINTS);
+			glVertex3d(vert[0], vert[1], vert[2]);
+			glNormal3d(norl[0], norl[1], norl[2]);
+			glEnd();
+		}
+	}
 }
 
 // slots
