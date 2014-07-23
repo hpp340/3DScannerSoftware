@@ -1,14 +1,2 @@
-﻿  Moc'ing meshviewer.h...
-  Rcc'ing resources.qrc...
-  moc_alignWindow.cpp
-  moc_interactiveMeshViewer.cpp
-  moc_mainwindow.cpp
-  moc_meshviewer.cpp
-  alignWindow.cpp
-  interactiveMeshViewer.cpp
-  main.cpp
-  mainwindow.cpp
-  meshviewer.cpp
-  Generating Code...
-  qrc_resources.cpp
+﻿  meshviewer.cpp
   MainSoftware.vcxproj -> W:\Codes\2014SummerMSC\MainSoftware\x64\Debug\MainSoftware.exe

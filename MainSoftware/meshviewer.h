@@ -60,6 +60,9 @@ private:
 	// do the translation specified by the transVector
 	void translate(glm::vec3 transVector);
 
+	// get bounding box of the mesh
+	void getBoundingBox();
+
 protected:
 	// initialize display functions
 	void initDisplay();
@@ -78,9 +81,10 @@ protected:
 	// return viewport matrix
 	GLint * getViewPort() { return viewPort; }
 
-	// method for draw mesh
+	// method for drawing mesh
 	virtual void drawMesh();
-
+	// method for drawing axises
+	virtual void drawAxis();
 	// update projection matrix  
 	void updateProjectionMatrix();
 
@@ -113,6 +117,8 @@ protected:
 protected:
 	// point cloud
 	PlyCloud * pointCloud;
+	// is mesh loaded
+	bool isMeshLoaded;
 	// scene center
 	glm::vec3 center;
 	// scene radius
@@ -126,7 +132,10 @@ protected:
 	int mouseButton; // which mouse button
 	QPoint latestMousePos; // latest mouse position
 	glm::vec3 latestMouse3DPos;	// latest mouse 3D position
-	bool isLatestMouseOK;
+	bool isLatestMouseOK; // if the latest mouse position could be mapped onto the arc ball
+	// boundingbox
+	glm::vec3 minBoundingBox;
+	glm::vec3 maxBoundingBox;
 
 private:
 	QString filename;

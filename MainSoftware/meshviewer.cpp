@@ -21,7 +21,7 @@ void MeshViewer::init()
 	center = glm::vec3(0.0f, 0.0f, 0.0f);
 	radius = 0.0;
 	trackballRadius = 0.6;
-
+	isMeshLoaded = false;
 	std::cout << "init" << std::endl;
 }
 
@@ -42,6 +42,28 @@ void MeshViewer::resizeGL(int width, int height)
 	updateGL();
 }
 
+void MeshViewer::getBoundingBox()
+{
+	GLdouble xMin, yMin, zMin;
+	xMin = yMin = zMin = 99999.99;
+	GLdouble xMax, yMax, zMax;
+	xMax = yMax = zMax = -99999.99;
+
+	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	for (size_t i = 0; i < vertexList.size(); i++)
+	{
+		CPoint _vertex = vertexList[i];
+		if (_vertex[0] < xMin) { xMin = _vertex[0]; }
+		if (_vertex[0] > xMax) { xMax = _vertex[0]; }
+		if (_vertex[1] < yMin) { yMin = _vertex[1]; }
+		if (_vertex[1] > yMax) { yMax = _vertex[1]; }
+		if (_vertex[2] < zMin) { zMin = _vertex[2]; }
+		if (_vertex[2] > zMax) { zMax = _vertex[2]; }
+	}
+	minBoundingBox[0] = xMin; minBoundingBox[1] = yMin; minBoundingBox[2] = zMin;
+	maxBoundingBox[0] = xMax; maxBoundingBox[1] = yMax; maxBoundingBox[2] = zMax;
+}
+
 void MeshViewer::loadFile(const char * meshfile)
 {
 	bool isLoadOK = pointCloud->read_ply(meshfile);
@@ -51,6 +73,9 @@ void MeshViewer::loadFile(const char * meshfile)
 		loadFail.setText("Can't Open File.");
 		loadFail.exec();
 	}
+	// get bounding box of the mesh
+	getBoundingBox();
+	isMeshLoaded = true;
 	std::cout << "loadFile" << std::endl;
 }
 
@@ -183,10 +208,54 @@ void MeshViewer::paintGL()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
-	// draw mesh(point cloud)
+	if (isMeshLoaded)
+	{
+		drawAxis();
+	}
 	drawMesh();
 	glPopMatrix();
 	//glFlush();
+}
+
+void MeshViewer::drawAxis()
+{
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixd(matProjection);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixd(matModelView);
+	QFont TEXTFONT("Courier", 12);
+	double r = glm::l2Norm(maxBoundingBox - minBoundingBox) * 0.5f;
+	glm::vec3 c = (maxBoundingBox + minBoundingBox) * 0.5f;
+	glm::vec3 x = glm::vec3(1.0*r, 0, 0);
+	glm::vec3 y = glm::vec3(0, 1.0*r, 0);
+	glm::vec3 z = glm::vec3(0, 0, 1.0*r);
+	glm::dvec3 temp;
+
+	glDisable(GL_LIGHTING);
+	glLineWidth(2.5);
+	glColor3d(1.0, 0.0, 0.0);
+	glBegin(GL_LINES);
+	glVertex3d(c[0], c[1], c[2]);
+	temp = c + x;
+	glVertex3d(temp[0], temp[1], temp[2]);
+	glEnd();
+	renderText(temp[0] + 0.01*r, temp[1], temp[2], "X", TEXTFONT);
+
+	glColor3d(0.0, 1.0, 0.0);
+	glBegin(GL_LINES);
+	glVertex3d(c[0], c[1], c[2]);
+	temp = c + y;
+	glVertex3d(temp[0], temp[1], temp[2]);
+	glEnd();
+	renderText(temp[0], temp[1] + 0.01*r, temp[2], "Y", TEXTFONT);
+
+	glColor3d(0.0, 0.0, 1.0);
+	glBegin(GL_LINES);
+	glVertex3d(c[0], c[1], c[2]);
+	temp = c + z;
+	glVertex3d(temp[0], temp[1], temp[2]);
+	glEnd();
+	renderText(temp[0], temp[1], temp[2] + 0.01*r, "Z", TEXTFONT);
 }
 
 void MeshViewer::drawMesh()
