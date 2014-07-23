@@ -44,8 +44,26 @@ void MeshViewer::resizeGL(int width, int height)
 
 void MeshViewer::loadFile(const char * meshfile)
 {
-	pointCloud->read_ply(meshfile);
+	bool isLoadOK = pointCloud->read_ply(meshfile);
+	if (! isLoadOK)
+	{
+		QMessageBox loadFail;
+		loadFail.setText("Can't Open File.");
+		loadFail.exec();
+	}
 	std::cout << "loadFile" << std::endl;
+}
+
+void MeshViewer::saveFile(const char * meshfile)
+{
+	bool isWriteOK = pointCloud->write_ply(meshfile);
+	if (! isWriteOK)
+	{
+		QMessageBox writeFail;
+		writeFail.setText("Can't Save File.");
+		writeFail.exec();
+	}
+	std::cout << "saveFile" << std::endl;
 }
 
 void MeshViewer::initializeGL()
@@ -390,9 +408,26 @@ void MeshViewer::openMesh()
 		"All Files (*)"));
 	if (!filename.isEmpty())
 	{
+		// convert QString to char *
 		QByteArray byteArray = filename.toUtf8();
 		const char * _filename = byteArray.constData();
 		printf("%s\n", _filename);
 		loadFile(_filename);
+	}
+}
+
+void MeshViewer::saveMesh()
+{
+	QString saveFilename = QFileDialog::getSaveFileName(this,
+		tr("Save Mesh File"),
+		tr("../models/"),
+		tr("PLY Files (*.ply);;"
+		"All Files (*)"));
+	if (! saveFilename.isEmpty())
+	{
+		// convert QString to char *
+		QByteArray byteArray = saveFilename.toUtf8();
+		const char * _saveFilename = byteArray.constData();
+		saveFile(_saveFilename);
 	}
 }

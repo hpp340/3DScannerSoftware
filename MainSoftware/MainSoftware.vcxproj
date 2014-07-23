@@ -439,6 +439,9 @@
       <SubType>Designer</SubType>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="appIcon.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>

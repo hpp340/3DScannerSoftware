@@ -1,5 +1,4 @@
-// #include "stdafx.h"
-// updated: 7/21/2014
+// updated: 7/23/2014
 #include "header\PlyCloud.h"
 
 PlyCloud::PlyCloud()
@@ -76,21 +75,26 @@ bool PlyCloud::read_ply(const char * filename)
 	return true;
 }
 
-int PlyCloud::add_VertNorm(CPoint v, CPoint n)
+bool PlyCloud::add_VertNorm(CPoint v, CPoint n)
 {
 	vertex_list.push_back(v);
 	normal_list.push_back(n);
 	return 1;
 }
 
-int PlyCloud::write_ply(const char *filename)
+bool PlyCloud::write_ply(const char *filename)
 {
 	std::ofstream outputPlyFile;
 	outputPlyFile.open(filename);
 	if (outputPlyFile.fail())
 	{
 		std::cout << "Error : Can't new output file." << std::endl;
-		return 0;
+		return false;
+	}
+	if (vertex_list.size() == 0)
+	{
+		std::cout << "Error: No Vertex to save." << std::endl;
+		return false;
 	}
 	// write header of ply file
 	outputPlyFile << "ply" << endl;
@@ -125,7 +129,7 @@ int PlyCloud::write_ply(const char *filename)
 		}
 	}
 	outputPlyFile.close();
-	return 1;
+	return true;
 }
 
 CPoint PlyCloud::get_vertex(size_t v_id)

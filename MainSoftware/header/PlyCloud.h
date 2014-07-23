@@ -2,7 +2,7 @@
  * Used as the class of point cloud
  * Author: Jerome Jiang
  * Date: 6/27/2014
- * Updated: 7/21/2014
+ * Updated: 7/23/2014
 */
 
 #pragma once
@@ -38,7 +38,7 @@ public:
 	bool read_ply(const char *filename);
 	
 	// write the point cloud to ply file
-	int write_ply(const char *fliename);
+	bool write_ply(const char *fliename);
 
 	// get the vertex whose id is v_id
 	CPoint get_vertex(size_t v_id);
@@ -54,7 +54,7 @@ public:
 
 private:
 	// add vertex to the vertex list and add normal to the normal list of the point cloud
-	int add_VertNorm(CPoint v, CPoint n);
+	bool add_VertNorm(CPoint v, CPoint n);
 
 protected:
 	// vertex list

@@ -7,6 +7,7 @@
 #include <QDesktopWidget>
 #include <QMouseEvent>
 #include <QFileDialog>
+#include <QMessageBox>
 #include "OpenGLHeader.h"
 #include "header\PlyCloud.h"
 #include "header\glm\glm.hpp"
@@ -23,8 +24,9 @@ public:
     // deconstructor
     ~MeshViewer();
 	// load mesh file
-	void loadFile(const char * );
-
+	void loadFile(const char *);
+	// save mesh file
+	void saveFile(const char *);
 	// return scene center
 	glm::vec3 getCenter() { return center; }
 
@@ -129,8 +131,10 @@ protected:
 private:
 	QString filename;
 
+	// slots
 public slots:
 	void openMesh();
+	void saveMesh();
 };
 
 #endif // MESHVIEWER_H

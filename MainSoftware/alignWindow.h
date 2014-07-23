@@ -9,9 +9,13 @@
 #include <QtGui>
 #include <QAction>
 #include <QGridLayout>
+#include <QMessageBox>
+#include "header\eigen\Eigen\Dense"
 #include "meshviewer.h"
 #include "interactiveMeshViewer.h"
 #include "checkableAction.h"
+
+using namespace Eigen;
 
 class alignWindow :
 	public QWidget
@@ -25,11 +29,11 @@ private:
 	void initAlignWindow();
 	void createActions();
 	void createToolbar();
-	void selectVertex(PlyCloud * mesh);
 	
 private slots:
 	void enterSelectionMode();
 	void quitSelectionMode();
+	void alignMeshes();
 
 private:
 	// actions
@@ -40,8 +44,8 @@ private:
 	// toolbar
 	QToolBar * alignToolbar;
 	// two meshes to be aligned
-	interactiveMeshViewer * firstMesh;
-	interactiveMeshViewer * secondMesh;
+	interactiveMeshViewer * firstMeshViewer;
+	interactiveMeshViewer * secondMeshViewer;
 	// flag of selection mode
 	bool selectionMode;
 };

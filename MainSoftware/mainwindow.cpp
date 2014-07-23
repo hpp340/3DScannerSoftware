@@ -36,13 +36,14 @@ void MainWindow::createActions()
     // todo:connect
 
     saveAction = new QAction(tr("&Save"), this);
-    saveAction->setIcon(QIcon(":icons/images/save.ico"));
+    saveAction->setIcon(QIcon(":icons/images/save.png"));
     saveAction->setShortcut(QKeySequence::Save);
     saveAction->setStatusTip(tr("Save to a mesh file"));
+	connect(saveAction, SIGNAL(triggered()), viewer, SLOT(saveMesh()));
     // todo:connect
 
     saveasAction = new QAction(tr("&Save As"), this);
-    saveasAction->setIcon(QIcon(":icons/images/saveas.ico"));
+    saveasAction->setIcon(QIcon(":icons/images/saveas.png"));
     saveasAction->setShortcut(QKeySequence::SaveAs);
     saveasAction->setStatusTip(tr("Save as"));
     // todo:connect

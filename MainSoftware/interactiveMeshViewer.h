@@ -12,8 +12,12 @@ class interactiveMeshViewer :
 {
 	Q_OBJECT
 public:
+	// constructor
 	interactiveMeshViewer();
+	// deconstructor
 	~interactiveMeshViewer();
+	// get selected vertex vector
+	std::vector<int> getSelectedVertex() { return allSelectedVertex; }
 
 public slots:
 	void enterSelectionMode();
@@ -25,10 +29,13 @@ protected:
 	void drawMesh();
 
 private:
-	bool isSelectionMode;
-	std::vector<int> allSelectedVertex;
-private:
 	int selectVertex();
 	void drawSelectedVertex(int vertexId);
+
+private:
+	bool isSelectionMode;
+protected:
+	std::vector<int> allSelectedVertex;
+
 };
 

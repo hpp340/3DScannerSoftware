@@ -66,7 +66,7 @@ int interactiveMeshViewer::selectVertex()
 		// see the inner product. if zero, yes
 		double dotProduct = glm::dot(vertVecFromStart, rayVector);
 		double angle = dotProduct / (glm::l2Norm(vertVecFromStart) * glm::l2Norm(rayVector));
-		std::cout << "angle " << acos(angle) << std::endl;
+		//std::cout << "angle " << acos(angle) << std::endl;
 		if (abs(acos(angle) - 0.0) < 0.03)  // to avoid the error produced by double type
 		{
 			std::cout << "Hit points " << i << std::endl;
