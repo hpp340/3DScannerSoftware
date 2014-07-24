@@ -14,6 +14,7 @@
 #include "meshviewer.h"
 #include "interactiveMeshViewer.h"
 #include "checkableAction.h"
+#include "AlignResultWindow.h"
 
 using namespace Eigen;
 
@@ -33,7 +34,16 @@ private:
 private slots:
 	void enterSelectionMode();
 	void quitSelectionMode();
+	// slots starting to do alignment/registration
 	void alignMeshes();
+	
+private:
+	// compute the transformation matrix
+	void computeTransformation();
+	// apply the transformation matrix to the first mesh
+	void transformMesh();
+	// show result window
+	void showResultWindow();
 
 private:
 	// actions
@@ -48,5 +58,13 @@ private:
 	interactiveMeshViewer * secondMeshViewer;
 	// flag of selection mode
 	bool selectionMode;
+	// transformation matrix
+	Matrix<double, 4, 4> transformationMatrix;
+	// transformed mesh
+	PlyCloud * newMesh;
+	// show result window
+	AlignResultWindow * resultWindow;
+	// is transformation computed
+	bool isComputationOK;
 };
 

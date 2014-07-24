@@ -4,6 +4,9 @@ alignWindow::alignWindow()
 {
 	initAlignWindow();
 	selectionMode = false;
+	isComputationOK = false;
+	transformationMatrix.setZero();
+	transformationMatrix(3, 3) = 1.0;
 }
 
 alignWindow::~alignWindow()
@@ -12,7 +15,7 @@ alignWindow::~alignWindow()
 
 void alignWindow::initAlignWindow()
 {
-	this->setGeometry(100, 100, 1400, 1000);
+	this->setGeometry(100, 100, 1800, 1000);
 	firstMeshViewer = new interactiveMeshViewer();
 	//firstMesh->loadFile("testx.ply");
 	secondMeshViewer = new interactiveMeshViewer();
@@ -92,6 +95,22 @@ void alignWindow::quitSelectionMode()
 
 void alignWindow::alignMeshes()
 {
+	computeTransformation();
+	transformMesh();
+	if (isComputationOK)
+	{
+		showResultWindow();
+	}
+}
+
+void alignWindow::showResultWindow()
+{
+	resultWindow = new AlignResultWindow(newMesh);
+	resultWindow->show();
+}
+
+void alignWindow::computeTransformation()
+{
 	std::vector<int> firstSelectedVertex = firstMeshViewer->getSelectedVertex();
 	std::vector<int> secondSelectedVertex = secondMeshViewer->getSelectedVertex();
 	PlyCloud * firstMesh = firstMeshViewer->getMesh();
@@ -130,6 +149,15 @@ void alignWindow::alignMeshes()
 		// solve for x
 		x = A.fullPivLu().solve(b);
 		std::cout << "solution:\n" << x << std::endl;
+
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				transformationMatrix(i, j) = x(4 * i + j);
+			}
+		}
+		isComputationOK = true;
 	}
 	else
 	{
@@ -137,4 +165,29 @@ void alignWindow::alignMeshes()
 		msgBoxNotEnoughVertex.setText("Not Enough Selected Vertex.\n You must select at least 4 pairs of vertex to align.");
 		msgBoxNotEnoughVertex.exec();
 	}
+}
+
+void alignWindow::transformMesh()
+{
+	PlyCloud * firstMesh = firstMeshViewer->getMesh();
+	std::vector<CPoint> vertexList = firstMesh->get_vertex_list();
+	std::vector<CPoint> normalList = firstMesh->get_normal_list();
+	std::vector<CPoint> transedVertexList;
+	std::vector<CPoint> transedNormalList;
+	for (size_t i = 0; i < vertexList.size(); i++)
+	{
+		CPoint _vertex = vertexList[i];
+		CPoint _normal = normalList[i];
+		Vector4d _vertexCoord, _normalCoord;
+		_vertexCoord << _vertex[0], _vertex[1], _vertex[2], 1.0;
+		_normalCoord << _normal[0], _normal[1], _normal[2], 1.0;
+		Vector4d _transedVertexCoord = transformationMatrix * _vertexCoord;
+		Vector4d _transedNormalCoord = transformationMatrix * _normalCoord;
+		CPoint _transedVertex, _transedNormal;
+		_transedVertex[0] = _transedVertexCoord[0]; _transedVertex[1] = _transedVertexCoord[1]; _transedVertex[2] = _transedVertexCoord[2];
+		_transedNormal[0] = _transedNormalCoord[0]; _transedNormal[1] = _transedNormalCoord[1]; _transedNormal[2] = _transedNormalCoord[2];
+		transedVertexList.push_back(_transedVertex);
+		transedNormalList.push_back(_transedNormal);
+	}
+	newMesh = new PlyCloud(transedVertexList, transedNormalList);
 }

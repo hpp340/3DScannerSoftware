@@ -41,6 +41,9 @@ public:
 	// get point cloud
 	PlyCloud * getMesh() { return pointCloud; };
 
+	// accept mesh from other classes
+	void acceptMesh(PlyCloud *);
+
 private:
 	// initialize the members
 	void init();
@@ -68,6 +71,8 @@ protected:
 	void initDisplay();
 	// initialize light functioins - we may need 3 lights
 	void initLights();
+	// initialize material
+	void initMaterial();
 	// return fovy
 	float fovy() const { return 45.0f; }
 	// return zNear
@@ -84,7 +89,7 @@ protected:
 	// method for drawing mesh
 	virtual void drawMesh();
 	// method for drawing axises
-	virtual void drawAxis();
+	void drawAxis();
 	// update projection matrix  
 	void updateProjectionMatrix();
 

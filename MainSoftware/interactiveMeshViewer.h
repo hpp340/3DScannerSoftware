@@ -26,7 +26,8 @@ public slots:
 protected:
 	// override 
 	void mousePressEvent(QMouseEvent *);
-	void drawMesh();
+	
+	virtual void drawMesh();
 
 private:
 	int selectVertex();

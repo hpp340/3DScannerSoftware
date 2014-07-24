@@ -101,6 +101,15 @@
     <ClCompile Include="Release\moc_checkableAction.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Debug\moc_AlignResultWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="AlignResultWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_AlignResultWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGLHeader.h">
@@ -127,6 +136,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="checkableAction.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AlignResultWindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

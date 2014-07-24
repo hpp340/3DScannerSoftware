@@ -79,6 +79,15 @@ void MeshViewer::loadFile(const char * meshfile)
 	std::cout << "loadFile" << std::endl;
 }
 
+void MeshViewer::acceptMesh(PlyCloud * outerMesh)
+{
+	std::cout << "acceptMesh" << std::endl;
+	pointCloud = outerMesh;
+	getBoundingBox();
+	isMeshLoaded = true;
+	updateGL();
+}
+
 void MeshViewer::saveFile(const char * meshfile)
 {
 	bool isWriteOK = pointCloud->write_ply(meshfile);
@@ -95,6 +104,7 @@ void MeshViewer::initializeGL()
 {
 	// initialize display and lights
 	initDisplay();
+	initMaterial();
 	initLights();
 
 	// get the projection and modelview matrix
@@ -119,6 +129,20 @@ void MeshViewer::initDisplay()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	std::cout << "initDisplay" << std::endl;
+}
+
+void MeshViewer::initMaterial()
+{
+	// material
+	GLfloat matA[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+	GLfloat matD[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+	GLfloat matS[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+	GLfloat shine[] = { 120.0f };
+
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matA);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matD);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matS);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, shine);
 }
 
 void MeshViewer::initLights()
@@ -265,6 +289,8 @@ void MeshViewer::drawMesh()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixd(matModelView);
 
+	glEnable(GL_LIGHTING);
+
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
 
@@ -326,7 +352,7 @@ void MeshViewer::mouseMoveEvent(QMouseEvent * mouseEvent)
 	}
 
 	latestMousePos = newMousePos;
-	std::cout << "starting debugging ..." << std::endl;
+	//std::cout << "starting debugging ..." << std::endl;
 	isLatestMouseOK= arcball(latestMousePos, latestMouse3DPos);
 	// update OpenGL, trigger re-draw
 	updateGL();

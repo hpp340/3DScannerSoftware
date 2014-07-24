@@ -114,7 +114,7 @@ void interactiveMeshViewer::drawMesh()
 	glLoadMatrixd(matProjection);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixd(matModelView);
-
+	glEnable(GL_LIGHTING);
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
 
