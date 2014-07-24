@@ -20,6 +20,12 @@ Development
 * Qt GUI has been built and Qt API for OpenGL has been finished.
 * All my future commits will be added to this branch until we merge the two branches(master and newUIFramework)
 * Registration window/UI has been finished and two point clouds could be shown in the window. 
+* X-Y-Z axises have been drawn when rendering a point cloud
+* Feature of openning a point cloud fild(ply) in both the mainwindow and registration window has been finished
+* Feature of selecting vertices in registratioin window has been finished
+* Feature of computing the transformation matrix has been finished, and verified to be correct on small point cloud
+* Favicon for the app has been added
+* The bug of resizing seems to have been fixed.
 
 Authors
 ---
