@@ -18,5 +18,8 @@ private:
 	std::vector<PlyCloud *> meshList;
 	glm::vec3 colorVector;
 	std::vector<glm::vec3> colorList;
+
+public slots:
+	void saveMesh();
 };
 

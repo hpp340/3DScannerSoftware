@@ -64,3 +64,28 @@ void MultipleMeshViewer::drawMesh()
 	}
 	std::cout << "MultipleMeshViewer::drawMesh" << std::endl;
 }
+
+void MultipleMeshViewer::saveMesh()
+{
+	if (meshList.size() > 1)
+	{
+		QMessageBox saveFail;
+		saveFail.setText("You have more than one mesh. \nCan't Save File.");
+		saveFail.exec();
+	}
+	else
+	{
+		QString saveFilename = QFileDialog::getSaveFileName(this,
+			tr("Save Mesh File"),
+			tr("../models/"),
+			tr("PLY Files (*.ply);;"
+			"All Files (*)"));
+		if (!saveFilename.isEmpty())
+		{
+			// convert QString to char *
+			QByteArray byteArray = saveFilename.toUtf8();
+			const char * _saveFilename = byteArray.constData();
+			saveFile(_saveFilename);
+		}
+	}
+}
