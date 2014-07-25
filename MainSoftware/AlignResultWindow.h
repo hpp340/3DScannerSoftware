@@ -5,7 +5,9 @@
 #include <QVBoxLayout>
 #include <QToolBar>
 #include <QAction>
-#include "meshviewer.h"
+
+#include "MultipleMeshViewer.h"
+#include "checkableAction.h"
 
 class AlignResultWindow :
 	public QWidget
@@ -16,14 +18,17 @@ public:
 
 	// overload constructor
 	AlignResultWindow(PlyCloud *);
+	// overload constructor
+	AlignResultWindow(PlyCloud *, PlyCloud *);
 	~AlignResultWindow();
 
 private:
 	void initResultWindow();
 
 private:
-	MeshViewer * viewer;
+	MultipleMeshViewer * viewer;
 	QToolBar * toolBar;
 	QAction * save;
+	checkableAction * lightControl;
 };
 

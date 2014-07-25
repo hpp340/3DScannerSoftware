@@ -15,10 +15,11 @@ alignWindow::~alignWindow()
 
 void alignWindow::initAlignWindow()
 {
+	this->setWindowTitle(tr("Align Meshes"));
 	this->setGeometry(100, 100, 1800, 1000);
-	firstMeshViewer = new interactiveMeshViewer();
+	firstMeshViewer = new interactiveMeshViewer(1);
 	//firstMesh->loadFile("testx.ply");
-	secondMeshViewer = new interactiveMeshViewer();
+	secondMeshViewer = new interactiveMeshViewer(2);
 	//secondMesh->loadFile("testx.ply");
 	createActions();
 	createToolbar();
@@ -46,7 +47,6 @@ void alignWindow::createActions()
 	alignButton->setStatusTip(tr("Align Two Meshes"));
 	alignButton->setShortcut(tr("Ctrl+l"));
 	connect(alignButton, SIGNAL(triggered()), this, SLOT(alignMeshes()));
-	// todo: connect
 
 	enterSelection = new checkableAction(this);
 	enterSelection->setText(tr("&Select"));
@@ -62,7 +62,17 @@ void alignWindow::createActions()
 	connect(enterSelection, SIGNAL(actionUncheck()), this, SLOT(quitSelectionMode()));
 	connect(enterSelection, SIGNAL(actionUncheck()), firstMeshViewer, SLOT(quitSelectionMode()));
 	connect(enterSelection, SIGNAL(actionUncheck()), secondMeshViewer, SLOT(quitSelectionMode()));
-	// todo: connect
+
+	lightControl = new checkableAction(this);
+	lightControl->setText(tr("&Light Control"));
+	lightControl->setIcon(QIcon(":/icons/images/light.png"));
+	lightControl->setStatusTip(tr("Turn On or Off Light"));
+	lightControl->setCheckable(true);
+	lightControl->setChecked(true);
+	connect(lightControl, SIGNAL(actionCheck()), firstMeshViewer, SLOT(turnOnLight()));
+	connect(lightControl, SIGNAL(actionUncheck()), firstMeshViewer, SLOT(turnOffLight()));
+	connect(lightControl, SIGNAL(actionCheck()), secondMeshViewer, SLOT(turnOnLight()));
+	connect(lightControl, SIGNAL(actionUncheck()), secondMeshViewer, SLOT(turnOffLight()));
 }
 
 void alignWindow::createToolbar()
@@ -72,6 +82,7 @@ void alignWindow::createToolbar()
 	alignToolbar->addAction(openSecondMesh);
 	alignToolbar->addAction(alignButton);
 	alignToolbar->addAction(enterSelection);
+	alignToolbar->addAction(lightControl);
 }
 
 // slots
@@ -105,7 +116,7 @@ void alignWindow::alignMeshes()
 
 void alignWindow::showResultWindow()
 {
-	resultWindow = new AlignResultWindow(newMesh);
+	resultWindow = new AlignResultWindow(newMesh, secondMeshViewer->getMesh());
 	resultWindow->show();
 }
 

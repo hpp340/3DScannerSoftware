@@ -82,6 +82,14 @@ void MainWindow::createActions()
 	alignMeshes->setShortcut(tr("Ctrl+M"));
 	alignMeshes->setIcon(QIcon(":/icons/images/align.png"));
 	connect(alignMeshes, SIGNAL(triggered()), this, SLOT(showAlignWindow()));
+
+	lightControl = new checkableAction(this);
+	lightControl->setText(tr("&Light Control"));
+	lightControl->setIcon(QIcon(":/icons/images/light.png"));
+	lightControl->setCheckable(true);
+	lightControl->setChecked(true);
+	connect(lightControl, SIGNAL(actionCheck()), viewer, SLOT(turnOnLight()));
+	connect(lightControl, SIGNAL(actionUncheck()), viewer, SLOT(turnOffLight()));
 }
 
 void MainWindow::createToolbar()
@@ -90,8 +98,12 @@ void MainWindow::createToolbar()
     fileToolbar->addAction(openAction);
     fileToolbar->addAction(saveAction);
     fileToolbar->addAction(saveasAction);
+
 	editToolbar = addToolBar(tr("&Edit"));
 	editToolbar->addAction(alignMeshes);
+
+	viewToolbar = addToolBar(tr("&View"));
+	viewToolbar->addAction(lightControl);
 }
 
 void MainWindow::createMenus()

@@ -9,6 +9,7 @@
 #include <QtWidgets>
 
 #include "meshviewer.h"
+#include "checkableAction.h"
 
 class MainWindow : public QMainWindow
 {
@@ -46,6 +47,7 @@ private:
     QAction * showStatusAction;
     QAction * showAboutAction;
 	QAction * alignMeshes;
+	QAction * lightControl;
 
     // menus
     QMenu * fileMenu;
@@ -56,6 +58,7 @@ private:
     // toolbars
     QToolBar * fileToolbar;
 	QToolBar * editToolbar;
+	QToolBar * viewToolbar;
 
 	// mesh viewer
 	MeshViewer * viewer;

@@ -22,6 +22,7 @@ void MeshViewer::init()
 	radius = 0.0;
 	trackballRadius = 0.6;
 	isMeshLoaded = false;
+	isLightOn = true;
 	std::cout << "init" << std::endl;
 }
 
@@ -29,12 +30,13 @@ QSize MeshViewer::sizeHint() const
 {
 	QRect rectangle = QApplication::desktop()->screenGeometry();
 	return QSize(int(rectangle.width()*0.96), int(rectangle.height()));
+	system("PAUSE");
 	std::cout << "sizeHint" << std::endl;
 }
 
 void MeshViewer::resizeGL(int width, int height)
 {
-	std::cout << "resizeing...." << std::endl;
+	std::cout << "resizing...." << std::endl;
 	std::cout << "width " << width << "height " << height << std::endl;
 	glViewport(0, 0, width, height);
 	glGetIntegerv(GL_VIEWPORT, viewPort);
@@ -82,6 +84,7 @@ void MeshViewer::loadFile(const char * meshfile)
 void MeshViewer::acceptMesh(PlyCloud * outerMesh)
 {
 	std::cout << "acceptMesh" << std::endl;
+	free(pointCloud);
 	pointCloud = outerMesh;
 	getBoundingBox();
 	isMeshLoaded = true;
@@ -289,7 +292,14 @@ void MeshViewer::drawMesh()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixd(matModelView);
 
-	glEnable(GL_LIGHTING);
+	if (isLightOn)
+	{
+		glEnable(GL_LIGHTING);
+	}
+	else
+	{
+		glDisable(GL_LIGHTING);
+	}
 
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
@@ -300,7 +310,7 @@ void MeshViewer::drawMesh()
 		CPoint norl = normalList[i];
 
 		glPointSize(10);
-		glColor3d(0.0, 1.0, 1.0);
+		glColor3d(0.1, 0.5, 0.8);
 		glBegin(GL_POINTS);
 		glVertex3d(vert[0], vert[1], vert[2]);
 		glNormal3d(norl[0], norl[1], norl[2]);
@@ -525,4 +535,18 @@ void MeshViewer::saveMesh()
 		const char * _saveFilename = byteArray.constData();
 		saveFile(_saveFilename);
 	}
+}
+
+void MeshViewer::turnOnLight()
+{
+	std::cout << "meshviewer:turn on light" << std::endl;
+	isLightOn = true;
+	updateGL();
+}
+
+void MeshViewer::turnOffLight()
+{
+	std::cout << "meshviewer:turn off light" << std::endl;
+	isLightOn = false;
+	updateGL();
 }

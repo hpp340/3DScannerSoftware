@@ -124,6 +124,8 @@ protected:
 	PlyCloud * pointCloud;
 	// is mesh loaded
 	bool isMeshLoaded;
+	// is light on
+	bool isLightOn;
 	// scene center
 	glm::vec3 center;
 	// scene radius
@@ -149,6 +151,9 @@ private:
 public slots:
 	void openMesh();
 	void saveMesh();
+	// light control
+	void turnOnLight();
+	void turnOffLight();
 };
 
 #endif // MESHVIEWER_H

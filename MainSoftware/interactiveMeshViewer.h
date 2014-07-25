@@ -14,6 +14,8 @@ class interactiveMeshViewer :
 public:
 	// constructor
 	interactiveMeshViewer();
+	// overload constructor
+	interactiveMeshViewer(int numMesh);
 	// deconstructor
 	~interactiveMeshViewer();
 	// get selected vertex vector
@@ -35,6 +37,7 @@ private:
 
 private:
 	bool isSelectionMode;
+	int meshID;
 protected:
 	std::vector<int> allSelectedVertex;
 

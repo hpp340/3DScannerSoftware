@@ -51,6 +51,7 @@ private:
 	QAction * openSecondMesh;
 	QAction * alignButton;
 	checkableAction * enterSelection;
+	checkableAction * lightControl;
 	// toolbar
 	QToolBar * alignToolbar;
 	// two meshes to be aligned

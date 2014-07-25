@@ -3,8 +3,14 @@
 interactiveMeshViewer::interactiveMeshViewer()
 {
 	isSelectionMode = false;
+	meshID = 0;
 }
 
+interactiveMeshViewer::interactiveMeshViewer(int numMesh)
+{
+	isSelectionMode = false;
+	meshID = numMesh;
+}
 
 interactiveMeshViewer::~interactiveMeshViewer()
 {
@@ -114,7 +120,14 @@ void interactiveMeshViewer::drawMesh()
 	glLoadMatrixd(matProjection);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixd(matModelView);
-	glEnable(GL_LIGHTING);
+	if (isLightOn)
+	{
+		glEnable(GL_LIGHTING);
+	}
+	else
+	{
+		glDisable(GL_LIGHTING);
+	}
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
 
@@ -124,7 +137,7 @@ void interactiveMeshViewer::drawMesh()
 		CPoint norl = normalList[i];
 		if (std::find(allSelectedVertex.begin(), allSelectedVertex.end(), i) != allSelectedVertex.end()) // this vertex is selected
 		{
-			glPointSize(12);
+			glPointSize(15);
 			glColor3d(1.0, 0.5, 0.0);
 			glBegin(GL_POINTS);
 			glVertex3d(vert[0], vert[1], vert[2]);
@@ -134,7 +147,14 @@ void interactiveMeshViewer::drawMesh()
 		else
 		{
 			glPointSize(10);
-			glColor3d(0.0, 1.0, 1.0);
+			if ((meshID == 0) || (meshID == 1))
+			{
+				glColor3d(0.1, 0.5, 0.8);
+			}
+			else
+			{
+				glColor3d(0.7, 0.55, 0.55);
+			}
 			glBegin(GL_POINTS);
 			glVertex3d(vert[0], vert[1], vert[2]);
 			glNormal3d(norl[0], norl[1], norl[2]);
