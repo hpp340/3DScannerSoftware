@@ -26,6 +26,10 @@ Development
 * Feature of computing the transformation matrix has been finished, and verified to be correct on small point cloud
 * Favicon for the app has been added
 * The bug of resizing seems to have been fixed.
+* Finished computing the transformed mesh
+* Finished the window used to show the align result. And the window can show multiple meshes at the same time with different vertex color
+* Finished the light control in all windows
+* The registration part has been verified to be correct using the large point cloud and human faces.
 
 Authors
 ---
