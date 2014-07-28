@@ -27,6 +27,7 @@ private:
 
 private slots:
 	void showAlignWindow();
+	void startPoissonRecon();
 
 private:
     void initWindow();
@@ -48,6 +49,7 @@ private:
     QAction * showAboutAction;
 	QAction * alignMeshes;
 	QAction * lightControl;
+	QAction * reconAction;
 
     // menus
     QMenu * fileMenu;

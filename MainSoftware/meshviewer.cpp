@@ -503,6 +503,20 @@ bool MeshViewer::arcball(QPoint screenPos, glm::vec3 &new3Dpos)
 	return true;
 }
 
+std::string MeshViewer::getFilename()
+{
+	if (!filename.isEmpty())
+	{
+		// convert QString to char *
+		return sFilename;
+	}
+	else
+	{
+		std::cout << "No File" << std::endl;
+		return NULL;
+	}
+}
+
 // slots
 void MeshViewer::openMesh()
 {
@@ -517,6 +531,7 @@ void MeshViewer::openMesh()
 		QByteArray byteArray = filename.toUtf8();
 		const char * _filename = byteArray.constData();
 		printf("%s\n", _filename);
+		sFilename = filename.toStdString();
 		loadFile(_filename);
 	}
 }

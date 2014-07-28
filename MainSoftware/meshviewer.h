@@ -13,7 +13,9 @@
 #include "header\glm\glm.hpp"
 #include "header\glm\gtx\norm.hpp"
 
+#ifndef PI
 #define PI 3.14159265
+#endif
 
 class MeshViewer : public QGLWidget
 {
@@ -40,7 +42,8 @@ public:
 
 	// get point cloud
 	PlyCloud * getMesh() { return pointCloud; };
-
+	// return the filename
+	std::string getFilename();
 	// accept mesh from other classes
 	void acceptMesh(PlyCloud *);
 
@@ -146,6 +149,7 @@ protected:
 
 private:
 	QString filename;
+	std::string sFilename;
 
 	// slots
 public slots:

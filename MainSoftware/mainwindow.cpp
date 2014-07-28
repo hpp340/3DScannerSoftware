@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "alignWindow.h"
+#include "PoissonRecon.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -90,6 +91,11 @@ void MainWindow::createActions()
 	lightControl->setChecked(true);
 	connect(lightControl, SIGNAL(actionCheck()), viewer, SLOT(turnOnLight()));
 	connect(lightControl, SIGNAL(actionUncheck()), viewer, SLOT(turnOffLight()));
+
+	reconAction = new QAction(tr("Poison Surface &Reconstruction"), this);
+	reconAction->setIcon(QIcon(":/icons/images/recon.png"));
+	connect(reconAction, SIGNAL(triggered()), this, SLOT(startPoissonRecon()));
+	// todo:connect
 }
 
 void MainWindow::createToolbar()
@@ -101,6 +107,7 @@ void MainWindow::createToolbar()
 
 	editToolbar = addToolBar(tr("&Edit"));
 	editToolbar->addAction(alignMeshes);
+	editToolbar->addAction(reconAction);
 
 	viewToolbar = addToolBar(tr("&View"));
 	viewToolbar->addAction(lightControl);
@@ -136,4 +143,19 @@ void MainWindow::showAlignWindow()
 {
 	alignWindow * registration = new alignWindow();
 	registration->show();
+}
+
+void MainWindow::startPoissonRecon()
+{
+	std::cout << "MainWindow:startPoissonRecon.." << std::endl;
+	PoissonRecon * surfaceRecon = new PoissonRecon();
+	//surfaceRecon->acceptPointCloud(viewer->getMesh());
+	std::cout << "MainWindow:filename" << std::endl;
+	std::string tempFilename = viewer->getFilename();
+	printf("%s\n", tempFilename);
+	surfaceRecon->acceptPointCloudFromFile(tempFilename);
+	//surfaceRecon->startRecon< 2, PlyVertex< Real >, false >();
+	surfaceRecon->startRecon< 2, PlyValueVertex< Real >, false >();
+	//viewer->acceptMesh(surfaceRecon->getSurface());
+	
 }
