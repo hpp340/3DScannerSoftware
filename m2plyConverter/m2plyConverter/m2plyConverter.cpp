@@ -3,6 +3,9 @@ This project is used to convert the m file to ply file used for Hoppe's Poisson 
 We need vertex and its associated normal vector
 Author : Jerome(Jian) Jiang
 Date : 06/27/2014
+Update: 7/28/2014
+Update Comment: Be able to write face information into ply file. 
+Noted that the vertex id starting from 1 in .m file
 */
 
 #include "stdafx.h"
@@ -30,6 +33,8 @@ int main(int argc, char** argv)
 		return 0;
 	}
 
+	bool hasFaces = false;
+
 	ConvMesh * mesh = new ConvMesh;
 	// read in the mesh data 
 	mesh->read_m(argv[1]);
@@ -50,6 +55,16 @@ int main(int argc, char** argv)
 		outputfile << "property double nx" << endl;
 		outputfile << "property double ny" << endl;
 		outputfile << "property double nz" << endl;
+		if (mesh->numFaces() > 0)
+		{
+			hasFaces = true;
+			outputfile << "element face " << mesh->numFaces() << endl;
+			outputfile << "property list uchar int vertex_indices" << endl;
+		}
+		else
+		{
+			hasFaces = false;
+		}
 		outputfile << "end_header" << endl;
 	}
 	// calc face normal
@@ -89,6 +104,21 @@ int main(int argc, char** argv)
 		CPoint verNormal = pV->normal();
 		outputfile << point[0] << " " << point[1] << " " << point[2] << " " << verNormal[0] << " " << verNormal[1] << " " << verNormal[2] << endl;
 	}
+
+	// write faces to plyfile
+	if (hasFaces)
+	{
+		for (ConvMesh::MeshFaceIterator fIter(mesh); !fIter.end(); fIter++)
+		{
+			CFace * face = *fIter;
+			CHalfEdge * hf = face->halfedge();
+			CVertex * v1 = hf->vertex();
+			CVertex * v2 = hf->he_next()->vertex();
+			CVertex * v3 = hf->he_next()->he_next()->vertex();
+			outputfile << "3 " << v1->id()-1 << " " << v2->id()-1 << " " << v3->id()-1 << endl;
+		}
+	}
+
 	outputfile.close();
 	return 0;
 }
