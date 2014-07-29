@@ -152,6 +152,9 @@
     <ClCompile Include="header\recon\Time.cpp">
       <Filter>PoissonRecon\sources</Filter>
     </ClCompile>
+    <ClCompile Include="JFace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -165,6 +168,115 @@
     </CustomBuild>
     <CustomBuild Include="MultipleMeshViewer.h">
       <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\.DS_Store" />
+    <CustomBuild Include="JFace.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Allocator.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Array.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\BinaryNode.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\BSplineData.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\CmdLineParser.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Factor.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\FunctionData.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Geometry.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Hash.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\MarchingCubes.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\MAT.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\MemoryUsage.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\MultiGridOctreeData.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Octree.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Ply.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\PlyFile.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\PointStream.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Polynomial.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\PPolynomial.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\SparseMatrix.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Time.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Vector.h">
+      <Filter>PoissonRecon\headers</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Array.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\BSplineData.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\CmdLineParser.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\FunctionData.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Geometry.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\MAT.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\MultiGridOctreeData.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Octree.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\PointStream.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Polynomial.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\PPolynomial.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\SparseMatrix.inl">
+      <Filter>PoissonRecon\inliners</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\recon\Vector.inl">
+      <Filter>PoissonRecon\inliners</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -194,115 +306,5 @@
     <ResourceCompile Include="appIcon.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="header\recon\.DS_Store" />
-    <None Include="header\recon\Array.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\BSplineData.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\CmdLineParser.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\FunctionData.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\Geometry.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\MAT.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\MultiGridOctreeData.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\Octree.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\PointStream.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\Polynomial.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\PPolynomial.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\SparseMatrix.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-    <None Include="header\recon\Vector.inl">
-      <Filter>PoissonRecon\inliners</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="header\recon\Allocator.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Array.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\BinaryNode.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\BSplineData.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\CmdLineParser.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Factor.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\FunctionData.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Geometry.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Hash.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\MarchingCubes.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\MAT.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\MemoryUsage.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\MultiGridOctreeData.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Octree.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Ply.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\PlyFile.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\PointStream.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Polynomial.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\PPolynomial.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\SparseMatrix.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Time.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="header\recon\Vector.h">
-      <Filter>PoissonRecon\headers</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

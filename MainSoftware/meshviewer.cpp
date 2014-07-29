@@ -246,6 +246,7 @@ void MeshViewer::paintGL()
 
 void MeshViewer::drawAxis()
 {
+	std::cout << "meshviewer:drawaxis" << std::endl;
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixd(matProjection);
 	glMatrixMode(GL_MODELVIEW);
@@ -287,6 +288,7 @@ void MeshViewer::drawAxis()
 
 void MeshViewer::drawMesh()
 {
+	std::cout << "meshviewer:drawmesh start" << std::endl;
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixd(matProjection);
 	glMatrixMode(GL_MODELVIEW);
@@ -303,18 +305,34 @@ void MeshViewer::drawMesh()
 
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
-
-	for (size_t i = 0; i < vertexList.size(); i++)
+	std::cout << vertexList.size() << std::endl;
+	if (normalList.size() == vertexList.size())
 	{
-		CPoint vert = vertexList[i];
-		CPoint norl = normalList[i];
+		for (size_t i = 0; i < vertexList.size(); i++)
+		{
+			CPoint vert = vertexList[i];
+			CPoint norl = normalList[i];
 
-		glPointSize(10);
-		glColor3d(0.1, 0.5, 0.8);
-		glBegin(GL_POINTS);
-		glVertex3d(vert[0], vert[1], vert[2]);
-		glNormal3d(norl[0], norl[1], norl[2]);
-		glEnd();
+			glPointSize(10);
+			glColor3d(0.1, 0.5, 0.8);
+			glBegin(GL_POINTS);
+			glVertex3d(vert[0], vert[1], vert[2]);
+			glNormal3d(norl[0], norl[1], norl[2]);
+			glEnd();
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < vertexList.size(); i++)
+		{
+			CPoint vert = vertexList[i];
+
+			glPointSize(10);
+			glColor3d(0.1, 0.5, 0.8);
+			glBegin(GL_POINTS);
+			glVertex3d(vert[0], vert[1], vert[2]);
+			glEnd();
+		}
 	}
 	std::cout << "meshviewer:drawMesh" << std::endl;
 }

@@ -3,13 +3,21 @@
 
 PlyCloud::PlyCloud()
 {
+	hasFace = hasNormal = hasValue = hasVertexPos = false;
+	vertex_num = 0;
+	face_num = 0;
+	vertProperty.assign(7, VertexInfo::NONE);
 }
 
 // overload constructor
 PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNormalList)
 {
+	hasFace = hasValue = false;
+	hasVertexPos = hasNormal = true;
+	vertProperty.assign(7, VertexInfo::NONE);
 	vertex_list = newVertexList;
 	normal_list = newNormalList;
+	vertex_num = (int)vertex_list.size();
 }
 
 // overload constructor
@@ -40,46 +48,185 @@ bool PlyCloud::read_ply(const char * filename)
 	// on this stage, we just ommit the header of ply file
 	while (inS != "end_header")
 	{
-		getline(plyfile, inS);
+
+		std::cout << "reading..." << std::endl;
+		if ((inS.length() > 14) && (inS.substr(0, 14) == "element vertex"))
+		{
+			std::cout << "element vertex" << std::endl;
+			string vertexNumStr = inS.substr(15, inS.length() - 15);
+			std::cout << "vertex num string " << vertexNumStr << std::endl;
+			vertex_num = atoi(vertexNumStr.c_str());
+			std::cout << "vertex number" << vertex_num << std::endl;
+			getline(plyfile, inS);
+			int propIter = 0;
+			while ((inS != "end_header") && (inS.substr(0, 7) != "element"))
+			{
+				setupVertexProperty(inS, propIter);
+				getline(plyfile, inS);
+				propIter++;
+			}
+		}
+		else if ((inS.length() > 12) && (inS.substr(0, 12) == "element face"))
+		{
+			string faceNumStr = inS.substr(13, inS.length() - 13);
+			face_num = atoi(faceNumStr.c_str());
+			hasFace = true;
+		}
+		if (inS != "end_header")
+		{
+			getline(plyfile, inS);
+		}
 	}
+
+	if ((std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::POSX) != vertProperty.end())
+		&& (std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::POSY) != vertProperty.end())
+		&& (std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::POSZ) != vertProperty.end()))
+	{
+		hasVertexPos = true;
+	}
+
+	if ((std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::NORMALX) != vertProperty.end())
+		&& (std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::NORMALY) != vertProperty.end())
+		&& (std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::NORMALZ) != vertProperty.end()))
+	{
+		hasNormal = true;
+	}
+
+	if (std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::VALUE) != vertProperty.end())
+	{
+		hasValue = true;
+	}
+
 	// read in the vertex position and normal
-	while (! plyfile.eof())
+	int vertIter = 0;
+	while ((!plyfile.eof()) && (vertIter < vertex_num))
 	{
 		getline(plyfile, inS);
-		size_t firstSpace = inS.find(" ", 0);
-		size_t secondSpace = inS.find(" ", firstSpace+1);
-		size_t thirdSpace = inS.find(" ", secondSpace+1);
-		size_t fourthSpace = inS.find(" ", thirdSpace + 1);
-		size_t fifthSpace = inS.find(" ", fourthSpace + 1);
+		vertIter++;
+		CPoint vertexPosition, normalPosition;
+		double vertexValue;
+
+		size_t firstSpace, secondSpace, thirdSpace, fourthSpace, fifthSpace, sixthSpace;
+		firstSpace = secondSpace = thirdSpace = fourthSpace = fifthSpace = 0;
+		firstSpace = inS.find(" ", 0);
+		secondSpace = inS.find(" ", firstSpace + 1);
+		thirdSpace = inS.find(" ", secondSpace + 1);
+		fourthSpace = inS.find(" ", thirdSpace + 1);
+		fifthSpace = inS.find(" ", fourthSpace + 1);
+		sixthSpace = inS.find(" ", fifthSpace + 1);
 		string firstPosition = inS.substr(0, firstSpace);
 		string secondPosition = inS.substr(firstSpace + 1, secondSpace - firstSpace);
 		string thirdPosition = inS.substr(secondSpace + 1, thirdSpace - secondSpace);
 		string normalFirstPosition = inS.substr(thirdSpace + 1, fourthSpace - thirdSpace);
 		string normalSecondPosition = inS.substr(fourthSpace + 1, fifthSpace - fourthSpace);
-		string normalThirdPosition = inS.substr(fifthSpace + 1, inS.length() - fifthSpace);
+		string normalThirdPosition = inS.substr(fifthSpace + 1, sixthSpace - fifthSpace);
+		string valuePosition = inS.substr(sixthSpace + 1, inS.length() - sixthSpace);
+		double data1 = atof(firstPosition.c_str());
+		double data2 = atof(secondPosition.c_str());
+		double data3 = atof(thirdPosition.c_str());
+		double data4 = atof(normalFirstPosition.c_str());
+		double data5 = atof(normalSecondPosition.c_str());
+		double data6 = atof(normalThirdPosition.c_str());
+		double data7 = atof(valuePosition.c_str());
 
-		double x = atof(firstPosition.c_str());
-		double y = atof(secondPosition.c_str());
-		double z = atof(thirdPosition.c_str());
-		double nx = atof(normalFirstPosition.c_str());
-		double ny = atof(normalSecondPosition.c_str());
-		double nz = atof(normalThirdPosition.c_str());
+		std::vector<double> dataVector;
+		dataVector.push_back(data1); dataVector.push_back(data2); dataVector.push_back(data3); dataVector.push_back(data4);
+		dataVector.push_back(data5); dataVector.push_back(data6); dataVector.push_back(data7);
 
-		CPoint vertexPosition;
-		vertexPosition[0] = x; vertexPosition[1] = y; vertexPosition[2] = z;
-		CPoint normalPosition;
-		normalPosition[0] = nx; normalPosition[1] = ny; normalPosition[2] = nz;
-		add_VertNorm(vertexPosition, normalPosition);
+		for (size_t i = 0; i < vertProperty.size(); i++)
+		{
+			if (vertProperty[i] != VertexInfo::NONE)
+			{
+				switch (vertProperty[i])
+				{
+				case VertexInfo::POSX:
+					vertexPosition[0] = dataVector[i];
+					break;
+				case VertexInfo::POSY:
+					vertexPosition[1] = dataVector[i];
+					break;
+				case VertexInfo::POSZ:
+					vertexPosition[2] = dataVector[i];
+					break;
+				case VertexInfo::NORMALX:
+					normalPosition[0] = dataVector[i];
+					break;
+				case VertexInfo::NORMALY:
+					normalPosition[1] = dataVector[i];
+					break;
+				case VertexInfo::NORMALZ:
+					normalPosition[2] = dataVector[i];
+					break;
+				case VertexInfo::VALUE:
+					vertexValue = dataVector[i];
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		if (hasVertexPos)
+		{
+			add_vert(vertexPosition);
+		}
+		if (hasNormal)
+		{
+			add_norm(normalPosition);
+		}
+		if (hasValue)
+		{
+			add_value(vertexValue);
+		}
 	}
+
+	std::cout << "vertex list size" << vertex_list.size() << std::endl;
+	// read face information
+
+	while (!plyfile.eof())
+	{
+		getline(plyfile, inS);
+
+		size_t firstSpace, secondSpace, thirdSpace;
+		firstSpace = secondSpace = thirdSpace = 0;
+		firstSpace = inS.find(" ", 0);
+		secondSpace = inS.find(" ", firstSpace + 1);
+		thirdSpace = inS.find(" ", secondSpace + 1);
+		string numVert = inS.substr(0, firstSpace);
+		string firstVert = inS.substr(firstSpace + 1, secondSpace - firstSpace);
+		string secondVert = inS.substr(secondSpace + 1, thirdSpace - secondSpace);
+		string thirdVert = inS.substr(thirdSpace + 1, inS.length() - thirdSpace);
+		int data1 = atoi(firstVert.c_str());
+		int data2 = atoi(secondVert.c_str());
+		int data3 = atoi(thirdVert.c_str());
+
+		JFace face(data1, data2, data3);
+		add_face(face);
+	}
+
+	std::cout << "face list size" << face_list.size() << std::endl;
+
 	plyfile.close();
 	return true;
 }
 
-bool PlyCloud::add_VertNorm(CPoint v, CPoint n)
+void PlyCloud::add_vert(CPoint v)
 {
 	vertex_list.push_back(v);
+}
+
+void PlyCloud::add_norm(CPoint n)
+{
 	normal_list.push_back(n);
-	return 1;
+}
+
+void PlyCloud::add_value(double value)
+{
+	value_list.push_back(value);
+}
+
+void PlyCloud::add_face(JFace f)
+{
+	face_list.push_back(f);
 }
 
 bool PlyCloud::write_ply(const char *filename)
@@ -152,4 +299,47 @@ std::vector<CPoint> PlyCloud::get_vertex_list()
 std::vector<CPoint> PlyCloud::get_normal_list()
 {
 	return normal_list;
+}
+
+std::vector<JFace> PlyCloud::get_face_list()
+{
+	return face_list;
+}
+
+int PlyCloud::get_vertex_num()
+{
+	return vertex_num;
+}
+
+void PlyCloud::setupVertexProperty(string inS, int propIter)
+{
+	if (inS.substr(inS.length() - 2, 2) == " x")
+	{
+		vertProperty[propIter] = VertexInfo::POSX;
+	}
+	if (inS.substr(inS.length() - 2, 2) == " y")
+	{
+		vertProperty[propIter] = VertexInfo::POSY;
+	}
+	if (inS.substr(inS.length() - 2, 2) == " z")
+	{
+		vertProperty[propIter] = VertexInfo::POSZ;
+	}
+
+	if (inS.substr(inS.length() - 2, 2) == "nx")
+	{
+		vertProperty[propIter] = VertexInfo::NORMALX;
+	}
+	if (inS.substr(inS.length() - 2, 2) == "ny")
+	{
+		vertProperty[propIter] = VertexInfo::NORMALY;
+	}
+	if (inS.substr(inS.length() - 2, 2) == "nz")
+	{
+		vertProperty[propIter] = VertexInfo::NORMALZ;
+	}
+	if (inS.substr(inS.length() - 5, 5) == "value")
+	{
+		vertProperty[propIter] = VertexInfo::VALUE;
+	}
 }

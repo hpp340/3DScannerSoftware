@@ -16,7 +16,11 @@ display - call back function
 */
 void display1()
 {
+<<<<<<< Updated upstream
 	pointCloud1->read_ply("testx.ply");
+=======
+	pointCloud1->read_ply(filename1);
+>>>>>>> Stashed changes
 
 	displayInit();
 	// to calculate the up vector used for gluLookAt
