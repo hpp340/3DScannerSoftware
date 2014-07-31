@@ -29,7 +29,7 @@ AlignResultWindow::~AlignResultWindow()
 
 void AlignResultWindow::initResultWindow()
 {
-	this->setGeometry(300, 300, 1000, 800);
+	this->setGeometry(300, 300, 1800, 1350);
 	
 	// init actions
 	save = new QAction(tr("&Save"), this);
@@ -52,10 +52,17 @@ void AlignResultWindow::initResultWindow()
 	merge->setStatusTip(tr("Merge Aligned Meshes"));
 	connect(merge, SIGNAL(triggered()), this, SLOT(mergeMeshes()));
 
+	split = new QAction(tr("S&plit"), this);
+	split->setText(tr("Return to Split Meshes"));
+	split->setIcon(QIcon(":/icons/images/split.png"));
+	split->setStatusTip(tr("Return to Split Meshes"));
+	connect(split, SIGNAL(triggered()), this, SLOT(showSplitMeshes()));
+
 	toolBar = new QToolBar();
 	toolBar->addAction(save);
 	toolBar->addAction(lightControl);
 	toolBar->addAction(merge);
+	toolBar->addAction(split);
 
 	QVBoxLayout * vLayout = new QVBoxLayout;
 	vLayout->addWidget(toolBar);
@@ -66,4 +73,9 @@ void AlignResultWindow::initResultWindow()
 void AlignResultWindow::mergeMeshes()
 {
 	viewer->mergeMeshes();
+}
+
+void AlignResultWindow::showSplitMeshes()
+{
+	viewer->viewSplitMeshes();
 }

@@ -1,5 +1,9 @@
 #include "MultipleMeshViewer.h"
 
+#ifndef MIN_DIST
+#define MIN_DIST 0.005
+#endif
+
 MultipleMeshViewer::MultipleMeshViewer()
 {
 	initColorVector();
@@ -181,7 +185,7 @@ void MultipleMeshViewer::mergeMeshes()
 				kdTree->annkSearch(ptSearched, 1, nnIdx, dists);
 				int nnIndexPt = nnIdx[0];
 				double nnDist = dists[0];
-				if (nnDist < 0.01)
+				if (nnDist < MIN_DIST)
 				{
 					CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
 					CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
@@ -227,7 +231,7 @@ void MultipleMeshViewer::mergeMeshes()
 				kdTree->annkSearch(ptSearched, 1, nnIdx, dists);
 				int nnIndexPt = nnIdx[0];
 				double nnDist = dists[0];
-				if (nnDist < 0.01)
+				if (nnDist < MIN_DIST)
 				{
 					CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
 					//CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
@@ -255,6 +259,12 @@ void MultipleMeshViewer::mergeMeshes()
 
 		isMeshesMerged = true;
 	}
+}
+
+void MultipleMeshViewer::viewSplitMeshes()
+{
+	showMergedMesh = false;
+	updateGL();
 }
 
 void MultipleMeshViewer::drawMergedMeshOK()

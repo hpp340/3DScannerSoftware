@@ -16,7 +16,7 @@ alignWindow::~alignWindow()
 void alignWindow::initAlignWindow()
 {
 	this->setWindowTitle(tr("Align Meshes"));
-	this->setGeometry(100, 100, 1800, 1000);
+	this->setGeometry(100, 100, 2400, 1600);
 	firstMeshViewer = new interactiveMeshViewer(1);
 	//firstMesh->loadFile("testx.ply");
 	secondMeshViewer = new interactiveMeshViewer(2);

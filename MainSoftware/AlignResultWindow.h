@@ -27,12 +27,14 @@ private:
 
 private slots:
 	void mergeMeshes();
+	void showSplitMeshes();
 
 private:
 	MultipleMeshViewer * viewer;
 	QToolBar * toolBar;
 	QAction * save;
 	QAction * merge;
+	QAction * split;
 	checkableAction * lightControl;
 };
 

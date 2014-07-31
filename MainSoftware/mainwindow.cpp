@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "alignWindow.h"
 #include "PoissonRecon.h"
+#include "SurfaceTrim.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -92,9 +93,17 @@ void MainWindow::createActions()
 	connect(lightControl, SIGNAL(actionCheck()), viewer, SLOT(turnOnLight()));
 	connect(lightControl, SIGNAL(actionUncheck()), viewer, SLOT(turnOffLight()));
 
-	reconAction = new QAction(tr("Poison Surface &Reconstruction"), this);
+	reconAction = new QAction(tr("&Reconstruction"), this);
 	reconAction->setIcon(QIcon(":/icons/images/recon.png"));
+	reconAction->setText(tr("Poisson Surface Reconstructioin"));
+	reconAction->setStatusTip(tr("Poisson Surface Reconstruction"));
 	connect(reconAction, SIGNAL(triggered()), this, SLOT(startPoissonRecon()));
+
+	trimAction = new QAction(tr("Trim Mesh"), this);
+	trimAction->setIcon(QIcon(":/icons/images/trim.png"));
+	trimAction->setText(tr("Trim Mesh"));
+	trimAction->setStatusTip(tr("Trim Mesh"));
+	connect(trimAction, SIGNAL(triggered()), this, SLOT(startTrim()));
 
 	viewPoints = new QAction(tr("&Points"), this);
 	viewPoints->setIcon(QIcon(":/icons/images/points.png"));
@@ -211,6 +220,13 @@ void MainWindow::startPoissonRecon()
 	surfaceRecon->startRecon< 2, PlyValueVertex< Real >, true >();
 	//viewer->acceptMesh(surfaceRecon->getSurface());
 	viewer->loadFile("reconOutput.ply");
+}
+
+void MainWindow::startTrim()
+{
+	std::cout << "MainWindow:startTrim.." << std::endl;
+	SurfaceTrim * trimmer = new SurfaceTrim();
+	trimmer->startSurfaceTrim("reconOutput.ply");
 }
 
 void MainWindow::showPoints()

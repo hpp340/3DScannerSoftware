@@ -11,7 +11,10 @@ public:
 	~MultipleMeshViewer();
 	// add mesh to meshList
 	void addMesh(PlyCloud *);
+	// merge meshes
 	void mergeMeshes();
+	// show split meshes
+	void viewSplitMeshes();
 	// override
 	void saveFile(const char *);
 private:

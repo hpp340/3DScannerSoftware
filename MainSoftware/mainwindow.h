@@ -27,7 +27,6 @@ private:
 
 private slots:
 	void showAlignWindow();
-	void startPoissonRecon();
 	void showPoints();
 	void showWireframe();
 	void showFlatlines();
@@ -43,6 +42,8 @@ private:
 private slots:
 	void setModePoints();
 	void setModeWireframe();
+	void startPoissonRecon();
+	void startTrim();
 
 private:
 
@@ -58,7 +59,9 @@ private:
     QAction * showAboutAction;
 	QAction * alignMeshes;
 	QAction * lightControl;
+	// edit action
 	QAction * reconAction;
+	QAction * trimAction;
 	// control draw mode
 	QAction * viewPoints;
 	QAction * viewWireframe;

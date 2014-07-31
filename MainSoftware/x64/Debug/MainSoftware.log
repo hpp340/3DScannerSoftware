@@ -1,7 +1,4 @@
-﻿  MultipleMeshViewer.cpp
-  mainwindow.cpp
-  [WARNING] Assuming that the 2-ring contains all the children of interest...
-  [WARNING] Assuming that the 2-ring contains all the children of interest...
+﻿  SurfaceTrim.cpp
   Generating code
   Finished generating code
   MainSoftware.vcxproj -> W:\Codes\2014SummerMSC\MainSoftware\x64\Debug\MainSoftware.exe

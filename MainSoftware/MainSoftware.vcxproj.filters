@@ -200,6 +200,9 @@
     <ClCompile Include="header\ANN\perf.cpp">
       <Filter>ANN</Filter>
     </ClCompile>
+    <ClCompile Include="SurfaceTrim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -323,6 +326,42 @@
     <CustomBuild Include="MultipleMeshViewer.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="header\ANN\ANN.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\ANNperf.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\ANNx.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\bd_tree.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\kd_fix_rad_search.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\kd_pr_search.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\kd_search.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\kd_split.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\kd_tree.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\kd_util.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\pr_queue.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
+    <CustomBuild Include="header\ANN\pr_queue_k.h">
+      <Filter>ANN</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="resources.qrc">
@@ -353,41 +392,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\ANN\ANN.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\ANNperf.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\ANNx.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\bd_tree.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\kd_fix_rad_search.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\kd_pr_search.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\kd_search.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\kd_split.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\kd_tree.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\kd_util.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\pr_queue.h">
-      <Filter>ANN</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ANN\pr_queue_k.h">
-      <Filter>ANN</Filter>
+    <ClInclude Include="SurfaceTrim.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
