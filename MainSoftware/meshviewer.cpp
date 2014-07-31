@@ -23,6 +23,7 @@ void MeshViewer::init()
 	trackballRadius = 0.6;
 	isMeshLoaded = false;
 	isLightOn = true;
+	meshDrawMode = DRAW_MODE::NONE;
 	std::cout << "init" << std::endl;
 }
 
@@ -68,8 +69,14 @@ void MeshViewer::getBoundingBox()
 
 void MeshViewer::loadFile(const char * meshfile)
 {
+	if (isMeshLoaded)
+	{
+		// clear all data
+		free(pointCloud);
+		pointCloud = new PlyCloud();
+	}
 	bool isLoadOK = pointCloud->read_ply(meshfile);
-	if (! isLoadOK)
+	if (!isLoadOK)
 	{
 		QMessageBox loadFail;
 		loadFail.setText("Can't Open File.");
@@ -77,8 +84,25 @@ void MeshViewer::loadFile(const char * meshfile)
 	}
 	// get bounding box of the mesh
 	getBoundingBox();
+	setDefaultDrawMode();
 	isMeshLoaded = true;
+	updateGL();
 	std::cout << "loadFile" << std::endl;
+}
+
+void MeshViewer::setDefaultDrawMode()
+{
+	int faceNumber = pointCloud->get_face_num();
+	if (faceNumber > 0)
+	{
+		meshDrawMode = DRAW_MODE::WIREFRAME;
+		emit setDrawModeWireframe();
+	}
+	else
+	{
+		meshDrawMode = DRAW_MODE::POINTS;
+		emit setDrawModePoints();
+	}
 }
 
 void MeshViewer::acceptMesh(PlyCloud * outerMesh)
@@ -91,10 +115,16 @@ void MeshViewer::acceptMesh(PlyCloud * outerMesh)
 	updateGL();
 }
 
+void MeshViewer::setDrawMode(DRAW_MODE _drawmode)
+{
+	meshDrawMode = _drawmode;
+	updateGL();
+}
+
 void MeshViewer::saveFile(const char * meshfile)
 {
 	bool isWriteOK = pointCloud->write_ply(meshfile);
-	if (! isWriteOK)
+	if (!isWriteOK)
 	{
 		QMessageBox writeFail;
 		writeFail.setText("Can't Save File.");
@@ -117,6 +147,13 @@ void MeshViewer::initializeGL()
 
 	glEnable(GL_POINT_SMOOTH);
 	glEnable(GL_COLOR_MATERIAL);
+	glDisable(GL_DITHER);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LINE_SMOOTH);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+	glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
 	// set scene center and size of view. 1.0 for radius
 	setScene(center, 1.0);
 	std::cout << "initializeGL" << std::endl;
@@ -303,9 +340,57 @@ void MeshViewer::drawMesh()
 		glDisable(GL_LIGHTING);
 	}
 
+
+	switch (meshDrawMode)
+	{
+	case DRAW_MODE::NONE:
+		break;
+	case DRAW_MODE::POINTS:
+		drawMeshPoints();
+		break;
+	case DRAW_MODE::WIREFRAME:
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		drawMeshWireframe();
+		break;
+	case DRAW_MODE::FLATLINES:
+		if (pointCloud->get_face_num() > 0)
+		{
+			drawMeshFlatlines();
+		}
+		break;
+	case DRAW_MODE::FLAT:
+		if (pointCloud->get_face_num() > 0)
+		{
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glShadeModel(GL_FLAT);
+			drawMeshFlat();
+		}
+		break;
+	case DRAW_MODE::SMOOTH:
+		if ((pointCloud->get_face_num() > 0) && (pointCloud->get_normal_list().size() > 0))
+		{
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glShadeModel(GL_SMOOTH);
+			drawMeshSmooth();
+		}
+		else if (pointCloud->get_face_num() > 0)
+		{
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			glShadeModel(GL_FLAT);
+			drawMeshFlat();
+		}
+		break;
+	default:
+		break;
+	}
+
+	std::cout << "meshviewer:drawMesh" << std::endl;
+}
+
+void MeshViewer::drawMeshPoints()
+{
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
-	std::cout << vertexList.size() << std::endl;
 	if (normalList.size() == vertexList.size())
 	{
 		for (size_t i = 0; i < vertexList.size(); i++)
@@ -334,7 +419,88 @@ void MeshViewer::drawMesh()
 			glEnd();
 		}
 	}
-	std::cout << "meshviewer:drawMesh" << std::endl;
+}
+
+void MeshViewer::drawMeshWireframe()
+{
+	std::vector<JFace> faceList = pointCloud->get_face_list();
+	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+
+	glLineWidth(2.5);
+	glColor3d(1.0, 1.0, 1.0);
+	for (size_t i = 0; i < faceList.size(); i++)
+	{
+		JFace faceIter = faceList[i];
+		CPoint v1 = vertexList[faceIter.vert1Id];
+		CPoint v2 = vertexList[faceIter.vert2Id];
+		CPoint v3 = vertexList[faceIter.vert3Id];
+		glBegin(GL_POLYGON);
+		glVertex3d(v1[0], v1[1], v1[2]);
+		glVertex3d(v2[0], v2[1], v2[2]);
+		glVertex3d(v3[0], v3[1], v3[2]);
+		glEnd();
+	}
+}
+
+void MeshViewer::drawMeshFlat()
+{
+	std::vector<JFace> faceList = pointCloud->get_face_list();
+	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	for (size_t i = 0; i < faceList.size(); i++)
+	{
+		JFace faceIter = faceList[i];
+		CPoint v1 = vertexList[faceIter.vert1Id];
+		CPoint v2 = vertexList[faceIter.vert2Id];
+		CPoint v3 = vertexList[faceIter.vert3Id];
+		CPoint faceNormal = faceIter.getFaceNormal();
+		glBegin(GL_TRIANGLES);
+		glNormal3d(faceNormal[0], faceNormal[1], faceNormal[2]);
+		glVertex3d(v1[0], v1[1], v1[2]);
+		glVertex3d(v2[0], v2[1], v2[2]);
+		glVertex3d(v3[0], v3[1], v3[2]);
+		glEnd();
+	}
+}
+
+void MeshViewer::drawMeshFlatlines()
+{
+	glEnable(GL_POLYGON_OFFSET_FILL);
+	glPolygonOffset(1.5f, 2.0f);
+	glEnable(GL_LIGHTING);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glShadeModel(GL_FLAT);
+	drawMeshFlat();
+	glDisable(GL_POLYGON_OFFSET_FILL);
+	//draw_meshpointset();
+	glDisable(GL_LIGHTING);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	drawMeshWireframe();
+	//draw_meshpointset();
+}
+
+void MeshViewer::drawMeshSmooth()
+{
+	std::vector<JFace> faceList = pointCloud->get_face_list();
+	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	for (size_t i = 0; i < faceList.size(); i++)
+	{
+		JFace faceIter = faceList[i];
+		CPoint v1 = vertexList[faceIter.vert1Id];
+		CPoint v2 = vertexList[faceIter.vert2Id];
+		CPoint v3 = vertexList[faceIter.vert3Id];
+		CPoint vert1Normal = normalList[faceIter.vert1Id];
+		CPoint vert2Normal = normalList[faceIter.vert2Id];
+		CPoint vert3Normal = normalList[faceIter.vert3Id];
+		glBegin(GL_TRIANGLES);
+		glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
+		glVertex3d(v1[0], v1[1], v1[2]);
+		glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
+		glVertex3d(v2[0], v2[1], v2[2]);
+		glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
+		glVertex3d(v3[0], v3[1], v3[2]);
+		glEnd();
+	}
 }
 
 void MeshViewer::mousePressEvent(QMouseEvent * mouseEvent)
@@ -381,7 +547,7 @@ void MeshViewer::mouseMoveEvent(QMouseEvent * mouseEvent)
 
 	latestMousePos = newMousePos;
 	//std::cout << "starting debugging ..." << std::endl;
-	isLatestMouseOK= arcball(latestMousePos, latestMouse3DPos);
+	isLatestMouseOK = arcball(latestMousePos, latestMouse3DPos);
 	// update OpenGL, trigger re-draw
 	updateGL();
 }
@@ -396,7 +562,7 @@ void MeshViewer::mouseReleaseEvent(QMouseEvent * /*mouseEvent*/)
 void MeshViewer::wheelEvent(QWheelEvent * mouseEvent)
 {
 	// scroll the wheel to scale the view port
-	double moveAmount = - (double)mouseEvent->delta() / (120.0*8.0);
+	double moveAmount = -(double)mouseEvent->delta() / (120.0*8.0);
 	translate(glm::vec3(0.0, 0.0, moveAmount));
 	updateGL();
 	mouseEvent->accept();
@@ -477,9 +643,9 @@ void MeshViewer::translateView(QPoint newPos)
 	double top = tan(fovy() / 2.0f * PI / 180.0f) * zNear();
 	double right = screenAspect * top;
 	QPoint posDiff = latestMousePos - newPos;
-	glm::vec3 transVector = glm::vec3(2.0*posDiff.x() / width() * right / zNear() * zVal, 
-									-2.0*posDiff.y() / height() * top / zNear() * zVal,
-									0.0f);
+	glm::vec3 transVector = glm::vec3(2.0*posDiff.x() / width() * right / zNear() * zVal,
+		-2.0*posDiff.y() / height() * top / zNear() * zVal,
+		0.0f);
 
 	translate(transVector);
 	//2.0*dx / w*right / near_plane*z,
@@ -501,7 +667,7 @@ bool MeshViewer::arcball(QPoint screenPos, glm::vec3 &new3Dpos)
 	double x = (2.0 * screenPos.x() - width()) / (double)width();
 	double y = -(2.0 * screenPos.y() - height()) / (double)height();
 	double norm = x * x + y * y;
-	
+
 	double trackballRSqr = trackballRadius * trackballRadius;
 	glm::vec3 modelPostion;
 	modelPostion[0] = x;
@@ -561,7 +727,7 @@ void MeshViewer::saveMesh()
 		tr("../models/"),
 		tr("PLY Files (*.ply);;"
 		"All Files (*)"));
-	if (! saveFilename.isEmpty())
+	if (!saveFilename.isEmpty())
 	{
 		// convert QString to char *
 		QByteArray byteArray = saveFilename.toUtf8();

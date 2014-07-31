@@ -26,16 +26,28 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 	vertex_list = newVertexList;
 }
 
+// overload constructor
+PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace> newFaceList)
+{
+	hasNormal = hasValue = false;
+	hasVertexPos = hasFace = true;
+	vertProperty.assign(7, VertexInfo::NONE);
+	vertex_list = newVertexList;
+	face_list = newFaceList;
+	vertex_num = (int)vertex_list.size();
+	face_num = (int)face_list.size();
+}
+
 PlyCloud::~PlyCloud()
 {
 }
 
 bool PlyCloud::read_ply(const char * filename)
 {
-	if (vertex_list.size() > 0) // already read have the point cloud
-	{
-		return false;
-	}
+	//if (vertex_list.size() > 0) // already read have the point cloud
+	//{
+	//	return false;
+	//}
 	std::ifstream plyfile;
 	plyfile.open(filename);
 	if (plyfile.fail())
@@ -66,7 +78,7 @@ bool PlyCloud::read_ply(const char * filename)
 				propIter++;
 			}
 		}
-		else if ((inS.length() > 12) && (inS.substr(0, 12) == "element face"))
+		if ((inS.length() > 12) && (inS.substr(0, 12) == "element face"))
 		{
 			string faceNumStr = inS.substr(13, inS.length() - 13);
 			face_num = atoi(faceNumStr.c_str());
@@ -202,16 +214,93 @@ bool PlyCloud::read_ply(const char * filename)
 		JFace face(data1, data2, data3);
 		add_face(face);
 	}
-
+	face_num = (int)face_list.size() - 1;
 	std::cout << "face list size" << face_list.size() << std::endl;
-
+	if (face_num > 0)
+	{
+		std::cout << "computing face normal" << std::endl;
+		computeFaceNormal();
+	}
+	if ((!hasNormal) && (hasFace))
+	{
+		std::cout << "computing vertex normal" << std::endl;
+		//computeVertexNormal();
+	}
 	plyfile.close();
 	return true;
+}
+
+void PlyCloud::computeFaceNormal()
+{
+	assert(face_num > 0);
+	for (size_t i = 0; i < face_list.size(); i++)
+	{
+		JFace *faceIter = &(face_list[i]);
+		CPoint v1 = vertex_list[faceIter->vert1Id];
+		CPoint v2 = vertex_list[faceIter->vert2Id];
+		CPoint v3 = vertex_list[faceIter->vert3Id];
+		CPoint edgeVector1 = v2 - v1;
+		CPoint edgeVector2 = v3 - v1;
+		CPoint faceNormal = crossProduct(edgeVector1, edgeVector2);
+		faceNormal = faceNormal / faceNormal.norm();
+		faceIter->setFaceNormal(faceNormal);
+		add_face_normal(faceNormal);
+	}
+}
+
+void PlyCloud::computeVertexNormal()
+{
+	for (size_t i = 0; i < vertex_list.size(); i++)
+	{
+		std::cout << "computing for " << i << std::endl;
+		std::vector<int> neighborFaceList = findFacesVertex((int)i);
+		CPoint vertNormal(0.0, 0.0, 0.0);
+		if (neighborFaceList.size() > 0)
+		{
+			for (size_t j = 0; j < neighborFaceList.size(); j++)
+			{
+				CPoint faceNormal = face_normal_list[j];
+				vertNormal += faceNormal;
+			}
+			vertNormal = vertNormal / (double)neighborFaceList.size();
+		}
+		normal_list.push_back(vertNormal);
+	}
+	hasNormal = true;
+}
+
+std::vector<int> PlyCloud::findFacesVertex(int vertID)
+{
+	std::vector<int> facesPerVert;
+	for (size_t i = 0; i < face_list.size(); i++)
+	{
+		JFace faceIter = face_list[i];
+		if ((faceIter.vert1Id == vertID) || (faceIter.vert2Id == vertID) || (faceIter.vert3Id == vertID))
+		{
+			facesPerVert.push_back((int)i);
+		}
+	}
+	return facesPerVert;
+}
+
+CPoint PlyCloud::crossProduct(CPoint p1, CPoint p2)
+{
+	CPoint result;
+	result[0] = p1[1] * p2[2] - p2[1] * p1[2];
+	result[1] = p1[2] * p2[0] - p1[0] * p2[2];
+	result[2] = p1[0] * p2[1] - p1[1] * p2[0];
+
+	return result;
 }
 
 void PlyCloud::add_vert(CPoint v)
 {
 	vertex_list.push_back(v);
+}
+
+void PlyCloud::add_face_normal(CPoint v)
+{
+	face_normal_list.push_back(v);
 }
 
 void PlyCloud::add_norm(CPoint n)
@@ -309,6 +398,11 @@ std::vector<JFace> PlyCloud::get_face_list()
 int PlyCloud::get_vertex_num()
 {
 	return vertex_num;
+}
+
+int PlyCloud::get_face_num()
+{
+	return face_num;
 }
 
 void PlyCloud::setupVertexProperty(string inS, int propIter)

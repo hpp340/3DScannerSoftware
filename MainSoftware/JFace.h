@@ -10,12 +10,18 @@ public:
 	// constructor
 	JFace();
 	// overload constructor
-	JFace(CPoint, CPoint, CPoint);
-	// overload constructor
 	JFace(int, int, int);
 	~JFace();
+	// compute face normal
+	void setFaceNormal(CPoint);
+	// get face normal
+	CPoint getFaceNormal();
+private:
+	bool normalSet;
+protected:
+	CPoint faceNormal;
 
-	CPoint point1, point2, point3;
+public:
 	int vert1Id, vert2Id, vert3Id;
 };
 

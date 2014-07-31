@@ -95,7 +95,48 @@ void MainWindow::createActions()
 	reconAction = new QAction(tr("Poison Surface &Reconstruction"), this);
 	reconAction->setIcon(QIcon(":/icons/images/recon.png"));
 	connect(reconAction, SIGNAL(triggered()), this, SLOT(startPoissonRecon()));
-	// todo:connect
+
+	viewPoints = new QAction(tr("&Points"), this);
+	viewPoints->setIcon(QIcon(":/icons/images/points.png"));
+	viewPoints->setText(tr("Draw Points"));
+	viewPoints->setStatusTip(tr("Points"));
+	viewPoints->setCheckable(true);
+	viewPoints->setChecked(false);
+	connect(viewPoints, SIGNAL(triggered()), this, SLOT(showPoints()));
+	connect(viewer, SIGNAL(setDrawModePoints()), this, SLOT(setModePoints()));
+
+	viewWireframe = new QAction(tr("&Wireframe"), this);
+	viewWireframe->setIcon(QIcon(":/icons/images/wireframe.png"));
+	viewWireframe->setText(tr("Draw Wireframe"));
+	viewWireframe->setStatusTip(tr("Wireframe"));
+	viewWireframe->setCheckable(true);
+	viewWireframe->setChecked(false);
+	connect(viewWireframe, SIGNAL(triggered()), this, SLOT(showWireframe()));
+	connect(viewer, SIGNAL(setDrawModeWireframe()), this, SLOT(setModeWireframe()));
+
+	viewFlatlines = new QAction(tr("Flat&lines"), this);
+	viewFlatlines->setIcon(QIcon(":/icons/images/flatlines.png"));
+	viewFlatlines->setText(tr("Draw Flatlines"));
+	viewFlatlines->setStatusTip(tr("Flatlines"));
+	viewFlatlines->setCheckable(true);
+	viewFlatlines->setChecked(false);
+	connect(viewFlatlines, SIGNAL(triggered()), this, SLOT(showFlatlines()));
+
+	viewFlat = new QAction(tr("&Flat"), this);
+	viewFlat->setIcon(QIcon(":/icons/images/flat.png"));
+	viewFlat->setText(tr("Draw Flat"));
+	viewFlat->setStatusTip(tr("Flat"));
+	viewFlat->setCheckable(true);
+	viewFlat->setChecked(false);
+	connect(viewFlat, SIGNAL(triggered()), this, SLOT(showFlat()));
+
+	viewSmooth = new QAction(tr("&Smooth"), this);
+	viewSmooth->setIcon(QIcon(":/icons/images/smooth.png"));
+	viewSmooth->setText(tr("Draw Smooth"));
+	viewSmooth->setStatusTip(tr("Smooth"));
+	viewSmooth->setCheckable(true);
+	viewSmooth->setChecked(false);
+	connect(viewSmooth, SIGNAL(triggered()), this, SLOT(showSmooth()));
 }
 
 void MainWindow::createToolbar()
@@ -109,8 +150,20 @@ void MainWindow::createToolbar()
 	editToolbar->addAction(alignMeshes);
 	editToolbar->addAction(reconAction);
 
+	drawModeGroup = new QActionGroup(this);
+	drawModeGroup->addAction(viewPoints);
+	drawModeGroup->addAction(viewWireframe);
+	drawModeGroup->addAction(viewFlatlines);
+	drawModeGroup->addAction(viewFlat);
+	drawModeGroup->addAction(viewSmooth);
+
 	viewToolbar = addToolBar(tr("&View"));
 	viewToolbar->addAction(lightControl);
+	viewToolbar->addAction(viewPoints);
+	viewToolbar->addAction(viewWireframe);
+	viewToolbar->addAction(viewFlatlines);
+	viewToolbar->addAction(viewFlat);
+	viewToolbar->addAction(viewSmooth);
 }
 
 void MainWindow::createMenus()
@@ -157,5 +210,45 @@ void MainWindow::startPoissonRecon()
 	//surfaceRecon->startRecon< 2, PlyVertex< Real >, false >();
 	surfaceRecon->startRecon< 2, PlyValueVertex< Real >, false >();
 	//viewer->acceptMesh(surfaceRecon->getSurface());
-	
+	viewer->loadFile("reconOutput.ply");
+}
+
+void MainWindow::showPoints()
+{
+	std::cout << "MainWindow:showPoints" << std::endl;
+	viewer->setDrawMode(DRAW_MODE::POINTS);
+}
+
+void MainWindow::showWireframe()
+{
+	std::cout << "MainWindow:showWireframe" << std::endl;
+	viewer->setDrawMode(DRAW_MODE::WIREFRAME);
+}
+
+void MainWindow::showFlatlines()
+{
+	std::cout << "MainWindow:showFlatlines" << std::endl;
+	viewer->setDrawMode(DRAW_MODE::FLATLINES);
+}
+
+void MainWindow::showFlat()
+{
+	std::cout << "MainWindow:showFlat" << std::endl;
+	viewer->setDrawMode(DRAW_MODE::FLAT);
+}
+
+void MainWindow::showSmooth()
+{
+	std::cout << "MainWindow:showSmooth" << std::endl;
+	viewer->setDrawMode(DRAW_MODE::SMOOTH);
+}
+
+void MainWindow::setModePoints()
+{
+	viewPoints->setChecked(true);
+}
+
+void MainWindow::setModeWireframe()
+{
+	viewWireframe->setChecked(true);
 }

@@ -35,6 +35,9 @@ public:
 	// construct the class with a list of vertex
 	PlyCloud(std::vector<CPoint> newVertexList);
 
+	// overload constructor
+	PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace> newFaceList);
+
 	// deconstructor
 	~PlyCloud();
 
@@ -62,6 +65,8 @@ public:
 
 	// get vertex number
 	int get_vertex_num();
+	// get face number
+	int get_face_num();
 
 private:
 	// add vertex to the vertex list and add normal to the normal list of the point cloud
@@ -69,8 +74,16 @@ private:
 	void add_norm(CPoint n);
 	void add_value(double value);
 	void add_face(JFace f);
+	void add_face_normal(CPoint);
 	// setup vertex property
 	void setupVertexProperty(string inS, int propIter);
+	// compute face normal
+	void computeFaceNormal();
+	// compute vertex normal
+	void computeVertexNormal();
+	std::vector<int> findFacesVertex(int _vert);
+	// compute cross product
+	CPoint crossProduct(CPoint p1, CPoint p2);
 
 protected:
 	// vertex property list
@@ -85,6 +98,8 @@ protected:
 	std::vector<CPoint> normal_list;
 	// face list
 	std::vector<JFace> face_list;
+	// face normal list
+	std::vector<CPoint> face_normal_list;
 	// value list
 	std::vector<double> value_list;
 	// bool

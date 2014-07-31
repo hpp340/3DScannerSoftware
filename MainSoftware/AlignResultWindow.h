@@ -29,6 +29,7 @@ private:
 	MultipleMeshViewer * viewer;
 	QToolBar * toolBar;
 	QAction * save;
+	QAction * merge;
 	checkableAction * lightControl;
 };
 

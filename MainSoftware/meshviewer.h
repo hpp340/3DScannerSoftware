@@ -13,9 +13,13 @@
 #include "header\glm\glm.hpp"
 #include "header\glm\gtx\norm.hpp"
 
+#include "JFace.h"
+
 #ifndef PI
 #define PI 3.14159265
 #endif
+
+enum class DRAW_MODE {NONE, POINTS, WIREFRAME, FLATLINES, FLAT, SMOOTH};
 
 class MeshViewer : public QGLWidget
 {
@@ -46,6 +50,8 @@ public:
 	std::string getFilename();
 	// accept mesh from other classes
 	void acceptMesh(PlyCloud *);
+	// set draw mode
+	void setDrawMode(DRAW_MODE);
 
 private:
 	// initialize the members
@@ -93,6 +99,18 @@ protected:
 	virtual void drawMesh();
 	// method for drawing axises
 	void drawAxis();
+	// draw point
+	void drawMeshPoints();
+	// draw wireframe
+	void drawMeshWireframe();
+	// draw flat lines
+	void drawMeshFlatlines();
+	// draw flat
+	void drawMeshFlat();
+	// draw smooth
+	void drawMeshSmooth();
+	// set default draw mode
+	void setDefaultDrawMode();
 	// update projection matrix  
 	void updateProjectionMatrix();
 
@@ -146,6 +164,8 @@ protected:
 	// boundingbox
 	glm::vec3 minBoundingBox;
 	glm::vec3 maxBoundingBox;
+	// draw mode
+	DRAW_MODE meshDrawMode;
 
 private:
 	QString filename;
@@ -158,6 +178,10 @@ public slots:
 	// light control
 	void turnOnLight();
 	void turnOffLight();
+
+signals:
+	void setDrawModeWireframe();
+	void setDrawModePoints();
 };
 
 #endif // MESHVIEWER_H

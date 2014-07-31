@@ -28,12 +28,21 @@ private:
 private slots:
 	void showAlignWindow();
 	void startPoissonRecon();
+	void showPoints();
+	void showWireframe();
+	void showFlatlines();
+	void showFlat();
+	void showSmooth();
 
 private:
     void initWindow();
     void createActions();
     void createMenus();
     void createToolbar();
+
+private slots:
+	void setModePoints();
+	void setModeWireframe();
 
 private:
 
@@ -50,6 +59,13 @@ private:
 	QAction * alignMeshes;
 	QAction * lightControl;
 	QAction * reconAction;
+	// control draw mode
+	QAction * viewPoints;
+	QAction * viewWireframe;
+	QAction * viewFlatlines;
+	QAction * viewFlat;
+	QAction * viewSmooth;
+	QActionGroup * drawModeGroup;
 
     // menus
     QMenu * fileMenu;

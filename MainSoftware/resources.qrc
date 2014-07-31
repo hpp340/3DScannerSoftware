@@ -11,5 +11,10 @@
         <file>images/select.png</file>
         <file>images/light.png</file>
         <file>images/recon.png</file>
+        <file>images/points.png</file>
+        <file>images/wireframe.png</file>
+        <file>images/flatlines.png</file>
+        <file>images/flat.png</file>
+        <file>images/smooth.png</file>
     </qresource>
 </RCC>
