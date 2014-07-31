@@ -24,6 +24,10 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNor
 PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 {
 	vertex_list = newVertexList;
+	hasFace = hasValue = hasNormal = false;
+	hasVertexPos = true;
+	vertProperty.assign(7, VertexInfo::NONE);
+	vertex_num = (int)vertex_list.size();
 }
 
 // overload constructor

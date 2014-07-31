@@ -296,6 +296,20 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="header\ANN\ANN.cpp" />
+    <ClCompile Include="header\ANN\bd_fix_rad_search.cpp" />
+    <ClCompile Include="header\ANN\bd_pr_search.cpp" />
+    <ClCompile Include="header\ANN\bd_search.cpp" />
+    <ClCompile Include="header\ANN\bd_tree.cpp" />
+    <ClCompile Include="header\ANN\brute.cpp" />
+    <ClCompile Include="header\ANN\kd_dump.cpp" />
+    <ClCompile Include="header\ANN\kd_fix_rad_search.cpp" />
+    <ClCompile Include="header\ANN\kd_pr_search.cpp" />
+    <ClCompile Include="header\ANN\kd_search.cpp" />
+    <ClCompile Include="header\ANN\kd_split.cpp" />
+    <ClCompile Include="header\ANN\kd_tree.cpp" />
+    <ClCompile Include="header\ANN\kd_util.cpp" />
+    <ClCompile Include="header\ANN\perf.cpp" />
     <ClCompile Include="JFace.cpp" />
     <ClCompile Include="GeneratedFiles\qrc_resources.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -1707,6 +1721,20 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header\ANN\ANN.h" />
+    <ClInclude Include="header\ANN\ANNperf.h" />
+    <ClInclude Include="header\ANN\ANNx.h" />
+    <ClInclude Include="header\ANN\bd_tree.h" />
+    <ClInclude Include="header\ANN\kd_fix_rad_search.h" />
+    <ClInclude Include="header\ANN\kd_pr_search.h" />
+    <ClInclude Include="header\ANN\kd_search.h" />
+    <ClInclude Include="header\ANN\kd_split.h" />
+    <ClInclude Include="header\ANN\kd_tree.h" />
+    <ClInclude Include="header\ANN\kd_util.h" />
+    <ClInclude Include="header\ANN\pr_queue.h" />
+    <ClInclude Include="header\ANN\pr_queue_k.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

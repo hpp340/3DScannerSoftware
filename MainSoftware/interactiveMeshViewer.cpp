@@ -103,12 +103,28 @@ void interactiveMeshViewer::drawSelectedVertex(int selectedId)
 	makeCurrent();
 	std::cout << "painting selected vertex " << selectedId << std::endl;
 	CPoint selectedVertex = pointCloud->get_vertex(selectedId);
-	CPoint selectedNormal = pointCloud->get_normal(selectedId);
+	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	size_t normalSize = normalList.size();
+	size_t vertexSize = vertexList.size();
+	bool normalExist = false;
+	if (normalSize == vertexSize)
+	{
+		normalExist = true;
+	}
+	CPoint selectedNormal;
+	if (normalExist)
+	{
+		selectedNormal = pointCloud->get_normal(selectedId);
+	} 
 	glPointSize(20);
 	glColor3d(1.0, 0.5, 0.0);
 	glBegin(GL_POINTS);
 	glVertex3d(selectedVertex[0], selectedVertex[1], selectedVertex[2]);
-	glNormal3d(selectedNormal[0], selectedNormal[1], selectedNormal[2]);
+	if (normalExist)
+	{
+		glNormal3d(selectedNormal[0], selectedNormal[1], selectedNormal[2]);
+	}
 	glEnd();
 }
 
@@ -130,18 +146,28 @@ void interactiveMeshViewer::drawMesh()
 	}
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
-
+	size_t normalSize = normalList.size();
+	size_t vertexSize = vertexList.size();
+	bool normalExist = false;
+	if (normalSize == vertexSize)
+	{
+		normalExist = true;
+	}
 	for (size_t i = 0; i < vertexList.size(); i++)
 	{
 		CPoint vert = vertexList[i];
-		CPoint norl = normalList[i];
+
 		if (std::find(allSelectedVertex.begin(), allSelectedVertex.end(), i) != allSelectedVertex.end()) // this vertex is selected
 		{
 			glPointSize(15);
 			glColor3d(1.0, 0.5, 0.0);
 			glBegin(GL_POINTS);
 			glVertex3d(vert[0], vert[1], vert[2]);
-			glNormal3d(norl[0], norl[1], norl[2]);
+			if (normalExist)
+			{
+				CPoint norl = normalList[i];
+				glNormal3d(norl[0], norl[1], norl[2]);
+			}
 			glEnd();
 		}
 		else
@@ -157,7 +183,11 @@ void interactiveMeshViewer::drawMesh()
 			}
 			glBegin(GL_POINTS);
 			glVertex3d(vert[0], vert[1], vert[2]);
-			glNormal3d(norl[0], norl[1], norl[2]);
+			if (normalExist)
+			{
+				CPoint norl = normalList[i];
+				glNormal3d(norl[0], norl[1], norl[2]);
+			}
 			glEnd();
 		}
 	}

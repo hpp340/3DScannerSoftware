@@ -32,7 +32,7 @@ public:
 	// load mesh file
 	void loadFile(const char *);
 	// save mesh file
-	void saveFile(const char *);
+	virtual void saveFile(const char *);
 	// return scene center
 	glm::vec3 getCenter() { return center; }
 
@@ -59,7 +59,7 @@ private:
 	// initialize GL - triggered by Qt
 	void initializeGL();
 	// draw scene - triggered by Qt
-	void paintGL();
+	virtual void paintGL();
 	// resize - triggered by Qt
 	void resizeGL(int width, int height);
 

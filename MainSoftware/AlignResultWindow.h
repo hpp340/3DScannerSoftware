@@ -25,6 +25,9 @@ public:
 private:
 	void initResultWindow();
 
+private slots:
+	void mergeMeshes();
+
 private:
 	MultipleMeshViewer * viewer;
 	QToolBar * toolBar;

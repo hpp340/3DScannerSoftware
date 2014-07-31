@@ -46,12 +46,24 @@ void AlignResultWindow::initResultWindow()
 	connect(lightControl, SIGNAL(actionCheck()), viewer, SLOT(turnOnLight()));
 	connect(lightControl, SIGNAL(actionUncheck()), viewer, SLOT(turnOffLight()));
 
+	merge = new QAction(tr("&Merge"), this);
+	merge->setText(tr("Merge Aligned Meshes"));
+	merge->setIcon(QIcon(":/icons/images/merge.png"));
+	merge->setStatusTip(tr("Merge Aligned Meshes"));
+	connect(merge, SIGNAL(triggered()), this, SLOT(mergeMeshes()));
+
 	toolBar = new QToolBar();
 	toolBar->addAction(save);
 	toolBar->addAction(lightControl);
+	toolBar->addAction(merge);
 
 	QVBoxLayout * vLayout = new QVBoxLayout;
 	vLayout->addWidget(toolBar);
 	vLayout->addWidget(viewer);
 	this->setLayout(vLayout);
+}
+
+void AlignResultWindow::mergeMeshes()
+{
+	viewer->mergeMeshes();
 }

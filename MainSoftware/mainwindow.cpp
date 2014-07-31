@@ -208,7 +208,7 @@ void MainWindow::startPoissonRecon()
 	printf("%s\n", tempFilename);
 	surfaceRecon->acceptPointCloudFromFile(tempFilename);
 	//surfaceRecon->startRecon< 2, PlyVertex< Real >, false >();
-	surfaceRecon->startRecon< 2, PlyValueVertex< Real >, false >();
+	surfaceRecon->startRecon< 2, PlyValueVertex< Real >, true >();
 	//viewer->acceptMesh(surfaceRecon->getSurface());
 	viewer->loadFile("reconOutput.ply");
 }

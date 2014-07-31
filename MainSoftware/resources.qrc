@@ -16,5 +16,6 @@
         <file>images/flatlines.png</file>
         <file>images/flat.png</file>
         <file>images/smooth.png</file>
+        <file>images/merge.png</file>
     </qresource>
 </RCC>
