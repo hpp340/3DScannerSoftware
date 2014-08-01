@@ -18,7 +18,7 @@ public:
 	~SurfaceTrim();
 
 	// start trimmer
-	void startSurfaceTrim(char * filename);
+	bool startSurfaceTrim(char * filename);
 private:
 
 	long long EdgeKey(int key1, int key2);

@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 
 	ConvMesh * mesh = new ConvMesh;
 	// read in the mesh data 
-	mesh->read_m(argv[1]);
+	mesh->read_obj(argv[1]);
 	cout << argv[1] << endl;
 	// normalize mesh
 	MeshNormalize(mesh);

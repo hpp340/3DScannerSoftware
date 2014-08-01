@@ -414,24 +414,25 @@ int PlyReadPolygons(char* fileName,
 					int& file_type,
 					char*** comments=NULL,int* commentNum=NULL , bool* readFlags=NULL );
 
-template<class Vertex>
-int PlyWritePolygons(char* fileName,
-					 const std::vector<Vertex>& vertices,const std::vector<std::vector<int> >& polygons,
-					 PlyProperty* properties,int propertyNum,
-					 int file_type,
-					 char** comments=NULL,const int& commentNum=0);
+//template<class Vertex>
+//int PlyWritePolygons(char* fileName,
+//					 const std::vector<Vertex>& vertices,const std::vector<std::vector<int> >& polygons,
+//					 PlyProperty* properties,int propertyNum,
+//					 int file_type,
+//					 char** comments=NULL,const int& commentNum=0);
 
 template<class Vertex>
 int PlyWritePolygons(char* fileName,
 					 const std::vector<Vertex>& vertices , const std::vector< std::vector< int > >& polygons,
 					 PlyProperty* properties,int propertyNum,
-					 int file_type,
-					 char** comments,const int& commentNum)
+					 int file_type)//,
+					 //char** comments,const int& commentNum)
 {
 	int nr_vertices=int(vertices.size());
 	int nr_faces=int(polygons.size());
 	float version;
 	char *elem_names[] = { "vertex" , "face" };
+	std::cout << "ply_open_for_writing" << std::endl;
 	PlyFile *ply = ply_open_for_writing( fileName , 2 , elem_names , file_type , &version );
 	if (!ply){return 0;}
 	
@@ -446,13 +447,16 @@ int PlyWritePolygons(char* fileName,
 	ply_describe_property(ply, "face", &face_props[0]);
 	
 	// Write in the comments
-	if(comments && commentNum)
-		for(int i=0;i<commentNum;i++)
-			ply_put_comment(ply,comments[i]);
+	std::cout << "Write in the comments" << std::endl;
+	//if(comments && commentNum)
+	//	for(int i=0;i<commentNum;i++)
+	//		ply_put_comment(ply,comments[i]);
+	std::cout << "Write in the comments ended" << std::endl;
 
 	ply_header_complete(ply);
 	
 	// write vertices
+	std::cout << "Write vertices" << std::endl;
 	ply_put_element_setup(ply, "vertex");
 	for (int i=0; i < int(vertices.size()); i++)
 		ply_put_element(ply, (void *) &vertices[i]);
@@ -463,6 +467,7 @@ int PlyWritePolygons(char* fileName,
 	ply_face.nr_vertices = 3;
 	ply_face.vertices = new int[3];
 
+	std::cout << "Write faces" << std::endl;
 	ply_put_element_setup(ply, "face");
 	for (int i=0; i < nr_faces; i++)
 	{
@@ -486,8 +491,8 @@ template<class Vertex>
 int PlyReadPolygons(char* fileName,
 					std::vector<Vertex>& vertices , std::vector<std::vector<int> >& polygons ,
 					 PlyProperty* properties , int propertyNum ,
-					int& file_type ,
-					char*** comments , int* commentNum , bool* readFlags )
+					 int& file_type, bool* readFlags)
+					//char*** comments , int* commentNum , bool* readFlags )
 {
 	int nr_elems;
 	char **elist;
@@ -499,17 +504,21 @@ int PlyReadPolygons(char* fileName,
 	int nr_props;
 	PlyProperty** plist;
 	PlyFace ply_face;
-
+	std::cout << "ply_open_for_reading" << std::endl;
 	ply = ply_open_for_reading(fileName, &nr_elems, &elist, &file_type, &version);
+	std::cout << "ply_open_for_reading ended" << std::endl;
+
 	if(!ply) return 0;
 
-	if(comments)
-	{
-		(*comments)=new char*[*commentNum+ply->num_comments];
-		for(int i=0;i<ply->num_comments;i++)
-			(*comments)[i]=_strdup(ply->comments[i]);
-		*commentNum=ply->num_comments;
-	}
+	//if(comments)
+	//{
+	//	std::cout << "comment yes" << std::endl;
+	//	(*comments)=new char*[*commentNum+ply->num_comments];
+	//	std::cout << "comment yes + 1" << std::endl;
+	//	for(int i=0;i<ply->num_comments;i++)
+	//		(*comments)[i]=_strdup(ply->comments[i]);
+	//	*commentNum=ply->num_comments;
+	//}
 
 	for (i=0; i < nr_elems; i++) {
 		elem_name = elist[i];

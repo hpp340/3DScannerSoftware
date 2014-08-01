@@ -81,6 +81,7 @@ void MultipleMeshViewer::drawMesh()
 		PlyCloud * plyDraw = meshList[i];
 		std::vector<CPoint> vertexList = plyDraw->get_vertex_list();
 		std::vector<CPoint> normalList = plyDraw->get_normal_list();
+		std::vector<bool> deletedVertexList = plyDraw->get_deleted_vertex_list();
 		bool normalExist = false;
 		if (vertexList.size() == normalList.size())
 		{
@@ -89,17 +90,20 @@ void MultipleMeshViewer::drawMesh()
 		glm::vec3 color = colorList[i % colorList.size()];
 		for (size_t j = 0; j < vertexList.size(); j++)
 		{
-			CPoint vert = vertexList[j];
-			glPointSize(10);
-			glColor3d(color[0], color[1], color[2]);
-			glBegin(GL_POINTS);
-			glVertex3d(vert[0], vert[1], vert[2]);
-			if (normalExist)
+			if (! deletedVertexList[j])
 			{
-				CPoint norl = normalList[j];
-				glNormal3d(norl[0], norl[1], norl[2]);
+				CPoint vert = vertexList[j];
+				glPointSize(10);
+				glColor3d(color[0], color[1], color[2]);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				if (normalExist)
+				{
+					CPoint norl = normalList[j];
+					glNormal3d(norl[0], norl[1], norl[2]);
+				}
+				glEnd();
 			}
-			glEnd();
 		}
 	}
 }
@@ -144,120 +148,127 @@ void MultipleMeshViewer::saveFile(const char * filename)
 void MultipleMeshViewer::mergeMeshes()
 {
 	std::cout << "MultipleMeshViewer::mergeMeshes" << std::endl;
-	// construct kdtree according to the second mesh in the meshList
-	if (meshList.size() == 2)
+	if (! isMeshesMerged)
 	{
-		PlyCloud * secondMesh = meshList[1]; // second mesh
-		std::vector<CPoint> secondVertexList = secondMesh->get_vertex_list();
-		std::vector<CPoint> secondNormalList = secondMesh->get_normal_list();
-		unsigned nv = (unsigned)secondVertexList.size();
-		ANNpointArray ANNDataPts = annAllocPts(nv, 3);
-		for (size_t i = 0; i < secondVertexList.size(); i++)
+		if (meshList.size() == 2)
 		{
-			CPoint secondVert = secondVertexList[i];
-			ANNDataPts[i][0] = secondVert[0];
-			ANNDataPts[i][1] = secondVert[1];
-			ANNDataPts[i][2] = secondVert[2];
+			// construct kdtree according to the second mesh in the meshList
+			PlyCloud * secondMesh = meshList[1]; // second mesh
+			std::vector<CPoint> secondVertexList = secondMesh->get_vertex_list();
+			std::vector<CPoint> secondNormalList = secondMesh->get_normal_list();
+			unsigned nv = (unsigned)secondVertexList.size();
+			ANNpointArray ANNDataPts = annAllocPts(nv, 3);
+			for (size_t i = 0; i < secondVertexList.size(); i++)
+			{
+				CPoint secondVert = secondVertexList[i];
+				ANNDataPts[i][0] = secondVert[0];
+				ANNDataPts[i][1] = secondVert[1];
+				ANNDataPts[i][2] = secondVert[2];
+			}
+			std::cout << "construct kdtree" << std::endl;
+			kdTree = new ANNkd_tree(ANNDataPts, nv, 3);
+
+			PlyCloud * firstMesh = meshList[0];
+			std::vector<CPoint> firstVertexList = firstMesh->get_vertex_list();
+			std::vector<CPoint> firstNormalList = firstMesh->get_normal_list();
+
+			if ((firstVertexList.size() == firstNormalList.size()) && (secondVertexList.size() == secondNormalList.size()))
+			{
+				std::vector<CPoint> mergedVertexList;
+				std::vector<CPoint> mergedNormalList;
+				std::vector<bool> secondVertexOverlapped;
+				secondVertexOverlapped.assign(secondVertexList.size(), false);
+
+				for (size_t v = 0; v < firstVertexList.size(); v++)
+				{
+					CPoint firstVertIter = firstVertexList[v];
+					CPoint firstNormIter = firstNormalList[v];
+					ANNpoint ptSearched = annAllocPt(3);
+					ptSearched[0] = firstVertIter[0];
+					ptSearched[1] = firstVertIter[1];
+					ptSearched[2] = firstVertIter[2];
+					ANNidxArray nnIdx = new ANNidx[1]; ANNdistArray dists = new ANNdist[1];
+					kdTree->annkSearch(ptSearched, 1, nnIdx, dists);
+					int nnIndexPt = nnIdx[0];
+					double nnDist = dists[0];
+					if (nnDist < MIN_DIST)
+					{
+						CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
+						CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
+						CPoint newVertex = (nnVertex + firstVertIter) / 2.0;
+						CPoint newNormal = (nnNormal + firstNormIter) / 2.0;
+						mergedVertexList.push_back(newVertex);
+						mergedNormalList.push_back(newNormal);
+						secondVertexOverlapped[nnIndexPt] = true;
+					}
+					else
+					{
+						mergedVertexList.push_back(firstVertIter);
+						mergedNormalList.push_back(firstNormIter);
+					}
+				}
+
+				for (size_t sv = 0; sv < secondVertexList.size(); sv++)
+				{
+					if (!secondVertexOverlapped[sv])
+					{
+						mergedVertexList.push_back(secondVertexList[sv]);
+						mergedNormalList.push_back(secondNormalList[sv]);
+					}
+				}
+
+				mergedMesh = new PlyCloud(mergedVertexList, mergedNormalList);
+				drawMergedMeshOK();
+			}
+			else
+			{
+				std::vector<CPoint> mergedVertexList;
+				std::vector<bool> secondVertexOverlapped;
+				secondVertexOverlapped.assign(secondVertexList.size(), false);
+
+				for (size_t v = 0; v < firstVertexList.size(); v++)
+				{
+					CPoint firstVertIter = firstVertexList[v];
+					ANNpoint ptSearched = annAllocPt(3);
+					ptSearched[0] = firstVertIter[0];
+					ptSearched[1] = firstVertIter[1];
+					ptSearched[2] = firstVertIter[2];
+					ANNidxArray nnIdx = new ANNidx[1]; ANNdistArray dists = new ANNdist[1];
+					kdTree->annkSearch(ptSearched, 1, nnIdx, dists);
+					int nnIndexPt = nnIdx[0];
+					double nnDist = dists[0];
+					if (nnDist < MIN_DIST)
+					{
+						CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
+						//CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
+						CPoint newVertex = (nnVertex + firstVertIter) / 2.0;
+						mergedVertexList.push_back(newVertex);
+						secondVertexOverlapped[nnIndexPt] = true;
+					}
+					else
+					{
+						mergedVertexList.push_back(firstVertIter);
+					}
+				}
+
+				for (size_t sv = 0; sv < secondVertexList.size(); sv++)
+				{
+					if (!secondVertexOverlapped[sv])
+					{
+						mergedVertexList.push_back(secondVertexList[sv]);
+					}
+				}
+
+				mergedMesh = new PlyCloud(mergedVertexList);
+				drawMergedMeshOK();
+			}
+
+			isMeshesMerged = true;
 		}
-		std::cout << "construct kdtree" << std::endl;
-		kdTree = new ANNkd_tree(ANNDataPts, nv, 3);
-
-		PlyCloud * firstMesh = meshList[0];
-		std::vector<CPoint> firstVertexList = firstMesh->get_vertex_list();
-		std::vector<CPoint> firstNormalList = firstMesh->get_normal_list();
-
-		if ((firstVertexList.size() == firstNormalList.size()) && (secondVertexList.size() == secondNormalList.size()))
-		{
-			std::vector<CPoint> mergedVertexList;
-			std::vector<CPoint> mergedNormalList;
-			std::vector<bool> secondVertexOverlapped;
-			secondVertexOverlapped.assign(secondVertexList.size(), false);
-
-			for (size_t v = 0; v < firstVertexList.size(); v++)
-			{
-				CPoint firstVertIter = firstVertexList[v];
-				CPoint firstNormIter = firstNormalList[v];
-				ANNpoint ptSearched = annAllocPt(3);
-				ptSearched[0] = firstVertIter[0];
-				ptSearched[1] = firstVertIter[1];
-				ptSearched[2] = firstVertIter[2];
-				ANNidxArray nnIdx = new ANNidx[1]; ANNdistArray dists = new ANNdist[1];
-				kdTree->annkSearch(ptSearched, 1, nnIdx, dists);
-				int nnIndexPt = nnIdx[0];
-				double nnDist = dists[0];
-				if (nnDist < MIN_DIST)
-				{
-					CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
-					CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
-					CPoint newVertex = (nnVertex + firstVertIter) / 2.0;
-					CPoint newNormal = (nnNormal + firstNormIter) / 2.0;
-					mergedVertexList.push_back(newVertex);
-					mergedNormalList.push_back(newNormal);
-					secondVertexOverlapped[nnIndexPt] = true;
-				}
-				else
-				{
-					mergedVertexList.push_back(firstVertIter);
-					mergedNormalList.push_back(firstNormIter);
-				}
-			}
-
-			for (size_t sv = 0; sv < secondVertexList.size(); sv++)
-			{
-				if (!secondVertexOverlapped[sv])
-				{
-					mergedVertexList.push_back(secondVertexList[sv]);
-					mergedNormalList.push_back(secondNormalList[sv]);
-				}
-			}
-
-			mergedMesh = new PlyCloud(mergedVertexList, mergedNormalList);
-			drawMergedMeshOK();
-		}
-		else
-		{
-			std::vector<CPoint> mergedVertexList;
-			std::vector<bool> secondVertexOverlapped;
-			secondVertexOverlapped.assign(secondVertexList.size(), false);
-
-			for (size_t v = 0; v < firstVertexList.size(); v++)
-			{
-				CPoint firstVertIter = firstVertexList[v];
-				ANNpoint ptSearched = annAllocPt(3);
-				ptSearched[0] = firstVertIter[0];
-				ptSearched[1] = firstVertIter[1];
-				ptSearched[2] = firstVertIter[2];
-				ANNidxArray nnIdx = new ANNidx[1]; ANNdistArray dists = new ANNdist[1];
-				kdTree->annkSearch(ptSearched, 1, nnIdx, dists);
-				int nnIndexPt = nnIdx[0];
-				double nnDist = dists[0];
-				if (nnDist < MIN_DIST)
-				{
-					CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
-					//CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
-					CPoint newVertex = (nnVertex + firstVertIter) / 2.0;
-					mergedVertexList.push_back(newVertex);
-					secondVertexOverlapped[nnIndexPt] = true;
-				}
-				else
-				{
-					mergedVertexList.push_back(firstVertIter);
-				}
-			}
-
-			for (size_t sv = 0; sv < secondVertexList.size(); sv++)
-			{
-				if (!secondVertexOverlapped[sv])
-				{
-					mergedVertexList.push_back(secondVertexList[sv]);
-				}
-			}
-
-			mergedMesh = new PlyCloud(mergedVertexList);
-			drawMergedMeshOK();
-		}
-
-		isMeshesMerged = true;
+	}
+	else
+	{
+		drawMergedMeshOK();
 	}
 }
 

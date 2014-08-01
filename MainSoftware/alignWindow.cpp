@@ -193,7 +193,7 @@ void alignWindow::transformMesh()
 			CPoint _normal = normalList[i];
 			Vector4d _vertexCoord, _normalCoord;
 			_vertexCoord << _vertex[0], _vertex[1], _vertex[2], 1.0;
-			_normalCoord << _normal[0], _normal[1], _normal[2], 1.0;
+			_normalCoord << _normal[0], _normal[1], _normal[2], 0.0;
 			Vector4d _transedVertexCoord = transformationMatrix * _vertexCoord;
 			Vector4d _transedNormalCoord = transformationMatrix * _normalCoord;
 			CPoint _transedVertex, _transedNormal;

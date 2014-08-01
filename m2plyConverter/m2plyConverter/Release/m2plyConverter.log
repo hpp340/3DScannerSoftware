@@ -1,6 +1,4 @@
-﻿  stdafx.cpp
-  ConvMesh.cpp
-  m2plyConverter.cpp
+﻿  m2plyConverter.cpp
   Generating code
   Finished generating code
   m2plyConverter.vcxproj -> W:\Codes\2014SummerMSC\3DScannerSoftware\m2plyConverter\Release\m2plyConverter.exe

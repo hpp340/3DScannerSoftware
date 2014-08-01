@@ -69,6 +69,7 @@ void MeshViewer::getBoundingBox()
 
 void MeshViewer::loadFile(const char * meshfile)
 {
+	std::cout << "loadFile start" << std::endl;
 	if (isMeshLoaded)
 	{
 		// clear all data
@@ -76,6 +77,7 @@ void MeshViewer::loadFile(const char * meshfile)
 		pointCloud = new PlyCloud();
 	}
 	bool isLoadOK = pointCloud->read_ply(meshfile);
+	std::cout << "load file..." << pointCloud->get_face_num() << " " << pointCloud->get_vertex_num() << std::endl;
 	if (!isLoadOK)
 	{
 		QMessageBox loadFail;
@@ -86,8 +88,8 @@ void MeshViewer::loadFile(const char * meshfile)
 	getBoundingBox();
 	setDefaultDrawMode();
 	isMeshLoaded = true;
-	updateGL();
 	std::cout << "loadFile" << std::endl;
+	updateGL();
 }
 
 void MeshViewer::setDefaultDrawMode()
@@ -340,25 +342,30 @@ void MeshViewer::drawMesh()
 		glDisable(GL_LIGHTING);
 	}
 
-
+	std::cout << "switch start" << std::endl;
 	switch (meshDrawMode)
 	{
 	case DRAW_MODE::NONE:
+		std::cout << "NONE" << std::endl;
 		break;
 	case DRAW_MODE::POINTS:
+		std::cout << "POINTS" << std::endl;
 		drawMeshPoints();
 		break;
 	case DRAW_MODE::WIREFRAME:
+		std::cout << "WIREFRAME" << std::endl;
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		drawMeshWireframe();
 		break;
 	case DRAW_MODE::FLATLINES:
+		std::cout << "FLATLINES" << std::endl;
 		if (pointCloud->get_face_num() > 0)
 		{
 			drawMeshFlatlines();
 		}
 		break;
 	case DRAW_MODE::FLAT:
+		std::cout << "FLAT" << std::endl;
 		if (pointCloud->get_face_num() > 0)
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -367,6 +374,7 @@ void MeshViewer::drawMesh()
 		}
 		break;
 	case DRAW_MODE::SMOOTH:
+		std::cout << "SMOOTH" << std::endl;
 		if ((pointCloud->get_face_num() > 0) && (pointCloud->get_normal_list().size() > 0))
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -381,6 +389,7 @@ void MeshViewer::drawMesh()
 		}
 		break;
 	default:
+		std::cout << "default" << std::endl;
 		break;
 	}
 
@@ -391,41 +400,49 @@ void MeshViewer::drawMeshPoints()
 {
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();
 	if (normalList.size() == vertexList.size())
 	{
 		for (size_t i = 0; i < vertexList.size(); i++)
 		{
-			CPoint vert = vertexList[i];
-			CPoint norl = normalList[i];
+			if (! deletedVertexList[i])
+			{
+				CPoint vert = vertexList[i];
+				CPoint norl = normalList[i];
 
-			glPointSize(10);
-			glColor3d(0.1, 0.5, 0.8);
-			glBegin(GL_POINTS);
-			glVertex3d(vert[0], vert[1], vert[2]);
-			glNormal3d(norl[0], norl[1], norl[2]);
-			glEnd();
+				glPointSize(10);
+				glColor3d(0.1, 0.5, 0.8);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				glNormal3d(norl[0], norl[1], norl[2]);
+				glEnd();
+			}
 		}
 	}
 	else
 	{
 		for (size_t i = 0; i < vertexList.size(); i++)
 		{
-			CPoint vert = vertexList[i];
+			if (!deletedVertexList[i])
+			{
+				CPoint vert = vertexList[i];
 
-			glPointSize(10);
-			glColor3d(0.1, 0.5, 0.8);
-			glBegin(GL_POINTS);
-			glVertex3d(vert[0], vert[1], vert[2]);
-			glEnd();
+				glPointSize(10);
+				glColor3d(0.1, 0.5, 0.8);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				glEnd();
+			}
 		}
 	}
 }
 
 void MeshViewer::drawMeshWireframe()
 {
+	std::cout << "drawMeshWireframe" << std::endl;
 	std::vector<JFace> faceList = pointCloud->get_face_list();
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-
+	
 	glLineWidth(2.5);
 	glColor3d(1.0, 1.0, 1.0);
 	for (size_t i = 0; i < faceList.size(); i++)
@@ -648,8 +665,6 @@ void MeshViewer::translateView(QPoint newPos)
 		0.0f);
 
 	translate(transVector);
-	//2.0*dx / w*right / near_plane*z,
-	//	-2.0*dy / h*top / near_plane*z,
 }
 
 void MeshViewer::translate(glm::vec3 transVector)

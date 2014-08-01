@@ -63,6 +63,8 @@ public:
 	// get face list
 	std::vector<JFace> get_face_list();
 
+	// get deleted vertex
+	std::vector<bool> get_deleted_vertex_list();
 	// get vertex number
 	int get_vertex_num();
 	// get face number
@@ -84,6 +86,10 @@ private:
 	std::vector<int> findFacesVertex(int _vert);
 	// compute cross product
 	CPoint crossProduct(CPoint p1, CPoint p2);
+	// normalize mesh
+	void normalizeMesh();
+	// clean mesh
+	void cleanMesh();
 
 protected:
 	// vertex property list
@@ -92,6 +98,8 @@ protected:
 	int vertex_num;
 	// face number
 	int face_num;
+	// deleted vertex list
+	std::vector<bool> deleted_vertex_list;
 	// vertex list
 	std::vector<CPoint> vertex_list;
 	// normal list

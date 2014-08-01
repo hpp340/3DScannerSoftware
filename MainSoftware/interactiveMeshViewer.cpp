@@ -146,6 +146,7 @@ void interactiveMeshViewer::drawMesh()
 	}
 	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();
 	size_t normalSize = normalList.size();
 	size_t vertexSize = vertexList.size();
 	bool normalExist = false;
@@ -155,40 +156,43 @@ void interactiveMeshViewer::drawMesh()
 	}
 	for (size_t i = 0; i < vertexList.size(); i++)
 	{
-		CPoint vert = vertexList[i];
+		if (! deletedVertexList[i])
+		{
+			CPoint vert = vertexList[i];
 
-		if (std::find(allSelectedVertex.begin(), allSelectedVertex.end(), i) != allSelectedVertex.end()) // this vertex is selected
-		{
-			glPointSize(15);
-			glColor3d(1.0, 0.5, 0.0);
-			glBegin(GL_POINTS);
-			glVertex3d(vert[0], vert[1], vert[2]);
-			if (normalExist)
+			if (std::find(allSelectedVertex.begin(), allSelectedVertex.end(), i) != allSelectedVertex.end()) // this vertex is selected
 			{
-				CPoint norl = normalList[i];
-				glNormal3d(norl[0], norl[1], norl[2]);
-			}
-			glEnd();
-		}
-		else
-		{
-			glPointSize(10);
-			if ((meshID == 0) || (meshID == 1))
-			{
-				glColor3d(0.1, 0.5, 0.8);
+				glPointSize(15);
+				glColor3d(1.0, 0.5, 0.0);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				if (normalExist)
+				{
+					CPoint norl = normalList[i];
+					glNormal3d(norl[0], norl[1], norl[2]);
+				}
+				glEnd();
 			}
 			else
 			{
-				glColor3d(0.7, 0.55, 0.55);
+				glPointSize(10);
+				if ((meshID == 0) || (meshID == 1))
+				{
+					glColor3d(0.1, 0.5, 0.8);
+				}
+				else
+				{
+					glColor3d(0.7, 0.55, 0.55);
+				}
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				if (normalExist)
+				{
+					CPoint norl = normalList[i];
+					glNormal3d(norl[0], norl[1], norl[2]);
+				}
+				glEnd();
 			}
-			glBegin(GL_POINTS);
-			glVertex3d(vert[0], vert[1], vert[2]);
-			if (normalExist)
-			{
-				CPoint norl = normalList[i];
-				glNormal3d(norl[0], norl[1], norl[2]);
-			}
-			glEnd();
 		}
 	}
 }

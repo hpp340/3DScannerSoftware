@@ -7,6 +7,7 @@ PlyCloud::PlyCloud()
 	vertex_num = 0;
 	face_num = 0;
 	vertProperty.assign(7, VertexInfo::NONE);
+	deleted_vertex_list.assign(vertex_num, false);
 }
 
 // overload constructor
@@ -18,6 +19,8 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNor
 	vertex_list = newVertexList;
 	normal_list = newNormalList;
 	vertex_num = (int)vertex_list.size();
+	deleted_vertex_list.assign(vertex_num, false);
+	cleanMesh();
 }
 
 // overload constructor
@@ -28,6 +31,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 	hasVertexPos = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	vertex_num = (int)vertex_list.size();
+	deleted_vertex_list.assign(vertex_num, false);
 }
 
 // overload constructor
@@ -39,6 +43,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace> newFace
 	vertex_list = newVertexList;
 	face_list = newFaceList;
 	vertex_num = (int)vertex_list.size();
+	deleted_vertex_list.assign(vertex_num, false);
 	face_num = (int)face_list.size();
 }
 
@@ -196,8 +201,10 @@ bool PlyCloud::read_ply(const char * filename)
 	}
 
 	std::cout << "vertex list size" << vertex_list.size() << std::endl;
+	//normalize mesh
+	normalizeMesh();
+	deleted_vertex_list.assign(vertex_num, false);
 	// read face information
-
 	while (!plyfile.eof())
 	{
 		getline(plyfile, inS);
@@ -229,6 +236,10 @@ bool PlyCloud::read_ply(const char * filename)
 	{
 		std::cout << "computing vertex normal" << std::endl;
 		//computeVertexNormal();
+	}
+	if (hasNormal)
+	{
+		cleanMesh();
 	}
 	plyfile.close();
 	return true;
@@ -399,6 +410,11 @@ std::vector<JFace> PlyCloud::get_face_list()
 	return face_list;
 }
 
+std::vector<bool> PlyCloud::get_deleted_vertex_list()
+{
+	return deleted_vertex_list;
+}
+
 int PlyCloud::get_vertex_num()
 {
 	return vertex_num;
@@ -439,5 +455,49 @@ void PlyCloud::setupVertexProperty(string inS, int propIter)
 	if (inS.substr(inS.length() - 5, 5) == "value")
 	{
 		vertProperty[propIter] = VertexInfo::VALUE;
+	}
+}
+
+void PlyCloud::normalizeMesh()
+{
+	CPoint center(0.0, 0.0, 0.0);
+	for (size_t i = 0; i < vertex_list.size(); i++)
+	{
+		CPoint vertIter = vertex_list[i];
+		center += vertIter;
+	}
+	center /= (double)vertex_list.size();
+	for (size_t i = 0; i < vertex_list.size(); i++)
+	{
+		CPoint * vertIter = &(vertex_list[i]);
+		*vertIter -= center;
+	}
+
+	double scale = 0.0;
+	for (size_t i = 0; i < vertex_list.size(); i++)
+	{
+		CPoint vertIter = vertex_list[i];
+		for (size_t j = 0; j < 3; j++)
+		{
+			scale = (scale > fabs(vertIter[(int)j])) ? scale : fabs(vertIter[(int)j]);
+		}
+	}
+	for (size_t i = 0; i < vertex_list.size(); i++)
+	{
+		CPoint * vertIter = &(vertex_list[i]);
+		*vertIter /= scale;
+	}
+}
+
+void PlyCloud::cleanMesh()
+{
+	std::cout << "PlyCloud:cleanMesh..." << std::endl;
+	for (size_t i = 0; i < vertex_list.size(); i++)
+	{
+		CPoint currNormal = normal_list[i];
+		if (currNormal.norm() == 0.0)
+		{
+			deleted_vertex_list[i] = true;
+		}
 	}
 }

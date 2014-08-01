@@ -158,6 +158,7 @@ void MainWindow::createToolbar()
 	editToolbar = addToolBar(tr("&Edit"));
 	editToolbar->addAction(alignMeshes);
 	editToolbar->addAction(reconAction);
+	editToolbar->addAction(trimAction);
 
 	drawModeGroup = new QActionGroup(this);
 	drawModeGroup->addAction(viewPoints);
@@ -226,7 +227,11 @@ void MainWindow::startTrim()
 {
 	std::cout << "MainWindow:startTrim.." << std::endl;
 	SurfaceTrim * trimmer = new SurfaceTrim();
-	trimmer->startSurfaceTrim("reconOutput.ply");
+	bool isTrimOK = trimmer->startSurfaceTrim("reconOutput.ply");
+	if (isTrimOK)
+	{
+		viewer->loadFile("reconOutputTrimmed.ply");
+	}
 }
 
 void MainWindow::showPoints()
