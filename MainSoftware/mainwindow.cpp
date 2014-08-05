@@ -220,7 +220,7 @@ void MainWindow::startPoissonRecon()
 	//surfaceRecon->startRecon< 2, PlyVertex< Real >, false >();
 	surfaceRecon->startRecon< 2, PlyValueVertex< Real >, true >();
 	//viewer->acceptMesh(surfaceRecon->getSurface());
-	viewer->loadFile("reconOutput.ply");
+	viewer->loadFile("reconOutput.ply", "ply");
 }
 
 void MainWindow::startTrim()
@@ -230,7 +230,7 @@ void MainWindow::startTrim()
 	bool isTrimOK = trimmer->startSurfaceTrim("reconOutput.ply");
 	if (isTrimOK)
 	{
-		viewer->loadFile("reconOutputTrimmed.ply");
+		viewer->loadFile("reconOutputTrimmed.ply", "ply");
 	}
 }
 

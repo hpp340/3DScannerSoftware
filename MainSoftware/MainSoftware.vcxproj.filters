@@ -203,6 +203,9 @@
     <ClCompile Include="SurfaceTrim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JVertex.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -394,6 +397,9 @@
   <ItemGroup>
     <ClInclude Include="SurfaceTrim.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JVertex.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

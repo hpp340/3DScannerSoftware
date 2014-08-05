@@ -30,7 +30,7 @@ public:
     // deconstructor
     ~MeshViewer();
 	// load mesh file
-	void loadFile(const char *);
+	void loadFile(const char *, string sExt);
 	// save mesh file
 	virtual void saveFile(const char *);
 	// return scene center

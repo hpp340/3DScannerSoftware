@@ -3,23 +3,26 @@
  * Author: Jerome Jiang
  * Date: 6/27/2014
  * Updated: 7/23/2014
-*/
+ * Updated: 8/5/2014
+ */
 
 #pragma once
 
 // #include "stdafx.h"
 #include "Point.h"
+#include "Point2.h"
 #include <stdlib.h>
 #include <vector>
 #include <fstream>
 #include <iostream>
 
 #include "../JFace.h"
+#include "../JVertex.h"
 
 using namespace MeshLib;
 using namespace std;
-
-enum class VertexInfo {NONE, POSX, POSY, POSZ, NORMALX, NORMALY, NORMALZ, VALUE};
+using namespace JMesh;
+enum class VertexInfo { NONE, POSX, POSY, POSZ, NORMALX, NORMALY, NORMALZ, VALUE };
 
 class PlyCloud
 {
@@ -36,32 +39,28 @@ public:
 	PlyCloud(std::vector<CPoint> newVertexList);
 
 	// overload constructor
-	PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace> newFaceList);
+	PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFaceList);
 
 	// deconstructor
 	~PlyCloud();
 
-	// read in the ply file, construct the vertex list used for ICP
-	// please make sure that the coordinates of vertex is the first three properties 
+	// read in the ply file, construct the vertex list, face list, normal list
 	bool read_ply(const char *filename);
-	
+
+	// read in obj file, construct the vertex list
+	bool read_obj(const char *filename);
+
 	// write the point cloud to ply file
 	bool write_ply(const char *fliename);
 
 	// get the vertex whose id is v_id
-	CPoint get_vertex(size_t v_id);
+	JVertex * get_vertex(size_t v_id);
 
-	// get the normal that the associated vertex id is v_id
-	CPoint get_normal(size_t v_id);
-
-	// get vertex list
-	std::vector<CPoint> get_vertex_list();
-
-	// get normal list
-	std::vector<CPoint> get_normal_list();
+	// new version get vertex list
+	std::vector<JVertex *> getJVertexList() { return JVertexList; };
 
 	// get face list
-	std::vector<JFace> get_face_list();
+	std::vector<JFace*> get_face_list();
 
 	// get deleted vertex
 	std::vector<bool> get_deleted_vertex_list();
@@ -72,24 +71,32 @@ public:
 
 private:
 	// add vertex to the vertex list and add normal to the normal list of the point cloud
-	void add_vert(CPoint v);
+
+	void addJVert(JVertex * vert);
 	void add_norm(CPoint n);
 	void add_value(double value);
-	void add_face(JFace f);
-	void add_face_normal(CPoint);
+	void add_face(JFace *f);
+
 	// setup vertex property
 	void setupVertexProperty(string inS, int propIter);
 	// compute face normal
 	void computeFaceNormal();
 	// compute vertex normal
 	void computeVertexNormal();
-	std::vector<int> findFacesVertex(int _vert);
+
 	// compute cross product
 	CPoint crossProduct(CPoint p1, CPoint p2);
 	// normalize mesh
 	void normalizeMesh();
 	// clean mesh
 	void cleanMesh();
+
+public:
+	bool hasVertexPos() { return existVertexPos; };
+	bool hasNormal() { return existNormal; };
+	bool hasValue() { return existValue; };
+	bool hasFace() { return existFace; };
+	bool hasTexture() { return existTexture; };
 
 protected:
 	// vertex property list
@@ -100,17 +107,21 @@ protected:
 	int face_num;
 	// deleted vertex list
 	std::vector<bool> deleted_vertex_list;
-	// vertex list
-	std::vector<CPoint> vertex_list;
+
+	// texture coordinates list
+	std::vector<CPoint2> texture_list;
 	// normal list
 	std::vector<CPoint> normal_list;
 	// face list
-	std::vector<JFace> face_list;
+	std::vector<JFace *> face_list;
 	// face normal list
 	std::vector<CPoint> face_normal_list;
 	// value list
 	std::vector<double> value_list;
+
+	// new version vertex list
+	std::vector<JVertex *> JVertexList;
 	// bool
-	bool hasVertexPos, hasNormal, hasValue, hasFace;
+	bool existVertexPos, existNormal, existValue, existFace, existTexture;
 };
 

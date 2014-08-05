@@ -59,13 +59,13 @@ int interactiveMeshViewer::selectVertex()
 
 	// then we should do the collision detect
 	// iteration every point
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<JVertex *> vertexList = pointCloud->getJVertexList();
 	std::vector<int> vertexOnTheRay;
 	double minAngle = PI;
 	int minVertexId = 0;
 	for (size_t i = 0; i < vertexList.size(); i++)
 	{
-		CPoint vert = vertexList[i];
+		CPoint vert = vertexList[i]->getPoint();
 		glm::dvec3 vertVec = glm::dvec3(vert[0], vert[1], vert[2]);
 		glm::dvec3 vertVecFromStart = vertVec - objNearPt;
 		// judge whether the vertex is on the ray described by rayVector
@@ -102,26 +102,14 @@ void interactiveMeshViewer::drawSelectedVertex(int selectedId)
 {
 	makeCurrent();
 	std::cout << "painting selected vertex " << selectedId << std::endl;
-	CPoint selectedVertex = pointCloud->get_vertex(selectedId);
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-	std::vector<CPoint> normalList = pointCloud->get_normal_list();
-	size_t normalSize = normalList.size();
-	size_t vertexSize = vertexList.size();
-	bool normalExist = false;
-	if (normalSize == vertexSize)
-	{
-		normalExist = true;
-	}
-	CPoint selectedNormal;
-	if (normalExist)
-	{
-		selectedNormal = pointCloud->get_normal(selectedId);
-	} 
+	JVertex * selectedVertex = pointCloud->get_vertex(selectedId);
+	CPoint selectedPos = selectedVertex->getPoint();
+	CPoint selectedNormal = selectedVertex->getNormal();
 	glPointSize(20);
 	glColor3d(1.0, 0.5, 0.0);
 	glBegin(GL_POINTS);
-	glVertex3d(selectedVertex[0], selectedVertex[1], selectedVertex[2]);
-	if (normalExist)
+	glVertex3d(selectedPos[0], selectedPos[1], selectedPos[2]);
+	if (selectedVertex->hasNormal())
 	{
 		glNormal3d(selectedNormal[0], selectedNormal[1], selectedNormal[2]);
 	}
@@ -144,21 +132,15 @@ void interactiveMeshViewer::drawMesh()
 	{
 		glDisable(GL_LIGHTING);
 	}
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	std::vector<JVertex *> vertexList = pointCloud->getJVertexList();
 	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();
-	size_t normalSize = normalList.size();
-	size_t vertexSize = vertexList.size();
-	bool normalExist = false;
-	if (normalSize == vertexSize)
-	{
-		normalExist = true;
-	}
+	std::cout << "interactiveMeshViewer:vertex list size " << vertexList.size() << std::endl;
 	for (size_t i = 0; i < vertexList.size(); i++)
 	{
 		if (! deletedVertexList[i])
 		{
-			CPoint vert = vertexList[i];
+			JVertex * jVert = vertexList[i];
+			CPoint vert = jVert->getPoint();
 
 			if (std::find(allSelectedVertex.begin(), allSelectedVertex.end(), i) != allSelectedVertex.end()) // this vertex is selected
 			{
@@ -166,9 +148,9 @@ void interactiveMeshViewer::drawMesh()
 				glColor3d(1.0, 0.5, 0.0);
 				glBegin(GL_POINTS);
 				glVertex3d(vert[0], vert[1], vert[2]);
-				if (normalExist)
+				if (jVert->hasNormal())
 				{
-					CPoint norl = normalList[i];
+					CPoint norl = jVert->getNormal();
 					glNormal3d(norl[0], norl[1], norl[2]);
 				}
 				glEnd();
@@ -186,9 +168,9 @@ void interactiveMeshViewer::drawMesh()
 				}
 				glBegin(GL_POINTS);
 				glVertex3d(vert[0], vert[1], vert[2]);
-				if (normalExist)
+				if (jVert->hasNormal())
 				{
-					CPoint norl = normalList[i];
+					CPoint norl = jVert->getNormal();
 					glNormal3d(norl[0], norl[1], norl[2]);
 				}
 				glEnd();

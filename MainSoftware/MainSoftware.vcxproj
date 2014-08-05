@@ -330,6 +330,7 @@
     <ClCompile Include="header\recon\PlyFile.cpp" />
     <ClCompile Include="header\recon\Time.cpp" />
     <ClCompile Include="interactiveMeshViewer.cpp" />
+    <ClCompile Include="JVertex.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="meshviewer.cpp" />
@@ -2088,6 +2089,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="JVertex.h" />
     <ClInclude Include="SurfaceTrim.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

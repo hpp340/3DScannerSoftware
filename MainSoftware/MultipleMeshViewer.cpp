@@ -1,7 +1,7 @@
 #include "MultipleMeshViewer.h"
 
 #ifndef MIN_DIST
-#define MIN_DIST 0.005
+#define MIN_DIST 0.0
 #endif
 
 MultipleMeshViewer::MultipleMeshViewer()
@@ -79,11 +79,11 @@ void MultipleMeshViewer::drawMesh()
 	for (size_t i = 0; i < meshList.size(); i++)
 	{
 		PlyCloud * plyDraw = meshList[i];
-		std::vector<CPoint> vertexList = plyDraw->get_vertex_list();
-		std::vector<CPoint> normalList = plyDraw->get_normal_list();
+		std::vector<JVertex *> vertexList = plyDraw->getJVertexList();
+		//std::vector<CPoint> normalList = plyDraw->get_normal_list();
 		std::vector<bool> deletedVertexList = plyDraw->get_deleted_vertex_list();
 		bool normalExist = false;
-		if (vertexList.size() == normalList.size())
+		if (plyDraw->hasNormal())
 		{
 			normalExist = true;
 		}
@@ -92,14 +92,14 @@ void MultipleMeshViewer::drawMesh()
 		{
 			if (! deletedVertexList[j])
 			{
-				CPoint vert = vertexList[j];
+				CPoint vert = vertexList[j]->getPoint();
 				glPointSize(10);
 				glColor3d(color[0], color[1], color[2]);
 				glBegin(GL_POINTS);
 				glVertex3d(vert[0], vert[1], vert[2]);
 				if (normalExist)
 				{
-					CPoint norl = normalList[j];
+					CPoint norl = vertexList[j]->getNormal();
 					glNormal3d(norl[0], norl[1], norl[2]);
 				}
 				glEnd();
@@ -154,13 +154,13 @@ void MultipleMeshViewer::mergeMeshes()
 		{
 			// construct kdtree according to the second mesh in the meshList
 			PlyCloud * secondMesh = meshList[1]; // second mesh
-			std::vector<CPoint> secondVertexList = secondMesh->get_vertex_list();
-			std::vector<CPoint> secondNormalList = secondMesh->get_normal_list();
+			std::vector<JVertex *> secondVertexList = secondMesh->getJVertexList();
+			//std::vector<CPoint> secondNormalList = secondMesh->get_normal_list();
 			unsigned nv = (unsigned)secondVertexList.size();
 			ANNpointArray ANNDataPts = annAllocPts(nv, 3);
 			for (size_t i = 0; i < secondVertexList.size(); i++)
 			{
-				CPoint secondVert = secondVertexList[i];
+				CPoint secondVert = secondVertexList[i]->getPoint();
 				ANNDataPts[i][0] = secondVert[0];
 				ANNDataPts[i][1] = secondVert[1];
 				ANNDataPts[i][2] = secondVert[2];
@@ -169,10 +169,10 @@ void MultipleMeshViewer::mergeMeshes()
 			kdTree = new ANNkd_tree(ANNDataPts, nv, 3);
 
 			PlyCloud * firstMesh = meshList[0];
-			std::vector<CPoint> firstVertexList = firstMesh->get_vertex_list();
-			std::vector<CPoint> firstNormalList = firstMesh->get_normal_list();
+			std::vector<JVertex *> firstVertexList = firstMesh->getJVertexList();
+			//std::vector<CPoint> firstNormalList = firstMesh->get_normal_list();
 
-			if ((firstVertexList.size() == firstNormalList.size()) && (secondVertexList.size() == secondNormalList.size()))
+			if ((firstMesh->hasNormal()) && (secondMesh->hasNormal()))
 			{
 				std::vector<CPoint> mergedVertexList;
 				std::vector<CPoint> mergedNormalList;
@@ -181,8 +181,8 @@ void MultipleMeshViewer::mergeMeshes()
 
 				for (size_t v = 0; v < firstVertexList.size(); v++)
 				{
-					CPoint firstVertIter = firstVertexList[v];
-					CPoint firstNormIter = firstNormalList[v];
+					CPoint firstVertIter = firstVertexList[v]->getPoint();
+					CPoint firstNormIter = firstVertexList[v]->getNormal();
 					ANNpoint ptSearched = annAllocPt(3);
 					ptSearched[0] = firstVertIter[0];
 					ptSearched[1] = firstVertIter[1];
@@ -193,8 +193,8 @@ void MultipleMeshViewer::mergeMeshes()
 					double nnDist = dists[0];
 					if (nnDist < MIN_DIST)
 					{
-						CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
-						CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
+						CPoint nnVertex = secondMesh->get_vertex(nnIndexPt)->getPoint();
+						CPoint nnNormal = secondMesh->get_vertex(nnIndexPt)->getPoint();
 						CPoint newVertex = (nnVertex + firstVertIter) / 2.0;
 						CPoint newNormal = (nnNormal + firstNormIter) / 2.0;
 						mergedVertexList.push_back(newVertex);
@@ -212,8 +212,8 @@ void MultipleMeshViewer::mergeMeshes()
 				{
 					if (!secondVertexOverlapped[sv])
 					{
-						mergedVertexList.push_back(secondVertexList[sv]);
-						mergedNormalList.push_back(secondNormalList[sv]);
+						mergedVertexList.push_back(secondVertexList[sv]->getPoint());
+						mergedNormalList.push_back(secondVertexList[sv]->getNormal());
 					}
 				}
 
@@ -228,7 +228,7 @@ void MultipleMeshViewer::mergeMeshes()
 
 				for (size_t v = 0; v < firstVertexList.size(); v++)
 				{
-					CPoint firstVertIter = firstVertexList[v];
+					CPoint firstVertIter = firstVertexList[v]->getPoint();
 					ANNpoint ptSearched = annAllocPt(3);
 					ptSearched[0] = firstVertIter[0];
 					ptSearched[1] = firstVertIter[1];
@@ -239,7 +239,7 @@ void MultipleMeshViewer::mergeMeshes()
 					double nnDist = dists[0];
 					if (nnDist < MIN_DIST)
 					{
-						CPoint nnVertex = secondMesh->get_vertex(nnIndexPt);
+						CPoint nnVertex = secondMesh->get_vertex(nnIndexPt)->getPoint();
 						//CPoint nnNormal = secondMesh->get_normal(nnIndexPt);
 						CPoint newVertex = (nnVertex + firstVertIter) / 2.0;
 						mergedVertexList.push_back(newVertex);
@@ -255,7 +255,7 @@ void MultipleMeshViewer::mergeMeshes()
 				{
 					if (!secondVertexOverlapped[sv])
 					{
-						mergedVertexList.push_back(secondVertexList[sv]);
+						mergedVertexList.push_back(secondVertexList[sv]->getPoint());
 					}
 				}
 
@@ -302,20 +302,19 @@ void MultipleMeshViewer::drawMergedMesh()
 		glDisable(GL_LIGHTING);
 	}
 
-	std::vector<CPoint> vertexList = mergedMesh->get_vertex_list();
-	std::vector<CPoint> normalList = mergedMesh->get_normal_list();
-	size_t normalSize = normalList.size();
-	size_t vertexSize = vertexList.size();
-	std::cout << vertexSize << " " << normalSize << std::endl;
+	std::vector<JVertex *> vertexList = mergedMesh->getJVertexList();
+	//std::vector<CPoint> normalList = mergedMesh->get_normal_list();
+
+	//std::cout << vertexSize << " " << normalSize << std::endl;
 	bool normalExist = false;
-	if (normalSize == vertexSize)
+	if (mergedMesh->hasNormal())
 	{
 		normalExist = true;
 	}
 	glm::vec3 color = colorList[0];
 	for (size_t j = 0; j < vertexList.size(); j++)
 	{
-		CPoint vert = vertexList[j];
+		CPoint vert = vertexList[j]->getPoint();
 		
 		glPointSize(10);
 		glColor3d(color[0], color[1], color[2]);
@@ -323,7 +322,7 @@ void MultipleMeshViewer::drawMergedMesh()
 		glVertex3d(vert[0], vert[1], vert[2]);
 		if (normalExist)
 		{
-			CPoint norl = normalList[j];
+			CPoint norl = vertexList[j]->getNormal();
 			glNormal3d(norl[0], norl[1], norl[2]);
 		}
 		glEnd();

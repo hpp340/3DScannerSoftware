@@ -141,7 +141,7 @@ void alignWindow::computeTransformation()
 			int jStart = 4 * (i % 3);
 			int jEnd = jStart + 4;
 			int _firstVertexId = firstSelectedVertex[i / 3];
-			CPoint _firstVertex = firstMesh->get_vertex(_firstVertexId);
+			CPoint _firstVertex = firstMesh->get_vertex(_firstVertexId)->getPoint();
 			for (int j = jStart; j < jEnd; j++)
 			{
 				if (j < jEnd - 1)
@@ -154,7 +154,7 @@ void alignWindow::computeTransformation()
 				}
 			}
 			int _secondVertexId = secondSelectedVertex[i / 3];
-			CPoint _secondVertex = secondMesh->get_vertex(_secondVertexId);
+			CPoint _secondVertex = secondMesh->get_vertex(_secondVertexId)->getPoint();
 			b(i) = _secondVertex[i % 3];
 		}
 		// solve for x
@@ -181,16 +181,16 @@ void alignWindow::computeTransformation()
 void alignWindow::transformMesh()
 {
 	PlyCloud * firstMesh = firstMeshViewer->getMesh();
-	std::vector<CPoint> vertexList = firstMesh->get_vertex_list();
-	std::vector<CPoint> normalList = firstMesh->get_normal_list();
+	std::vector<JVertex *> vertexList = firstMesh->getJVertexList();
+	//std::vector<CPoint> normalList = firstMesh->get_normal_list();
 	std::vector<CPoint> transedVertexList;
 	std::vector<CPoint> transedNormalList;
-	if (vertexList.size() == normalList.size())
+	if (firstMesh->hasNormal())
 	{
 		for (size_t i = 0; i < vertexList.size(); i++)
 		{
-			CPoint _vertex = vertexList[i];
-			CPoint _normal = normalList[i];
+			CPoint _vertex = vertexList[i]->getPoint();
+			CPoint _normal = vertexList[i]->getNormal();
 			Vector4d _vertexCoord, _normalCoord;
 			_vertexCoord << _vertex[0], _vertex[1], _vertex[2], 1.0;
 			_normalCoord << _normal[0], _normal[1], _normal[2], 0.0;
@@ -208,18 +208,13 @@ void alignWindow::transformMesh()
 	{
 		for (size_t i = 0; i < vertexList.size(); i++)
 		{
-			CPoint _vertex = vertexList[i];
-			//CPoint _normal = normalList[i];
+			CPoint _vertex = vertexList[i]->getPoint();
 			Vector4d _vertexCoord, _normalCoord;
 			_vertexCoord << _vertex[0], _vertex[1], _vertex[2], 1.0;
-			//_normalCoord << _normal[0], _normal[1], _normal[2], 1.0;
 			Vector4d _transedVertexCoord = transformationMatrix * _vertexCoord;
-			//Vector4d _transedNormalCoord = transformationMatrix * _normalCoord;
-			CPoint _transedVertex;// , _transedNormal;
+			CPoint _transedVertex;
 			_transedVertex[0] = _transedVertexCoord[0]; _transedVertex[1] = _transedVertexCoord[1]; _transedVertex[2] = _transedVertexCoord[2];
-			//_transedNormal[0] = _transedNormalCoord[0]; _transedNormal[1] = _transedNormalCoord[1]; _transedNormal[2] = _transedNormalCoord[2];
 			transedVertexList.push_back(_transedVertex);
-			//transedNormalList.push_back(_transedNormal);
 		}
 		newMesh = new PlyCloud(transedVertexList);
 	}

@@ -52,10 +52,11 @@ void MeshViewer::getBoundingBox()
 	GLdouble xMax, yMax, zMax;
 	xMax = yMax = zMax = -99999.99;
 
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-	for (size_t i = 0; i < vertexList.size(); i++)
+	//std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<JVertex *> jVertexList = pointCloud->getJVertexList();
+	for (size_t i = 0; i < jVertexList.size(); i++)
 	{
-		CPoint _vertex = vertexList[i];
+		CPoint _vertex = jVertexList[i]->getPoint();
 		if (_vertex[0] < xMin) { xMin = _vertex[0]; }
 		if (_vertex[0] > xMax) { xMax = _vertex[0]; }
 		if (_vertex[1] < yMin) { yMin = _vertex[1]; }
@@ -67,7 +68,7 @@ void MeshViewer::getBoundingBox()
 	maxBoundingBox[0] = xMax; maxBoundingBox[1] = yMax; maxBoundingBox[2] = zMax;
 }
 
-void MeshViewer::loadFile(const char * meshfile)
+void MeshViewer::loadFile(const char * meshfile, string fileExt)
 {
 	std::cout << "loadFile start" << std::endl;
 	if (isMeshLoaded)
@@ -76,7 +77,15 @@ void MeshViewer::loadFile(const char * meshfile)
 		free(pointCloud);
 		pointCloud = new PlyCloud();
 	}
-	bool isLoadOK = pointCloud->read_ply(meshfile);
+	bool isLoadOK = false;
+	if (fileExt == "ply")
+	{
+		isLoadOK = pointCloud->read_ply(meshfile);
+	}
+	else if (fileExt == "obj")
+	{
+		isLoadOK = pointCloud->read_obj(meshfile);
+	}
 	std::cout << "load file..." << pointCloud->get_face_num() << " " << pointCloud->get_vertex_num() << std::endl;
 	if (!isLoadOK)
 	{
@@ -375,7 +384,7 @@ void MeshViewer::drawMesh()
 		break;
 	case DRAW_MODE::SMOOTH:
 		std::cout << "SMOOTH" << std::endl;
-		if ((pointCloud->get_face_num() > 0) && (pointCloud->get_normal_list().size() > 0))
+		if ((pointCloud->get_face_num() > 0) && (pointCloud->hasNormal()))
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			glShadeModel(GL_SMOOTH);
@@ -398,17 +407,20 @@ void MeshViewer::drawMesh()
 
 void MeshViewer::drawMeshPoints()
 {
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	//std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	//std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	std::vector<JVertex*> jVertexList = pointCloud->getJVertexList();
+
 	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();
-	if (normalList.size() == vertexList.size())
+
+	for (size_t i = 0; i < jVertexList.size(); i++)
 	{
-		for (size_t i = 0; i < vertexList.size(); i++)
+		if (!deletedVertexList[i])
 		{
-			if (! deletedVertexList[i])
+			CPoint vert = jVertexList[i]->getPoint();
+			if (jVertexList[i]->hasNormal())
 			{
-				CPoint vert = vertexList[i];
-				CPoint norl = normalList[i];
+				CPoint norl = jVertexList[i]->getNormal();
 
 				glPointSize(10);
 				glColor3d(0.1, 0.5, 0.8);
@@ -417,16 +429,8 @@ void MeshViewer::drawMeshPoints()
 				glNormal3d(norl[0], norl[1], norl[2]);
 				glEnd();
 			}
-		}
-	}
-	else
-	{
-		for (size_t i = 0; i < vertexList.size(); i++)
-		{
-			if (!deletedVertexList[i])
+			else
 			{
-				CPoint vert = vertexList[i];
-
 				glPointSize(10);
 				glColor3d(0.1, 0.5, 0.8);
 				glBegin(GL_POINTS);
@@ -437,20 +441,22 @@ void MeshViewer::drawMeshPoints()
 	}
 }
 
+
 void MeshViewer::drawMeshWireframe()
 {
 	std::cout << "drawMeshWireframe" << std::endl;
-	std::vector<JFace> faceList = pointCloud->get_face_list();
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-	
+	std::vector<JFace *> faceList = pointCloud->get_face_list();
+	std::vector<JVertex *> vertexList = pointCloud->getJVertexList();
+	std::cout << faceList.size() << " " << vertexList.size() << std::endl;
 	glLineWidth(2.5);
 	glColor3d(1.0, 1.0, 1.0);
 	for (size_t i = 0; i < faceList.size(); i++)
 	{
-		JFace faceIter = faceList[i];
-		CPoint v1 = vertexList[faceIter.vert1Id];
-		CPoint v2 = vertexList[faceIter.vert2Id];
-		CPoint v3 = vertexList[faceIter.vert3Id];
+		JFace *faceIter = faceList[i];
+		//std::cout << faceIter->vert1Id << " " << faceIter->vert2Id << " " << faceIter->vert3Id << std::endl;
+		CPoint v1 = vertexList[faceIter->vert1Id]->getPoint();
+		CPoint v2 = vertexList[faceIter->vert2Id]->getPoint();
+		CPoint v3 = vertexList[faceIter->vert3Id]->getPoint();
 		glBegin(GL_POLYGON);
 		glVertex3d(v1[0], v1[1], v1[2]);
 		glVertex3d(v2[0], v2[1], v2[2]);
@@ -461,15 +467,17 @@ void MeshViewer::drawMeshWireframe()
 
 void MeshViewer::drawMeshFlat()
 {
-	std::vector<JFace> faceList = pointCloud->get_face_list();
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<JFace*> faceList = pointCloud->get_face_list();
+	//std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<JVertex *> jVertexList = pointCloud->getJVertexList();
+
 	for (size_t i = 0; i < faceList.size(); i++)
 	{
-		JFace faceIter = faceList[i];
-		CPoint v1 = vertexList[faceIter.vert1Id];
-		CPoint v2 = vertexList[faceIter.vert2Id];
-		CPoint v3 = vertexList[faceIter.vert3Id];
-		CPoint faceNormal = faceIter.getFaceNormal();
+		JFace *faceIter = faceList[i];
+		CPoint v1 = jVertexList[faceIter->vert1Id]->getPoint();
+		CPoint v2 = jVertexList[faceIter->vert2Id]->getPoint();
+		CPoint v3 = jVertexList[faceIter->vert3Id]->getPoint();
+		CPoint faceNormal = faceIter->getFaceNormal();
 		glBegin(GL_TRIANGLES);
 		glNormal3d(faceNormal[0], faceNormal[1], faceNormal[2]);
 		glVertex3d(v1[0], v1[1], v1[2]);
@@ -497,18 +505,22 @@ void MeshViewer::drawMeshFlatlines()
 
 void MeshViewer::drawMeshSmooth()
 {
-	std::vector<JFace> faceList = pointCloud->get_face_list();
-	std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-	std::vector<CPoint> normalList = pointCloud->get_normal_list();
+	std::vector<JFace*> faceList = pointCloud->get_face_list();
+	//std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
+	std::vector<JVertex *> jVertexList = pointCloud->getJVertexList();
+	//std::vector<CPoint> normalList = pointCloud->get_normal_list();
 	for (size_t i = 0; i < faceList.size(); i++)
 	{
-		JFace faceIter = faceList[i];
-		CPoint v1 = vertexList[faceIter.vert1Id];
-		CPoint v2 = vertexList[faceIter.vert2Id];
-		CPoint v3 = vertexList[faceIter.vert3Id];
-		CPoint vert1Normal = normalList[faceIter.vert1Id];
-		CPoint vert2Normal = normalList[faceIter.vert2Id];
-		CPoint vert3Normal = normalList[faceIter.vert3Id];
+		JFace *faceIter = faceList[i];
+
+		CPoint v1 = jVertexList[faceIter->vert1Id]->getPoint();
+		CPoint v2 = jVertexList[faceIter->vert2Id]->getPoint();
+		CPoint v3 = jVertexList[faceIter->vert3Id]->getPoint();
+
+		CPoint vert1Normal = jVertexList[faceIter->vert1Id]->getNormal();
+		CPoint vert2Normal = jVertexList[faceIter->vert2Id]->getNormal();
+		CPoint vert3Normal = jVertexList[faceIter->vert3Id]->getNormal();
+
 		glBegin(GL_TRIANGLES);
 		glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
 		glVertex3d(v1[0], v1[1], v1[2]);
@@ -723,7 +735,11 @@ void MeshViewer::openMesh()
 		tr("Open mesh file"),
 		tr("../models/"),
 		tr("PLY Files (*.ply);;"
+		"OBJ Files (*.obj);;"
 		"All Files (*)"));
+	QFileInfo * fileInfo = new QFileInfo(filename);
+	QString fileExt = fileInfo->suffix();
+	string sFileExt = fileExt.toStdString();
 	if (!filename.isEmpty())
 	{
 		// convert QString to char *
@@ -731,7 +747,7 @@ void MeshViewer::openMesh()
 		const char * _filename = byteArray.constData();
 		printf("%s\n", _filename);
 		sFilename = filename.toStdString();
-		loadFile(_filename);
+		loadFile(_filename, sFileExt);
 	}
 }
 
