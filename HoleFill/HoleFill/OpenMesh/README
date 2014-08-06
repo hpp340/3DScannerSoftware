@@ -1,0 +1,37 @@
+OpenMesh, 1-1-0
+===============
+
+
+0. Licence
+~~~~~~~~~~
+See LICENSE
+
+
+1. What's new in OpenMesh 1-1-0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Several small fixes to make OpenMesh compile with current
+  compilers.
+- A slight API change in the vector class, see CHANGES.
+
+   
+2. What's new in OpenMesh 1-0-0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Dynamic Properties
+- Proprietary file format .om
+- Revised decimater
+- Revised uniform subdivision
+- Revised adaptive subdivision
+- View dependent refinement
+- Fixed bugs collected in beta phase
+
+
+3. Installing & Compiling
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Unix: Unpack the tar-ball to a suitable place and compile with
+  acgmake, which you can find here
+  http://www-i8.informatik.rwth-aachen.de/software/software.html
+
+- Windows: There are solution and project files for .NET 2003 in 
+  the Win directory.

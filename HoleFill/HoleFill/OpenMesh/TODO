@@ -1,0 +1,3 @@
+- Decimater does not always produce a correct progressive mesh.
+- binary_size for OM-Format
+- MIPS port
