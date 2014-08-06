@@ -204,7 +204,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="JVertex.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FullFuncMeshViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_FullFuncMeshViewer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_FullFuncMeshViewer.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +374,9 @@
     <CustomBuild Include="header\ANN\pr_queue_k.h">
       <Filter>ANN</Filter>
     </CustomBuild>
+    <CustomBuild Include="FullFuncMeshViewer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="resources.qrc">
@@ -399,7 +411,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="JVertex.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

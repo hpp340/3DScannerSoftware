@@ -19,5 +19,8 @@
         <file>images/merge.png</file>
         <file>images/split.png</file>
         <file>images/trim.png</file>
+        <file>images/selectgroup.png</file>
+        <file>images/clear.png</file>
+        <file>images/delete.png</file>
     </qresource>
 </RCC>

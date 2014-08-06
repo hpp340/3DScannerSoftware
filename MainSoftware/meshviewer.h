@@ -19,16 +19,16 @@
 #define PI 3.14159265
 #endif
 
-enum class DRAW_MODE {NONE, POINTS, WIREFRAME, FLATLINES, FLAT, SMOOTH};
+enum class DRAW_MODE { NONE, POINTS, WIREFRAME, FLATLINES, FLAT, SMOOTH };
 
 class MeshViewer : public QGLWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    // constructor
-    MeshViewer(QWidget *_parent = 0);
-    // deconstructor
-    ~MeshViewer();
+	// constructor
+	MeshViewer(QWidget *_parent = 0);
+	// deconstructor
+	~MeshViewer();
 	// load mesh file
 	void loadFile(const char *, string sExt);
 	// save mesh file
@@ -53,7 +53,7 @@ public:
 	// set draw mode
 	void setDrawMode(DRAW_MODE);
 
-private:
+protected:
 	// initialize the members
 	void init();
 	// initialize GL - triggered by Qt
@@ -98,17 +98,17 @@ protected:
 	// method for drawing mesh
 	virtual void drawMesh();
 	// method for drawing axises
-	void drawAxis();
+	virtual void drawAxis();
 	// draw point
-	void drawMeshPoints();
+	virtual void drawMeshPoints();
 	// draw wireframe
-	void drawMeshWireframe();
+	virtual void drawMeshWireframe();
 	// draw flat lines
-	void drawMeshFlatlines();
+	virtual void drawMeshFlatlines();
 	// draw flat
-	void drawMeshFlat();
+	virtual void drawMeshFlat();
 	// draw smooth
-	void drawMeshSmooth();
+	virtual void drawMeshSmooth();
 	// set default draw mode
 	void setDefaultDrawMode();
 	// update projection matrix  
@@ -167,7 +167,7 @@ protected:
 	// draw mode
 	DRAW_MODE meshDrawMode;
 
-private:
+protected:
 	QString filename;
 	std::string sFilename;
 

@@ -1,4 +1,59 @@
-﻿  meshviewer.cpp
+﻿  Moc'ing alignWindow.h...
+  Moc'ing checkableAction.h...
+  Moc'ing AlignResultWindow.h...
+  Moc'ing interactiveMeshViewer.h...
+  Moc'ing MultipleMeshViewer.h...
+  Moc'ing mainwindow.h...
+  Moc'ing meshviewer.h...
+  Rcc'ing resources.qrc...
+  Moc'ing FullFuncMeshViewer.h...
+  AlignResultWindow.cpp
+  alignWindow.cpp
+  checkableAction.cpp
+  moc_AlignResultWindow.cpp
+  moc_alignWindow.cpp
+  moc_checkableAction.cpp
+  moc_FullFuncMeshViewer.cpp
+  moc_interactiveMeshViewer.cpp
+  moc_mainwindow.cpp
+  moc_meshviewer.cpp
+  moc_MultipleMeshViewer.cpp
+  FullFuncMeshViewer.cpp
+  ANN.cpp
+  bd_fix_rad_search.cpp
+  bd_pr_search.cpp
+  bd_search.cpp
+  bd_tree.cpp
+  brute.cpp
+  kd_dump.cpp
+  kd_fix_rad_search.cpp
+  Compiling...
+  kd_pr_search.cpp
+  kd_search.cpp
+  kd_split.cpp
+  kd_tree.cpp
+  kd_util.cpp
+  perf.cpp
+  JFace.cpp
+  CmdLineParser.cpp
+  Factor.cpp
+  Geometry.cpp
+  MarchingCubes.cpp
+  PlyFile.cpp
+  Time.cpp
+  interactiveMeshViewer.cpp
+  JVertex.cpp
+  main.cpp
+  mainwindow.cpp
+  [WARNING] Assuming that the 2-ring contains all the children of interest...
+  [WARNING] Assuming that the 2-ring contains all the children of interest...
+  meshviewer.cpp
+  PoissonRecon.cpp
+  SurfaceTrim.cpp
+  Compiling...
+  MultipleMeshViewer.cpp
+  PlyCloud.cpp
+  qrc_resources.cpp
   Generating code
   Finished generating code
   MainSoftware.vcxproj -> W:\Codes\2014SummerMSC\MainSoftware\x64\Debug\MainSoftware.exe

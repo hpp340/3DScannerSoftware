@@ -631,7 +631,8 @@ void PlyCloud::normalizeMesh()
 	for (size_t i = 0; i < JVertexList.size(); i++)
 	{
 		JVertex * jVert = JVertexList[i];
-		jVert->getPoint() -= center;
+		CPoint newVertPos = jVert->getPoint() - center;
+		jVert->addPos(newVertPos);
 	}
 
 	double scale = 0.0;
@@ -646,8 +647,14 @@ void PlyCloud::normalizeMesh()
 	for (size_t i = 0; i < JVertexList.size(); i++)
 	{
 		JVertex * jVert = JVertexList[i];
-		jVert->getPoint() /= scale;
+		CPoint newVertPos = jVert->getPoint() / scale;
+		jVert->addPos(newVertPos);
 	}
+}
+
+void PlyCloud::add_deleted_vertex(int v)
+{
+	deleted_vertex_list[v] = true;
 }
 
 void PlyCloud::cleanMesh()

@@ -22,6 +22,8 @@ namespace JMesh
 		void addNormal(CPoint norm);
 		void addTexture(CPoint2 textPos);
 
+
+
 		~JVertex();
 
 		std::vector<JFace*> getFacesList() { return facesList; };

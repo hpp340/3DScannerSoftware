@@ -24,6 +24,7 @@
   PlyFile.cpp
   Time.cpp
   interactiveMeshViewer.cpp
+  JVertex.cpp
   main.cpp
   mainwindow.cpp
   [WARNING] Assuming that the 2-ring contains all the children of interest...

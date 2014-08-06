@@ -9,6 +9,7 @@
 #include <QtWidgets>
 
 #include "meshviewer.h"
+#include "FullFuncMeshViewer.h"
 #include "checkableAction.h"
 
 class MainWindow : public QMainWindow
@@ -62,6 +63,7 @@ private:
 	// edit action
 	QAction * reconAction;
 	QAction * trimAction;
+
 	// control draw mode
 	QAction * viewPoints;
 	QAction * viewWireframe;
@@ -69,6 +71,11 @@ private:
 	QAction * viewFlat;
 	QAction * viewSmooth;
 	QActionGroup * drawModeGroup;
+
+	// select and delete actions
+	checkableAction * selectAction;
+	QAction * clearAction;
+	QAction * deleteAction;
 
     // menus
     QMenu * fileMenu;
@@ -80,9 +87,10 @@ private:
     QToolBar * fileToolbar;
 	QToolBar * editToolbar;
 	QToolBar * viewToolbar;
+	QToolBar * deleteToolbar;
 
 	// mesh viewer
-	MeshViewer * viewer;
+	FullFuncMeshViewer * viewer;
 	
 
 };

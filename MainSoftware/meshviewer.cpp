@@ -407,8 +407,6 @@ void MeshViewer::drawMesh()
 
 void MeshViewer::drawMeshPoints()
 {
-	//std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
-	//std::vector<CPoint> normalList = pointCloud->get_normal_list();
 	std::vector<JVertex*> jVertexList = pointCloud->getJVertexList();
 
 	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();

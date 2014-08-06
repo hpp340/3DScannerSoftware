@@ -64,6 +64,8 @@ public:
 
 	// get deleted vertex
 	std::vector<bool> get_deleted_vertex_list();
+	// add deleted vertex by id
+	void add_deleted_vertex(int);
 	// get vertex number
 	int get_vertex_num();
 	// get face number

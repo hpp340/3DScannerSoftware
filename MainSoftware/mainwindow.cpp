@@ -6,7 +6,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-	viewer = new MeshViewer();
+	viewer = new FullFuncMeshViewer();
 	setCentralWidget(viewer);
     initWindow();
     createActions();
@@ -105,6 +105,25 @@ void MainWindow::createActions()
 	trimAction->setStatusTip(tr("Trim Mesh"));
 	connect(trimAction, SIGNAL(triggered()), this, SLOT(startTrim()));
 
+	selectAction = new checkableAction(this);
+	selectAction->setIcon(QIcon(":/icons/images/selectgroup.png"));
+	selectAction->setText(tr("Select a Group of Points"));
+	selectAction->setStatusTip(tr("Select a Group of Points"));
+	selectAction->setCheckable(true);
+	selectAction->setChecked(false);
+	connect(selectAction, SIGNAL(actionCheck()), viewer, SLOT(enterSelectionMode()));
+	connect(selectAction, SIGNAL(actionUncheck()), viewer, SLOT(quitSelectionMode()));
+
+	clearAction = new QAction(tr("Clear Selected"), this);
+	clearAction->setIcon(QIcon(":/icons/images/clear.png"));
+	clearAction->setStatusTip(tr("Clear Selected Points"));
+	connect(clearAction, SIGNAL(triggered()), viewer, SLOT(clearSelected()));
+
+	deleteAction = new QAction(tr("Delete Selected Points"), this);
+	deleteAction->setIcon(QIcon(":/icons/images/delete.png"));
+	deleteAction->setStatusTip(tr("Delete Selected Points and Faces"));
+	connect(deleteAction, SIGNAL(triggered()), viewer, SLOT(deleteSelected()));
+
 	viewPoints = new QAction(tr("&Points"), this);
 	viewPoints->setIcon(QIcon(":/icons/images/points.png"));
 	viewPoints->setText(tr("Draw Points"));
@@ -174,6 +193,11 @@ void MainWindow::createToolbar()
 	viewToolbar->addAction(viewFlatlines);
 	viewToolbar->addAction(viewFlat);
 	viewToolbar->addAction(viewSmooth);
+
+	deleteToolbar = addToolBar(tr("&Delete"));
+	deleteToolbar->addAction(selectAction);
+	deleteToolbar->addAction(clearAction);
+	deleteToolbar->addAction(deleteAction);
 }
 
 void MainWindow::createMenus()
