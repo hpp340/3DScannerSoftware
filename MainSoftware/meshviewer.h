@@ -30,9 +30,9 @@ public:
 	// deconstructor
 	~MeshViewer();
 	// load mesh file
-	void loadFile(const char *, string sExt);
+	virtual void loadFile(const char *, string sExt);
 	// save mesh file
-	virtual void saveFile(const char *);
+	virtual void saveFile(const char *, string sExt);
 	// return scene center
 	glm::vec3 getCenter() { return center; }
 

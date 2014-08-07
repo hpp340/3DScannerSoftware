@@ -132,9 +132,17 @@ void MeshViewer::setDrawMode(DRAW_MODE _drawmode)
 	updateGL();
 }
 
-void MeshViewer::saveFile(const char * meshfile)
+void MeshViewer::saveFile(const char * meshfile, string fileExt)
 {
-	bool isWriteOK = pointCloud->write_ply(meshfile);
+	bool isWriteOK;
+	if (fileExt == "ply")
+	{
+		isWriteOK = pointCloud->write_ply(meshfile);
+	}
+	else
+	{
+		isWriteOK = pointCloud->write_obj(meshfile);
+	}
 	if (!isWriteOK)
 	{
 		QMessageBox writeFail;
@@ -363,8 +371,10 @@ void MeshViewer::drawMesh()
 		break;
 	case DRAW_MODE::WIREFRAME:
 		std::cout << "WIREFRAME" << std::endl;
+		glDisable(GL_LIGHTING);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		drawMeshWireframe();
+		glEnable(GL_LIGHTING);
 		break;
 	case DRAW_MODE::FLATLINES:
 		std::cout << "FLATLINES" << std::endl;
@@ -755,13 +765,16 @@ void MeshViewer::saveMesh()
 		tr("Save Mesh File"),
 		tr("../models/"),
 		tr("PLY Files (*.ply);;"
+		"OBJ Files (*.obj);;"
 		"All Files (*)"));
+	QFileInfo * saveFileInfo = new QFileInfo(saveFilename);
+	string saveFileExt = saveFileInfo->suffix().toStdString();
 	if (!saveFilename.isEmpty())
 	{
 		// convert QString to char *
 		QByteArray byteArray = saveFilename.toUtf8();
 		const char * _saveFilename = byteArray.constData();
-		saveFile(_saveFilename);
+		saveFile(_saveFilename, saveFileExt);
 	}
 }
 

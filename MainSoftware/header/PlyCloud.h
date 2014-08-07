@@ -53,6 +53,9 @@ public:
 	// write the point cloud to ply file
 	bool write_ply(const char *fliename);
 
+	// write the point cloud to obj file
+	bool write_obj(const char *filename);
+
 	// get the vertex whose id is v_id
 	JVertex * get_vertex(size_t v_id);
 
@@ -64,8 +67,12 @@ public:
 
 	// get deleted vertex
 	std::vector<bool> get_deleted_vertex_list();
+	// get deleted faces list
+	std::vector<bool> get_deleted_face_list();
 	// add deleted vertex by id
 	void add_deleted_vertex(int);
+	// add deleted face by id
+	void add_deleted_face(int);
 	// get vertex number
 	int get_vertex_num();
 	// get face number
@@ -107,9 +114,11 @@ protected:
 	int vertex_num;
 	// face number
 	int face_num;
+	std::vector<int> newVertexIdList;
 	// deleted vertex list
 	std::vector<bool> deleted_vertex_list;
-
+	// deleted face list
+	std::vector<bool> deleted_face_list;
 	// texture coordinates list
 	std::vector<CPoint2> texture_list;
 	// normal list

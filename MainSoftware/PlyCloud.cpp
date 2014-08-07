@@ -11,6 +11,8 @@ PlyCloud::PlyCloud()
 	face_num = 0;
 	vertProperty.assign(7, VertexInfo::NONE);
 	deleted_vertex_list.assign(vertex_num, false);
+	newVertexIdList.assign(vertex_num, 0);
+	deleted_face_list.assign(face_num, false);
 }
 
 // overload constructor
@@ -23,6 +25,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNor
 	{
 		JVertex * jVert = new JVertex(newVertexList[i], newNormalList[i]);
 		addJVert(jVert);
+		newVertexIdList.push_back((int)i);
 	}
 
 	vertex_num = (int)newVertexList.size();
@@ -39,6 +42,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 	{
 		JVertex * jVert = new JVertex(newVertexList[i]);
 		addJVert(jVert);
+		newVertexIdList.push_back((int)i);
 	}
 	vertProperty.assign(7, VertexInfo::NONE);
 	vertex_num = (int)newVertexList.size();
@@ -55,6 +59,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFa
 	{
 		JVertex * jVert = new JVertex(newVertexList[i]);
 		addJVert(jVert);
+		newVertexIdList.push_back((int)i);
 	}
 	face_list = newFaceList;
 	for (size_t i = 0; i < face_list.size(); i++)
@@ -67,6 +72,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFa
 	vertex_num = (int)newVertexList.size();
 	deleted_vertex_list.assign(vertex_num, false);
 	face_num = (int)face_list.size();
+	deleted_face_list.assign(face_num, false);
 	computeFaceNormal();
 	computeVertexNormal();
 }
@@ -238,6 +244,7 @@ bool PlyCloud::read_ply(const char * filename)
 		{
 			jVert->addNormal(normal_list[i]);
 		}
+		newVertexIdList.push_back((int)i);
 	}
 
 	// read face information
@@ -264,8 +271,10 @@ bool PlyCloud::read_ply(const char * filename)
 		JVertex * jVert3 = JVertexList[data3];
 		jVert1->addFace(face); jVert2->addFace(face); jVert3->addFace(face);
 		add_face(face);
+		face->setFaceId((int)face_list.size() - 1);
 	}
 	face_num = (int)face_list.size() - 1;
+	deleted_face_list.assign(face_num, false);
 	std::cout << "face list size" << face_list.size() << std::endl;
 	if (face_num > 0)
 	{
@@ -396,12 +405,14 @@ bool PlyCloud::read_obj(const char * filename)
 				JFace  * currFace = new JFace(vert1Id, vert2Id, vert3Id, text1Id, text2Id, text3Id);
 				Jvert1->addFace(currFace); Jvert2->addFace(currFace); Jvert3->addFace(currFace);
 				add_face(currFace);
+				currFace->setFaceId((int)face_list.size() - 1);
 			}
 			else
 			{
 				JFace * currFace = new JFace(vert1Id, vert2Id, vert3Id);
 				Jvert1->addFace(currFace); Jvert2->addFace(currFace); Jvert3->addFace(currFace);
 				add_face(currFace);
+				currFace->setFaceId((int)face_list.size() - 1);
 			}
 		}
 
@@ -410,6 +421,10 @@ bool PlyCloud::read_obj(const char * filename)
 
 	vertex_num = (int)JVertexList.size();
 	face_num = (int)face_list.size();
+
+	deleted_vertex_list.assign(vertex_num, false);
+	deleted_face_list.assign(face_num, false);
+
 	if (face_num > 0)
 	{
 		std::cout << "PlyCloud:computeFaceNormal" << std::endl;
@@ -430,6 +445,7 @@ bool PlyCloud::read_obj(const char * filename)
 			CPoint2 text = texture_list[i];
 			jVert->addTexture(text);
 		}
+		newVertexIdList.push_back((int)i);
 	}
 
 	std::cout << "vertex size " << JVertexList.size() << " face size " << face_list.size() << std::endl;
@@ -526,7 +542,7 @@ bool PlyCloud::write_ply(const char *filename)
 	// write header of ply file
 	outputPlyFile << "ply" << endl;
 	outputPlyFile << "format ascii 1.0" << endl;
-	outputPlyFile << "element vertex " << JVertexList.size() << endl;
+	outputPlyFile << "element vertex " << vertex_num << endl;
 	outputPlyFile << "property double x" << endl;
 	outputPlyFile << "property double y" << endl;
 	outputPlyFile << "property double z" << endl;
@@ -536,26 +552,152 @@ bool PlyCloud::write_ply(const char *filename)
 		outputPlyFile << "property double ny" << endl;
 		outputPlyFile << "property double nz" << endl;
 	}
+	if (existFace)
+	{
+		outputPlyFile << "element face " << face_num << endl;
+		outputPlyFile << "property list uchar int vertex_indices" << endl;
+	}
 	outputPlyFile << "end_header" << endl;
+
+	int delected_num = 0;
+	for (size_t i = 0; i < deleted_vertex_list.size(); i++)
+	{
+		if (deleted_vertex_list[i])
+		{
+			delected_num++;
+		}
+	}
+
 	if (existNormal)
 	{
 		// write the vertex position and normal
 		for (size_t i = 0; i < JVertexList.size(); i++)
 		{
-			CPoint vert = JVertexList[i]->getPoint();
-			CPoint norm = JVertexList[i]->getNormal();
-			outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << endl;
+			if (! deleted_vertex_list[i])
+			{
+				CPoint vert = JVertexList[i]->getPoint();
+				CPoint norm = JVertexList[i]->getNormal();
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << endl;
+			}
 		}
 	}
 	else
 	{
 		for (size_t i = 0; i < JVertexList.size(); i++)
 		{
-			CPoint vert = JVertexList[i]->getPoint();
-			outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << endl;
+			if (! deleted_vertex_list[i])
+			{
+				CPoint vert = JVertexList[i]->getPoint();
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << endl;
+			}
+		}
+	}
+	if (existFace)
+	{
+		for (size_t i = 0; i < face_list.size(); i++)
+		{
+			JFace * currFace = face_list[i];
+			int newVert1Id = newVertexIdList[currFace->vert1Id];
+			int newVert2Id = newVertexIdList[currFace->vert2Id];
+			int newVert3Id = newVertexIdList[currFace->vert3Id];
+			if (! deleted_face_list[currFace->faceId])
+			{
+				outputPlyFile << "3 " << newVert1Id << " " << newVert2Id << " " << newVert3Id << endl;
+			}
 		}
 	}
 	outputPlyFile.close();
+	return true;
+}
+
+bool PlyCloud::write_obj(const char *filename)
+{
+
+	std::ofstream outputObjFile;
+	outputObjFile.open(filename);
+	if (outputObjFile.fail())
+	{
+		std::cout << "Error : Can't new output file." << std::endl;
+		return false;
+	}
+	if (JVertexList.size() == 0)
+	{
+		std::cout << "Error: No Vertex to save." << std::endl;
+		return false;
+	}
+
+	// output comments: num of vertices and num of faces
+	outputObjFile << "# " << JVertexList.size() << " vertices " << face_list.size() << " faces" << endl;
+	for (size_t i = 0; i < JVertexList.size(); i++)
+	{
+		JVertex * currVert = JVertexList[i];
+		CPoint currPoint = currVert->getPoint();
+		if (! deleted_vertex_list[i])
+		{
+			outputObjFile << "v " << currPoint[0] << " " << currPoint[1] << " " << currPoint[2] << endl;
+		}
+	}
+	if (existNormal)
+	{
+		for (size_t i = 0; i < JVertexList.size(); i++)
+		{
+			JVertex * currVert = JVertexList[i];
+			CPoint currNorl = currVert->getNormal();
+			if (!deleted_vertex_list[i])
+			{
+				outputObjFile << "vn " << currNorl[0] << " " << currNorl[1] << " " << currNorl[2] << endl;
+			}
+		}
+	}
+	if (existTexture)
+	{
+		for (size_t i = 0; i < JVertexList.size(); i++)
+		{
+			JVertex * currVert = JVertexList[i];
+			CPoint2 currText = currVert->getTexture();
+			if (!deleted_vertex_list[i])
+			{
+				outputObjFile << "vt " << currText[0] << " " << currText[1] << endl;
+			}
+		}
+	}
+	
+	if (existFace)
+	{
+		for (size_t i = 0; i < face_list.size(); i++)
+		{
+			JFace * currFace = face_list[i];
+			int newVert1Id = newVertexIdList[currFace->vert1Id];
+			int newVert2Id = newVertexIdList[currFace->vert2Id];
+			int newVert3Id = newVertexIdList[currFace->vert3Id];
+			if (! deleted_face_list[currFace->faceId])
+			{
+				if ((!existNormal) && (!existTexture))
+				{
+					outputObjFile << "f " << newVert1Id + 1 << " " << newVert2Id + 1 << " " << newVert3Id + 1 << endl;
+				}
+				else if ((existNormal) && (!existTexture))
+				{
+					outputObjFile << "f " << newVert1Id + 1 << "//" << newVert1Id + 1 << " "
+						<< newVert2Id + 1 << "//" << newVert2Id + 1 << " "
+						<< newVert3Id + 1 << "//" << newVert3Id + 1 << endl;
+				}
+				else if ((!existNormal) && (existTexture))
+				{
+					outputObjFile << "f " << newVert1Id + 1 << "/" << newVert1Id + 1 << " "
+						<< newVert2Id + 1 << "/" << newVert2Id + 1 << " "
+						<< newVert3Id + 1 << "/" << newVert3Id + 1 << endl;
+				}
+				else if ((existNormal) && (existTexture))
+				{
+					outputObjFile << "f " << newVert1Id + 1 << "/" << newVert1Id + 1 << "/" << newVert1Id + 1 << " "
+						<< newVert2Id + 1 << "/" << newVert2Id + 1 << "/" << newVert2Id + 1 << " "
+						<< newVert3Id + 1 << "/" << newVert3Id + 1 << "/" << newVert3Id + 1 << endl;
+				}
+			}
+		}
+	}
+	outputObjFile.close();
 	return true;
 }
 
@@ -573,6 +715,11 @@ std::vector<JFace *> PlyCloud::get_face_list()
 std::vector<bool> PlyCloud::get_deleted_vertex_list()
 {
 	return deleted_vertex_list;
+}
+
+std::vector<bool> PlyCloud::get_deleted_face_list()
+{
+	return deleted_face_list;
 }
 
 int PlyCloud::get_vertex_num()
@@ -654,7 +801,25 @@ void PlyCloud::normalizeMesh()
 
 void PlyCloud::add_deleted_vertex(int v)
 {
-	deleted_vertex_list[v] = true;
+	if (! deleted_vertex_list[v])
+	{
+		deleted_vertex_list[v] = true;
+		newVertexIdList[v] = -1;
+		for (size_t i = v+1; i < newVertexIdList.size(); i++)
+		{
+			newVertexIdList[i] -= 1;
+		}
+		vertex_num--;
+	}
+}
+
+void PlyCloud::add_deleted_face(int f)
+{
+	if (! deleted_face_list[f])
+	{
+		deleted_face_list[f] = true;
+		face_num--;
+	}
 }
 
 void PlyCloud::cleanMesh()

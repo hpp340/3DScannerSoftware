@@ -7,6 +7,14 @@ JFace::JFace()
 	textureSet = false;
 }
 
+JFace::JFace(int id)
+{
+	faceId = id;
+	vert1Id = vert2Id = vert3Id = 0;
+	normalSet = false;
+	textureSet = false;
+}
+
 JFace::JFace(int v1, int v2, int v3)
 {
 	vert1Id = v1; vert2Id = v2; vert3Id = v3;
@@ -30,6 +38,11 @@ void JFace::setFaceNormal(CPoint _normal)
 {
 	faceNormal = _normal;
 	normalSet = true;
+}
+
+void JFace::setFaceId(int id)
+{
+	faceId = id;
 }
 
 CPoint JFace::getFaceNormal()

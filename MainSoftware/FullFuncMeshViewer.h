@@ -19,8 +19,8 @@ protected:
 	void mouseMoveEvent(QMouseEvent *);
 	// draw point
 	void drawMeshPoints();
-	//// draw wireframe
-	//void drawMeshWireframe();
+	// draw wireframe
+	void drawMeshWireframe();
 	//// draw flat lines
 	//void drawMeshFlatlines();
 	//// draw flat
@@ -43,5 +43,6 @@ private:
 private:
 	bool isSelectionMode;
 	std::vector<int> selectedVertices;
+	std::vector<int> selectedFaces;
 };
 

@@ -74,6 +74,16 @@ void FullFuncMeshViewer::selectGroupVertex(QPoint newPos)
 			std::cout << "Hit points " << i << std::endl;
 			//system("PAUSE");
 			selectedVertices.push_back((int)i);
+			std::vector<JFace *> faceList = currVertex->getFacesList();
+			if (pointCloud->hasFace())
+			{
+				for (size_t i = 0; i < faceList.size(); i++)
+				{
+					int _faceId = faceList[i]->faceId;
+					std::cout << "selected faces " << _faceId << std::endl;
+					selectedFaces.push_back(_faceId);
+				}
+			}
 		}
 	}
 }
@@ -142,7 +152,7 @@ void FullFuncMeshViewer::drawMeshPoints()
 				}
 				else
 				{
-					glPointSize(20);
+					glPointSize(10);
 					glColor3d(1.0, 0.5, 0.0);
 					glBegin(GL_POINTS);
 					glVertex3d(vert[0], vert[1], vert[2]);
@@ -150,6 +160,46 @@ void FullFuncMeshViewer::drawMeshPoints()
 				}
 			}
 		}
+	}
+}
+
+void FullFuncMeshViewer::drawMeshWireframe()
+{
+	std::cout << "drawMeshWireframe" << std::endl;
+	std::vector<JFace *> faceList = pointCloud->get_face_list();
+	std::vector<JVertex *> vertexList = pointCloud->getJVertexList();
+	std::vector<bool> delectedFaceList = pointCloud->get_deleted_face_list();
+	std::cout << faceList.size() << " " << vertexList.size() << std::endl;
+	glLineWidth(2.5);
+	for (size_t i = 0; i < faceList.size(); i++)
+	{
+		JFace *faceIter = faceList[i];
+
+		if (! delectedFaceList[faceIter->faceId])
+		{
+			CPoint v1 = vertexList[faceIter->vert1Id]->getPoint();
+			CPoint v2 = vertexList[faceIter->vert2Id]->getPoint();
+			CPoint v3 = vertexList[faceIter->vert3Id]->getPoint();
+			if (std::find(selectedFaces.begin(), selectedFaces.end(), faceIter->faceId) != selectedFaces.end())
+			{
+				glColor3d(1.0, 0.5, 0.0);
+				glBegin(GL_POLYGON);
+				glVertex3d(v1[0], v1[1], v1[2]);
+				glVertex3d(v2[0], v2[1], v2[2]);
+				glVertex3d(v3[0], v3[1], v3[2]);
+				glEnd();
+			}
+			else
+			{
+				glColor3d(1.0, 1.0, 1.0);
+				glBegin(GL_POLYGON);
+				glVertex3d(v1[0], v1[1], v1[2]);
+				glVertex3d(v2[0], v2[1], v2[2]);
+				glVertex3d(v3[0], v3[1], v3[2]);
+				glEnd();
+			}
+		}
+		
 	}
 }
 
@@ -168,6 +218,7 @@ void FullFuncMeshViewer::clearSelected()
 {
 	isSelectionMode = false;
 	selectedVertices.clear();
+	selectedFaces.clear();
 	updateGL();
 }
 
@@ -177,6 +228,12 @@ void FullFuncMeshViewer::deleteSelected()
 	{
 		int v = (int)selectedVertices[i];
 		pointCloud->add_deleted_vertex(v);
+	}
+
+	for (size_t i = 0; i < selectedFaces.size(); i++)
+	{
+		int f = selectedFaces[i];
+		pointCloud->add_deleted_face(f);
 	}
 	updateGL();
 }

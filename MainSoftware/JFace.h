@@ -9,6 +9,9 @@ class JFace
 public:
 	// constructor
 	JFace();
+
+	// overload constructor
+	JFace(int);
 	// overload constructor, three vertex id
 	JFace(int, int, int);
 	// overload constructor, three vertex id, three texture id
@@ -19,6 +22,8 @@ public:
 	void setFaceNormal(CPoint);
 	// get face normal
 	CPoint getFaceNormal();
+	// set face id
+	void setFaceId(int);
 	// if normal set
 	bool isNormalSet() { return normalSet; };
 	// if texture id set
@@ -31,6 +36,7 @@ protected:
 	CPoint faceNormal;
 
 public:
+	int faceId;
 	int vert1Id, vert2Id, vert3Id;
 	int texture1Id, texture2Id, texture3Id;
 };
