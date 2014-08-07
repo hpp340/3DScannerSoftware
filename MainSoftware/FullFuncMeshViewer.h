@@ -21,12 +21,10 @@ protected:
 	void drawMeshPoints();
 	// draw wireframe
 	void drawMeshWireframe();
-	//// draw flat lines
-	//void drawMeshFlatlines();
-	//// draw flat
-	//void drawMeshFlat();
-	//// draw smooth
-	//void drawMeshSmooth();
+	// draw flat
+	void drawMeshFlat();
+	// draw smooth
+	void drawMeshSmooth();
 
 public slots:
 	void enterSelectionMode();

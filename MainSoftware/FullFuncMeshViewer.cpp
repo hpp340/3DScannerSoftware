@@ -203,6 +203,93 @@ void FullFuncMeshViewer::drawMeshWireframe()
 	}
 }
 
+void FullFuncMeshViewer::drawMeshFlat()
+{
+	std::vector<JFace*> faceList = pointCloud->get_face_list();
+	std::vector<JVertex *> jVertexList = pointCloud->getJVertexList();
+	std::vector<bool> delectedFaceList = pointCloud->get_deleted_face_list();
+
+	for (size_t i = 0; i < faceList.size(); i++)
+	{
+		JFace *faceIter = faceList[i];
+		if (!delectedFaceList[faceIter->faceId])
+		{
+			CPoint v1 = jVertexList[faceIter->vert1Id]->getPoint();
+			CPoint v2 = jVertexList[faceIter->vert2Id]->getPoint();
+			CPoint v3 = jVertexList[faceIter->vert3Id]->getPoint();
+			CPoint faceNormal = faceIter->getFaceNormal();
+			if (std::find(selectedFaces.begin(), selectedFaces.end(), faceIter->faceId) != selectedFaces.end())
+			{
+				glColor3d(1.0, 0.5, 0.0);
+				glBegin(GL_TRIANGLES);
+				glNormal3d(faceNormal[0], faceNormal[1], faceNormal[2]);
+				glVertex3d(v1[0], v1[1], v1[2]);
+				glVertex3d(v2[0], v2[1], v2[2]);
+				glVertex3d(v3[0], v3[1], v3[2]);
+				glEnd();
+			}
+			else
+			{
+				glColor3d(0.1, 0.5, 0.8);
+				glBegin(GL_TRIANGLES);
+				glNormal3d(faceNormal[0], faceNormal[1], faceNormal[2]);
+				glVertex3d(v1[0], v1[1], v1[2]);
+				glVertex3d(v2[0], v2[1], v2[2]);
+				glVertex3d(v3[0], v3[1], v3[2]);
+				glEnd();
+			}
+		}
+	}
+}
+
+void FullFuncMeshViewer::drawMeshSmooth()
+{
+	std::vector<JFace*> faceList = pointCloud->get_face_list();
+	std::vector<JVertex *> jVertexList = pointCloud->getJVertexList();
+	std::vector<bool> delectedFaceList = pointCloud->get_deleted_face_list();
+
+	for (size_t i = 0; i < faceList.size(); i++)
+	{
+		JFace *faceIter = faceList[i];
+
+		if (!delectedFaceList[faceIter->faceId])
+		{
+			CPoint v1 = jVertexList[faceIter->vert1Id]->getPoint();
+			CPoint v2 = jVertexList[faceIter->vert2Id]->getPoint();
+			CPoint v3 = jVertexList[faceIter->vert3Id]->getPoint();
+
+			CPoint vert1Normal = jVertexList[faceIter->vert1Id]->getNormal();
+			CPoint vert2Normal = jVertexList[faceIter->vert2Id]->getNormal();
+			CPoint vert3Normal = jVertexList[faceIter->vert3Id]->getNormal();
+
+			if (std::find(selectedFaces.begin(), selectedFaces.end(), faceIter->faceId) != selectedFaces.end())
+			{
+				glColor3d(1.0, 0.5, 0.0);
+				glBegin(GL_TRIANGLES);
+				glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
+				glVertex3d(v1[0], v1[1], v1[2]);
+				glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
+				glVertex3d(v2[0], v2[1], v2[2]);
+				glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
+				glVertex3d(v3[0], v3[1], v3[2]);
+				glEnd();
+			}
+			else
+			{
+				glColor3d(0.1, 0.5, 0.8);
+				glBegin(GL_TRIANGLES);
+				glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
+				glVertex3d(v1[0], v1[1], v1[2]);
+				glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
+				glVertex3d(v2[0], v2[1], v2[2]);
+				glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
+				glVertex3d(v3[0], v3[1], v3[2]);
+				glEnd();
+			}
+		}
+	}
+}
+
 // slots
 void FullFuncMeshViewer::enterSelectionMode()
 {

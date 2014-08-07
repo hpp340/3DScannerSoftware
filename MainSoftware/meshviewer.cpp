@@ -476,7 +476,6 @@ void MeshViewer::drawMeshWireframe()
 void MeshViewer::drawMeshFlat()
 {
 	std::vector<JFace*> faceList = pointCloud->get_face_list();
-	//std::vector<CPoint> vertexList = pointCloud->get_vertex_list();
 	std::vector<JVertex *> jVertexList = pointCloud->getJVertexList();
 
 	for (size_t i = 0; i < faceList.size(); i++)
