@@ -18,6 +18,7 @@ Development
 * OpenGL 2.1 and above is supported. Also, you will need to have OpenGL installed on your computer to run the software. For installation guide, check back later.
 * We have another new branch:newUIFramework, in which the Qt GUI has been implemented. Qt API for OpenGL has been finished. It means that we can show mesh or point cloud in Qt now.
 * Registration UI/window has been finished and now it could show two point cloud.
+* Hole Filling has been added by Shawn.
 
 Authors
 ---
