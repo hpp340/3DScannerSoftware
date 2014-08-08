@@ -33,6 +33,12 @@ Development
 * Finished the window used to show the align result. And the window can show multiple meshes at the same time with different vertex color
 * Finished the light control in all windows
 * The registration part has been verified to be correct using the large point cloud and human faces.
+* Now you can view the mesh in different modes:Points, Wireframes, Flat, Flatlines and Smooth.
+* We have added the feature of selecting points & faces in the main window.
+* Deleting points and faces in the main window is finished.
+* Save edited mesh to file.
+* Hole Filling has been added to master branch.
+* Obj file is now supported
 
 Authors
 ---
