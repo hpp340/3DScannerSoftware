@@ -71,6 +71,7 @@ private:
 	QAction * viewFlat;
 	QAction * viewSmooth;
 	QActionGroup * drawModeGroup;
+	checkableAction * showTexture;
 
 	// select and delete actions
 	checkableAction * selectAction;

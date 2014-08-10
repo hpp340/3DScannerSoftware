@@ -170,11 +170,12 @@ void FullFuncMeshViewer::drawMeshWireframe()
 	std::vector<JVertex *> vertexList = pointCloud->getJVertexList();
 	std::vector<bool> delectedFaceList = pointCloud->get_deleted_face_list();
 	std::cout << faceList.size() << " " << vertexList.size() << std::endl;
+	std::cout << delectedFaceList.size() << std::endl;
 	glLineWidth(2.5);
 	for (size_t i = 0; i < faceList.size(); i++)
 	{
 		JFace *faceIter = faceList[i];
-
+		//std::cout << i << std::endl;
 		if (! delectedFaceList[faceIter->faceId])
 		{
 			CPoint v1 = vertexList[faceIter->vert1Id]->getPoint();
@@ -218,7 +219,7 @@ void FullFuncMeshViewer::drawMeshFlat()
 			CPoint v2 = jVertexList[faceIter->vert2Id]->getPoint();
 			CPoint v3 = jVertexList[faceIter->vert3Id]->getPoint();
 			CPoint faceNormal = faceIter->getFaceNormal();
-			if (std::find(selectedFaces.begin(), selectedFaces.end(), faceIter->faceId) != selectedFaces.end())
+			if (std::find(selectedFaces.begin(), selectedFaces.end(), faceIter->faceId) != selectedFaces.end()) // selected faces
 			{
 				glColor3d(1.0, 0.5, 0.0);
 				glBegin(GL_TRIANGLES);
@@ -228,14 +229,30 @@ void FullFuncMeshViewer::drawMeshFlat()
 				glVertex3d(v3[0], v3[1], v3[2]);
 				glEnd();
 			}
-			else
+			else // unselected faces
 			{
 				glColor3d(0.1, 0.5, 0.8);
 				glBegin(GL_TRIANGLES);
 				glNormal3d(faceNormal[0], faceNormal[1], faceNormal[2]);
-				glVertex3d(v1[0], v1[1], v1[2]);
-				glVertex3d(v2[0], v2[1], v2[2]);
-				glVertex3d(v3[0], v3[1], v3[2]);
+				if (pointCloud->hasTexture())
+				{
+					CPoint2 text1 = jVertexList[faceIter->vert1Id]->getTexture();
+					CPoint2 text2 = jVertexList[faceIter->vert2Id]->getTexture();
+					CPoint2 text3 = jVertexList[faceIter->vert3Id]->getTexture();
+					glTexCoord2d(text1[0], text1[1]);
+					glVertex3d(v1[0], v1[1], v1[2]);
+					glTexCoord2d(text2[0], text2[1]);
+					glVertex3d(v2[0], v2[1], v2[2]);
+					glTexCoord2d(text3[0], text3[1]);
+					glVertex3d(v3[0], v3[1], v3[2]);
+
+				}
+				else
+				{
+					glVertex3d(v1[0], v1[1], v1[2]);
+					glVertex3d(v2[0], v2[1], v2[2]);
+					glVertex3d(v3[0], v3[1], v3[2]);
+				}
 				glEnd();
 			}
 		}
@@ -262,7 +279,7 @@ void FullFuncMeshViewer::drawMeshSmooth()
 			CPoint vert2Normal = jVertexList[faceIter->vert2Id]->getNormal();
 			CPoint vert3Normal = jVertexList[faceIter->vert3Id]->getNormal();
 
-			if (std::find(selectedFaces.begin(), selectedFaces.end(), faceIter->faceId) != selectedFaces.end())
+			if (std::find(selectedFaces.begin(), selectedFaces.end(), faceIter->faceId) != selectedFaces.end()) // selected faces
 			{
 				glColor3d(1.0, 0.5, 0.0);
 				glBegin(GL_TRIANGLES);
@@ -274,16 +291,37 @@ void FullFuncMeshViewer::drawMeshSmooth()
 				glVertex3d(v3[0], v3[1], v3[2]);
 				glEnd();
 			}
-			else
+			else // unselected faces
 			{
 				glColor3d(0.1, 0.5, 0.8);
 				glBegin(GL_TRIANGLES);
-				glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
-				glVertex3d(v1[0], v1[1], v1[2]);
-				glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
-				glVertex3d(v2[0], v2[1], v2[2]);
-				glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
-				glVertex3d(v3[0], v3[1], v3[2]);
+				if (pointCloud->hasTexture())
+				{
+					CPoint2 text1 = jVertexList[faceIter->vert1Id]->getTexture();
+					CPoint2 text2 = jVertexList[faceIter->vert2Id]->getTexture();
+					CPoint2 text3 = jVertexList[faceIter->vert3Id]->getTexture();
+
+					glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
+					glTexCoord2d(text1[0], text1[1]);
+					glVertex3d(v1[0], v1[1], v1[2]);
+
+					glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
+					glTexCoord2d(text2[0], text2[1]);
+					glVertex3d(v2[0], v2[1], v2[2]);
+
+					glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
+					glTexCoord2d(text3[0], text3[1]);
+					glVertex3d(v3[0], v3[1], v3[2]);
+				}
+				else
+				{
+					glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
+					glVertex3d(v1[0], v1[1], v1[2]);
+					glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
+					glVertex3d(v2[0], v2[1], v2[2]);
+					glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
+					glVertex3d(v3[0], v3[1], v3[2]);
+				}
 				glEnd();
 			}
 		}

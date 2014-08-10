@@ -14,6 +14,7 @@
 #include "header\glm\gtx\norm.hpp"
 
 #include "JFace.h"
+#include "header\SOIL\SOIL.h"
 
 #ifndef PI
 #define PI 3.14159265
@@ -88,6 +89,8 @@ protected:
 	float zNear() { return 0.01 * radius; }
 	// return zFar
 	float zFar() { return 100 * radius; }
+	// initialize texture
+	bool initTexture();
 	// return modelview matrix
 	GLdouble * getModelViewMatrix() { return matModelView; }
 	// return projection matrix
@@ -147,11 +150,16 @@ protected:
 	bool isMeshLoaded;
 	// is light on
 	bool isLightOn;
+	// is texture on
+	bool isTextureOn;
+	// is texture loaded
+	bool isTextureLoaded;
 	// scene center
 	glm::vec3 center;
 	// scene radius
 	GLdouble radius;
-
+	// texture ID
+	GLuint textID;
 	// projection matrix and modelview matrix
 	GLdouble matModelView[16], matProjection[16];
 	GLint viewPort[4];
@@ -170,6 +178,7 @@ protected:
 protected:
 	QString filename;
 	std::string sFilename;
+	std::string sTexFilename;
 
 	// slots
 public slots:
@@ -178,6 +187,9 @@ public slots:
 	// light control
 	void turnOnLight();
 	void turnOffLight();
+	// texture control
+	void textureOn();
+	void textureOff();
 
 signals:
 	void setDrawModeWireframe();

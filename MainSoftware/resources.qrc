@@ -22,5 +22,6 @@
         <file>images/selectgroup.png</file>
         <file>images/clear.png</file>
         <file>images/delete.png</file>
+        <file>images/texture.png</file>
     </qresource>
 </RCC>

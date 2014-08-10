@@ -165,6 +165,15 @@ void MainWindow::createActions()
 	viewSmooth->setCheckable(true);
 	viewSmooth->setChecked(false);
 	connect(viewSmooth, SIGNAL(triggered()), this, SLOT(showSmooth()));
+
+	showTexture = new checkableAction(this);
+	showTexture->setIcon(QIcon(":/icons/images/texture.png"));
+	showTexture->setText(tr("Show/Hide Texture"));
+	showTexture->setStatusTip(tr("Show or Hide Texture"));
+	showTexture->setCheckable(true);
+	showTexture->setChecked(false);
+	connect(showTexture, SIGNAL(actionCheck()), viewer, SLOT(textureOn()));
+	connect(showTexture, SIGNAL(actionUncheck()), viewer, SLOT(textureOff()));
 }
 
 void MainWindow::createToolbar()
@@ -193,6 +202,7 @@ void MainWindow::createToolbar()
 	viewToolbar->addAction(viewFlatlines);
 	viewToolbar->addAction(viewFlat);
 	viewToolbar->addAction(viewSmooth);
+	viewToolbar->addAction(showTexture);
 
 	deleteToolbar = addToolBar(tr("&Delete"));
 	deleteToolbar->addAction(selectAction);

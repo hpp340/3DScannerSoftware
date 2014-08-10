@@ -23,6 +23,8 @@ void MeshViewer::init()
 	trackballRadius = 0.6;
 	isMeshLoaded = false;
 	isLightOn = true;
+	isTextureOn = false;
+	isTextureLoaded = false;
 	meshDrawMode = DRAW_MODE::NONE;
 	std::cout << "init" << std::endl;
 }
@@ -285,6 +287,28 @@ void MeshViewer::makeWholeSceneVisible()
 	std::cout << "makeWholeSceneVisible" << std::endl;
 }
 
+bool MeshViewer::initTexture()
+{
+	std::cout << "MeshViewer:initTexture.." << std::endl;
+
+	const char * cTexFilename = sTexFilename.c_str();
+	std::cout << "MeshViewer:initTexture:loading texture picture..." << std::endl;
+	textID = SOIL_load_OGL_texture(cTexFilename, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	if (textID == 0)
+	{
+		QMessageBox loadTexFail;
+		loadTexFail.setText("Fail to load texture file. Please try again.");
+		loadTexFail.exec();
+		return false;
+	}
+	glBindTexture(GL_TEXTURE_2D, textID);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	isTextureLoaded = true;
+	return true;
+}
+
 void MeshViewer::paintGL()
 {
 	std::cout << "paintGL" << std::endl;
@@ -380,6 +404,14 @@ void MeshViewer::drawMesh()
 		std::cout << "FLATLINES" << std::endl;
 		if (pointCloud->get_face_num() > 0)
 		{
+			if ((isTextureOn) && (pointCloud->hasTexture()))
+			{
+				glEnable(GL_TEXTURE_2D);
+			}
+			if (! isTextureOn)
+			{
+				glDisable(GL_TEXTURE_2D);
+			}
 			drawMeshFlatlines();
 		}
 		break;
@@ -389,15 +421,35 @@ void MeshViewer::drawMesh()
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			glShadeModel(GL_FLAT);
+			if ((isTextureOn) && (pointCloud->hasTexture()))
+			{
+				glEnable(GL_TEXTURE_2D);
+			}
+			if (!isTextureOn)
+			{
+				glDisable(GL_TEXTURE_2D);
+			}
 			drawMeshFlat();
 		}
 		break;
 	case DRAW_MODE::SMOOTH:
 		std::cout << "SMOOTH" << std::endl;
+
+		if (!isTextureOn)
+		{
+			glDisable(GL_TEXTURE_2D);
+		}
+
+		if ((isTextureOn) && (pointCloud->hasTexture()))
+		{
+			glEnable(GL_TEXTURE_2D);
+		}
+
 		if ((pointCloud->get_face_num() > 0) && (pointCloud->hasNormal()))
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			glShadeModel(GL_SMOOTH);
+
 			drawMeshSmooth();
 		}
 		else if (pointCloud->get_face_num() > 0)
@@ -485,11 +537,28 @@ void MeshViewer::drawMeshFlat()
 		CPoint v2 = jVertexList[faceIter->vert2Id]->getPoint();
 		CPoint v3 = jVertexList[faceIter->vert3Id]->getPoint();
 		CPoint faceNormal = faceIter->getFaceNormal();
+		glColor3d(0.1, 0.5, 0.8);
 		glBegin(GL_TRIANGLES);
 		glNormal3d(faceNormal[0], faceNormal[1], faceNormal[2]);
-		glVertex3d(v1[0], v1[1], v1[2]);
-		glVertex3d(v2[0], v2[1], v2[2]);
-		glVertex3d(v3[0], v3[1], v3[2]);
+		if (pointCloud->hasTexture())
+		{
+			CPoint2 text1 = jVertexList[faceIter->vert1Id]->getTexture();
+			CPoint2 text2 = jVertexList[faceIter->vert2Id]->getTexture();
+			CPoint2 text3 = jVertexList[faceIter->vert3Id]->getTexture();
+			glTexCoord2d(text1[0], text1[1]);
+			glVertex3d(v1[0], v1[1], v1[2]);
+			glTexCoord2d(text2[0], text2[1]);
+			glVertex3d(v2[0], v2[1], v2[2]);
+			glTexCoord2d(text3[0], text3[1]);
+			glVertex3d(v3[0], v3[1], v3[2]);
+
+		}
+		else
+		{
+			glVertex3d(v1[0], v1[1], v1[2]);
+			glVertex3d(v2[0], v2[1], v2[2]);
+			glVertex3d(v3[0], v3[1], v3[2]);
+		}
 		glEnd();
 	}
 }
@@ -528,13 +597,35 @@ void MeshViewer::drawMeshSmooth()
 		CPoint vert2Normal = jVertexList[faceIter->vert2Id]->getNormal();
 		CPoint vert3Normal = jVertexList[faceIter->vert3Id]->getNormal();
 
+		glColor3d(0.1, 0.5, 0.8);
 		glBegin(GL_TRIANGLES);
-		glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
-		glVertex3d(v1[0], v1[1], v1[2]);
-		glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
-		glVertex3d(v2[0], v2[1], v2[2]);
-		glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
-		glVertex3d(v3[0], v3[1], v3[2]);
+		if (pointCloud->hasTexture())
+		{
+			CPoint2 text1 = jVertexList[faceIter->vert1Id]->getTexture();
+			CPoint2 text2 = jVertexList[faceIter->vert2Id]->getTexture();
+			CPoint2 text3 = jVertexList[faceIter->vert3Id]->getTexture();
+
+			glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
+			glTexCoord2d(text1[0], text1[1]);
+			glVertex3d(v1[0], v1[1], v1[2]);
+
+			glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
+			glTexCoord2d(text2[0], text2[1]);
+			glVertex3d(v2[0], v2[1], v2[2]);
+
+			glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
+			glTexCoord2d(text3[0], text3[1]);
+			glVertex3d(v3[0], v3[1], v3[2]);
+		}
+		else
+		{
+			glNormal3d(vert1Normal[0], vert1Normal[1], vert1Normal[2]);
+			glVertex3d(v1[0], v1[1], v1[2]);
+			glNormal3d(vert2Normal[0], vert2Normal[1], vert2Normal[2]);
+			glVertex3d(v2[0], v2[1], v2[2]);
+			glNormal3d(vert3Normal[0], vert3Normal[1], vert3Normal[2]);
+			glVertex3d(v3[0], v3[1], v3[2]);
+		}
 		glEnd();
 	}
 }
@@ -788,5 +879,29 @@ void MeshViewer::turnOffLight()
 {
 	std::cout << "meshviewer:turn off light" << std::endl;
 	isLightOn = false;
+	updateGL();
+}
+
+void MeshViewer::textureOn()
+{
+	std::cout << "MeshViewer::turn on texture" << std::endl;
+	isTextureOn = true;
+	if (! isTextureLoaded)
+	{
+		QString texFilename = QFileDialog::getSaveFileName(this,
+			tr("Load Texture File"),
+			tr("../texture"),
+			tr("BMP Files (*.bmp);;"
+			"All Files (*)"));
+		sTexFilename = texFilename.toStdString();
+		initTexture();
+	}
+	updateGL();
+}
+
+void MeshViewer::textureOff()
+{
+	std::cout << "MeshViewer::turn off texture" << std::endl;
+	isTextureOn = false;
 	updateGL();
 }

@@ -1,6 +1,7 @@
 ﻿  AlignResultWindow.cpp
   alignWindow.cpp
   checkableAction.cpp
+  FullFuncMeshViewer.cpp
   ANN.cpp
   bd_fix_rad_search.cpp
   bd_pr_search.cpp
@@ -17,8 +18,8 @@
   perf.cpp
   JFace.cpp
   CmdLineParser.cpp
-  Factor.cpp
   Compiling...
+  Factor.cpp
   Geometry.cpp
   MarchingCubes.cpp
   PlyFile.cpp
@@ -31,6 +32,7 @@
   [WARNING] Assuming that the 2-ring contains all the children of interest...
   meshviewer.cpp
   PoissonRecon.cpp
+  moc_FullFuncMeshViewer.cpp
   moc_MultipleMeshViewer.cpp
   SurfaceTrim.cpp
   MultipleMeshViewer.cpp
@@ -39,9 +41,8 @@
   moc_alignWindow.cpp
   moc_checkableAction.cpp
   moc_interactiveMeshViewer.cpp
+  Compiling...
   moc_mainwindow.cpp
   moc_meshviewer.cpp
   qrc_resources.cpp
-  Generating code
-  Finished generating code
-  MainSoftware.vcxproj -> W:\Codes\2014SummerMSC\MainSoftware\x64\Release\MainSoftware.exe
+  MainSoftware.vcxproj -> W:\Codes\2014SummerMSC\MainSoftware\x64\Release\MainSoftware.lib

@@ -274,7 +274,7 @@ bool PlyCloud::read_ply(const char * filename)
 		face->setFaceId((int)face_list.size() - 1);
 	}
 	face_num = (int)face_list.size() - 1;
-	deleted_face_list.assign(face_num, false);
+	deleted_face_list.assign(face_num+1, false);
 	std::cout << "face list size" << face_list.size() << std::endl;
 	if (face_num > 0)
 	{
@@ -317,7 +317,7 @@ bool PlyCloud::read_obj(const char * filename)
 			size_t firstSpace, secondSpace, thirdSpace;
 			firstSpace = secondSpace = thirdSpace = 0;
 			firstSpace = inS.find(" ", 0);
-			secondSpace = inS.find(" ", firstSpace + 1);
+			secondSpace = inS.find(" ", firstSpace + 2);
 			thirdSpace = inS.find(" ", secondSpace + 1);
 			string firstPos = inS.substr(firstSpace + 1, secondSpace - firstSpace);
 			string secondPos = inS.substr(secondSpace + 1, thirdSpace - secondSpace);
@@ -327,6 +327,8 @@ bool PlyCloud::read_obj(const char * filename)
 			double zPos = atof(thirdPos.c_str());
 
 			vertPos[0] = xPos; vertPos[1] = yPos; vertPos[2] = zPos;
+			//std::cout << xPos << " " << yPos << " " << zPos << std::endl;
+
 			vert->addPos(vertPos);
 			//add_vert(vertPos);
 			addJVert(vert);
@@ -346,7 +348,6 @@ bool PlyCloud::read_obj(const char * filename)
 			double xPos = atof(firstPos.c_str());
 			double yPos = atof(secondPos.c_str());
 			double zPos = atof(thirdPos.c_str());
-
 			norlPos[0] = xPos; norlPos[1] = yPos; norlPos[2] = zPos;
 			add_norm(norlPos);
 		}
@@ -421,6 +422,8 @@ bool PlyCloud::read_obj(const char * filename)
 
 	vertex_num = (int)JVertexList.size();
 	face_num = (int)face_list.size();
+	// normalize mesh
+	normalizeMesh();
 
 	deleted_vertex_list.assign(vertex_num, false);
 	deleted_face_list.assign(face_num, false);
