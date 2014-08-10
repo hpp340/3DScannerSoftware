@@ -14,6 +14,13 @@ Software Overview
 * We will have Registration algorithm, Poisson Surface Reconstruction, Hole Filling and Remeshing to be added to our software in the future, which makes it usable for our 3D scanning cameras.
 * OpenGL 2.1 and above is supported. Also, you will need to have OpenGL installed on your computer to run the software. For installation guide, check back later.
 
+Installation Guide
+---
+* We need Qt 5.3.1 or above and Microsoft Visual C++ redistributable packages for Visual Studio 2013, which will be included in the published installation package. Or you can [click here](http://www.microsoft.com/en-us/download/details.aspx?id=40784) to download it.
+* For Qt 5.3.1, you can go [here](http://qt-project.org/downloads) to download the package. Make sure to download the 64 bit version with OpenGL.
+* After the installation of Qt, you need to change the environmental variables to make our software run successfully. To change the environment variables, check [this page](https://www.java.com/en/download/help/path.xml)(English) or [this page](https://www.java.com/zh_CN/download/help/path.xml)(Simplified Chinese).
+* Then you can run our installed software.
+
 Development
 ---
 * Now we have added m2plyConverter to the project. See README file in that project.
