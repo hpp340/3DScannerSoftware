@@ -2,6 +2,7 @@
 #include "alignWindow.h"
 #include "PoissonRecon.h"
 #include "SurfaceTrim.h"
+#include"HoleFill.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -99,6 +100,12 @@ void MainWindow::createActions()
 	reconAction->setStatusTip(tr("Poisson Surface Reconstruction"));
 	connect(reconAction, SIGNAL(triggered()), this, SLOT(startPoissonRecon()));
 
+	holefillAction = new QAction(tr("&Hole filling"), this);
+	holefillAction->setIcon(QIcon(":/icons/images/holefilling.png"));
+	holefillAction->setText(tr("Hole filling"));
+	holefillAction->setStatusTip(tr("Hole filling"));
+	connect(holefillAction, SIGNAL(triggered()), this, SLOT(startHoleFill()));
+
 	trimAction = new QAction(tr("Trim Mesh"), this);
 	trimAction->setIcon(QIcon(":/icons/images/trim.png"));
 	trimAction->setText(tr("Trim Mesh"));
@@ -187,6 +194,7 @@ void MainWindow::createToolbar()
 	editToolbar->addAction(alignMeshes);
 	editToolbar->addAction(reconAction);
 	editToolbar->addAction(trimAction);
+	editToolbar->addAction(holefillAction);
 
 	drawModeGroup = new QActionGroup(this);
 	drawModeGroup->addAction(viewPoints);
@@ -256,6 +264,21 @@ void MainWindow::startPoissonRecon()
 	//viewer->acceptMesh(surfaceRecon->getSurface());
 	viewer->loadFile("reconOutput.ply", "ply");
 }
+
+
+void MainWindow::startHoleFill()
+{
+	std::cout << "MainWindow::startHoleFill.." << std::endl;
+	HoleFill * surfaceFill = new HoleFill();
+	std::cout << "MainWindow:filename" << std::endl;
+
+	std::string tempFilename = viewer->getFilename();
+	printf("%s\n", tempFilename);
+	surfaceFill->acceptReadinFilename(tempFilename);
+	surfaceFill->startFill();
+	viewer->loadFile("holefilled.obj", "obj");
+}
+
 
 void MainWindow::startTrim()
 {

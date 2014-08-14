@@ -1,0 +1,26 @@
+OpenMesh, 1-0-0
+~~~~~~~~~~~~~~~
+
+0. Licence
+   see Core/LICENSE
+   
+1. What's new in OpenMesh 1-0-0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Dynamic Properties
+- Proprietary file format .om
+- Revised decimater
+? Revised uniform subdivision
+? Revised adaptive subdivision
+- View dependent refinement
+
+2. Installing
+~~~~~~~~~~~~~~
+Unpack the tar-ball to a suitable place and compile with acgmake.
+
+3. OpenMesh + STLport
+~~~~~~~~~~~~~~~~~~~~~~
+
+We tested the MS .NET with STLport 4.6 (with STLport iostream) and 
+encountered on problem in OpenMesh/Core/IO/reader/OBJReader.cc.
+A workaround for 4.6 version of STLport has been applied. It might have
+to be adjusted for other STLport versions.

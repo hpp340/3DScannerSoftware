@@ -1,0 +1,29 @@
+#==  SYSTEM PART -- DON'T TOUCH  ==============================================
+include $(ACGMAKE)/Config
+#==============================================================================
+
+USE_OSG    := yes
+
+ifeq ($(USE_OSG),yes)
+  CXX_CFLAGS += -DOM_USE_OSG=1
+endif
+
+SUBDIRS	    = $(call find-subdirs)
+
+
+SUBDIRS = $(call find-subdirs)
+
+ifeq ($(USE_OSG),yes)
+  PACKAGES   := OSG qt glut opengl
+else
+  PACKAGES   := 
+endif
+
+PROJ_LIBS := OpenMesh/Core OpenMesh/Tools
+
+MODULES := cxx
+
+
+#==  SYSTEM PART -- DON'T TOUCH  ==============================================
+include $(ACGMAKE)/Rules
+#==============================================================================

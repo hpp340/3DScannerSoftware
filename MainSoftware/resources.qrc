@@ -23,5 +23,6 @@
         <file>images/clear.png</file>
         <file>images/delete.png</file>
         <file>images/texture.png</file>
+        <file>images/holefilling.png</file>
     </qresource>
 </RCC>
