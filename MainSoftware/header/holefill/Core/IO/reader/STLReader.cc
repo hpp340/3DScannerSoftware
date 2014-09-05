@@ -25,7 +25,7 @@
 
 #define _CRT_SECURE_NO_DEPRECATE
 //== INCLUDES =================================================================
-
+#pragma warning (disable:4267)
 #include <cstring>
 
 // STL

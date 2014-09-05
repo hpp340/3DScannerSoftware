@@ -34,7 +34,7 @@
 #ifndef __BASEIMPORTER_HH__
 #define __BASEIMPORTER_HH__
 
-
+#pragma warning (disable:4100)
 //=== INCLUDES ================================================================
 
 

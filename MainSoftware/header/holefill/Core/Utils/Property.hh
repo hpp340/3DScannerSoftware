@@ -26,6 +26,7 @@
 #ifndef OPENMESH_PROPERTY_HH
 #define OPENMESH_PROPERTY_HH
 
+#pragma warning (disable:4100)
 
 //== INCLUDES =================================================================
 

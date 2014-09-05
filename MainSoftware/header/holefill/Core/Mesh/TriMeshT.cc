@@ -38,7 +38,7 @@
 
 #define OPENMESH_TRIMESH_C
 
-
+#pragma warning (disable:4267)
 //== INCLUDES =================================================================
 
 

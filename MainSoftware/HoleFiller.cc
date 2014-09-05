@@ -36,7 +36,7 @@
 #include "HoleFiller.hh"
 //=============================================================================
 
-
+#pragma warning (disable:4267)
 template< class MeshT >
 HoleFiller< MeshT >::HoleFiller( Mesh & _mesh )
   : mesh_( _mesh )

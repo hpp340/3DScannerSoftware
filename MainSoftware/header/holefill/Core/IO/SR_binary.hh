@@ -38,7 +38,7 @@
 #ifndef OPENMESH_SR_BINARY_HH
 #define OPENMESH_SR_BINARY_HH
 
-
+#pragma warning (disable:4100)
 //== INCLUDES =================================================================
 
 //#include <OpenMesh/Core/System/config.hh>

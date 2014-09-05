@@ -1,1342 +1,255 @@
-﻿Build started 8/14/2014 2:48:44 PM.
-Project "Z:\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_AlignResultWindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_AlignResultWindow.cpp, Release\moc_AlignResultWindow.cpp.
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_alignWindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_alignWindow.cpp, Release\moc_alignWindow.cpp.
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_checkableAction.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_checkableAction.cpp, Release\moc_checkableAction.cpp.
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_FullFuncMeshViewer.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_FullFuncMeshViewer.cpp, Release\moc_FullFuncMeshViewer.cpp.
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_interactiveMeshViewer.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_interactiveMeshViewer.cpp, Release\moc_interactiveMeshViewer.cpp.
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_mainwindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_mainwindow.cpp, Release\moc_mainwindow.cpp.
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_meshviewer.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_meshviewer.cpp, Release\moc_meshviewer.cpp.
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_MultipleMeshViewer.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Debug\moc_MultipleMeshViewer.cpp, Release\moc_MultipleMeshViewer.cpp.
-ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp header\holefill\Core\IO\BinaryHelper.cc header\holefill\Core\IO\IOManager.cc header\holefill\Core\IO\OMFormat.cc header\holefill\Core\IO\reader\BaseReader.cc header\holefill\Core\IO\reader\OBJReader.cc header\holefill\Core\IO\reader\OFFReader.cc header\holefill\Core\IO\reader\OMReader.cc header\holefill\Core\IO\reader\STLReader.cc header\holefill\Core\IO\writer\BaseWriter.cc header\holefill\Core\IO\writer\OBJWriter.cc header\holefill\Core\IO\writer\OFFWriter.cc header\holefill\Core\IO\writer\OMWriter.cc header\holefill\Core\IO\writer\STLWriter.cc header\holefill\Core\System\omstream.cc header\holefill\Core\Utils\BaseProperty.cc header\holefill\Core\Utils\Endian.cc header\holefill\Tools\Smoother\JacobiLaplaceSmootherT.cc header\holefill\Tools\Smoother\LaplaceSmootherT.cc header\holefill\Tools\Smoother\SmootherT.cc HoleFill.cpp HoleFiller.cc JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
-  AlignResultWindow.cpp
-  alignWindow.cpp
-  checkableAction.cpp
-  FullFuncMeshViewer.cpp
-  ANN.cpp
-  bd_fix_rad_search.cpp
-  bd_pr_search.cpp
-  bd_search.cpp
-  bd_tree.cpp
-  brute.cpp
-  kd_dump.cpp
-  kd_fix_rad_search.cpp
-  kd_pr_search.cpp
-  kd_search.cpp
-  kd_split.cpp
-  kd_tree.cpp
-  kd_util.cpp
-  perf.cpp
-  BinaryHelper.cc
-  IOManager.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  Compiling...
-  OMFormat.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_rbo.hh(85): warning C4100: '_val' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_spec.hh(189): warning C4267: 'initializing' : conversion from 'size_t' to 'OpenMesh::IO::binary<std::string>::length_t', possible loss of data
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-  ,            _InIt=short *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-  ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-          ]
-  BaseReader.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  OBJReader.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../../IO/importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../../IO/importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../../IO/importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OBJReader.cc(394): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  OFFReader.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  OMReader.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_rbo.hh(85): warning C4100: '_val' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_spec.hh(189): warning C4267: 'initializing' : conversion from 'size_t' to 'OpenMesh::IO::binary<std::string>::length_t', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OMReader.cc(129): warning C4100: '_opt' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OMReader.cc(128): warning C4100: '_bi' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OMReader.cc(128): warning C4100: '_is' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OMReader.cc(260): warning C4100: 'version' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OMReader.cc(307): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\reader\OMReader.cc(320): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\reader\OMReader.cc(333): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\reader\OMReader.cc(423): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\reader\OMReader.cc(436): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\reader\OMReader.cc(470): warning C4100: '_opt' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OMReader.cc(507): warning C4100: '_opt' : unreferenced formal parameter
-header\holefill\Core\IO\reader\OMReader.cc(544): warning C4100: '_opt' : unreferenced formal parameter
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-  ,            _InIt=short *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-  ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-          ]
-  STLReader.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-header\holefill\Core\IO\reader\STLReader.cc(369): warning C4267: '+=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  BaseWriter.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  OBJWriter.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-header\holefill\Core\IO\writer\OBJWriter.cc(128): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OBJWriter.cc(140): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OBJWriter.cc(151): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OBJWriter.cc(162): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OBJWriter.cc(177): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OBJWriter.cc(191): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OBJWriter.cc(205): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OBJWriter.cc(219): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  OFFWriter.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-header\holefill\Core\IO\writer\OFFWriter.cc(141): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(153): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(164): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(175): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(189): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(200): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(237): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(238): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(246): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(264): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(278): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(293): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(307): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(318): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OFFWriter.cc(377): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  OMWriter.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_rbo.hh(85): warning C4100: '_val' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_spec.hh(189): warning C4267: 'initializing' : conversion from 'size_t' to 'OpenMesh::IO::binary<std::string>::length_t', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-header\holefill\Core\IO\writer\OMWriter.cc(200): warning C4267: '=' : conversion from 'size_t' to 'OpenMesh::IO::OMFormat::uint32', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(201): warning C4267: '=' : conversion from 'size_t' to 'OpenMesh::IO::OMFormat::uint32', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(202): warning C4267: '=' : conversion from 'size_t' to 'OpenMesh::IO::OMFormat::uint32', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(227): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(246): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(265): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(286): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(304): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(345): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(380): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\OMWriter.cc(499): warning C4100: '_be' : unreferenced formal parameter
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-  ,            _InIt=short *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-  ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/OMFormat.hh(378): warning C4100: 'd' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/OMFormat.hh(373) : see reference to function template instantiation 'OpenMesh::IO::OMFormat::Chunk::Integer_Size OpenMesh::IO::OMFormat::integer_size<T>(const T &)' being compiled
-          with
-          [
-              T=float
-          ]
-          header\holefill\Core\IO\writer\OMWriter.cc(224) : see reference to function template instantiation 'unsigned int OpenMesh::IO::OMFormat::bits<Scalar>(const T &)' being compiled
-          with
-          [
-              Scalar=float
-  ,            T=float
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/OMFormat.hh(394): warning C4100: 'd' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/OMFormat.hh(374) : see reference to function template instantiation 'OpenMesh::IO::OMFormat::Chunk::Float_Size OpenMesh::IO::OMFormat::float_size<T>(const T &)' being compiled
-          with
-          [
-              T=float
-          ]
-  STLWriter.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-header\holefill\Core\IO\writer\STLWriter.cc(130): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\STLWriter.cc(193): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-header\holefill\Core\IO\writer\STLWriter.cc(207): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-header\holefill\Core\IO\writer\STLWriter.cc(270): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  omstream.cc
-  BaseProperty.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  Endian.cc
-  JacobiLaplaceSmootherT.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  LaplaceSmootherT.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  SmootherT.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  HoleFill.cpp
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_rbo.hh(85): warning C4100: '_val' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_spec.hh(189): warning C4267: 'initializing' : conversion from 'size_t' to 'OpenMesh::IO::binary<std::string>::length_t', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nF' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nE' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\reader\../importer/BaseImporter.hh(104): warning C4100: 'nV' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(365): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(365) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_vertices(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\../Mesh/PolyMeshT.hh(88) : see reference to class template instantiation 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\../Mesh/TriMeshT.hh(81) : see reference to class template instantiation 'OpenMesh::PolyMeshT<Kernel>' being compiled
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\Core\Mesh\Types\TriMesh_ArrayKernelT.hh(90) : see reference to class template instantiation 'OpenMesh::TriMeshT<OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>>' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(47) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<OpenMesh::DefaultTraits>' being compiled
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(366): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(366) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_halfedges(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(367): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(367) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_edges(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(368): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(368) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_faces(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-  ,            _InIt=short *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-  ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-          ]
-z:\3dscannersoftware\mainsoftware\HoleFiller.cc(166): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(131) : while compiling class template member function 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)'
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(100) : see reference to function template instantiation 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)' being compiled
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(42) : while compiling class template member function 'HoleFiller<MyMesh>::HoleFiller(OpenMesh::TriMesh_ArrayKernelT<OpenMesh::DefaultTraits> &)'
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(56) : see reference to function template instantiation 'HoleFiller<MyMesh>::HoleFiller(OpenMesh::TriMesh_ArrayKernelT<OpenMesh::DefaultTraits> &)' being compiled
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(56) : see reference to class template instantiation 'HoleFiller<MyMesh>' being compiled
-z:\3dscannersoftware\mainsoftware\HoleFiller.cc(241): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(131): warning C4244: 'argument' : conversion from '__int64' to 'int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(130) : while compiling class template member function 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::VertexHandle OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::handle(const OpenMesh::DefaultTraits::VertexT<OpenMesh::ArrayItems::Vertex,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs> &) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(277) : see reference to function template instantiation 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::VertexHandle OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::handle(const OpenMesh::DefaultTraits::VertexT<OpenMesh::ArrayItems::Vertex,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs> &) const' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\TriMeshT.cc(67): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\TriMeshT.cc(66) : while compiling class template member function 'OpenMesh::FaceHandle OpenMesh::TriMeshT<OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/importer/ImporterT.hh(115) : see reference to function template instantiation 'OpenMesh::FaceHandle OpenMesh::TriMeshT<OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/importer/ImporterT.hh(86) : while compiling class template member function 'OpenMesh::FaceHandle OpenMesh::IO::ImporterT<Mesh>::add_face(const OpenMesh::IO::ImporterT<Mesh>::VHandles &)'
-          with
-          [
-              Mesh=MyMesh
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\Core\IO\MeshIO.hh(94) : see reference to class template instantiation 'OpenMesh::IO::ImporterT<Mesh>' being compiled
-          with
-          [
-              Mesh=MyMesh
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\Core\IO\MeshIO.hh(80) : see reference to function template instantiation 'bool OpenMesh::IO::read_mesh<Mesh>(Mesh &,const std::string &,OpenMesh::IO::Options &,bool)' being compiled
-          with
-          [
-              Mesh=MyMesh
-          ]
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(49) : see reference to function template instantiation 'bool OpenMesh::IO::read_mesh<MyMesh>(Mesh &,const std::string &,bool)' being compiled
-          with
-          [
-              Mesh=MyMesh
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<OpenMesh::VectorT<float,3>,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=std::vector<OpenMesh::VectorT<float,3>,std::allocator<OpenMesh::VectorT<float,3>>>
-  ,            _Ty=OpenMesh::VectorT<float,3>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<OpenMesh::VectorT<float,3>,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=std::vector<OpenMesh::VectorT<float,3>,std::allocator<OpenMesh::VectorT<float,3>>>
-  ,            _Ty=OpenMesh::VectorT<float,3>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\StoreRestore.hh(71) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=std::vector<OpenMesh::VectorT<float,3>,std::allocator<OpenMesh::VectorT<float,3>>>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(262) : see reference to function template instantiation 'bool OpenMesh::IO::is_streamable<std::vector<T,std::allocator<_Ty>>>(void)' being compiled
-          with
-          [
-              T=OpenMesh::VectorT<float,3>
-  ,            _Ty=OpenMesh::VectorT<float,3>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(261) : while compiling class template member function 'size_t OpenMesh::PropertyT<T>::store(std::ostream &,bool) const'
-          with
-          [
-              T=OpenMesh::VectorT<float,3>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\common\../../../Utils/Property.hh(696) : see reference to class template instantiation 'OpenMesh::PropertyT<T>' being compiled
-          with
-          [
-              T=OpenMesh::VectorT<float,3>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\importer\../../Mesh/Kernels/Common/BaseKernel.hh(118) : see reference to function template instantiation 'OpenMesh::BasePropHandleT<T> OpenMesh::PropertyContainer::add<OpenMesh::VectorT<float,3>>(const T &,const std::string &)' being compiled
-          with
-          [
-              T=OpenMesh::VectorT<float,3>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\arraykernel\../../../Mesh/Kernels/Common/AttribKernelT.hh(116) : see reference to function template instantiation 'void OpenMesh::BaseKernel::add_property<OpenMesh::VectorT<float,3>>(OpenMesh::VPropHandleT<OpenMesh::VectorT<float,3>> &,const std::string &)' being compiled
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\kernels\arraykernel\../../../Mesh/Kernels/Common/AttribKernelT.hh(100) : while compiling class template member function 'OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::AttribKernelT(void)'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(112) : see reference to function template instantiation 'OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::AttribKernelT(void)' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(84) : see reference to class template instantiation 'OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<OpenMesh::VectorT<float,3>,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=std::vector<OpenMesh::VectorT<float,3>,std::allocator<OpenMesh::VectorT<float,3>>>
-  ,            _Ty=OpenMesh::VectorT<float,3>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<OpenMesh::VectorT<float,3>,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=std::vector<OpenMesh::VectorT<float,3>,std::allocator<OpenMesh::VectorT<float,3>>>
-  ,            _Ty=OpenMesh::VectorT<float,3>
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(169): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(167) : while compiling class template member function 'OpenMesh::FaceHandle OpenMesh::PolyMeshT<Kernel>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)'
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\TriMeshT.cc(74) : see reference to function template instantiation 'OpenMesh::FaceHandle OpenMesh::PolyMeshT<Kernel>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)' being compiled
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(271) : while compiling class template member function 'bool HoleFiller<MyMesh>::refine(OpenMesh::FaceHandle)'
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(243) : see reference to function template instantiation 'bool HoleFiller<MyMesh>::refine(OpenMesh::FaceHandle)' being compiled
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(131) : while compiling class template member function 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)'
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(100) : see reference to function template instantiation 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)' being compiled
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(143): warning C4244: 'argument' : conversion from '__int64' to 'int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(142) : while compiling class template member function 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::EdgeHandle OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::handle(const OpenMesh::DefaultTraits::EdgeT<OpenMesh::ArrayItems::Edge<OpenMesh::DefaultTraits::HalfedgeT<OpenMesh::ArrayItems::Halfedge_with_prev,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs> &) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(291) : see reference to function template instantiation 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::EdgeHandle OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::handle(const OpenMesh::DefaultTraits::EdgeT<OpenMesh::ArrayItems::Edge<OpenMesh::DefaultTraits::HalfedgeT<OpenMesh::ArrayItems::Halfedge_with_prev,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs> &) const' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(147): warning C4244: 'argument' : conversion from '__int64' to 'int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(146) : while compiling class template member function 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::FaceHandle OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::handle(const OpenMesh::DefaultTraits::FaceT<OpenMesh::ArrayItems::Face<true>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs> &) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(304) : see reference to function template instantiation 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::FaceHandle OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::handle(const OpenMesh::DefaultTraits::FaceT<OpenMesh::ArrayItems::Face<true>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>::Refs> &) const' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(520): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(510) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal_loop(OpenMesh::VertexHandle,OpenMesh::VectorT<float,3> &) const'
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(604) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal_loop(OpenMesh::VertexHandle,OpenMesh::VectorT<float,3> &) const' being compiled
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-          ]
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(558) : while compiling class template member function 'bool HoleFiller<MyMesh>::exists_edge(OpenMesh::VertexHandle,OpenMesh::VertexHandle)'
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(495) : see reference to function template instantiation 'bool HoleFiller<MyMesh>::exists_edge(OpenMesh::VertexHandle,OpenMesh::VertexHandle)' being compiled
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(521): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-  HoleFiller.cc
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(363): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(404): warning C4100: '_swap' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(521): warning C4100: '_n_elem' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(99) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(87) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::store(std::ostream &,const std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(79) : see reference to class template instantiation 'OpenMesh::IO::binary<T>' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\tools\smoother\../../Core/Utils/Property.hh(519) : see reference to function template instantiation 'size_t OpenMesh::IO::size_of<OpenMesh::PropertyT<std::string>::vector_type>(const T &)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(98): warning C4100: '_os' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_swap' : unreferenced formal parameter
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(103) : while compiling class template member function 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)'
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\utils\../IO/StoreRestore.hh(91) : see reference to function template instantiation 'size_t OpenMesh::IO::binary<T>::restore(std::istream &,std::vector<std::string,std::allocator<_Ty>> &,bool)' being compiled
-          with
-          [
-              T=OpenMesh::PropertyT<std::string>::vector_type
-  ,            _Ty=std::string
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_v' : unreferenced formal parameter
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/SR_binary.hh(102): warning C4100: '_is' : unreferenced formal parameter
-  JFace.cpp
-  Compiling...
-  CmdLineParser.cpp
-  Factor.cpp
-  Geometry.cpp
-  MarchingCubes.cpp
-  PlyFile.cpp
-  Time.cpp
-  interactiveMeshViewer.cpp
-  JVertex.cpp
-  main.cpp
-  mainwindow.cpp
-z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_spec.hh(189): warning C4267: 'initializing' : conversion from 'size_t' to 'OpenMesh::IO::binary<std::string>::length_t', possible loss of data
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(365): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(365) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_vertices(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\../Mesh/PolyMeshT.hh(88) : see reference to class template instantiation 'OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\../Mesh/TriMeshT.hh(81) : see reference to class template instantiation 'OpenMesh::PolyMeshT<Kernel>' being compiled
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\Core\Mesh\Types\TriMesh_ArrayKernelT.hh(90) : see reference to class template instantiation 'OpenMesh::TriMeshT<OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>>' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(47) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<OpenMesh::DefaultTraits>' being compiled
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(366): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(366) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_halfedges(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(367): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(367) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_edges(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(368): warning C4267: 'return' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\types\../Kernels/ArrayKernel/ArrayKernelT.hh(368) : while compiling class template member function 'unsigned int OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>::n_faces(void) const'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-  ,            _InIt=short *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=int
-  ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-  ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-  ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-          with
-          [
-              _Ty=unsigned int
-  ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-  ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-          ]
-z:\3dscannersoftware\mainsoftware\HoleFiller.cc(166): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(131) : while compiling class template member function 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)'
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(100) : see reference to function template instantiation 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)' being compiled
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(42) : while compiling class template member function 'HoleFiller<MyMesh>::HoleFiller(OpenMesh::TriMesh_ArrayKernelT<OpenMesh::DefaultTraits> &)'
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(56) : see reference to function template instantiation 'HoleFiller<MyMesh>::HoleFiller(OpenMesh::TriMesh_ArrayKernelT<OpenMesh::DefaultTraits> &)' being compiled
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(56) : see reference to class template instantiation 'HoleFiller<MyMesh>' being compiled
-z:\3dscannersoftware\mainsoftware\HoleFiller.cc(241): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-  [WARNING] Assuming that the 2-ring contains all the children of interest...
-  [WARNING] Assuming that the 2-ring contains all the children of interest...
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\TriMeshT.cc(67): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\TriMeshT.cc(66) : while compiling class template member function 'OpenMesh::FaceHandle OpenMesh::TriMeshT<OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)'
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/importer/ImporterT.hh(115) : see reference to function template instantiation 'OpenMesh::FaceHandle OpenMesh::TriMeshT<OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,Traits,true>>>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)' being compiled
-          with
-          [
-              Traits=OpenMesh::DefaultTraits
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\io\../IO/importer/ImporterT.hh(86) : while compiling class template member function 'OpenMesh::FaceHandle OpenMesh::IO::ImporterT<Mesh>::add_face(const OpenMesh::IO::ImporterT<Mesh>::VHandles &)'
-          with
-          [
-              Mesh=MyMesh
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\Core\IO\MeshIO.hh(94) : see reference to class template instantiation 'OpenMesh::IO::ImporterT<Mesh>' being compiled
-          with
-          [
-              Mesh=MyMesh
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\Core\IO\MeshIO.hh(80) : see reference to function template instantiation 'bool OpenMesh::IO::read_mesh<Mesh>(Mesh &,const std::string &,OpenMesh::IO::Options &,bool)' being compiled
-          with
-          [
-              Mesh=MyMesh
-          ]
-          z:\3dscannersoftware\mainsoftware\HoleFill.h(49) : see reference to function template instantiation 'bool OpenMesh::IO::read_mesh<MyMesh>(Mesh &,const std::string &,bool)' being compiled
-          with
-          [
-              Mesh=MyMesh
-          ]
-z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(169): warning C4267: 'initializing' : conversion from 'size_t' to 'unsigned int', possible loss of data
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\PolyMeshT.cc(167) : while compiling class template member function 'OpenMesh::FaceHandle OpenMesh::PolyMeshT<Kernel>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)'
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\header\holefill\core\mesh\TriMeshT.cc(74) : see reference to function template instantiation 'OpenMesh::FaceHandle OpenMesh::PolyMeshT<Kernel>::add_face(const std::vector<OpenMesh::VertexHandle,std::allocator<_Ty>> &)' being compiled
-          with
-          [
-              Kernel=OpenMesh::ArrayKernelT<OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>,OpenMesh::FinalMeshItemsT<OpenMesh::ArrayItems,OpenMesh::DefaultTraits,true>>
-  ,            _Ty=OpenMesh::VertexHandle
-          ]
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(271) : while compiling class template member function 'bool HoleFiller<MyMesh>::refine(OpenMesh::FaceHandle)'
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(243) : see reference to function template instantiation 'bool HoleFiller<MyMesh>::refine(OpenMesh::FaceHandle)' being compiled
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(131) : while compiling class template member function 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)'
-          z:\3dscannersoftware\mainsoftware\HoleFiller.cc(100) : see reference to function template instantiation 'void HoleFiller<MyMesh>::fill_hole(OpenMesh::EdgeHandle,int)' being compiled
-  meshviewer.cpp
-  PoissonRecon.cpp
-  moc_FullFuncMeshViewer.cpp
-  moc_MultipleMeshViewer.cpp
-  SurfaceTrim.cpp
-  MultipleMeshViewer.cpp
-  PlyCloud.cpp
-  moc_AlignResultWindow.cpp
-  moc_alignWindow.cpp
-  moc_checkableAction.cpp
-  Compiling...
-  moc_interactiveMeshViewer.cpp
-  moc_mainwindow.cpp
-  moc_meshviewer.cpp
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 GeneratedFiles\qrc_resources.cpp
-  qrc_resources.cpp
-Link:
-  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"Z:\3DScannerSoftware\MainSoftware\x64\Release\\MainSoftware.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib glu32.lib opengl32.lib gdi32.lib user32.lib qtmain.lib Qt5Core.lib Qt5OpenGL.lib Qt5Widgets.lib Qt5Gui.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"Z:\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Release\appIcon.res
-  x64\Release\AlignResultWindow.obj
-  x64\Release\alignWindow.obj
-  x64\Release\checkableAction.obj
-  x64\Release\FullFuncMeshViewer.obj
-  x64\Release\ANN.obj
-  x64\Release\bd_fix_rad_search.obj
-  x64\Release\bd_pr_search.obj
-  x64\Release\bd_search.obj
-  x64\Release\bd_tree.obj
-  x64\Release\brute.obj
-  x64\Release\kd_dump.obj
-  x64\Release\kd_fix_rad_search.obj
-  x64\Release\kd_pr_search.obj
-  x64\Release\kd_search.obj
-  x64\Release\kd_split.obj
-  x64\Release\kd_tree.obj
-  x64\Release\kd_util.obj
-  x64\Release\perf.obj
-  x64\Release\BinaryHelper.obj
-  x64\Release\IOManager.obj
-  x64\Release\OMFormat.obj
-  x64\Release\BaseReader.obj
-  x64\Release\OBJReader.obj
-  x64\Release\OFFReader.obj
-  x64\Release\OMReader.obj
-  x64\Release\STLReader.obj
-  x64\Release\BaseWriter.obj
-  x64\Release\OBJWriter.obj
-  x64\Release\OFFWriter.obj
-  x64\Release\OMWriter.obj
-  x64\Release\STLWriter.obj
-  x64\Release\omstream.obj
-  x64\Release\BaseProperty.obj
-  x64\Release\Endian.obj
-  x64\Release\JacobiLaplaceSmootherT.obj
-  x64\Release\LaplaceSmootherT.obj
-  x64\Release\SmootherT.obj
-  x64\Release\HoleFill.obj
-  x64\Release\HoleFiller.obj
-  x64\Release\JFace.obj
-  x64\Release\qrc_resources.obj
-  x64\Release\CmdLineParser.obj
-  x64\Release\Factor.obj
-  x64\Release\Geometry.obj
-  x64\Release\MarchingCubes.obj
-  x64\Release\PlyFile.obj
-  x64\Release\Time.obj
-  x64\Release\interactiveMeshViewer.obj
-  x64\Release\JVertex.obj
-  x64\Release\main.obj
-  x64\Release\mainwindow.obj
-  x64\Release\meshviewer.obj
-  x64\Release\PoissonRecon.obj
-  x64\Release\moc_FullFuncMeshViewer.obj
-  x64\Release\moc_MultipleMeshViewer.obj
-  x64\Release\SurfaceTrim.obj
-  x64\Release\MultipleMeshViewer.obj
-  x64\Release\PlyCloud.obj
-  x64\Release\moc_AlignResultWindow.obj
-  x64\Release\moc_alignWindow.obj
-  x64\Release\moc_checkableAction.obj
-  x64\Release\moc_interactiveMeshViewer.obj
-  x64\Release\moc_mainwindow.obj
-  x64\Release\moc_meshviewer.obj
-  Generating code
-  Finished generating code
-  MainSoftware.vcxproj -> Z:\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.exe
-Done Building Project "Z:\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" (Build target(s)).
+﻿Build started 9/5/2014 10:32:54 AM.
+     1>Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp header\holefill\Core\IO\BinaryHelper.cc header\holefill\Core\IO\IOManager.cc header\holefill\Core\IO\OMFormat.cc header\holefill\Core\IO\reader\BaseReader.cc header\holefill\Core\IO\reader\OBJReader.cc header\holefill\Core\IO\reader\OFFReader.cc header\holefill\Core\IO\reader\OMReader.cc header\holefill\Core\IO\reader\STLReader.cc header\holefill\Core\IO\writer\BaseWriter.cc header\holefill\Core\IO\writer\OBJWriter.cc header\holefill\Core\IO\writer\OFFWriter.cc header\holefill\Core\IO\writer\OMWriter.cc header\holefill\Core\IO\writer\STLWriter.cc header\holefill\Core\System\omstream.cc header\holefill\Core\Utils\BaseProperty.cc header\holefill\Core\Utils\Endian.cc header\holefill\Tools\Smoother\JacobiLaplaceSmootherT.cc header\holefill\Tools\Smoother\LaplaceSmootherT.cc header\holefill\Tools\Smoother\SmootherT.cc HoleFill.cpp HoleFiller.cc JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
+         AlignResultWindow.cpp
+         alignWindow.cpp
+         checkableAction.cpp
+         FullFuncMeshViewer.cpp
+         ANN.cpp
+         bd_fix_rad_search.cpp
+         bd_pr_search.cpp
+         bd_search.cpp
+         bd_tree.cpp
+         brute.cpp
+         kd_dump.cpp
+         kd_fix_rad_search.cpp
+         kd_pr_search.cpp
+         kd_search.cpp
+         kd_split.cpp
+         kd_tree.cpp
+         kd_util.cpp
+         perf.cpp
+         BinaryHelper.cc
+         IOManager.cc
+         Compiling...
+         OMFormat.cc
+     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=int
+         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
+         ,            _InIt=short *
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=int
+         ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
+         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
+                 ]
+     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=unsigned int
+         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
+         ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=unsigned int
+         ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
+         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
+                 ]
+         BaseReader.cc
+         OBJReader.cc
+         OFFReader.cc
+         OMReader.cc
+         STLReader.cc
+         BaseWriter.cc
+         OBJWriter.cc
+         OFFWriter.cc
+         OMWriter.cc
+         STLWriter.cc
+         omstream.cc
+         BaseProperty.cc
+         Endian.cc
+         JacobiLaplaceSmootherT.cc
+         LaplaceSmootherT.cc
+         SmootherT.cc
+         HoleFill.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=int
+         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
+         ,            _InIt=short *
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=int
+         ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
+         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
+                 ]
+     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=unsigned int
+         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
+         ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=unsigned int
+         ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
+         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
+                 ]
+         HoleFiller.cc
+         JFace.cpp
+         Compiling...
+         CmdLineParser.cpp
+         Factor.cpp
+         Geometry.cpp
+         MarchingCubes.cpp
+         PlyFile.cpp
+         Time.cpp
+         interactiveMeshViewer.cpp
+         JVertex.cpp
+         main.cpp
+         mainwindow.cpp
+     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=int
+         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
+         ,            _InIt=short *
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=int
+         ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
+         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
+                 ]
+     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=unsigned int
+         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
+         ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
+                 with
+                 [
+                     _Ty=unsigned int
+         ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
+         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
+                 ]
+         [WARNING] Assuming that the 2-ring contains all the children of interest...
+         [WARNING] Assuming that the 2-ring contains all the children of interest...
+     1>c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\SparseMatrix.inl(784): warning C4189: 'threads' : local variable is initialized but not referenced
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2148) : see reference to function template instantiation 'int SparseSymmetricMatrix<Real>::Solve<float>(const SparseSymmetricMatrix<Real> &,const Vector<float> &,int,Vector<float> &,MapReduceVector<Real> &,T2,int,bool,bool)' being compiled
+                 with
+                 [
+                     T2=float
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2148) : see reference to function template instantiation 'int SparseSymmetricMatrix<Real>::Solve<float>(const SparseSymmetricMatrix<Real> &,const Vector<float> &,int,Vector<float> &,MapReduceVector<Real> &,T2,int,bool,bool)' being compiled
+                 with
+                 [
+                     T2=float
+                 ]
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2030) : while compiling class template member function 'int Octree<2,true>::_SolveFixedDepthMatrix(int,const BSplineData<2,Real>::Integrator &,const SortedTreeNodes<true> &,Real *,int,bool,int,double,bool,int)'
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(1946) : see reference to function template instantiation 'int Octree<2,true>::_SolveFixedDepthMatrix(int,const BSplineData<2,Real>::Integrator &,const SortedTreeNodes<true> &,Real *,int,bool,int,double,bool,int)' being compiled
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(453) : while compiling class template member function 'Octree<2,true>::Octree(void)'
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\PoissonRecon.h(83) : see reference to function template instantiation 'Octree<2,true>::Octree(void)' being compiled
+                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\PoissonRecon.h(83) : see reference to class template instantiation 'Octree<2,true>' being compiled
+                 mainwindow.cpp(263) : see reference to function template instantiation 'void PoissonRecon::startRecon<2,PlyValueVertex<float>,true>(void)' being compiled
+         meshviewer.cpp
+         PoissonRecon.cpp
+         moc_FullFuncMeshViewer.cpp
+         moc_MultipleMeshViewer.cpp
+         SurfaceTrim.cpp
+         MultipleMeshViewer.cpp
+         PlyCloud.cpp
+         moc_AlignResultWindow.cpp
+         moc_alignWindow.cpp
+         moc_checkableAction.cpp
+         Compiling...
+         moc_interactiveMeshViewer.cpp
+         moc_mainwindow.cpp
+         moc_meshviewer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 GeneratedFiles\qrc_resources.cpp
+         qrc_resources.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\\MainSoftware.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib glu32.lib opengl32.lib gdi32.lib user32.lib qtmain.lib Qt5Core.lib Qt5OpenGL.lib Qt5Widgets.lib Qt5Gui.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Release\appIcon.res
+         x64\Release\AlignResultWindow.obj
+         x64\Release\alignWindow.obj
+         x64\Release\checkableAction.obj
+         x64\Release\FullFuncMeshViewer.obj
+         x64\Release\ANN.obj
+         x64\Release\bd_fix_rad_search.obj
+         x64\Release\bd_pr_search.obj
+         x64\Release\bd_search.obj
+         x64\Release\bd_tree.obj
+         x64\Release\brute.obj
+         x64\Release\kd_dump.obj
+         x64\Release\kd_fix_rad_search.obj
+         x64\Release\kd_pr_search.obj
+         x64\Release\kd_search.obj
+         x64\Release\kd_split.obj
+         x64\Release\kd_tree.obj
+         x64\Release\kd_util.obj
+         x64\Release\perf.obj
+         x64\Release\BinaryHelper.obj
+         x64\Release\IOManager.obj
+         x64\Release\OMFormat.obj
+         x64\Release\BaseReader.obj
+         x64\Release\OBJReader.obj
+         x64\Release\OFFReader.obj
+         x64\Release\OMReader.obj
+         x64\Release\STLReader.obj
+         x64\Release\BaseWriter.obj
+         x64\Release\OBJWriter.obj
+         x64\Release\OFFWriter.obj
+         x64\Release\OMWriter.obj
+         x64\Release\STLWriter.obj
+         x64\Release\omstream.obj
+         x64\Release\BaseProperty.obj
+         x64\Release\Endian.obj
+         x64\Release\JacobiLaplaceSmootherT.obj
+         x64\Release\LaplaceSmootherT.obj
+         x64\Release\SmootherT.obj
+         x64\Release\HoleFill.obj
+         x64\Release\HoleFiller.obj
+         x64\Release\JFace.obj
+         x64\Release\qrc_resources.obj
+         x64\Release\CmdLineParser.obj
+         x64\Release\Factor.obj
+         x64\Release\Geometry.obj
+         x64\Release\MarchingCubes.obj
+         x64\Release\PlyFile.obj
+         x64\Release\Time.obj
+         x64\Release\interactiveMeshViewer.obj
+         x64\Release\JVertex.obj
+         x64\Release\main.obj
+         x64\Release\mainwindow.obj
+         x64\Release\meshviewer.obj
+         x64\Release\PoissonRecon.obj
+         x64\Release\moc_FullFuncMeshViewer.obj
+         x64\Release\moc_MultipleMeshViewer.obj
+         x64\Release\SurfaceTrim.obj
+         x64\Release\MultipleMeshViewer.obj
+         x64\Release\PlyCloud.obj
+         x64\Release\moc_AlignResultWindow.obj
+         x64\Release\moc_alignWindow.obj
+         x64\Release\moc_checkableAction.obj
+         x64\Release\moc_interactiveMeshViewer.obj
+         x64\Release\moc_mainwindow.obj
+         x64\Release\moc_meshviewer.obj
+         Generating code
+         Finished generating code
+         MainSoftware.vcxproj -> C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.exe
+     1>Done Building Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:02:29.41
+Time Elapsed 00:01:28.91

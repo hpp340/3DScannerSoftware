@@ -29,7 +29,7 @@
 
 //STL
 #include <fstream>
-
+#pragma warning (disable:4267)
 // OpenMesh
 /*#include <OpenMesh/Core/System/config.hh>
 #include <OpenMesh/Core/System/omstream.hh>

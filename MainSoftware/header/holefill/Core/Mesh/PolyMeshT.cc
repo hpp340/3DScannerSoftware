@@ -38,6 +38,8 @@
 
 #define OPENMESH_POLYMESH_C
 
+#pragma warning (disable:4267)
+#pragma warning (disable:4244)
 
 //== INCLUDES =================================================================
 

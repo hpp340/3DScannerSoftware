@@ -38,7 +38,8 @@
 
 #ifndef OPENMESH_ARRAY_KERNEL_HH
 #define OPENMESH_ARRAY_KERNEL_HH
-
+#pragma warning (disable:4244)
+#pragma warning (disable:4267)
 
 //== INCLUDES =================================================================
 

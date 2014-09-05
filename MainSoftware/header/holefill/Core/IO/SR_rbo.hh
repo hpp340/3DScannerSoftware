@@ -37,7 +37,7 @@
 
 #ifndef OPENMESH_SR_RBO_HH
 #define OPENMESH_SR_RBO_HH
-
+#pragma warning (disable:4100)
 
 //== INCLUDES =================================================================
 

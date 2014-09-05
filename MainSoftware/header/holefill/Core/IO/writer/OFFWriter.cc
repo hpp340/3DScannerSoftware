@@ -40,6 +40,7 @@
 #include"../../IO/BinaryHelper.hh"
 #include"../writer/OFFWriter.hh"
 
+#pragma warning (disable:4267)
 
 //=== NAMESPACES ==============================================================
 

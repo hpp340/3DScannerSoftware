@@ -30,7 +30,7 @@
 //STL
 #define _CRT_SECURE_NO_DEPRECATE
 #include <fstream>
-
+#pragma warning (disable:4267)
 // OpenMesh
 /*#include <OpenMesh/Core/System/config.hh>
 #include <OpenMesh/Core/System/omstream.hh>

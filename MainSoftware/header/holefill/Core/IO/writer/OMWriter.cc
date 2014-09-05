@@ -28,7 +28,7 @@
 
 //#include <OpenMesh/Core/System/config.hh>
 #include"../../System/config.hh"
-
+#pragma warning (disable:4267)
 // -------------------- STL
 #if defined( OM_CC_MIPS )
 #  include <time.h>
