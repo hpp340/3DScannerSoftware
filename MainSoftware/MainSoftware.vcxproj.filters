@@ -60,9 +60,6 @@
     <Filter Include="ANN">
       <UniqueIdentifier>{773fcbdd-fe85-4b61-90eb-2f4d51f21c04}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HoleFill">
-      <UniqueIdentifier>{0cbf6666-0dca-4759-9631-cc7015462176}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -217,69 +214,6 @@
     </ClCompile>
     <ClCompile Include="Release\moc_FullFuncMeshViewer.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="HoleFill.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HoleFiller.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\IOManager.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\OMFormat.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\BinaryHelper.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\reader\BaseReader.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\reader\OBJReader.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\reader\OFFReader.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\reader\OMReader.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\reader\STLReader.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\writer\BaseWriter.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\writer\OBJWriter.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\writer\OFFWriter.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\writer\OMWriter.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\IO\writer\STLWriter.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\Utils\Endian.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\System\omstream.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Tools\Smoother\JacobiLaplaceSmootherT.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Tools\Smoother\LaplaceSmootherT.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Tools\Smoother\SmootherT.cc">
-      <Filter>HoleFill</Filter>
-    </ClCompile>
-    <ClCompile Include="header\holefill\Core\Utils\BaseProperty.cc">
-      <Filter>HoleFill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -478,15 +412,6 @@
     </ClInclude>
     <ClInclude Include="JVertex.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HoleFill.h">
-      <Filter>HoleFill</Filter>
-    </ClInclude>
-    <ClInclude Include="HoleFiller.hh">
-      <Filter>HoleFill</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenMeshUtils.hh">
-      <Filter>HoleFill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

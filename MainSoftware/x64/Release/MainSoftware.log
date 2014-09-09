@@ -1,7 +1,7 @@
-﻿Build started 9/5/2014 10:52:55 AM.
+﻿Build started 9/9/2014 5:17:56 PM.
      1>Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp header\holefill\Core\IO\BinaryHelper.cc header\holefill\Core\IO\IOManager.cc header\holefill\Core\IO\OMFormat.cc header\holefill\Core\IO\reader\BaseReader.cc header\holefill\Core\IO\reader\OBJReader.cc header\holefill\Core\IO\reader\OFFReader.cc header\holefill\Core\IO\reader\OMReader.cc header\holefill\Core\IO\reader\STLReader.cc header\holefill\Core\IO\writer\BaseWriter.cc header\holefill\Core\IO\writer\OBJWriter.cc header\holefill\Core\IO\writer\OFFWriter.cc header\holefill\Core\IO\writer\OMWriter.cc header\holefill\Core\IO\writer\STLWriter.cc header\holefill\Core\System\omstream.cc header\holefill\Core\Utils\BaseProperty.cc header\holefill\Core\Utils\Endian.cc header\holefill\Tools\Smoother\JacobiLaplaceSmootherT.cc header\holefill\Tools\Smoother\LaplaceSmootherT.cc header\holefill\Tools\Smoother\SmootherT.cc HoleFill.cpp HoleFiller.cc JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
          AlignResultWindow.cpp
          alignWindow.cpp
          checkableAction.cpp
@@ -20,91 +20,9 @@
          kd_tree.cpp
          kd_util.cpp
          perf.cpp
-         BinaryHelper.cc
-         IOManager.cc
-         Compiling...
-         OMFormat.cc
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=int
-         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-         ,            _InIt=short *
-                 ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=int
-         ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=unsigned int
-         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-         ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-                 ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=unsigned int
-         ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-                 ]
-         BaseReader.cc
-         OBJReader.cc
-         OFFReader.cc
-         OMReader.cc
-         STLReader.cc
-         BaseWriter.cc
-         OBJWriter.cc
-         OFFWriter.cc
-         OMWriter.cc
-         STLWriter.cc
-         omstream.cc
-         BaseProperty.cc
-         Endian.cc
-         JacobiLaplaceSmootherT.cc
-         LaplaceSmootherT.cc
-         SmootherT.cc
-         HoleFill.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=int
-         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-         ,            _InIt=short *
-                 ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=int
-         ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=unsigned int
-         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-         ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-                 ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=unsigned int
-         ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-                 ]
-         HoleFiller.cc
          JFace.cpp
-         Compiling...
          CmdLineParser.cpp
+         Compiling...
          Factor.cpp
          Geometry.cpp
          MarchingCubes.cpp
@@ -114,36 +32,6 @@
          JVertex.cpp
          main.cpp
          mainwindow.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
-                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<short*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=int
-         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-         ,            _InIt=short *
-                 ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_fundamentals.inl(44) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>,int,OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=int
-         ,            _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<short>>>
-         ,            _Fn2=OpenMesh::IO::FunctorRestore<OpenMesh::IO::binary<std::vector<short,std::allocator<short>>>::elem_type>
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(20): warning C4267: '=' : conversion from 'size_t' to 'unsigned int', possible loss of data
-                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\numeric(31) : see reference to function template instantiation '_Ty std::_Accumulate<const std::basic_string<char,std::char_traits<char>,std::allocator<char>>*,_Ty,_Fn2>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=unsigned int
-         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-         ,            _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
-                 ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\holefill\core\io\SR_binary_vector_of_string.inl(24) : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>,unsigned int,OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>::Sum>(_InIt,_InIt,_Ty,_Fn2)' being compiled
-                 with
-                 [
-                     _Ty=unsigned int
-         ,            _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>>
-         ,            _Fn2=OpenMesh::IO::binary<std::vector<std::string,std::allocator<std::string>>>::Sum
-                 ]
          [WARNING] Assuming that the 2-ring contains all the children of interest...
          [WARNING] Assuming that the 2-ring contains all the children of interest...
      1>c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\SparseMatrix.inl(784): warning C4189: 'threads' : local variable is initialized but not referenced
@@ -162,7 +50,7 @@
                  c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(453) : while compiling class template member function 'Octree<2,true>::Octree(void)'
                  c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\PoissonRecon.h(83) : see reference to function template instantiation 'Octree<2,true>::Octree(void)' being compiled
                  c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\PoissonRecon.h(83) : see reference to class template instantiation 'Octree<2,true>' being compiled
-                 mainwindow.cpp(263) : see reference to function template instantiation 'void PoissonRecon::startRecon<2,PlyValueVertex<float>,true>(void)' being compiled
+                 mainwindow.cpp(255) : see reference to function template instantiation 'void PoissonRecon::startRecon<2,PlyValueVertex<float>,true>(void)' being compiled
          meshviewer.cpp
          PoissonRecon.cpp
          moc_FullFuncMeshViewer.cpp
@@ -173,12 +61,14 @@
          moc_AlignResultWindow.cpp
          moc_alignWindow.cpp
          moc_checkableAction.cpp
-         Compiling...
          moc_interactiveMeshViewer.cpp
+         Compiling...
          moc_mainwindow.cpp
          moc_meshviewer.cpp
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 GeneratedFiles\qrc_resources.cpp
          qrc_resources.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _WINDOWS /D UNICODE /D WIN32 /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /l"0x0409" /nologo /fo"x64\Release\appIcon.res" appIcon.rc 
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\\MainSoftware.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib glu32.lib opengl32.lib gdi32.lib user32.lib qtmain.lib Qt5Core.lib Qt5OpenGL.lib Qt5Widgets.lib Qt5Gui.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Release\appIcon.res
          x64\Release\AlignResultWindow.obj
@@ -199,27 +89,6 @@
          x64\Release\kd_tree.obj
          x64\Release\kd_util.obj
          x64\Release\perf.obj
-         x64\Release\BinaryHelper.obj
-         x64\Release\IOManager.obj
-         x64\Release\OMFormat.obj
-         x64\Release\BaseReader.obj
-         x64\Release\OBJReader.obj
-         x64\Release\OFFReader.obj
-         x64\Release\OMReader.obj
-         x64\Release\STLReader.obj
-         x64\Release\BaseWriter.obj
-         x64\Release\OBJWriter.obj
-         x64\Release\OFFWriter.obj
-         x64\Release\OMWriter.obj
-         x64\Release\STLWriter.obj
-         x64\Release\omstream.obj
-         x64\Release\BaseProperty.obj
-         x64\Release\Endian.obj
-         x64\Release\JacobiLaplaceSmootherT.obj
-         x64\Release\LaplaceSmootherT.obj
-         x64\Release\SmootherT.obj
-         x64\Release\HoleFill.obj
-         x64\Release\HoleFiller.obj
          x64\Release\JFace.obj
          x64\Release\qrc_resources.obj
          x64\Release\CmdLineParser.obj
@@ -252,4 +121,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:01:27.04
+Time Elapsed 00:01:04.65

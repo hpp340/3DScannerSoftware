@@ -319,27 +319,6 @@
     <ClCompile Include="header\ANN\kd_tree.cpp" />
     <ClCompile Include="header\ANN\kd_util.cpp" />
     <ClCompile Include="header\ANN\perf.cpp" />
-    <ClCompile Include="header\holefill\Core\IO\BinaryHelper.cc" />
-    <ClCompile Include="header\holefill\Core\IO\IOManager.cc" />
-    <ClCompile Include="header\holefill\Core\IO\OMFormat.cc" />
-    <ClCompile Include="header\holefill\Core\IO\reader\BaseReader.cc" />
-    <ClCompile Include="header\holefill\Core\IO\reader\OBJReader.cc" />
-    <ClCompile Include="header\holefill\Core\IO\reader\OFFReader.cc" />
-    <ClCompile Include="header\holefill\Core\IO\reader\OMReader.cc" />
-    <ClCompile Include="header\holefill\Core\IO\reader\STLReader.cc" />
-    <ClCompile Include="header\holefill\Core\IO\writer\BaseWriter.cc" />
-    <ClCompile Include="header\holefill\Core\IO\writer\OBJWriter.cc" />
-    <ClCompile Include="header\holefill\Core\IO\writer\OFFWriter.cc" />
-    <ClCompile Include="header\holefill\Core\IO\writer\OMWriter.cc" />
-    <ClCompile Include="header\holefill\Core\IO\writer\STLWriter.cc" />
-    <ClCompile Include="header\holefill\Core\System\omstream.cc" />
-    <ClCompile Include="header\holefill\Core\Utils\BaseProperty.cc" />
-    <ClCompile Include="header\holefill\Core\Utils\Endian.cc" />
-    <ClCompile Include="header\holefill\Tools\Smoother\JacobiLaplaceSmootherT.cc" />
-    <ClCompile Include="header\holefill\Tools\Smoother\LaplaceSmootherT.cc" />
-    <ClCompile Include="header\holefill\Tools\Smoother\SmootherT.cc" />
-    <ClCompile Include="HoleFill.cpp" />
-    <ClCompile Include="HoleFiller.cc" />
     <ClCompile Include="JFace.cpp" />
     <ClCompile Include="GeneratedFiles\qrc_resources.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -2139,10 +2118,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_CONSOLE -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_CRT_SECURE_NO_WARNINGS -D_USE_MATH_DEFINES  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\release" "-I$(QTDIR)\mkspecs\win32-msvc2013"</Command>
     </CustomBuild>
-    <ClInclude Include="HoleFill.h" />
-    <ClInclude Include="HoleFiller.hh" />
     <ClInclude Include="JVertex.h" />
-    <ClInclude Include="OpenMeshUtils.hh" />
     <ClInclude Include="SurfaceTrim.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -45,7 +45,6 @@ private slots:
 	void setModeWireframe();
 	void startPoissonRecon();
 	void startTrim();
-	void startHoleFill();
 
 private:
 
@@ -64,7 +63,6 @@ private:
 	// edit action
 	QAction * reconAction;
 	QAction * trimAction;
-	QAction * holefillAction;
 
 	// control draw mode
 	QAction * viewPoints;
