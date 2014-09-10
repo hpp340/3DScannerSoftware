@@ -215,6 +215,9 @@
     <ClCompile Include="Release\moc_FullFuncMeshViewer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="sensorWindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -412,6 +415,9 @@
     </ClInclude>
     <ClInclude Include="JVertex.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sensorWindow.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

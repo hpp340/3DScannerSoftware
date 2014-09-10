@@ -2,6 +2,7 @@
 #include "alignWindow.h"
 #include "PoissonRecon.h"
 #include "SurfaceTrim.h"
+#include "sensorWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -123,6 +124,11 @@ void MainWindow::createActions()
 	deleteAction->setIcon(QIcon(":/icons/images/delete.png"));
 	deleteAction->setStatusTip(tr("Delete Selected Points and Faces"));
 	connect(deleteAction, SIGNAL(triggered()), viewer, SLOT(deleteSelected()));
+
+	sensorStart = new QAction(tr("Start PrimeSense Sensor"), this);
+	sensorStart->setIcon(QIcon(":/icons/images/sensor.png"));
+	sensorStart->setStatusTip(tr("Start PrimeSense Sensor"));
+	connect(sensorStart, SIGNAL(triggered()), this, SLOT(startSensor()));
 
 	viewPoints = new QAction(tr("&Points"), this);
 	viewPoints->setIcon(QIcon(":/icons/images/points.png"));
@@ -306,4 +312,10 @@ void MainWindow::setModePoints()
 void MainWindow::setModeWireframe()
 {
 	viewWireframe->setChecked(true);
+}
+
+void MainWindow::startSensor()
+{
+	sensorWindow * showSensorWindow = new sensorWindow();
+	showSensorWindow->show();
 }

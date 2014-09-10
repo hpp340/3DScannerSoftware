@@ -100,8 +100,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL;C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include;C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets;C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui;$(IncludePath)</IncludePath>
-    <LibraryPath>lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files\OpenNI2\Include;C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL;C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include;C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets;C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\OpenNI2\Lib;lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -164,7 +164,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glu32.lib;opengl32.lib;gdi32.lib;user32.lib;qtmain.lib;Qt5Core.lib;Qt5OpenGL.lib;Qt5Widgets.lib;Qt5Gui.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glu32.lib;opengl32.lib;gdi32.lib;user32.lib;qtmain.lib;Qt5Core.lib;Qt5OpenGL.lib;Qt5Widgets.lib;Qt5Gui.lib;SOIL.lib;OpenNI2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;$(QTDIR)\lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type=%27win32%27 name=%27Microsoft.Windows.Common-Controls%27 version=%276.0.0.0%27 publicKeyToken=%276595b64144ccf1df%27 language=%27*%27 processorArchitecture=%27*%27" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -350,6 +350,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="sensorWindow.cpp" />
     <ClCompile Include="SurfaceTrim.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -2119,6 +2120,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_CONSOLE -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_CRT_SECURE_NO_WARNINGS -D_USE_MATH_DEFINES  "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtOpenGL" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtCore" "-I.\release" "-I$(QTDIR)\mkspecs\win32-msvc2013"</Command>
     </CustomBuild>
     <ClInclude Include="JVertex.h" />
+    <ClInclude Include="sensorWindow.h" />
     <ClInclude Include="SurfaceTrim.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

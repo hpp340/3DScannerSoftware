@@ -43,8 +43,12 @@ private:
 private slots:
 	void setModePoints();
 	void setModeWireframe();
+	// start poisson recon
 	void startPoissonRecon();
+	// start trim the reconstructed 3d model
 	void startTrim();
+	// start the PrimeSense sensor
+	void startSensor();
 
 private:
 
@@ -77,6 +81,8 @@ private:
 	checkableAction * selectAction;
 	QAction * clearAction;
 	QAction * deleteAction;
+
+	QAction * sensorStart;
 
     // menus
     QMenu * fileMenu;

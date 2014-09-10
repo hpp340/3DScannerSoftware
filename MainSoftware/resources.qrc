@@ -24,5 +24,6 @@
         <file>images/delete.png</file>
         <file>images/texture.png</file>
         <file>images/holefilling.png</file>
+        <file>images/sensor.png</file>
     </qresource>
 </RCC>
