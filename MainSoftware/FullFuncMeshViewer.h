@@ -1,3 +1,9 @@
+/* Full functional mesh viewer
+* added select & delete points and faces function
+* Author: Jerome Jiang
+* Date: 8/6/2014
+* Update: 8/10/2014
+*/
 #pragma once
 #include "meshviewer.h"
 

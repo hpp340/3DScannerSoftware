@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[13];
-    char stringdata[160];
+    char stringdata[158];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,12 +41,12 @@ QT_MOC_LITERAL(8, 87, 13),
 QT_MOC_LITERAL(9, 101, 16),
 QT_MOC_LITERAL(10, 118, 17),
 QT_MOC_LITERAL(11, 136, 9),
-QT_MOC_LITERAL(12, 146, 13)
+QT_MOC_LITERAL(12, 146, 11)
     },
     "MainWindow\0showAlignWindow\0\0showPoints\0"
     "showWireframe\0showFlatlines\0showFlat\0"
     "showSmooth\0setModePoints\0setModeWireframe\0"
-    "startPoissonRecon\0startTrim\0startHoleFill"
+    "startPoissonRecon\0startTrim\0startSensor"
 };
 #undef QT_MOC_LITERAL
 
@@ -107,7 +107,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->setModeWireframe(); break;
         case 8: _t->startPoissonRecon(); break;
         case 9: _t->startTrim(); break;
-        case 10: _t->startHoleFill(); break;
+        case 10: _t->startSensor(); break;
         default: ;
         }
     }
