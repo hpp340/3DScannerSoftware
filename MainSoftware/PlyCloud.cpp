@@ -31,6 +31,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNor
 	vertex_num = (int)newVertexList.size();
 	deleted_vertex_list.assign(vertex_num, false);
 	cleanMesh();
+	normalizeMesh();
 }
 
 // overload constructor
@@ -45,7 +46,11 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 		newVertexIdList.push_back((int)i);
 	}
 	vertProperty.assign(7, VertexInfo::NONE);
+	vertProperty[0] = VertexInfo::POSX;
+	vertProperty[1] = VertexInfo::POSY;
+	vertProperty[2] = VertexInfo::POSZ;
 	vertex_num = (int)newVertexList.size();
+	normalizeMesh();
 	deleted_vertex_list.assign(vertex_num, false);
 }
 
@@ -75,6 +80,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFa
 	deleted_face_list.assign(face_num, false);
 	computeFaceNormal();
 	computeVertexNormal();
+	normalizeMesh();
 }
 
 PlyCloud::~PlyCloud()

@@ -120,12 +120,15 @@ void MeshViewer::setDefaultDrawMode()
 
 void MeshViewer::acceptMesh(PlyCloud * outerMesh)
 {
-	std::cout << "acceptMesh" << std::endl;
+	std::cout << "MeshViewer:acceptMesh" << std::endl;
 	free(pointCloud);
 	pointCloud = outerMesh;
 	getBoundingBox();
+	setDefaultDrawMode();
 	isMeshLoaded = true;
+	std::cout << "updateGL" << std::endl;
 	updateGL();
+	std::cout << "updateGL333" << std::endl;
 }
 
 void MeshViewer::setDrawMode(DRAW_MODE _drawmode)

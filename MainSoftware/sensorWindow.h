@@ -3,6 +3,8 @@
 #include "SensorViewer.h"
 #include <QVboxLayout>
 #include <OpenNI.h>
+#include <QToolbar>
+#include <QMessageBox>
 #include "header\PlyCloud.h"
 
 class sensorWindow :
@@ -17,13 +19,14 @@ private:
 	void initSensorWindow();
 	void startSensor();
 	// reconstruct point cloud from depth stream
-	openni::Status reconPointCloud();
+	// void reconPointCloud();
 
 private:
-	SensorViewer * sensorViewer;
+	MeshViewer * sensorViewer;
 	// reconstructed point cloud from depth stream
 	PlyCloud * scannedMesh;
-	openni::VideoStream depthStream, rgbStream;
+	QToolBar * sensorTB;
+	//openni::VideoStream depthStream;// , rgbStream;
 	int depthWidth, depthHeight, rgbWidth, rgbHeight;
 	int videoWidth, videoHeight;
 

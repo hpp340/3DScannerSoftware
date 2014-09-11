@@ -95,6 +95,7 @@ private:
 	QToolBar * editToolbar;
 	QToolBar * viewToolbar;
 	QToolBar * deleteToolbar;
+	QToolBar * extraToolbar;
 
 	// mesh viewer
 	FullFuncMeshViewer * viewer;

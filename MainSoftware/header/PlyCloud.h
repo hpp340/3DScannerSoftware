@@ -97,7 +97,7 @@ private:
 	CPoint crossProduct(CPoint p1, CPoint p2);
 	// normalize mesh
 	void normalizeMesh();
-	// clean mesh
+	// clean mesh - delete those vertices who dont have normal
 	void cleanMesh();
 
 public:

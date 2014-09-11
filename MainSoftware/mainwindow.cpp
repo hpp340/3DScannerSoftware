@@ -214,6 +214,9 @@ void MainWindow::createToolbar()
 	deleteToolbar->addAction(selectAction);
 	deleteToolbar->addAction(clearAction);
 	deleteToolbar->addAction(deleteAction);
+
+	extraToolbar = addToolBar(tr("E&xtra Tools"));
+	extraToolbar->addAction(sensorStart);
 }
 
 void MainWindow::createMenus()
