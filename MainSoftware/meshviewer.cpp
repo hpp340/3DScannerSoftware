@@ -106,6 +106,8 @@ void MeshViewer::loadFile(const char * meshfile, string fileExt)
 void MeshViewer::setDefaultDrawMode()
 {
 	int faceNumber = pointCloud->get_face_num();
+	std::cout << "facenumber: " << faceNumber << std::endl;
+	//getchar();
 	if (faceNumber > 0)
 	{
 		meshDrawMode = DRAW_MODE::WIREFRAME;

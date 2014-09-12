@@ -50,6 +50,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 	vertProperty[1] = VertexInfo::POSY;
 	vertProperty[2] = VertexInfo::POSZ;
 	vertex_num = (int)newVertexList.size();
+	face_num = 0;
 	normalizeMesh();
 	deleted_vertex_list.assign(vertex_num, false);
 }
