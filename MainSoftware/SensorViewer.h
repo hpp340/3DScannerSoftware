@@ -6,6 +6,7 @@
 
 #pragma once
 #include "meshviewer.h"
+#include "OpenGLHeader.h"
 #include <OpenNI.h>
 
 class SensorViewer :
@@ -14,7 +15,7 @@ class SensorViewer :
 	Q_OBJECT
 public:
 
-	SensorViewer(openni::VideoStream &depth, openni::VideoStream &color);
+	SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter);
 	~SensorViewer();
 
 	void run();
@@ -35,6 +36,8 @@ protected:
 
 	openni::VideoFrameRef m_depthFrame;
 	openni::VideoFrameRef m_rgbFrame;
+
+	bool m_rgbToDepthRegConverter;
 
 private:
 	int videoWidth;

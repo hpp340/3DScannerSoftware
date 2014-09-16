@@ -1,10 +1,11 @@
 #include "SensorViewer.h"
 #include <QTimer>
 
-SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color) :
+SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 {
 	videoWidth = videoHeight = 0;
+	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
 }
 
 SensorViewer::~SensorViewer()
@@ -18,24 +19,12 @@ void SensorViewer::initSensorViewer()
 
 	if (m_depthStream.isValid() && m_rgbStream.isValid())
 	{
-		std::cout << "both valid" << std::endl;
 		depthMode = m_depthStream.getVideoMode();
-		std::cout << "both valid 1" << std::endl;
-
 		rgbMode = m_rgbStream.getVideoMode();
-		std::cout << "both valid 2" << std::endl;
-
 		int depthWidth = depthMode.getResolutionX();
-		std::cout << "both valid 3" << std::endl;
-
 		int depthHeight = depthMode.getResolutionY();
-		std::cout << "both valid 4" << std::endl;
-
 		int rgbWidth = rgbMode.getResolutionX();
-		std::cout << "both valid 5" << std::endl;
-
 		int rgbHeight = rgbMode.getResolutionY();
-		std::cout << "both valid 233" << std::endl;
 
 		if ((depthWidth == rgbWidth) && (depthHeight == rgbHeight))
 		{
@@ -103,7 +92,7 @@ void SensorViewer::updateDisplay()
 
 void SensorViewer::paintGL()
 {
-	int changedIdx;
+	//int changedIdx;
 	std::cout << "SensorViewer: paintGL..." << std::endl;
 	//openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIdx);
 	//std::cout << "3333333" << std::endl;
@@ -124,52 +113,125 @@ void SensorViewer::paintGL()
 	//	printf("Error in wait\n");
 	//}
 
-	openni::Status rc = m_depthStream.readFrame(&m_depthFrame);
 	const openni::DepthPixel * depthCoorArray = NULL;
-	//m_rgbStream.readFrame(&rgbFrame);
-	if (rc == openni::STATUS_OK)
+	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)
 	{
 		depthCoorArray = static_cast<const openni::DepthPixel*>(m_depthFrame.getData());
 	}
-
-	//int numPixels = videoWidth * videoHeight;
-	std::vector<CPoint> vertexList;
-
-	if (depthCoorArray != NULL)
+	else
 	{
-		for (int y = 0; y < m_depthFrame.getHeight(); ++y)
+		std::cout << "SensorViewer: Can't read depth frame. Return." << std::endl;
+		return;
+	}
+
+	const openni::RGB888Pixel * rgbCoorArray = NULL;
+	if (m_rgbStream.readFrame(&m_rgbFrame) == openni::STATUS_OK)
+	{	
+		std::cout << "SensorViewer: Use RGB camera and Depth camera!" << std::endl;
+		std::vector<CPoint> vertexList;
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glPushMatrix();
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadMatrixd(matProjection);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadMatrixd(matModelView);
+
+		if (isLightOn)
 		{
-			for (int x = 0; x < m_depthFrame.getWidth(); ++x)
+			glEnable(GL_LIGHTING);
+		}
+		else
+		{
+			glDisable(GL_LIGHTING);
+		}
+
+		rgbCoorArray = static_cast<const openni::RGB888Pixel*>(m_rgbFrame.getData());
+		for (int y = 0; y < m_depthFrame.getHeight(); y++)
+		{
+			for (int x = 0; x < m_depthFrame.getWidth(); x++)
 			{
 				int idx = x + y * m_depthFrame.getWidth();
 				const openni::DepthPixel & zValue = depthCoorArray[idx];
 				if (zValue != 0)
 				{
-					float fx, fy, fz;
-					openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-					CPoint newVertex((double)fx, (double)fy, (double)fz);
-					vertexList.push_back(newVertex);
+					if (m_rgbToDepthRegConverter)
+					{
+						int colorX, colorY;
+						if (openni::CoordinateConverter::convertDepthToColor(m_depthStream, m_rgbStream, x, y, zValue, &colorX, &colorY) == openni::STATUS_OK)
+						{
+							if (colorX >= 0 && colorX<m_depthFrame.getWidth() && colorY >=0 && colorY<m_depthFrame.getHeight())
+							{
+								const openni::RGB888Pixel & colorValue = rgbCoorArray[colorX + colorY * m_depthFrame.getWidth()];
+
+								float fx, fy, fz;
+								openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+
+								std::cout << "SensorViewer: start drawing..." << std::endl;
+								glPointSize(10);
+								glColor3ub(colorValue.r, colorValue.g, colorValue.b);
+								glBegin(GL_POINTS);
+								glVertex3f(fx, fy, fz);
+								glEnd();
+
+								CPoint newVertex((double)fx, (double)fy, (double)fz);
+								vertexList.push_back(newVertex);
+							}
+						}
+					}
+					else
+					{
+						const openni::RGB888Pixel &colorValue = rgbCoorArray[idx];
+
+						float fx, fy, fz;
+						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+
+						glPointSize(10);
+						glColor3ub(colorValue.r, colorValue.g, colorValue.b);
+						glBegin(GL_POINTS);
+						glVertex3f(fx, fy, fz);
+						glEnd();
+
+						CPoint newVertex((double)fx, (double)fy, (double)fz);
+						vertexList.push_back(newVertex);
+					}
 				}
 			}
 		}
+		glPopMatrix();
 	}
+	// no rgb frame, draw the scene just without color
+	else
+	{
+		//int numPixels = videoWidth * videoHeight;
+		std::vector<CPoint> vertexList;
 
-	//for (size_t i = 0; i < vertexList.size(); i++)
-	//{
-	//	CPoint v = vertexList[i];
-	//	std::cout << v[0] << " " << v[1] << " " << v[2] << std::endl;
-	//}
+		if (depthCoorArray != NULL)
+		{
+			for (int y = 0; y < m_depthFrame.getHeight(); ++y)
+			{
+				for (int x = 0; x < m_depthFrame.getWidth(); ++x)
+				{
+					int idx = x + y * m_depthFrame.getWidth();
+					const openni::DepthPixel & zValue = depthCoorArray[idx];
+					if (zValue != 0)
+					{
+						float fx, fy, fz;
+						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+						CPoint newVertex((double)fx, (double)fy, (double)fz);
+						vertexList.push_back(newVertex);
+					}
+				}
+			}
+		}
 
-	pointCloud = new PlyCloud(vertexList);
-	setDefaultDrawMode();
-	std::cout << "SensorViewer: start drawing..." << std::endl;
+		pointCloud = new PlyCloud(vertexList);
+		setDefaultDrawMode();
+		std::cout << "SensorViewer: start drawing..." << std::endl;
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glPushMatrix();
-	drawMesh();
-	glPopMatrix();
-	//sensorViewer->acceptMesh(scannedMesh);
-	//getchar();
-	//return openni::STATUS_OK;
-
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glPushMatrix();
+		drawMesh();
+		glPopMatrix();
+	}
 }

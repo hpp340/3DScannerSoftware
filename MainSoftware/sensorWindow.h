@@ -15,6 +15,8 @@ public:
 	sensorWindow();
 	~sensorWindow();
 
+	bool isRgbToDepthColorConverter() { return rgbToDepthCoordConverter; }
+
 private:
 	void initSensorWindow();
 	openni::Status startSensor();
@@ -28,10 +30,7 @@ private:
 	QToolBar * sensorTB;
 	openni::VideoStream depthStream, rgbStream;
 	openni::Device device;
-
-	int depthWidth, depthHeight, rgbWidth, rgbHeight;
-	int videoWidth, videoHeight;
-
+	bool rgbToDepthCoordConverter;
 	openni::VideoFrameRef depthFrame, rgbFrame;
 };
 
