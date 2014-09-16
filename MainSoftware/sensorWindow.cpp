@@ -3,9 +3,8 @@
 sensorWindow::sensorWindow()
 {
 	std::cout << "sensorWindow:sensorWindow constructor..." << std::endl;
-	sensorViewer = new SensorViewer();
+	//sensorViewer = new SensorViewer();
 	depthWidth = depthHeight = rgbWidth = rgbHeight = videoWidth = videoHeight = 0;
-	initSensorWindow();
 	startSensor();
 }
 
@@ -30,10 +29,9 @@ openni::Status sensorWindow::startSensor()
 {
 	std::cout << "sensorWindow: startSensor..." << std::endl;
 	openni::Status rc = openni::STATUS_OK;
-	openni::Device device;
 	// video stream must be defined as local variables
 	// bugs will be reported if they are defined as class members
-	openni::VideoStream depthStream, rgbStream;
+
 	const char* deviceURI = openni::ANY_DEVICE;
 
 	rc = openni::OpenNI::initialize();
@@ -104,99 +102,128 @@ openni::Status sensorWindow::startSensor()
 		return openni::STATUS_ERROR;
 	}
 	std::cout << "sensorWindow: method startSensor() execs successfully." << std::endl;
-	reconPointCloud(depthStream, rgbStream);
+	//reconPointCloud(depthStream, rgbStream);
+	sensorViewer = new SensorViewer(depthStream, rgbStream);
+	initSensorWindow();
+	sensorViewer->initSensorViewer();
+	sensorViewer->run();
+
 	return openni::STATUS_OK;
 }
 
-void sensorWindow::reconPointCloud(openni::VideoStream &m_depthStream, openni::VideoStream &m_rgbStream)
-{
-	std::cout << "sensorWindow: reconPointCloud" << std::endl;
-	openni::VideoMode depthMode, rgbMode;
-
-	if (m_depthStream.isValid() && m_rgbStream.isValid())
-	{
-		depthMode = m_depthStream.getVideoMode();
-		rgbMode = m_rgbStream.getVideoMode();
-
-		depthWidth = depthMode.getResolutionX();
-		depthHeight = depthMode.getResolutionY();
-		rgbWidth = rgbMode.getResolutionX();
-		rgbHeight = rgbMode.getResolutionY();
-
-		if ((depthWidth == rgbWidth) && (depthHeight == rgbHeight))
-		{
-			videoWidth = depthWidth;
-			videoHeight = videoHeight;
-		}
-		else
-		{
-			std::cout << "sensorWindow: Error: Rgb and depth stream expected to be the same resolution." << std::endl;
-			std::cout << "depthWidth " << depthWidth << " depthHeight " << depthHeight << std::endl;
-			std::cout << "rgbWidth " << rgbWidth << " rgbHeight " << rgbHeight << std::endl;
-
-			//return openni::STATUS_ERROR;
-		}
-	}
-	else if (m_depthStream.isValid())
-	{
-		depthMode = m_depthStream.getVideoMode();
-		depthWidth = depthMode.getResolutionX();
-		depthHeight = depthMode.getResolutionY();
-		videoWidth = depthWidth;
-		videoHeight = videoHeight;
-	}
-	else if (m_rgbStream.isValid())
-	{
-		rgbMode = m_rgbStream.getVideoMode();
-		rgbWidth = rgbMode.getResolutionX();
-		rgbHeight = rgbMode.getResolutionY();
-		videoWidth = rgbWidth;
-		videoHeight = rgbHeight;
-	}
-	else
-	{
-		std::cout << "sensorWindow: Error: No Valid Video stream..." << std::endl;
-		//return openni::STATUS_ERROR;
-	}
-
-	openni::Status rc = m_depthStream.readFrame(&depthFrame);
-	const openni::DepthPixel * depthCoorArray = NULL;
-	m_rgbStream.readFrame(&rgbFrame);
-	if (rc == openni::STATUS_OK)
-	{
-		depthCoorArray = static_cast<const openni::DepthPixel*>(depthFrame.getData());
-	}
-
-	//int numPixels = videoWidth * videoHeight;
-	std::vector<CPoint> vertexList;
-
-	if (depthCoorArray != NULL)
-	{
-		for (int y = 0; y < depthFrame.getHeight(); ++y)
-		{
-			for (int x = 0; x < depthFrame.getWidth(); ++x)
-			{
-				int idx = x + y * depthFrame.getWidth();
-				const openni::DepthPixel & zValue = depthCoorArray[idx];
-				if (zValue != 0)
-				{
-					float fx, fy, fz;
-					openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-					CPoint newVertex((double)fx, (double)fy, (double)fz);
-					vertexList.push_back(newVertex);
-				}
-			}
-		}
-	}
-
-	//for (size_t i = 0; i < vertexList.size(); i++)
-	//{
-	//	CPoint v = vertexList[i];
-	//	std::cout << v[0] << " " << v[1] << " " << v[2] << std::endl;
-	//}
-
-	scannedMesh = new PlyCloud(vertexList);
-	sensorViewer->acceptMesh(scannedMesh);
-	//getchar();
-	//return openni::STATUS_OK;
-}
+//void sensorWindow::reconPointCloud(openni::VideoStream &m_depthStream, openni::VideoStream &m_rgbStream)
+//{
+//	std::cout << "sensorWindow: reconPointCloud" << std::endl;
+//	//openni::VideoMode depthMode, rgbMode;
+//
+//	//if (m_depthStream.isValid() && m_rgbStream.isValid())
+//	//{
+//	//	depthMode = m_depthStream.getVideoMode();
+//	//	rgbMode = m_rgbStream.getVideoMode();
+//
+//	//	depthWidth = depthMode.getResolutionX();
+//	//	depthHeight = depthMode.getResolutionY();
+//	//	rgbWidth = rgbMode.getResolutionX();
+//	//	rgbHeight = rgbMode.getResolutionY();
+//
+//	//	if ((depthWidth == rgbWidth) && (depthHeight == rgbHeight))
+//	//	{
+//	//		videoWidth = depthWidth;
+//	//		videoHeight = videoHeight;
+//	//	}
+//	//	else
+//	//	{
+//	//		std::cout << "sensorWindow: Error: Rgb and depth stream expected to be the same resolution." << std::endl;
+//	//		std::cout << "depthWidth " << depthWidth << " depthHeight " << depthHeight << std::endl;
+//	//		std::cout << "rgbWidth " << rgbWidth << " rgbHeight " << rgbHeight << std::endl;
+//
+//	//		//return openni::STATUS_ERROR;
+//	//	}
+//	//}
+//	//else if (m_depthStream.isValid())
+//	//{
+//	//	depthMode = m_depthStream.getVideoMode();
+//	//	depthWidth = depthMode.getResolutionX();
+//	//	depthHeight = depthMode.getResolutionY();
+//	//	videoWidth = depthWidth;
+//	//	videoHeight = videoHeight;
+//	//}
+//	//else if (m_rgbStream.isValid())
+//	//{
+//	//	rgbMode = m_rgbStream.getVideoMode();
+//	//	rgbWidth = rgbMode.getResolutionX();
+//	//	rgbHeight = rgbMode.getResolutionY();
+//	//	videoWidth = rgbWidth;
+//	//	videoHeight = rgbHeight;
+//	//}
+//	//else
+//	//{
+//	//	std::cout << "sensorWindow: Error: No Valid Video stream..." << std::endl;
+//	//	//return openni::STATUS_ERROR;
+//	//}
+//
+//	//openni::VideoStream ** streams;
+//	//streams = new openni::VideoStream*[2];
+//	//streams[0] = &m_depthStream;
+//	//streams[1] = &m_rgbStream;
+//
+//	//int changedIndex;
+//	//openni::Status rc = openni::OpenNI::waitForAnyStream(streams, 2, &changedIndex);
+//
+//	//if (rc != openni::STATUS_OK)
+//	//{
+//	//	printf("Wait failed\n");
+//	//	return;
+//	//}
+//
+//	//switch (changedIndex)
+//	//{
+//	//case 0:
+//	//	m_depthStream.readFrame(&depthFrame); break;
+//	//case 1:
+//	//	m_rgbStream.readFrame(&rgbFrame); break;
+//	//default:
+//	//	printf("Error in wait\n");
+//	//}
+//
+//	////openni::Status rc = m_depthStream.readFrame(&depthFrame);
+//	//const openni::DepthPixel * depthCoorArray = NULL;
+//	////m_rgbStream.readFrame(&rgbFrame);
+//	//if (rc == openni::STATUS_OK)
+//	//{
+//	//	depthCoorArray = static_cast<const openni::DepthPixel*>(depthFrame.getData());
+//	//}
+//
+//	////int numPixels = videoWidth * videoHeight;
+//	//std::vector<CPoint> vertexList;
+//
+//	//if (depthCoorArray != NULL)
+//	//{
+//	//	for (int y = 0; y < depthFrame.getHeight(); ++y)
+//	//	{
+//	//		for (int x = 0; x < depthFrame.getWidth(); ++x)
+//	//		{
+//	//			int idx = x + y * depthFrame.getWidth();
+//	//			const openni::DepthPixel & zValue = depthCoorArray[idx];
+//	//			if (zValue != 0)
+//	//			{
+//	//				float fx, fy, fz;
+//	//				openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+//	//				CPoint newVertex((double)fx, (double)fy, (double)fz);
+//	//				vertexList.push_back(newVertex);
+//	//			}
+//	//		}
+//	//	}
+//	//}
+//
+//	////for (size_t i = 0; i < vertexList.size(); i++)
+//	////{
+//	////	CPoint v = vertexList[i];
+//	////	std::cout << v[0] << " " << v[1] << " " << v[2] << std::endl;
+//	////}
+//
+//	//scannedMesh = new PlyCloud(vertexList);
+//	//sensorViewer->acceptMesh(scannedMesh);
+//	//getchar();
+//	//return openni::STATUS_OK;
+//}

@@ -6,17 +6,41 @@
 
 #pragma once
 #include "meshviewer.h"
+#include <OpenNI.h>
 
 class SensorViewer :
 	public MeshViewer
 {
 	Q_OBJECT
 public:
-	SensorViewer();
+
+	SensorViewer(openni::VideoStream &depth, openni::VideoStream &color);
 	~SensorViewer();
+
+	void run();
 
 protected:
 	// overwrite because we don't need axis in this scene
 	void drawAxis();
+	// overwrite
+	void paintGL();
+
+public:
+	void initSensorViewer();
+
+protected:
+	openni::VideoStream & m_depthStream;
+	openni::VideoStream & m_rgbStream;
+	openni::VideoStream** m_streams;
+
+	openni::VideoFrameRef m_depthFrame;
+	openni::VideoFrameRef m_rgbFrame;
+
+private:
+	int videoWidth;
+	int videoHeight;
+
+private slots:
+	void updateDisplay();
 };
 

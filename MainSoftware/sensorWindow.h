@@ -19,13 +19,16 @@ private:
 	void initSensorWindow();
 	openni::Status startSensor();
 	// reconstruct point cloud from depth stream
-	void reconPointCloud(openni::VideoStream &, openni::VideoStream &);
+	//void reconPointCloud(openni::VideoStream &, openni::VideoStream &);
 
 private:
 	SensorViewer * sensorViewer;
 	// reconstructed point cloud from depth stream
 	PlyCloud * scannedMesh;
 	QToolBar * sensorTB;
+	openni::VideoStream depthStream, rgbStream;
+	openni::Device device;
+
 	int depthWidth, depthHeight, rgbWidth, rgbHeight;
 	int videoWidth, videoHeight;
 
