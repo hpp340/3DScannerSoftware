@@ -6,7 +6,7 @@
 
 PlyCloud::PlyCloud()
 {
-	existFace = existNormal = existValue = existVertexPos = existTexture =  false;
+	existFace = existNormal = existValue = existVertexPos = existTexture = existColor =  false;
 	vertex_num = 0;
 	face_num = 0;
 	vertProperty.assign(7, VertexInfo::NONE);
@@ -18,7 +18,7 @@ PlyCloud::PlyCloud()
 // overload constructor
 PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNormalList)
 {
-	existFace = existValue = existTexture = false;
+	existFace = existValue = existTexture = existColor = false;
 	existVertexPos = existNormal = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
@@ -37,7 +37,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNor
 // overload constructor
 PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 {
-	existFace = existValue = existNormal = existTexture = false;
+	existFace = existValue = existNormal = existTexture = existColor = false;
 	existVertexPos = true;
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
@@ -58,7 +58,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 // overload constructor
 PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFaceList)
 {
-	existNormal = existValue = existTexture = false;
+	existNormal = existValue = existTexture = existColor = false;
 	existVertexPos = existFace = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
@@ -81,6 +81,28 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFa
 	deleted_face_list.assign(face_num, false);
 	computeFaceNormal();
 	computeVertexNormal();
+	normalizeMesh();
+}
+
+//overload constructor
+PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<openni::RGB888Pixel> colorList)
+{
+	existNormal = existValue = existTexture = false;
+	existVertexPos = existColor = true;
+	vertProperty.assign(7, VertexInfo::NONE);
+	for (size_t i = 0; i < newVertexList.size(); i++)
+	{
+		JVertex * jVert = new JVertex(newVertexList[i]);
+		addJVert(jVert);
+		newVertexIdList.push_back((int)i);
+	}
+	vertex_num = (int)newVertexIdList.size();
+	face_num = 0;
+	for (size_t i = 0; i < colorList.size(); i++)
+	{
+		color_list.push_back(colorList[i]);
+	}
+	deleted_vertex_list.assign(vertex_num, false);
 	normalizeMesh();
 }
 

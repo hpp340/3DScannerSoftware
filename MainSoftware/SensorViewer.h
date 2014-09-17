@@ -20,11 +20,17 @@ public:
 
 	void run();
 
+private:
+	void drawMeshColorPoints();
+
 protected:
 	// overwrite because we don't need axis in this scene
 	void drawAxis();
 	// overwrite
 	void paintGL();
+	// overwrite
+	// only draw points - with or without color
+	void drawMesh();
 
 public:
 	void initSensorViewer();

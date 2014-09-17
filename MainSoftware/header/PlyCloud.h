@@ -18,6 +18,7 @@
 
 #include "../JFace.h"
 #include "../JVertex.h"
+#include <OpenNI.h>
 
 using namespace MeshLib;
 using namespace std;
@@ -41,6 +42,9 @@ public:
 	// overload constructor
 	PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFaceList);
 
+	// overload constructor
+	PlyCloud(std::vector<CPoint> newVertexList, std::vector<openni::RGB888Pixel> colorList);
+
 	// deconstructor
 	~PlyCloud();
 
@@ -61,6 +65,9 @@ public:
 
 	// new version get vertex list
 	std::vector<JVertex *> getJVertexList() { return JVertexList; };
+
+	// get color list
+	std::vector<openni::RGB888Pixel> getColorList() { return color_list; }
 
 	// get face list
 	std::vector<JFace*> get_face_list();
@@ -106,6 +113,7 @@ public:
 	bool hasValue() { return existValue; };
 	bool hasFace() { return existFace; };
 	bool hasTexture() { return existTexture; };
+	bool hasColor() { return existColor; }
 
 protected:
 	// vertex property list
@@ -132,7 +140,10 @@ protected:
 
 	// new version vertex list
 	std::vector<JVertex *> JVertexList;
+	// color list
+	std::vector<openni::RGB888Pixel> color_list;
+
 	// bool
-	bool existVertexPos, existNormal, existValue, existFace, existTexture;
+	bool existVertexPos, existNormal, existValue, existFace, existTexture, existColor;
 };
 

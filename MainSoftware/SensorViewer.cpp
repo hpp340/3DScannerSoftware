@@ -129,22 +129,7 @@ void SensorViewer::paintGL()
 	{	
 		std::cout << "SensorViewer: Use RGB camera and Depth camera!" << std::endl;
 		std::vector<CPoint> vertexList;
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glPushMatrix();
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadMatrixd(matProjection);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadMatrixd(matModelView);
-
-		if (isLightOn)
-		{
-			glEnable(GL_LIGHTING);
-		}
-		else
-		{
-			glDisable(GL_LIGHTING);
-		}
+		std::vector<openni::RGB888Pixel> colorList;
 
 		rgbCoorArray = static_cast<const openni::RGB888Pixel*>(m_rgbFrame.getData());
 		for (int y = 0; y < m_depthFrame.getHeight(); y++)
@@ -155,7 +140,7 @@ void SensorViewer::paintGL()
 				const openni::DepthPixel & zValue = depthCoorArray[idx];
 				if (zValue != 0)
 				{
-					if (m_rgbToDepthRegConverter)
+					if (!m_rgbToDepthRegConverter)
 					{
 						int colorX, colorY;
 						if (openni::CoordinateConverter::convertDepthToColor(m_depthStream, m_rgbStream, x, y, zValue, &colorX, &colorY) == openni::STATUS_OK)
@@ -167,15 +152,9 @@ void SensorViewer::paintGL()
 								float fx, fy, fz;
 								openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
 
-								std::cout << "SensorViewer: start drawing..." << std::endl;
-								glPointSize(10);
-								glColor3ub(colorValue.r, colorValue.g, colorValue.b);
-								glBegin(GL_POINTS);
-								glVertex3f(fx, fy, fz);
-								glEnd();
-
 								CPoint newVertex((double)fx, (double)fy, (double)fz);
 								vertexList.push_back(newVertex);
+								colorList.push_back(colorValue);
 							}
 						}
 					}
@@ -186,18 +165,18 @@ void SensorViewer::paintGL()
 						float fx, fy, fz;
 						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
 
-						glPointSize(10);
-						glColor3ub(colorValue.r, colorValue.g, colorValue.b);
-						glBegin(GL_POINTS);
-						glVertex3f(fx, fy, fz);
-						glEnd();
-
 						CPoint newVertex((double)fx, (double)fy, (double)fz);
 						vertexList.push_back(newVertex);
+						colorList.push_back(colorValue);
 					}
 				}
 			}
 		}
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glPushMatrix();
+		pointCloud = new PlyCloud(vertexList, colorList);
+		setDefaultDrawMode();
+		drawMesh();
 		glPopMatrix();
 	}
 	// no rgb frame, draw the scene just without color
@@ -233,5 +212,62 @@ void SensorViewer::paintGL()
 		glPushMatrix();
 		drawMesh();
 		glPopMatrix();
+	}
+}
+
+void SensorViewer::drawMesh()
+{
+	std::cout << "SensorViewer:drawmesh start" << std::endl;
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixd(matProjection);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixd(matModelView);
+
+	glDisable(GL_LIGHTING);
+
+	if (pointCloud->hasColor())
+	{
+		drawMeshColorPoints();
+	}
+	else
+	{
+		drawMeshPoints();
+	}
+}
+
+void SensorViewer::drawMeshColorPoints()
+{
+	std::vector<JVertex*> jVertexList = pointCloud->getJVertexList();
+	std::vector<openni::RGB888Pixel> colorList = pointCloud->getColorList();
+
+	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();
+
+	for (size_t i = 0; i < jVertexList.size(); i++)
+	{
+		if (!deletedVertexList[i])
+		{
+			CPoint vert = jVertexList[i]->getPoint();
+			openni::RGB888Pixel colorValue = colorList[i];
+
+			if (jVertexList[i]->hasNormal())
+			{
+				CPoint norl = jVertexList[i]->getNormal();
+
+				glPointSize(1.0f);
+				glColor3d(colorValue.r/255.0, colorValue.g/255.0, colorValue.b/255.0);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				glNormal3d(norl[0], norl[1], norl[2]);
+				glEnd();
+			}
+			else
+			{
+				glPointSize(1.0f);
+				glColor3d(colorValue.r/255.0, colorValue.g/255.0, colorValue.b/255.0);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				glEnd();
+			}
+		}
 	}
 }

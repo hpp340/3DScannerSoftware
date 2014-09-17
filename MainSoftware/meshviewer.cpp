@@ -413,7 +413,7 @@ void MeshViewer::drawMesh()
 			{
 				glEnable(GL_TEXTURE_2D);
 			}
-			if (! isTextureOn)
+			if (!isTextureOn)
 			{
 				glDisable(GL_TEXTURE_2D);
 			}
@@ -505,6 +505,7 @@ void MeshViewer::drawMeshPoints()
 		}
 	}
 }
+
 
 
 void MeshViewer::drawMeshWireframe()
@@ -891,7 +892,7 @@ void MeshViewer::textureOn()
 {
 	std::cout << "MeshViewer::turn on texture" << std::endl;
 	isTextureOn = true;
-	if (! isTextureLoaded)
+	if (!isTextureLoaded)
 	{
 		QString texFilename = QFileDialog::getSaveFileName(this,
 			tr("Load Texture File"),
