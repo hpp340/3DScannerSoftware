@@ -1,11 +1,28 @@
 #include "SensorViewer.h"
 #include <QTimer>
+#include <fstream>
 
 SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 {
 	videoWidth = videoHeight = 0;
 	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
+	std::cout << "Please input the min depth range:";
+	std::cin >> minDepthRange;
+	if (minDepthRange < 0)
+	{
+		minDepthRange = 0;
+	}
+	std::cout << "Please input the max depth range:";
+	std::cin >> maxDepthRange;
+	if (maxDepthRange <= minDepthRange)
+	{
+		while (maxDepthRange > minDepthRange)
+		{
+			std::cout << "Illegal max depth range. Please input it again:" << std::endl;
+			std::cin >> maxDepthRange;
+		}
+	}
 }
 
 SensorViewer::~SensorViewer()
@@ -113,6 +130,9 @@ void SensorViewer::paintGL()
 	//	printf("Error in wait\n");
 	//}
 
+	/*std::ofstream depthOutput;
+	depthOutput.open("depthOutput.txt");*/
+
 	const openni::DepthPixel * depthCoorArray = NULL;
 	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)
 	{
@@ -151,10 +171,13 @@ void SensorViewer::paintGL()
 
 								float fx, fy, fz;
 								openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-
-								CPoint newVertex((double)fx, (double)fy, (double)fz);
-								vertexList.push_back(newVertex);
-								colorList.push_back(colorValue);
+								if (fz <= maxDepthRange && fz >= minDepthRange)
+								{
+									CPoint newVertex((double)fx, (double)fy, (double)fz);
+									//depthOutput << fz << std::endl;
+									vertexList.push_back(newVertex);
+									colorList.push_back(colorValue);
+								}
 							}
 						}
 					}
@@ -164,10 +187,14 @@ void SensorViewer::paintGL()
 
 						float fx, fy, fz;
 						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-
-						CPoint newVertex((double)fx, (double)fy, (double)fz);
-						vertexList.push_back(newVertex);
-						colorList.push_back(colorValue);
+						// limit the depth range
+						if (fz <= maxDepthRange && fz >= minDepthRange)
+						{
+							CPoint newVertex((double)fx, (double)fy, (double)fz);
+							//depthOutput << fz << std::endl;
+							vertexList.push_back(newVertex);
+							colorList.push_back(colorValue);
+						}
 					}
 				}
 			}
@@ -197,8 +224,12 @@ void SensorViewer::paintGL()
 					{
 						float fx, fy, fz;
 						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-						CPoint newVertex((double)fx, (double)fy, (double)fz);
-						vertexList.push_back(newVertex);
+						if (fz <= maxDepthRange && fz >= minDepthRange)
+						{
+							CPoint newVertex((double)fx, (double)fy, (double)fz);
+							//depthOutput << fz << std::endl;
+							vertexList.push_back(newVertex);
+						}
 					}
 				}
 			}
@@ -213,6 +244,8 @@ void SensorViewer::paintGL()
 		drawMesh();
 		glPopMatrix();
 	}
+	//depthOutput.close();
+	//system("PAUSE");
 }
 
 void SensorViewer::drawMesh()

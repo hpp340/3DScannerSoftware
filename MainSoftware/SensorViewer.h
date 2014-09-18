@@ -49,6 +49,9 @@ private:
 	int videoWidth;
 	int videoHeight;
 
+	int maxDepthRange;
+	int minDepthRange;
+
 private slots:
 	void updateDisplay();
 };
