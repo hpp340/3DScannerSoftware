@@ -1,4 +1,4 @@
-﻿Build started 9/18/2014 4:35:49 PM.
+﻿Build started 9/18/2014 5:14:29 PM.
      1>Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
      1>CustomBuild:
          Moc'ing SensorViewer.h...
@@ -129,4 +129,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:01:21.53
+Time Elapsed 00:01:19.34

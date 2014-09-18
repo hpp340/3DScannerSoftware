@@ -50,7 +50,7 @@ private:
 	int videoHeight;
 
 	int maxDepthRange;
-	int minDepthRange;
+	//int minDepthRange;
 
 private slots:
 	void updateDisplay();

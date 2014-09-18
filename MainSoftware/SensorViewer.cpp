@@ -1,28 +1,15 @@
 #include "SensorViewer.h"
 #include <QTimer>
 #include <fstream>
+#include <QInputDialog>
 
 SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 {
 	videoWidth = videoHeight = 0;
 	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
-	std::cout << "Please input the min depth range:";
-	std::cin >> minDepthRange;
-	if (minDepthRange < 0)
-	{
-		minDepthRange = 0;
-	}
-	std::cout << "Please input the max depth range:";
-	std::cin >> maxDepthRange;
-	if (maxDepthRange <= minDepthRange)
-	{
-		while (maxDepthRange > minDepthRange)
-		{
-			std::cout << "Illegal max depth range. Please input it again:" << std::endl;
-			std::cin >> maxDepthRange;
-		}
-	}
+	bool ok;
+	maxDepthRange = QInputDialog::getInt(this, tr("Input the Maximum Depth Range"), tr("Max Depth Range"), 0, 0, 3000, 1, &ok);
 }
 
 SensorViewer::~SensorViewer()
@@ -171,7 +158,7 @@ void SensorViewer::paintGL()
 
 								float fx, fy, fz;
 								openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-								if (fz <= maxDepthRange && fz >= minDepthRange)
+								if (fz <= maxDepthRange)
 								{
 									CPoint newVertex((double)fx, (double)fy, (double)fz);
 									//depthOutput << fz << std::endl;
@@ -188,7 +175,7 @@ void SensorViewer::paintGL()
 						float fx, fy, fz;
 						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
 						// limit the depth range
-						if (fz <= maxDepthRange && fz >= minDepthRange)
+						if (fz <= maxDepthRange)
 						{
 							CPoint newVertex((double)fx, (double)fy, (double)fz);
 							//depthOutput << fz << std::endl;
@@ -224,7 +211,7 @@ void SensorViewer::paintGL()
 					{
 						float fx, fy, fz;
 						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-						if (fz <= maxDepthRange && fz >= minDepthRange)
+						if (fz <= maxDepthRange)
 						{
 							CPoint newVertex((double)fx, (double)fy, (double)fz);
 							//depthOutput << fz << std::endl;
