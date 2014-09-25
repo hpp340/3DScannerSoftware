@@ -7,6 +7,7 @@ SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &colo
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 {
 	videoWidth = videoHeight = 0;
+	numFile = 0;
 	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
 	bool ok;
 	maxDepthRange = QInputDialog::getInt(this, tr("Input the Maximum Depth Range"), tr("Max Depth Range"), 0, 0, 3000, 1, &ok);
@@ -296,7 +297,7 @@ void SensorViewer::startScan()
 {
 	scanTimer = new QTimer(this);
 	connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()));
-	scanTimer->start(33); 
+	scanTimer->start(500); 
 }
 
 void SensorViewer::stopScan()
@@ -339,6 +340,7 @@ void SensorViewer::dataCollectionOneFrame()
 		}
 	}
 
+	std::ofstream depthMapOutput;
 
 
 }

@@ -55,7 +55,7 @@ private:
 
 	int maxDepthRange;
 	//int minDepthRange;
-
+	int numFile;
 	QTimer * scanTimer;
 
 private slots:
