@@ -311,6 +311,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="FullFuncMeshViewer.cpp" />
+    <ClCompile Include="GlobalRegistration.cpp" />
     <ClCompile Include="header\ANN\ANN.cpp" />
     <ClCompile Include="header\ANN\bd_fix_rad_search.cpp" />
     <ClCompile Include="header\ANN\bd_pr_search.cpp" />
@@ -364,6 +365,7 @@
     </ClCompile>
     <ClCompile Include="SensorViewer.cpp" />
     <ClCompile Include="sensorWindow.cpp" />
+    <ClCompile Include="SuperResolution.cpp" />
     <ClCompile Include="SurfaceTrim.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -2240,6 +2242,10 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GlobalRegistration.h" />
+    <ClInclude Include="SuperResolution.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

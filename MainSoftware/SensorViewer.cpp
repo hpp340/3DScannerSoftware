@@ -1,7 +1,7 @@
 #include "SensorViewer.h"
-#include <QTimer>
 #include <fstream>
 #include <QInputDialog>
+#include "header\eigen\Eigen\Dense"
 
 SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
@@ -290,4 +290,55 @@ void SensorViewer::drawMeshColorPoints()
 			}
 		}
 	}
+}
+
+void SensorViewer::startScan()
+{
+	scanTimer = new QTimer(this);
+	connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()));
+	scanTimer->start(33); 
+}
+
+void SensorViewer::stopScan()
+{
+	scanTimer->stop();
+}
+
+void SensorViewer::dataCollectionOneFrame()
+{
+	std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
+
+	const openni::DepthPixel * depthCoorArray = NULL;
+	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)
+	{
+		depthCoorArray = static_cast<const openni::DepthPixel*>(m_depthFrame.getData());
+	}
+	else
+	{
+		std::cout << "SensorViewer: Can't read depth frame. Return." << std::endl;
+		return;
+	}
+
+	// const openni::RGB888Pixel * rgbCoorArray = NULL;
+
+	
+	Eigen::Matrix<ushort, Eigen::Dynamic, Eigen::Dynamic> depthMapMat;
+
+	depthMapMat.resize(m_depthFrame.getHeight(), m_depthFrame.getWidth());
+	
+	if (depthCoorArray != NULL)
+	{
+		for (int y = 0; y < m_depthFrame.getHeight(); y++)
+		{
+			for (int x = 0; x < m_depthFrame.getWidth(); x++)
+			{
+				int idx = x + y * m_depthFrame.getWidth();
+				ushort depthValue = depthCoorArray[idx];
+				depthMapMat(y, x) = depthValue;
+			}
+		}
+	}
+
+
+
 }

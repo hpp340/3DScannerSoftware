@@ -16,7 +16,23 @@ void sensorWindow::initSensorWindow()
 	this->setGeometry(300, 300, 1800, 1350);
 
 	QVBoxLayout * vLayout = new QVBoxLayout;
+
+	startScan = new QAction(tr("Start Scanning"), this);
+	startScan->setIcon(QIcon(":/icons/images/startscan.png"));
+	startScan->setText(tr("Start Scanning..."));
+	startScan->setStatusTip(tr("Start Scanning such that a complete model is reconstructed"));
+	connect(startScan, SIGNAL(triggerred()), sensorViewer, SLOT(startScan()));
+
+	stopScan = new QAction(tr("Stop Scanning"), this);
+	stopScan->setIcon(QIcon(":/icons/images/stopscan.png"));
+	stopScan->setText(tr("Stop Scanning..."));
+	stopScan->setStatusTip(tr("Stop Scanning to start the global registration"));
+	connect(stopScan, SIGNAL(triggerred()), sensorViewer, SLOT(stopScan()));
+
 	sensorTB = new QToolBar();
+	sensorTB->addAction(startScan);
+	sensorTB->addAction(stopScan);
+
 	vLayout->addWidget(sensorTB);
 	vLayout->addWidget(sensorViewer);
 	this->setLayout(vLayout);

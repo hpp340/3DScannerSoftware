@@ -3,7 +3,8 @@
 #include "SensorViewer.h"
 #include <QVboxLayout>
 #include <OpenNI.h>
-#include <QToolbar>
+#include <QToolbar> 
+#include <QAction>
 #include <QMessageBox>
 #include "header\PlyCloud.h"
 
@@ -32,5 +33,8 @@ private:
 	openni::Device device;
 	bool rgbToDepthCoordConverter;
 	openni::VideoFrameRef depthFrame, rgbFrame;
+
+	QAction * startScan;
+	QAction * stopScan;
 };
 

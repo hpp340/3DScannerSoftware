@@ -8,11 +8,15 @@
 #include "meshviewer.h"
 #include "OpenGLHeader.h"
 #include <OpenNI.h>
+#include <QTimer>
 
 class SensorViewer :
 	public MeshViewer
 {
 	Q_OBJECT
+
+typedef unsigned short ushort;
+
 public:
 
 	SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter);
@@ -52,7 +56,15 @@ private:
 	int maxDepthRange;
 	//int minDepthRange;
 
+	QTimer * scanTimer;
+
 private slots:
 	void updateDisplay();
+	void dataCollectionOneFrame();
+
+public slots:
+	// start scan the whole object using ICP registration
+	void startScan();
+	void stopScan();
 };
 
