@@ -9,6 +9,10 @@ sensorWindow::sensorWindow()
 
 sensorWindow::~sensorWindow()
 {
+	std::cout << "sensorWindow:Destructor..." << std::endl;
+	depthStream.destroy();
+	rgbStream.destroy();
+	//getchar();
 }
 
 void sensorWindow::initSensorWindow()
@@ -21,13 +25,13 @@ void sensorWindow::initSensorWindow()
 	startScan->setIcon(QIcon(":/icons/images/startscan.png"));
 	startScan->setText(tr("Start Scanning..."));
 	startScan->setStatusTip(tr("Start Scanning such that a complete model is reconstructed"));
-	connect(startScan, SIGNAL(triggerred()), sensorViewer, SLOT(startScan()));
+	connect(startScan, SIGNAL(triggered()), sensorViewer, SLOT(viewerStartScan()));
 
 	stopScan = new QAction(tr("Stop Scanning"), this);
 	stopScan->setIcon(QIcon(":/icons/images/stopscan.png"));
 	stopScan->setText(tr("Stop Scanning..."));
 	stopScan->setStatusTip(tr("Stop Scanning to start the global registration"));
-	connect(stopScan, SIGNAL(triggerred()), sensorViewer, SLOT(stopScan()));
+	connect(stopScan, SIGNAL(triggered()), sensorViewer, SLOT(viewerStopScan()));
 
 	sensorTB = new QToolBar();
 	sensorTB->addAction(startScan);

@@ -584,11 +584,18 @@ bool PlyCloud::write_ply(const char *filename)
 		outputPlyFile << "property double ny" << endl;
 		outputPlyFile << "property double nz" << endl;
 	}
+	if (existColor)
+	{
+		outputPlyFile << "property uint red" << endl;
+		outputPlyFile << "property uint green" << endl;
+		outputPlyFile << "property uint blue" << endl;
+	}
 	if (existFace)
 	{
 		outputPlyFile << "element face " << face_num << endl;
 		outputPlyFile << "property list uchar int vertex_indices" << endl;
 	}
+
 	outputPlyFile << "end_header" << endl;
 
 	int delected_num = 0;
@@ -599,8 +606,21 @@ bool PlyCloud::write_ply(const char *filename)
 			delected_num++;
 		}
 	}
+	if ((existNormal) && (existColor))
+	{
+		for (size_t i = 0; i < JVertexList.size(); i++)
+		{
+			if (! deleted_vertex_list[i])
+			{
+				CPoint vert = JVertexList[i]->getPoint();
+				CPoint norm = JVertexList[i]->getNormal();
+				openni::RGB888Pixel _colorValue = color_list[i];
 
-	if (existNormal)
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << " " << _colorValue.r << " " << _colorValue.g << " " << _colorValue.b << endl;
+			}
+		}
+	}
+	else if ((existNormal) && (! existColor))
 	{
 		// write the vertex position and normal
 		for (size_t i = 0; i < JVertexList.size(); i++)
@@ -613,15 +633,27 @@ bool PlyCloud::write_ply(const char *filename)
 			}
 		}
 	}
-	else
+	else if ((existColor) && (!existNormal))
 	{
 		for (size_t i = 0; i < JVertexList.size(); i++)
 		{
 			if (! deleted_vertex_list[i])
 			{
 				CPoint vert = JVertexList[i]->getPoint();
-				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << endl;
+				openni::RGB888Pixel _colorValue = color_list[i];
+				int redValue = (int)_colorValue.r;
+				int greenValue = (int)_colorValue.g;
+				int blueValue = (int)_colorValue.b;
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << redValue << " " << greenValue << " " << blueValue << endl;
 			}
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < JVertexList.size(); i++)
+		{
+			CPoint vert = JVertexList[i]->getPoint();
+			outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << endl;
 		}
 	}
 	if (existFace)

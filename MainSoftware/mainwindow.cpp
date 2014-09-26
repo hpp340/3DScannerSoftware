@@ -320,5 +320,6 @@ void MainWindow::setModeWireframe()
 void MainWindow::startSensor()
 {
 	sensorWindow * showSensorWindow = new sensorWindow();
+	showSensorWindow->setAttribute(Qt::WA_DeleteOnClose);
 	showSensorWindow->show();
 }

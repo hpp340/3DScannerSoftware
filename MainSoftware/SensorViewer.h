@@ -64,7 +64,7 @@ private slots:
 
 public slots:
 	// start scan the whole object using ICP registration
-	void startScan();
-	void stopScan();
+	void viewerStartScan();
+	void viewerStopScan();
 };
 

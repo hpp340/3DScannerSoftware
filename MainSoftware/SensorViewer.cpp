@@ -1,4 +1,5 @@
 #include "SensorViewer.h"
+#include <string>
 #include <fstream>
 #include <QInputDialog>
 #include "header\eigen\Eigen\Dense"
@@ -15,6 +16,8 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 
 SensorViewer::~SensorViewer()
 {
+	std::cout << "SensorViewer:destructor..." << std::endl;
+	//getchar();
 }
 
 void SensorViewer::initSensorViewer()
@@ -293,14 +296,15 @@ void SensorViewer::drawMeshColorPoints()
 	}
 }
 
-void SensorViewer::startScan()
+void SensorViewer::viewerStartScan()
 {
+	std::cout << "SensorViewer:startScan..." << std::endl;
 	scanTimer = new QTimer(this);
 	connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()));
 	scanTimer->start(500); 
 }
 
-void SensorViewer::stopScan()
+void SensorViewer::viewerStopScan()
 {
 	scanTimer->stop();
 }
@@ -321,26 +325,100 @@ void SensorViewer::dataCollectionOneFrame()
 	}
 
 	// const openni::RGB888Pixel * rgbCoorArray = NULL;
+	PlyCloud * pCloudToBeScanned;
 
-	
-	Eigen::Matrix<ushort, Eigen::Dynamic, Eigen::Dynamic> depthMapMat;
-
-	depthMapMat.resize(m_depthFrame.getHeight(), m_depthFrame.getWidth());
-	
-	if (depthCoorArray != NULL)
+	const openni::RGB888Pixel * rgbCoorArray = NULL;
+	if (m_rgbStream.readFrame(&m_rgbFrame) == openni::STATUS_OK)
 	{
-		for (int y = 0; y < m_depthFrame.getHeight(); y++)
+		std::vector<CPoint> vertexList;
+		std::vector<openni::RGB888Pixel> colorList;
+		rgbCoorArray = static_cast<const openni::RGB888Pixel*>(m_rgbFrame.getData());
+
+		if (depthCoorArray != NULL)
 		{
-			for (int x = 0; x < m_depthFrame.getWidth(); x++)
+			for (int y = 0; y < m_depthFrame.getHeight(); y++)
 			{
-				int idx = x + y * m_depthFrame.getWidth();
-				ushort depthValue = depthCoorArray[idx];
-				depthMapMat(y, x) = depthValue;
+				for (int x = 0; x < m_depthFrame.getWidth(); x++)
+				{
+					int idx = x + y * m_depthFrame.getWidth();
+					const openni::DepthPixel & zValue = depthCoorArray[idx];
+					if (zValue != 0)
+					{
+						if (! m_rgbToDepthRegConverter)
+						{
+							int colorX, colorY;
+							if (openni::CoordinateConverter::convertDepthToColor(m_depthStream, m_rgbStream, x, y, zValue, &colorX, &colorY) == openni::STATUS_OK)
+							{
+								if (colorX >= 0 && colorX < m_depthFrame.getWidth() && colorY >= 0 && colorY < m_depthFrame.getHeight())
+								{
+									const openni::RGB888Pixel & colorValue = rgbCoorArray[colorX + colorY * m_depthFrame.getWidth()];
+									float fx, fy, fz;
+									openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+									if (fz <= maxDepthRange)
+									{
+										CPoint newVertex((double)fx, (double)fy, (double)fz);
+										vertexList.push_back(newVertex);
+										colorList.push_back(colorValue);
+									}
+								}
+							}
+						}
+						else
+						{
+							const openni::RGB888Pixel &colorValue = rgbCoorArray[idx];
+
+							float fx, fy, fz;
+							openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+							// limit the depth range
+							if (fz <= maxDepthRange)
+							{
+								CPoint newVertex((double)fx, (double)fy, (double)fz);
+								//depthOutput << fz << std::endl;
+								vertexList.push_back(newVertex);
+								colorList.push_back(colorValue);
+							}
+						}
+					}
+				}
 			}
 		}
+
+		pCloudToBeScanned = new PlyCloud(vertexList, colorList);
 	}
+	else
+	{
+		std::vector<CPoint> vertexList;
 
-	std::ofstream depthMapOutput;
+		if (depthCoorArray != NULL)
+		{
+			for (int y = 0; y < m_depthFrame.getHeight(); ++y)
+			{
+				for (int x = 0; x < m_depthFrame.getWidth(); ++x)
+				{
+					int idx = x + y * m_depthFrame.getWidth();
+					const openni::DepthPixel & zValue = depthCoorArray[idx];
+					if (zValue != 0)
+					{
+						float fx, fy, fz;
+						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+						if (fz <= maxDepthRange)
+						{
+							CPoint newVertex((double)fx, (double)fy, (double)fz);
+							//depthOutput << fz << std::endl;
+							vertexList.push_back(newVertex);
+						}
+					}
+				}
+			}
+		}
 
-
+		pCloudToBeScanned = new PlyCloud(vertexList);
+	}
+	
+	string scanName = "plyCloud";
+	std::cout << scanName + std::to_string(numFile) << std::endl;
+	pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
+	std::cout << "Saved one frame to " << scanName + std::to_string(numFile) + ".ply" << std::endl;
+	numFile++;
+	getchar();
 }
