@@ -57,9 +57,6 @@
     <Filter Include="PoissonRecon\inliners">
       <UniqueIdentifier>{27285046-f714-41d0-aed4-794edbdeab53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ANN">
-      <UniqueIdentifier>{773fcbdd-fe85-4b61-90eb-2f4d51f21c04}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,48 +155,6 @@
     <ClCompile Include="JFace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="header\ANN\ANN.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\bd_fix_rad_search.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\bd_pr_search.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\bd_search.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\bd_tree.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\brute.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\kd_dump.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\kd_fix_rad_search.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\kd_pr_search.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\kd_search.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\kd_split.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\kd_tree.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\kd_util.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
-    <ClCompile Include="header\ANN\perf.cpp">
-      <Filter>ANN</Filter>
-    </ClCompile>
     <ClCompile Include="SurfaceTrim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -234,7 +189,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="ICPRecon.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -359,42 +314,6 @@
     <CustomBuild Include="MultipleMeshViewer.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="header\ANN\ANN.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\ANNperf.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\ANNx.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\bd_tree.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\kd_fix_rad_search.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\kd_pr_search.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\kd_search.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\kd_split.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\kd_tree.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\kd_util.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\pr_queue.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
-    <CustomBuild Include="header\ANN\pr_queue_k.h">
-      <Filter>ANN</Filter>
-    </CustomBuild>
     <CustomBuild Include="FullFuncMeshViewer.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -441,7 +360,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICPRecon.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ Date: 10/1/2014
 #pragma once
 
 #include "header\PlyCloud.h"
+#include "header\ANN\ANN.h"
 #include "header\eigen\Eigen\Dense"
 
 class ICPRecon

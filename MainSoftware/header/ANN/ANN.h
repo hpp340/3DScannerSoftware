@@ -59,31 +59,31 @@
 #ifndef ANN_H
 #define ANN_H
 
-//#ifdef WIN32
-//  //----------------------------------------------------------------------
-//  // For Microsoft Visual C++, externally accessible symbols must be
-//  // explicitly indicated with DLL_API, which is somewhat like "extern."
-//  //
-//  // The following ifdef block is the standard way of creating macros
-//  // which make exporting from a DLL simpler. All files within this DLL
-//  // are compiled with the DLL_EXPORTS preprocessor symbol defined on the
-//  // command line. In contrast, projects that use (or import) the DLL
-//  // objects do not define the DLL_EXPORTS symbol. This way any other
-//  // project whose source files include this file see DLL_API functions as
-//  // being imported from a DLL, wheras this DLL sees symbols defined with
-//  // this macro as being exported.
-//  //----------------------------------------------------------------------
-//  #ifdef DLL_EXPORTS
-//	 #define DLL_API __declspec(dllexport)
-//  #else
-//	#define DLL_API __declspec(dllimport)
-//  #endif
-//  //----------------------------------------------------------------------
-//  // DLL_API is ignored for all other systems
-//  //----------------------------------------------------------------------
-//#else
+#ifdef WIN32
+  //----------------------------------------------------------------------
+  // For Microsoft Visual C++, externally accessible symbols must be
+  // explicitly indicated with DLL_API, which is somewhat like "extern."
+  //
+  // The following ifdef block is the standard way of creating macros
+  // which make exporting from a DLL simpler. All files within this DLL
+  // are compiled with the DLL_EXPORTS preprocessor symbol defined on the
+  // command line. In contrast, projects that use (or import) the DLL
+  // objects do not define the DLL_EXPORTS symbol. This way any other
+  // project whose source files include this file see DLL_API functions as
+  // being imported from a DLL, wheras this DLL sees symbols defined with
+  // this macro as being exported.
+  //----------------------------------------------------------------------
+  #ifdef DLL_EXPORTS
+	 #define DLL_API __declspec(dllexport)
+  #else
+	#define DLL_API __declspec(dllimport)
+  #endif
+  //----------------------------------------------------------------------
+  // DLL_API is ignored for all other systems
+  //----------------------------------------------------------------------
+#else
   #define DLL_API
-//#endif
+#endif
 
 //----------------------------------------------------------------------
 //  basic includes

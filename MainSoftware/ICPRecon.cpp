@@ -25,7 +25,7 @@ void ICPRecon::startRegistration(Eigen::Matrix<double, 4, 4> * rotMat, int _numI
 		for (int k = 0; k < _numIteration; k++)
 		{
 			std::cout << "ICP Iteration " << k << std::endl;
-
+			
 		}
 	}
 }
