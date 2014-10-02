@@ -27,5 +27,6 @@
         <file>images/sensor.png</file>
         <file>images/startscan.png</file>
         <file>images/stopscan.png</file>
+        <file>images/icprecon.png</file>
     </qresource>
 </RCC>

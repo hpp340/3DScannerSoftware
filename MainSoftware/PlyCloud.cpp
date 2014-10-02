@@ -586,9 +586,9 @@ bool PlyCloud::write_ply(const char *filename)
 	}
 	if (existColor)
 	{
-		outputPlyFile << "property uint red" << endl;
-		outputPlyFile << "property uint green" << endl;
-		outputPlyFile << "property uint blue" << endl;
+		outputPlyFile << "property uchar red" << endl;
+		outputPlyFile << "property uchar green" << endl;
+		outputPlyFile << "property uchar blue" << endl;
 	}
 	if (existFace)
 	{

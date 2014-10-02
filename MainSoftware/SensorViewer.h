@@ -58,6 +58,9 @@ private:
 	int numFile;
 	QTimer * scanTimer;
 
+	bool isScanStopped;
+	bool hasScanStarted;
+
 private slots:
 	void updateDisplay();
 	void dataCollectionOneFrame();
@@ -66,5 +69,6 @@ public slots:
 	// start scan the whole object using ICP registration
 	void viewerStartScan();
 	void viewerStopScan();
+	void startICP();
 };
 

@@ -33,9 +33,16 @@ void sensorWindow::initSensorWindow()
 	stopScan->setStatusTip(tr("Stop Scanning to start the global registration"));
 	connect(stopScan, SIGNAL(triggered()), sensorViewer, SLOT(viewerStopScan()));
 
+	icpRecon = new QAction(tr("Start ICP Reconstruction"), this);
+	icpRecon->setIcon(QIcon(":/icons/images/icprecon.png"));
+	icpRecon->setText(tr("Start ICP Reconstruction"));
+	icpRecon->setStatusTip(tr("Start ICP Reconstruction to get the full body mesh"));
+	connect(icpRecon, SIGNAL(triggered()), sensorViewer, SLOT(startICP()));
+
 	sensorTB = new QToolBar();
 	sensorTB->addAction(startScan);
 	sensorTB->addAction(stopScan);
+	sensorTB->addAction(icpRecon);
 
 	vLayout->addWidget(sensorTB);
 	vLayout->addWidget(sensorViewer);

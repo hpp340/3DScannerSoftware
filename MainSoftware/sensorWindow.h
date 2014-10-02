@@ -36,5 +36,6 @@ private:
 
 	QAction * startScan;
 	QAction * stopScan;
+	QAction * icpRecon;
 };
 

@@ -2,7 +2,9 @@
 #include <string>
 #include <fstream>
 #include <QInputDialog>
+#include <QMessageBox>
 #include "header\eigen\Eigen\Dense"
+#include "ICPRecon.h"
 
 SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
@@ -10,6 +12,8 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 	videoWidth = videoHeight = 0;
 	numFile = 0;
 	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
+	isScanStopped = false;
+	hasScanStarted = false;
 	bool ok;
 	maxDepthRange = QInputDialog::getInt(this, tr("Input the Maximum Depth Range"), tr("Max Depth Range"), 0, 0, 3000, 1, &ok);
 }
@@ -298,6 +302,7 @@ void SensorViewer::drawMeshColorPoints()
 
 void SensorViewer::viewerStartScan()
 {
+	hasScanStarted = true;
 	std::cout << "SensorViewer:startScan..." << std::endl;
 	scanTimer = new QTimer(this);
 	connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()));
@@ -307,6 +312,7 @@ void SensorViewer::viewerStartScan()
 void SensorViewer::viewerStopScan()
 {
 	scanTimer->stop();
+	isScanStopped = true;
 }
 
 void SensorViewer::dataCollectionOneFrame()
@@ -415,10 +421,42 @@ void SensorViewer::dataCollectionOneFrame()
 		pCloudToBeScanned = new PlyCloud(vertexList);
 	}
 	
-	string scanName = "plyCloud";
+	string scanName = "scanned_point_cloud";
 	std::cout << scanName + std::to_string(numFile) << std::endl;
 	pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
 	std::cout << "Saved one frame to " << scanName + std::to_string(numFile) + ".ply" << std::endl;
 	numFile++;
-	getchar();
+	//getchar();
+}
+
+void SensorViewer::startICP()
+{
+	if (!(hasScanStarted && isScanStopped))
+	{
+		QMessageBox cantICP;
+		cantICP.setText("The scan has not stopped or not started yet.");
+		cantICP.exec();
+		return;
+	}
+	else
+	{
+		// read in files
+		string scanName = "scanned_point_cloud";
+		for (int i = 0; i < numFile; i++)
+		{
+			string fileName1 = scanName + std::to_string(i) + ".ply";
+			PlyCloud * ptCloud1 = new PlyCloud();
+			ptCloud1->read_ply(fileName1.c_str());
+			string fileName2 = scanName + std::to_string(i + 1) + ".ply";
+			PlyCloud * ptCloud2 = new PlyCloud();
+			ptCloud2->read_ply(fileName2.c_str());
+			// the first parameter is the data pointcloud, the second is the target pointcloud
+			ICPRecon * icpReconstruction = new ICPRecon(ptCloud1, ptCloud2);
+			Eigen::Matrix<double, 4, 4> R;
+			// compute the rotation matrix and the translation vector, which is represented as the 4*4 matrix
+			// all vertex coordinates are represented by homogeneous coordinates
+			icpReconstruction->startRegistration(&R);
+			
+		}
+	}
 }

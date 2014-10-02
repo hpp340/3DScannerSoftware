@@ -233,10 +233,7 @@
     <ClCompile Include="Release\moc_sensorWindow.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalRegistration.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SuperResolution.cpp">
+    <ClCompile Include="ICPRecon.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -443,10 +440,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GlobalRegistration.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SuperResolution.h">
+    <ClInclude Include="ICPRecon.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
