@@ -1,12 +1,11 @@
-﻿Build started 10/1/2014 11:03:32 AM.
+﻿Build started 10/2/2014 8:35:13 PM.
      1>Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp GlobalRegistration.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp Release\moc_SensorViewer.cpp Release\moc_sensorWindow.cpp SensorViewer.cpp sensorWindow.cpp SuperResolution.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp ICPRecon.cpp JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp Release\moc_SensorViewer.cpp Release\moc_sensorWindow.cpp SensorViewer.cpp sensorWindow.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
          AlignResultWindow.cpp
          alignWindow.cpp
          checkableAction.cpp
          FullFuncMeshViewer.cpp
-         GlobalRegistration.cpp
          ANN.cpp
          bd_fix_rad_search.cpp
          bd_pr_search.cpp
@@ -21,6 +20,7 @@
          kd_tree.cpp
          kd_util.cpp
          perf.cpp
+         ICPRecon.cpp
          JFace.cpp
          Compiling...
          CmdLineParser.cpp
@@ -60,10 +60,9 @@
          moc_sensorWindow.cpp
          SensorViewer.cpp
          sensorWindow.cpp
-         SuperResolution.cpp
          SurfaceTrim.cpp
-         Compiling...
          MultipleMeshViewer.cpp
+         Compiling...
          PlyCloud.cpp
          moc_AlignResultWindow.cpp
          moc_alignWindow.cpp
@@ -79,7 +78,6 @@
          x64\Release\alignWindow.obj
          x64\Release\checkableAction.obj
          x64\Release\FullFuncMeshViewer.obj
-         x64\Release\GlobalRegistration.obj
          x64\Release\ANN.obj
          x64\Release\bd_fix_rad_search.obj
          x64\Release\bd_pr_search.obj
@@ -94,6 +92,7 @@
          x64\Release\kd_tree.obj
          x64\Release\kd_util.obj
          x64\Release\perf.obj
+         x64\Release\ICPRecon.obj
          x64\Release\JFace.obj
          x64\Release\qrc_resources.obj
          x64\Release\CmdLineParser.obj
@@ -114,7 +113,6 @@
          x64\Release\moc_sensorWindow.obj
          x64\Release\SensorViewer.obj
          x64\Release\sensorWindow.obj
-         x64\Release\SuperResolution.obj
          x64\Release\SurfaceTrim.obj
          x64\Release\MultipleMeshViewer.obj
          x64\Release\PlyCloud.obj
@@ -131,4 +129,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:46.45
+Time Elapsed 00:00:50.75

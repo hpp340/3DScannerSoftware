@@ -452,10 +452,15 @@ void SensorViewer::startICP()
 			ptCloud2->read_ply(fileName2.c_str());
 			// the first parameter is the data pointcloud, the second is the target pointcloud
 			ICPRecon * icpReconstruction = new ICPRecon(ptCloud1, ptCloud2);
-			Eigen::Matrix<double, 4, 4> R;
+			// transformation matrix
+			Eigen::Matrix<double, 3, 3> R;
+			Eigen::Vector3d T;
+			// initialization
+			R.setIdentity();
+			T.setZero();
 			// compute the rotation matrix and the translation vector, which is represented as the 4*4 matrix
 			// all vertex coordinates are represented by homogeneous coordinates
-			icpReconstruction->startRegistration(&R);
+			icpReconstruction->startRegistration(R, T, 50);
 			
 		}
 	}
