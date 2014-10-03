@@ -13,7 +13,7 @@ class sensorWindow :
 {
 	Q_OBJECT
 public:
-	sensorWindow();
+	sensorWindow(int _maxDepth);
 	~sensorWindow();
 
 	bool isRgbToDepthColorConverter() { return rgbToDepthCoordConverter; }
@@ -31,6 +31,7 @@ private:
 	QToolBar * sensorTB;
 	openni::VideoStream depthStream, rgbStream;
 	openni::Device device;
+	int maxDepthRange;
 	bool rgbToDepthCoordConverter;
 	openni::VideoFrameRef depthFrame, rgbFrame;
 

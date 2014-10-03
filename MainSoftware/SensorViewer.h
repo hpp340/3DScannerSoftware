@@ -19,7 +19,7 @@ typedef unsigned short ushort;
 
 public:
 
-	SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter);
+	SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange);
 	~SensorViewer();
 
 	void run();

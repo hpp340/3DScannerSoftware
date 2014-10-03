@@ -1,9 +1,11 @@
 #include "sensorWindow.h"
+#include <QInputDialog>
 
-sensorWindow::sensorWindow()
+sensorWindow::sensorWindow(int _maxDepth)
 {
 	std::cout << "sensorWindow:sensorWindow constructor..." << std::endl;
 	rgbToDepthCoordConverter = false;
+	maxDepthRange = _maxDepth;
 	startSensor();
 }
 
@@ -17,7 +19,7 @@ sensorWindow::~sensorWindow()
 
 void sensorWindow::initSensorWindow()
 {
-	this->setGeometry(300, 300, 1800, 1350);
+	this->setGeometry(100, 100, 1600, 900);
 
 	QVBoxLayout * vLayout = new QVBoxLayout;
 
@@ -58,7 +60,7 @@ openni::Status sensorWindow::startSensor()
 	// bugs will be reported if they are defined as class members
 
 	const char* deviceURI = openni::ANY_DEVICE;
-	
+
 	if (openni::OpenNI::initialize() != openni::STATUS_OK)
 	{
 		std::cout << "SensorWindow: Initialization error: " << openni::OpenNI::getExtendedError() << std::endl;
@@ -158,10 +160,10 @@ openni::Status sensorWindow::startSensor()
 
 	std::cout << "sensorWindow: method startSensor() execs successfully." << std::endl;
 
-	sensorViewer = new SensorViewer(depthStream, rgbStream, rgbToDepthCoordConverter);
+	sensorViewer = new SensorViewer(depthStream, rgbStream, rgbToDepthCoordConverter, maxDepthRange);
 	initSensorWindow();
 	sensorViewer->initSensorViewer();
 	sensorViewer->run();
-
 	return openni::STATUS_OK;
+
 }

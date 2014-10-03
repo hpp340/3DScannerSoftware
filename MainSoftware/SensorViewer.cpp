@@ -6,7 +6,7 @@
 #include "header\eigen\Eigen\Dense"
 #include "ICPRecon.h"
 
-SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter) :
+SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 {
 	videoWidth = videoHeight = 0;
@@ -14,8 +14,7 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
 	isScanStopped = false;
 	hasScanStarted = false;
-	bool ok;
-	maxDepthRange = QInputDialog::getInt(this, tr("Input the Maximum Depth Range"), tr("Max Depth Range"), 0, 0, 3000, 1, &ok);
+	maxDepthRange = _maxDepthRange;
 }
 
 SensorViewer::~SensorViewer()
@@ -461,7 +460,11 @@ void SensorViewer::startICP()
 			// compute the rotation matrix and the translation vector, which is represented as the 4*4 matrix
 			// all vertex coordinates are represented by homogeneous coordinates
 			icpReconstruction->startRegistration(R, T, 50);
-			
+			std::cout << "Rotation " << std::endl;
+			std::cout << R << std::endl;
+			std::cout << "Translation " << std::endl;
+			std::cout << T << std::endl;
+			getchar();
 		}
 	}
 }

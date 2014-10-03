@@ -3,6 +3,7 @@
 #include "PoissonRecon.h"
 #include "SurfaceTrim.h"
 #include "sensorWindow.h"
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -319,7 +320,12 @@ void MainWindow::setModeWireframe()
 
 void MainWindow::startSensor()
 {
-	sensorWindow * showSensorWindow = new sensorWindow();
-	showSensorWindow->setAttribute(Qt::WA_DeleteOnClose);
-	showSensorWindow->show();
+	bool ok;
+	int maxDepthRange = QInputDialog::getInt(this, tr("Input the Maximum Depth Range"), tr("Max Depth Range"), 0, 0, 3000, 1, &ok);
+	if (ok)
+	{
+		sensorWindow * showSensorWindow = new sensorWindow(maxDepthRange);
+		showSensorWindow->setAttribute(Qt::WA_DeleteOnClose);
+		showSensorWindow->show();
+	}
 }
