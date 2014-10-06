@@ -106,7 +106,6 @@ void SensorViewer::paintGL()
 	//int changedIdx;
 	std::cout << "SensorViewer: paintGL..." << std::endl;
 	//openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIdx);
-	//std::cout << "3333333" << std::endl;
 
 	//if (rc != openni::STATUS_OK)
 	//{
@@ -123,9 +122,6 @@ void SensorViewer::paintGL()
 	//default:
 	//	printf("Error in wait\n");
 	//}
-
-	/*std::ofstream depthOutput;
-	depthOutput.open("depthOutput.txt");*/
 
 	const openni::DepthPixel * depthCoorArray = NULL;
 	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)

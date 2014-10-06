@@ -7,6 +7,20 @@
 PlyCloud::PlyCloud()
 {
 	existFace = existNormal = existValue = existVertexPos = existTexture = existColor =  false;
+	needNormlize = true;
+	vertex_num = 0;
+	face_num = 0;
+	vertProperty.assign(7, VertexInfo::NONE);
+	deleted_vertex_list.assign(vertex_num, false);
+	newVertexIdList.assign(vertex_num, 0);
+	deleted_face_list.assign(face_num, false);
+}
+
+// overload constructor
+PlyCloud::PlyCloud(bool _needNormalize)
+{
+	existFace = existNormal = existValue = existVertexPos = existTexture = existColor = false;
+	needNormlize = _needNormalize;
 	vertex_num = 0;
 	face_num = 0;
 	vertProperty.assign(7, VertexInfo::NONE);
@@ -20,6 +34,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNor
 {
 	existFace = existValue = existTexture = existColor = false;
 	existVertexPos = existNormal = true;
+	needNormlize = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
@@ -39,6 +54,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 {
 	existFace = existValue = existNormal = existTexture = existColor = false;
 	existVertexPos = true;
+	needNormlize = true;
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
 		JVertex * jVert = new JVertex(newVertexList[i]);
@@ -60,6 +76,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFa
 {
 	existNormal = existValue = existTexture = existColor = false;
 	existVertexPos = existFace = true;
+	needNormlize = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
@@ -89,6 +106,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<openni::RGB888
 {
 	existNormal = existValue = existTexture = false;
 	existVertexPos = existColor = true;
+	needNormlize = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
@@ -262,7 +280,11 @@ bool PlyCloud::read_ply(const char * filename)
 	std::cout << "vertex list size" << JVertexList.size() << std::endl;
 
 	//normalize mesh
-	normalizeMesh();
+	if (needNormlize)
+	{
+		normalizeMesh();
+	}
+
 	deleted_vertex_list.assign(vertex_num, false);
 
 	// add normal to JVertexList
@@ -452,7 +474,10 @@ bool PlyCloud::read_obj(const char * filename)
 	vertex_num = (int)JVertexList.size();
 	face_num = (int)face_list.size();
 	// normalize mesh
-	normalizeMesh();
+	if (needNormlize)
+	{
+		normalizeMesh();
+	}
 
 	deleted_vertex_list.assign(vertex_num, false);
 	deleted_face_list.assign(face_num, false);

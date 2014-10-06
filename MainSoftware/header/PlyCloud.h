@@ -31,6 +31,10 @@ public:
 	// constructor
 	PlyCloud();
 
+	// constructor
+	// to specify if the mesh needs to be normalized
+	PlyCloud(bool);
+
 	// overload constructor
 	// construct the class with a list of vertex and a list of normal
 	PlyCloud(std::vector<CPoint> newVertexList, vector<CPoint> newNormalList);
@@ -145,5 +149,6 @@ protected:
 
 	// bool
 	bool existVertexPos, existNormal, existValue, existFace, existTexture, existColor;
+	bool needNormlize;
 };
 
