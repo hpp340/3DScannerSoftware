@@ -8,9 +8,10 @@ ICPRecon::ICPRecon()
 }
 
 // overload constructor
-ICPRecon::ICPRecon(PlyCloud * _dataCloud, PlyCloud * _targetCloud) :
-dataCloud(_dataCloud), targetCloud(_targetCloud)
+ICPRecon::ICPRecon(PlyCloud * _dataCloud, PlyCloud * _targetCloud)
 {
+	dataCloud = _dataCloud;
+	targetCloud = _targetCloud;
 	hasPtCloud = true;
 	numNearNeigh = 1;
 }
@@ -39,6 +40,9 @@ void ICPRecon::startRegistration(Eigen::Matrix<double, 3, 3> & rotMat, Eigen::Ve
 
 		std::vector<JVertex *> dataVertexList = dataCloud->getJVertexList();
 		std::vector<JVertex *> targetVertexList = targetCloud->getJVertexList();
+
+		targetMat.resize(targetVertexList.size(), 3);
+		dataMat.resize(dataVertexList.size(), 3);
 
 		// fill in the ANN point array
 		for (size_t i = 0; i < targetVertexList.size(); i++)
@@ -90,6 +94,8 @@ void ICPRecon::startRegistration(Eigen::Matrix<double, 3, 3> & rotMat, Eigen::Ve
 			}
 
 			Eigen::MatrixX3d matchedTargetPtMat;
+			matchedTargetPtMat.resize(dataMat.rows(), dataMat.cols());
+
 			for (int i = 0; i < dataNum; i++)
 			{
 				for (int j = 0; j < 3; j++)
@@ -97,13 +103,26 @@ void ICPRecon::startRegistration(Eigen::Matrix<double, 3, 3> & rotMat, Eigen::Ve
 					matchedTargetPtMat(i, j) = targetMat(matchResult[i], j);
 				}
 			}
+
 			Eigen::Matrix3d currRotMat;
 			Eigen::Vector3d currTransVec;
 			computeTransformation(currRotMat, currTransVec, matchedTargetPtMat, transedDataMat);
-			rotMat = rotMat * currRotMat;
+			rotMat = currRotMat * rotMat;
 			transVec = currRotMat * transVec + currTransVec;
+
 			// apply the latest transformation
-			transedDataMat = (rotMat * transedDataMat.transpose() + currTransVec).transpose();
+			// the following code block is to realize the following transformation
+			// transedDataMat = (rotMat * transedDataMat.transpose() + currTransVec).transpose();
+			Eigen::Matrix3Xd tempMat;
+			tempMat.resize(3, transedDataMat.rows());
+			tempMat = rotMat * (dataMat.transpose());
+			for (int i = 0; i < transedDataMat.rows(); i++)
+			{
+				for (int j = 0; j < transedDataMat.cols(); j++)
+				{
+					transedDataMat(i, j) = tempMat(j, i) + transVec(j);
+				}
+			}
 
 			double rmsErr = RMSError(matchedTargetPtMat, transedDataMat);
 			std::cout << "RMS Error for Iteration " << k << " : " << rmsErr << std::endl;
@@ -123,7 +142,7 @@ void ICPRecon::computeTransformation(Eigen::Matrix<double, 3, 3> & rotMat, Eigen
 	for (int j = 0; j < dataPts.cols(); j++)
 	{
 		double sum = 0.0;
-		for (int i = 0; i < dataPts.rows(); j++)
+		for (int i = 0; i < dataPts.rows(); i++)
 		{
 			sum += dataPts(i, j);
 		}
@@ -134,7 +153,7 @@ void ICPRecon::computeTransformation(Eigen::Matrix<double, 3, 3> & rotMat, Eigen
 	for (int j = 0; j < targetPts.cols(); j++)
 	{
 		double sum = 0.0;
-		for (int i = 0; i < targetPts.rows(); j++)
+		for (int i = 0; i < targetPts.rows(); i++)
 		{
 			sum += targetPts(i, j);
 		}
@@ -144,6 +163,8 @@ void ICPRecon::computeTransformation(Eigen::Matrix<double, 3, 3> & rotMat, Eigen
 
 	Eigen::MatrixX3d dataMark;
 	Eigen::MatrixX3d targetMark;
+	dataMark.resize(dataPts.rows(), dataPts.cols());
+	targetMark.resize(targetPts.rows(), targetPts.cols());
 
 	for (int i = 0; i < dataPts.rows(); i++)
 	{
@@ -157,7 +178,7 @@ void ICPRecon::computeTransformation(Eigen::Matrix<double, 3, 3> & rotMat, Eigen
 	{
 		for (int j = 0; j < targetPts.cols(); j++)
 		{
-			targetMark(i, j) = targetPts(i, j) - targetMean(j);
+			targetMark(i, j) = (targetPts(i, j) - targetMean(j)) / targetPts.rows();
 		}
 	}
 
