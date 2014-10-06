@@ -46,6 +46,9 @@ Development
 * Save edited mesh to file.
 * Hole Filling has been added to master branch.
 * Obj file is now supported
+* There are some bugs in Hole Filling, so it's moved in this branch.
+* Now connected to PrimeSense with OpenNI2 SDK!
+* ICP point-point has been finished and tested without bugs!
 
 Authors
 ---
