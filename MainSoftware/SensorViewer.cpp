@@ -455,7 +455,7 @@ void SensorViewer::startICP()
 			T.setZero();
 			// compute the rotation matrix and the translation vector, which is represented as the 4*4 matrix
 			// all vertex coordinates are represented by homogeneous coordinates
-			icpReconstruction->startRegistration(R, T, 50);
+			icpReconstruction->startRegistration(R, T, 50, ICPOption::POINT_TO_PLANE);
 			std::cout << "Rotation " << std::endl;
 			std::cout << R << std::endl;
 			std::cout << "Translation " << std::endl;

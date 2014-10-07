@@ -245,7 +245,7 @@ void ICPRecon::computePtToPlaneTransformation(Eigen::Matrix<double, 3, 3> & rotM
 	// cross product of correspondent point and normal
 	// normal is of the target points
 	// i.e. C = dataPts x normalMat
-	int dataNum = dataPts.rows();
+	int dataNum = (int)dataPts.rows();
 	Eigen::MatrixX3d C;
 	C.resize(dataNum, 3);
 	for (int i = 0; i < dataNum; i++)
@@ -384,8 +384,19 @@ void ICPRecon::normalEstimate()
 		Eigen::Matrix3d P;
 		P = neighPts.transpose() * neighPts;
 		Eigen::EigenSolver<Eigen::Matrix3d> eigenSol(P);
-		Eigen::Vector3d eigenValue = eigenSol.eigenvalues();
-		Eigen::Matrix3d eigenVector = eigenSol.eigenvectors();
+		Eigen::Vector3cd eigenValueComplex = eigenSol.eigenvalues();
+		Eigen::Vector3d eigenValue;
+		eigenValue << eigenValueComplex(0).real(), eigenValueComplex(1).real(), eigenValueComplex(2).real();
+		Eigen::Matrix3cd eigenVectorComplex = eigenSol.eigenvectors();
+		Eigen::Matrix3d eigenVector;
+		for (int ii = 0; ii < 3; ii++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				eigenValue(ii, j) = eigenVectorComplex(ii, j).real();
+			}
+		}
+
 		Eigen::Vector3d::Index minEigenValueIdx;
 		eigenValue.minCoeff(&minEigenValueIdx);
 		for (int d = 0; d < 3; d++)
