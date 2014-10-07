@@ -15,6 +15,7 @@ ICPRecon::ICPRecon(PlyCloud * _dataCloud, PlyCloud * _targetCloud)
 	targetCloud = _targetCloud;
 	hasPtCloud = true;
 	numNearNeigh = 1;
+	numNeighbor = 4;
 }
 
 void ICPRecon::startRegistration(Eigen::Matrix<double, 3, 3> & rotMat, Eigen::Vector3d & transVec, int _numIteration, ICPOption icpOpt)
@@ -38,10 +39,10 @@ void ICPRecon::startRegistration(Eigen::Matrix<double, 3, 3> & rotMat, Eigen::Ve
 				std::vector<JVertex *> targetVertList = targetCloud->getJVertexList();
 				for (int i = 0; i < normalMat.rows(); i++)
 				{
-					CPoint currPt = targetVertList[i]->getPoint();
+					CPoint currNorm = targetVertList[i]->getNormal();
 					for (int j = 0; j < normalMat.cols(); j++)
 					{
-						normalMat(i, j) = currPt(j);
+						normalMat(i, j) = currNorm(j);
 					}
 				}
 			}
@@ -148,8 +149,11 @@ void ICPRecon::startRegistration(Eigen::Matrix<double, 3, 3> & rotMat, Eigen::Ve
 				computePtToPlaneTransformation(currRotMat, currTransVec, matchedTargetPtMat, transedDataMat, matchedNormalMat);
 				break;
 			default:
+				std::cout << "No such ICP option exists!" << std::endl;
+				return;
 				break;
 			}
+
 			rotMat = currRotMat * rotMat;
 			transVec = currRotMat * transVec + currTransVec;
 
@@ -259,7 +263,7 @@ void ICPRecon::computePtToPlaneTransformation(Eigen::Matrix<double, 3, 3> & rotM
 			C(i, d) = currResult(d);
 		}
 	}
-	Eigen::MatrixX3d CN;
+	Eigen::MatrixXd CN;
 	CN.resize(dataNum, 6);
 	for (int i = 0; i < dataNum; i++)
 	{
@@ -270,7 +274,8 @@ void ICPRecon::computePtToPlaneTransformation(Eigen::Matrix<double, 3, 3> & rotM
 		}
 	}
 
-	Eigen::Matrix3d CC = CN.transpose() * CN;
+	Eigen::Matrix<double, 6, 6> CC;
+	CC = CN.transpose() * CN;
 
 	Eigen::MatrixX3d tempSub;
 	tempSub.resize(dataNum, 3);
@@ -292,7 +297,8 @@ void ICPRecon::computePtToPlaneTransformation(Eigen::Matrix<double, 3, 3> & rotM
 		b(i) = -sumB;
 	}
 
-	Eigen::Vector3d X;
+	Eigen::VectorXd X;
+	X.resize(6);
 	X = CC.fullPivLu().solve(b);
 
 	double cx = cos(X(0));
@@ -367,7 +373,7 @@ void ICPRecon::normalEstimate()
 		{
 			for (int d = 0; d < 3; d++)
 			{
-				neighPts(ii + 1, d) = annTargetPts[nnIdxs[ii + 1]][d];
+				neighPts(ii, d) = annTargetPts[nnIdxs[ii + 1]][d];
 			}
 		}
 		Eigen::RowVector3d sumNeighPts = neighPts.colwise().sum();
@@ -393,7 +399,7 @@ void ICPRecon::normalEstimate()
 		{
 			for (int j = 0; j < 3; j++)
 			{
-				eigenValue(ii, j) = eigenVectorComplex(ii, j).real();
+				eigenVector(ii, j) = eigenVectorComplex(ii, j).real();
 			}
 		}
 
