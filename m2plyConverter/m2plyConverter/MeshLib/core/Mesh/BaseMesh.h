@@ -1279,7 +1279,7 @@ void CBaseMesh<CVertex,CEdge,CFace,CHalfEdge>::read_m( const char * input )
 
 	char buffer[MAX_LINE];
 	int id;
-
+	int vnum = 0;
 	while( is.getline(buffer, MAX_LINE )  )
 	{		
 	
@@ -1308,6 +1308,8 @@ void CBaseMesh<CVertex,CEdge,CFace,CHalfEdge>::read_m( const char * input )
 			tVertex v  = createVertex( id );
 			v->point() = p;
 			v->id()    = id;
+			v->num() = vnum;
+			vnum++;
 
 			if( ! stokenizer.nextToken("\t\r\n") ) continue;
 			token = stokenizer.getToken();
@@ -1317,7 +1319,15 @@ void CBaseMesh<CVertex,CEdge,CFace,CHalfEdge>::read_m( const char * input )
 
 			if( sp >= 0 && ep >= 0 )
 			{
+				string uv_coord = token.substr(sp + 1, ep - sp - 1);
 				v->string() = token.substr( sp+1, ep-sp-1 );
+				size_t idx1 = uv_coord.find("(");
+				size_t idx2 = uv_coord.find(" ");
+				size_t idx3 = uv_coord.find(")");
+				double uv1 = atof(uv_coord.substr(idx1 + 1, idx2 - idx1 - 1).c_str());
+				double uv2 = atof(uv_coord.substr(idx2 + 1, idx3 - idx2 - 1).c_str());
+				CPoint2 uvCoord(uv1, uv2);
+				v->uv() = uvCoord;
 			}
 			continue;
 		}

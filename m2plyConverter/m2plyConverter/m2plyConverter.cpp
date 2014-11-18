@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 	if (argc < 3)
 	{
 		std::cout << "Not enough parameters. See useage." << std::endl;
-		std::cout << "Useage : m2plyConverter.ext input.m output.ply" << std::endl;
+		std::cout << "Useage : m2plyConverter.exe input.m output.ply" << std::endl;
 		return 0;
 	}
 
@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 
 	ConvMesh * mesh = new ConvMesh;
 	// read in the mesh data 
-	mesh->read_obj(argv[1]);
+	mesh->read_m(argv[1]);
 	cout << argv[1] << endl;
 	// normalize mesh
 	MeshNormalize(mesh);
@@ -55,6 +55,8 @@ int main(int argc, char** argv)
 		outputfile << "property double nx" << endl;
 		outputfile << "property double ny" << endl;
 		outputfile << "property double nz" << endl;
+		outputfile << "property double u" << endl;
+		outputfile << "property double v" << endl;
 		if (mesh->numFaces() > 0)
 		{
 			hasFaces = true;
@@ -102,7 +104,8 @@ int main(int argc, char** argv)
 		CVertex * pV = *viter;
 		CPoint point = pV->point();
 		CPoint verNormal = pV->normal();
-		outputfile << point[0] << " " << point[1] << " " << point[2] << " " << verNormal[0] << " " << verNormal[1] << " " << verNormal[2] << endl;
+		CPoint2 uvCoord = pV->uv();
+		outputfile << point[0] << " " << point[1] << " " << point[2] << " " << verNormal[0] << " " << verNormal[1] << " " << verNormal[2] << " " << uvCoord[0] << " " << uvCoord[1] << endl;
 	}
 
 	// write faces to plyfile
@@ -115,7 +118,8 @@ int main(int argc, char** argv)
 			CVertex * v1 = hf->vertex();
 			CVertex * v2 = hf->he_next()->vertex();
 			CVertex * v3 = hf->he_next()->he_next()->vertex();
-			outputfile << "3 " << v1->id()-1 << " " << v2->id()-1 << " " << v3->id()-1 << endl;
+			//outputfile << "3 " << v1->id()-1 << " " << v2->id()-1 << " " << v3->id()-1 << endl;
+			outputfile << "3 " << v1->num() << " " << v2->num() << " " << v3->num() << endl;
 		}
 	}
 
