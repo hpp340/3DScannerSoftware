@@ -15,11 +15,15 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 	isScanStopped = false;
 	hasScanStarted = false;
 	maxDepthRange = _maxDepthRange;
+	
+	// debug need
+	// debugOutput.open("outputdebug.txt");
 }
 
 SensorViewer::~SensorViewer()
 {
 	std::cout << "SensorViewer:destructor..." << std::endl;
+	//debugOutput.close();
 	//getchar();
 }
 
@@ -92,7 +96,8 @@ void SensorViewer::run()
 {
 	QTimer * timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(updateDisplay()));
-	timer->start(50);
+	//trigger time interval; in millisecond
+	timer->start(250);
 	//updateGL();
 }
 
@@ -148,6 +153,10 @@ void SensorViewer::paintGL()
 			{
 				int idx = x + y * m_depthFrame.getWidth();
 				const openni::DepthPixel & zValue = depthCoorArray[idx];
+				//if (x == 0 && y == 0)
+				//{
+				//	std::cout << zValue << std::endl;
+				//}
 				if (zValue != 0)
 				{
 					if (!m_rgbToDepthRegConverter)
@@ -161,6 +170,14 @@ void SensorViewer::paintGL()
 
 								float fx, fy, fz;
 								openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
+								//if (x == m_depthFrame.getWidth() / 2 && y == m_depthFrame.getHeight() / 2)
+								//{
+								//	debugOutput << fx << " " << fy << " " << fz << std::endl;
+								//}
+								//if (fz != 1032)
+								//{
+								//	getchar();
+								//}
 								if (fz <= maxDepthRange)
 								{
 									CPoint newVertex((double)fx, (double)fy, (double)fz);
