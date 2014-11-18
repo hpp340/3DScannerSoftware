@@ -9,6 +9,7 @@
 #include "OpenGLHeader.h"
 #include <OpenNI.h>
 #include <QTimer>
+#include <fstream>
 
 class SensorViewer :
 	public MeshViewer
@@ -60,6 +61,9 @@ private:
 
 	bool isScanStopped;
 	bool hasScanStarted;
+
+	//debug need
+	//std::ofstream debugOutput;
 
 private slots:
 	void updateDisplay();

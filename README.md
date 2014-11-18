@@ -49,6 +49,7 @@ Development
 * There are some bugs in Hole Filling, so it's moved in this branch.
 * Now connected to PrimeSense with OpenNI2 SDK!
 * ICP point-point has been finished and tested without bugs!
+* ICP point-plane finished and passed test.
 
 Authors
 ---
