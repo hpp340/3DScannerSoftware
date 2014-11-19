@@ -2,25 +2,12 @@
 // author: Jerome Jiang
 // updated: 8/5/2014
 // update information: make it compatible with JVertex class. 
+
 #include "header\PlyCloud.h"
 
 PlyCloud::PlyCloud()
 {
 	existFace = existNormal = existValue = existVertexPos = existTexture = existColor =  false;
-	needNormlize = true;
-	vertex_num = 0;
-	face_num = 0;
-	vertProperty.assign(7, VertexInfo::NONE);
-	deleted_vertex_list.assign(vertex_num, false);
-	newVertexIdList.assign(vertex_num, 0);
-	deleted_face_list.assign(face_num, false);
-}
-
-// overload constructor
-PlyCloud::PlyCloud(bool _needNormalize)
-{
-	existFace = existNormal = existValue = existVertexPos = existTexture = existColor = false;
-	needNormlize = _needNormalize;
 	vertex_num = 0;
 	face_num = 0;
 	vertProperty.assign(7, VertexInfo::NONE);
@@ -34,7 +21,6 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<CPoint> newNor
 {
 	existFace = existValue = existTexture = existColor = false;
 	existVertexPos = existNormal = true;
-	needNormlize = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
@@ -54,7 +40,6 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 {
 	existFace = existValue = existNormal = existTexture = existColor = false;
 	existVertexPos = true;
-	needNormlize = true;
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
 		JVertex * jVert = new JVertex(newVertexList[i]);
@@ -76,8 +61,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFa
 {
 	existNormal = existValue = existTexture = existColor = false;
 	existVertexPos = existFace = true;
-	needNormlize = true;
-	vertProperty.assign(7, VertexInfo::NONE);
+	vertProperty.assign(10, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
 		JVertex * jVert = new JVertex(newVertexList[i]);
@@ -102,11 +86,10 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFa
 }
 
 //overload constructor
-PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<openni::RGB888Pixel> colorList)
+PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JColor> colorList)
 {
 	existNormal = existValue = existTexture = false;
 	existVertexPos = existColor = true;
-	needNormlize = true;
 	vertProperty.assign(7, VertexInfo::NONE);
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
@@ -194,6 +177,13 @@ bool PlyCloud::read_ply(const char * filename)
 		existValue = true;
 	}
 
+	if ((std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::COLORRED) != vertProperty.end())
+		&& (std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::COLORGREEN) != vertProperty.end())
+		&& (std::find(vertProperty.begin(), vertProperty.end(), VertexInfo::COLORBLUE) != vertProperty.end()))
+	{
+		existColor = true;
+	}
+
 	// read in the vertex position and normal
 	int vertIter = 0;
 	while ((!plyfile.eof()) && (vertIter < vertex_num))
@@ -202,6 +192,7 @@ bool PlyCloud::read_ply(const char * filename)
 		vertIter++;
 		CPoint vertexPosition, normalPosition;
 		double vertexValue;
+		JColor currColor;
 		JVertex * jVert = new JVertex();
 		size_t firstSpace, secondSpace, thirdSpace, fourthSpace, fifthSpace, sixthSpace;
 		firstSpace = secondSpace = thirdSpace = fourthSpace = fifthSpace = 0;
@@ -257,6 +248,15 @@ bool PlyCloud::read_ply(const char * filename)
 				case VertexInfo::VALUE:
 					vertexValue = dataVector[i];
 					break;
+				case VertexInfo::COLORRED:
+					currColor.red = (int)dataVector[i];
+					break;
+				case VertexInfo::COLORGREEN:
+					currColor.green = (int)dataVector[i];
+					break;
+				case VertexInfo::COLORBLUE:
+					currColor.blue = (int)dataVector[i];
+					break;
 				default:
 					break;
 				}
@@ -266,6 +266,10 @@ bool PlyCloud::read_ply(const char * filename)
 		{
 			jVert->addPos(vertexPosition);
 			addJVert(jVert);
+		}
+		if (existColor)
+		{
+			jVert->addColor(currColor);
 		}
 		if (existNormal)
 		{
@@ -279,12 +283,8 @@ bool PlyCloud::read_ply(const char * filename)
 
 	std::cout << "vertex list size" << JVertexList.size() << std::endl;
 
-	//normalize mesh
-	if (needNormlize)
-	{
-		normalizeMesh();
-	}
-
+	// normalize mesh
+	// normalizeMesh();
 	deleted_vertex_list.assign(vertex_num, false);
 
 	// add normal to JVertexList
@@ -332,11 +332,11 @@ bool PlyCloud::read_ply(const char * filename)
 		std::cout << "computing face normal" << std::endl;
 		computeFaceNormal();
 	}
-	if ((!existNormal) && (existFace))
-	{
-		std::cout << "computing vertex normal" << std::endl;
-		computeVertexNormal();
-	}
+	//if ((!existNormal) && (existFace))
+	//{
+	//	std::cout << "computing vertex normal" << std::endl;
+	//	computeVertexNormal();
+	//}
 	if (existNormal)
 	{
 		cleanMesh();
@@ -474,10 +474,7 @@ bool PlyCloud::read_obj(const char * filename)
 	vertex_num = (int)JVertexList.size();
 	face_num = (int)face_list.size();
 	// normalize mesh
-	if (needNormlize)
-	{
-		normalizeMesh();
-	}
+	normalizeMesh();
 
 	deleted_vertex_list.assign(vertex_num, false);
 	deleted_face_list.assign(face_num, false);
@@ -639,9 +636,9 @@ bool PlyCloud::write_ply(const char *filename)
 			{
 				CPoint vert = JVertexList[i]->getPoint();
 				CPoint norm = JVertexList[i]->getNormal();
-				openni::RGB888Pixel _colorValue = color_list[i];
+				JColor _colorValue = JVertexList[i]->getColor();
 
-				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << " " << _colorValue.r << " " << _colorValue.g << " " << _colorValue.b << endl;
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << " " << _colorValue.red << " " << _colorValue.green << " " << _colorValue.blue << endl;
 			}
 		}
 	}
@@ -665,10 +662,10 @@ bool PlyCloud::write_ply(const char *filename)
 			if (! deleted_vertex_list[i])
 			{
 				CPoint vert = JVertexList[i]->getPoint();
-				openni::RGB888Pixel _colorValue = color_list[i];
-				int redValue = (int)_colorValue.r;
-				int greenValue = (int)_colorValue.g;
-				int blueValue = (int)_colorValue.b;
+				JColor _colorValue = JVertexList[i]->getColor();
+				int redValue = (int)_colorValue.red;
+				int greenValue = (int)_colorValue.green;
+				int blueValue = (int)_colorValue.blue;
 				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << redValue << " " << greenValue << " " << blueValue << endl;
 			}
 		}
@@ -851,6 +848,19 @@ void PlyCloud::setupVertexProperty(string inS, int propIter)
 	if (inS.substr(inS.length() - 5, 5) == "value")
 	{
 		vertProperty[propIter] = VertexInfo::VALUE;
+	}
+
+	if (inS.substr(inS.length() - 3, 3) == "red")
+	{
+		vertProperty[propIter] = VertexInfo::COLORRED;
+	}
+	if (inS.substr(inS.length() - 5, 5) == "green")
+	{
+		vertProperty[propIter] = VertexInfo::COLORGREEN;
+	}
+	if (inS.substr(inS.length() - 4, 4) == "blue")
+	{
+		vertProperty[propIter] = VertexInfo::COLORBLUE;
 	}
 }
 

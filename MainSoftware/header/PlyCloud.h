@@ -16,24 +16,19 @@
 #include <fstream>
 #include <iostream>
 
-#include "../JFace.h"
-#include "../JVertex.h"
-#include <OpenNI.h>
+#include "JFace.h"
+#include "JVertex.h"
 
 using namespace MeshLib;
 using namespace std;
 using namespace JMesh;
-enum class VertexInfo { NONE, POSX, POSY, POSZ, NORMALX, NORMALY, NORMALZ, VALUE };
+enum class VertexInfo { NONE, POSX, POSY, POSZ, NORMALX, NORMALY, NORMALZ, VALUE, COLORRED, COLORGREEN, COLORBLUE };
 
 class PlyCloud
 {
 public:
 	// constructor
 	PlyCloud();
-
-	// constructor
-	// to specify if the mesh needs to be normalized
-	PlyCloud(bool);
 
 	// overload constructor
 	// construct the class with a list of vertex and a list of normal
@@ -47,7 +42,7 @@ public:
 	PlyCloud(std::vector<CPoint> newVertexList, std::vector<JFace *> newFaceList);
 
 	// overload constructor
-	PlyCloud(std::vector<CPoint> newVertexList, std::vector<openni::RGB888Pixel> colorList);
+	PlyCloud(std::vector<CPoint> newVertexList, std::vector<JColor> colorList);
 
 	// deconstructor
 	~PlyCloud();
@@ -71,7 +66,7 @@ public:
 	std::vector<JVertex *> getJVertexList() { return JVertexList; };
 
 	// get color list
-	std::vector<openni::RGB888Pixel> getColorList() { return color_list; }
+	std::vector<JColor> getColorList() { return color_list; }
 
 	// get face list
 	std::vector<JFace*> get_face_list();
@@ -145,10 +140,9 @@ protected:
 	// new version vertex list
 	std::vector<JVertex *> JVertexList;
 	// color list
-	std::vector<openni::RGB888Pixel> color_list;
+	std::vector<JColor> color_list;
 
 	// bool
 	bool existVertexPos, existNormal, existValue, existFace, existTexture, existColor;
-	bool needNormlize;
 };
 

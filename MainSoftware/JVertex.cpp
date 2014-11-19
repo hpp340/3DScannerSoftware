@@ -7,6 +7,7 @@ namespace JMesh
 		existFaces = false;
 		existNormal = false;
 		existTexture = false;
+		existColor = false;
 	}
 
 	JVertex::JVertex(CPoint pos)
@@ -15,6 +16,7 @@ namespace JMesh
 		existFaces = false;
 		existNormal = false;
 		existTexture = false;
+		existColor = false;
 	}
 
 	JVertex::JVertex(CPoint pos, CPoint norm)
@@ -23,6 +25,7 @@ namespace JMesh
 		addNormal(norm);
 		existFaces = existTexture = false;
 		existNormal = true;
+		existColor = false;
 	}
 
 	void JVertex::addFace(JFace * face)
@@ -53,6 +56,22 @@ namespace JMesh
 		texturePos[0] = texture[0];
 		texturePos[1] = texture[1];
 		existTexture = true;
+	}
+
+	void JVertex::addColor(int red, int green, int blue)
+	{
+		color.red = red;
+		color.green = green;
+		color.blue = blue;
+		existColor = true;
+	}
+
+	void JVertex::addColor(JColor _color)
+	{
+		color.red = _color.red;
+		color.green = _color.green;
+		color.blue = _color.blue;
+		existColor = true;
 	}
 
 	JVertex::~JVertex()
