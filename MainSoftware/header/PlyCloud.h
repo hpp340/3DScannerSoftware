@@ -88,6 +88,8 @@ public:
 	int get_vertex_num();
 	// get face number
 	int get_face_num();
+	// normalize
+	void normalize() { normalizeMesh(); };
 
 private:
 	// add vertex to the vertex list and add normal to the normal list of the point cloud

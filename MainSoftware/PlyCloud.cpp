@@ -67,7 +67,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList)
 	vertProperty[2] = VertexInfo::POSZ;
 	vertex_num = (int)newVertexList.size();
 	face_num = 0;
-	normalizeMesh();
+	//normalizeMesh();
 	deleted_vertex_list.assign(vertex_num, false);
 }
 
@@ -121,7 +121,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<openni::RGB888
 		color_list.push_back(colorList[i]);
 	}
 	deleted_vertex_list.assign(vertex_num, false);
-	normalizeMesh();
+	//normalizeMesh();
 }
 
 PlyCloud::~PlyCloud()

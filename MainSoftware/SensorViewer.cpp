@@ -108,25 +108,25 @@ void SensorViewer::updateDisplay()
 
 void SensorViewer::paintGL()
 {
-	//int changedIdx;
+	int changedIdx;
 	std::cout << "SensorViewer: paintGL..." << std::endl;
-	//openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIdx);
+	openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIdx);
 
-	//if (rc != openni::STATUS_OK)
-	//{
-	//	printf("Wait failed\n");
-	//	return;
-	//}
+	if (rc != openni::STATUS_OK)
+	{
+		printf("Wait failed\n");
+		return;
+	}
 
-	//switch (changedIdx)
-	//{
-	//case 0:
-	//	m_depthStream.readFrame(&m_depthFrame); break;
-	//case 1:
-	//	m_rgbStream.readFrame(&m_rgbFrame); break;
-	//default:
-	//	printf("Error in wait\n");
-	//}
+	switch (changedIdx)
+	{
+	case 0:
+		m_depthStream.readFrame(&m_depthFrame); break;
+	case 1:
+		m_rgbStream.readFrame(&m_rgbFrame); break;
+	default:
+		printf("Error in wait\n");
+	}
 
 	const openni::DepthPixel * depthCoorArray = NULL;
 	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)
@@ -209,6 +209,7 @@ void SensorViewer::paintGL()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glPushMatrix();
 		pointCloud = new PlyCloud(vertexList, colorList);
+		pointCloud->normalize();
 		setDefaultDrawMode();
 		drawMesh();
 		glPopMatrix();
@@ -243,6 +244,7 @@ void SensorViewer::paintGL()
 		}
 
 		pointCloud = new PlyCloud(vertexList);
+		pointCloud->normalize();
 		setDefaultDrawMode();
 		std::cout << "SensorViewer: start drawing..." << std::endl;
 
@@ -402,6 +404,7 @@ void SensorViewer::dataCollectionOneFrame()
 		}
 
 		pCloudToBeScanned = new PlyCloud(vertexList, colorList);
+		//pCloudToBeScanned->normalize();
 	}
 	else
 	{
@@ -431,6 +434,7 @@ void SensorViewer::dataCollectionOneFrame()
 		}
 
 		pCloudToBeScanned = new PlyCloud(vertexList);
+		//pCloudToBeScanned->normalize();
 	}
 	
 	string scanName = "scanned_point_cloud";
