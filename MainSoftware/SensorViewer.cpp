@@ -144,7 +144,7 @@ void SensorViewer::paintGL()
 	{	
 		std::cout << "SensorViewer: Use RGB camera and Depth camera!" << std::endl;
 		std::vector<CPoint> vertexList;
-		std::vector<openni::RGB888Pixel> colorList;
+		std::vector<JMesh::JColor> colorList;
 
 		rgbCoorArray = static_cast<const openni::RGB888Pixel*>(m_rgbFrame.getData());
 		for (int y = 0; y < m_depthFrame.getHeight(); y++)
@@ -167,7 +167,8 @@ void SensorViewer::paintGL()
 							if (colorX >= 0 && colorX<m_depthFrame.getWidth() && colorY >=0 && colorY<m_depthFrame.getHeight())
 							{
 								const openni::RGB888Pixel & colorValue = rgbCoorArray[colorX + colorY * m_depthFrame.getWidth()];
-
+								JColor j_color;
+								j_color.red = colorValue.r; j_color.green = colorValue.g; j_color.blue = colorValue.b;
 								float fx, fy, fz;
 								openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
 								//if (x == m_depthFrame.getWidth() / 2 && y == m_depthFrame.getHeight() / 2)
@@ -183,7 +184,7 @@ void SensorViewer::paintGL()
 									CPoint newVertex((double)fx, (double)fy, (double)fz);
 									//depthOutput << fz << std::endl;
 									vertexList.push_back(newVertex);
-									colorList.push_back(colorValue);
+									colorList.push_back(j_color);
 								}
 							}
 						}
@@ -191,7 +192,8 @@ void SensorViewer::paintGL()
 					else
 					{
 						const openni::RGB888Pixel &colorValue = rgbCoorArray[idx];
-
+						JColor j_color;
+						j_color.red = colorValue.r; j_color.green = colorValue.g; j_color.blue = colorValue.b;
 						float fx, fy, fz;
 						openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
 						// limit the depth range
@@ -200,7 +202,7 @@ void SensorViewer::paintGL()
 							CPoint newVertex((double)fx, (double)fy, (double)fz);
 							//depthOutput << fz << std::endl;
 							vertexList.push_back(newVertex);
-							colorList.push_back(colorValue);
+							colorList.push_back(j_color);
 						}
 					}
 				}
@@ -280,7 +282,7 @@ void SensorViewer::drawMesh()
 void SensorViewer::drawMeshColorPoints()
 {
 	std::vector<JVertex*> jVertexList = pointCloud->getJVertexList();
-	std::vector<openni::RGB888Pixel> colorList = pointCloud->getColorList();
+	std::vector<JColor> colorList = pointCloud->getColorList();
 
 	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();
 
@@ -289,14 +291,14 @@ void SensorViewer::drawMeshColorPoints()
 		if (!deletedVertexList[i])
 		{
 			CPoint vert = jVertexList[i]->getPoint();
-			openni::RGB888Pixel colorValue = colorList[i];
+			JColor colorValue = colorList[i];
 
 			if (jVertexList[i]->hasNormal())
 			{
 				CPoint norl = jVertexList[i]->getNormal();
 
 				glPointSize(1.0f);
-				glColor3d(colorValue.r/255.0, colorValue.g/255.0, colorValue.b/255.0);
+				glColor3d(colorValue.red/255.0, colorValue.green/255.0, colorValue.blue/255.0);
 				glBegin(GL_POINTS);
 				glVertex3d(vert[0], vert[1], vert[2]);
 				glNormal3d(norl[0], norl[1], norl[2]);
@@ -305,7 +307,7 @@ void SensorViewer::drawMeshColorPoints()
 			else
 			{
 				glPointSize(1.0f);
-				glColor3d(colorValue.r/255.0, colorValue.g/255.0, colorValue.b/255.0);
+				glColor3d(colorValue.red/255.0, colorValue.green/255.0, colorValue.blue/255.0);
 				glBegin(GL_POINTS);
 				glVertex3d(vert[0], vert[1], vert[2]);
 				glEnd();
@@ -351,7 +353,7 @@ void SensorViewer::dataCollectionOneFrame()
 	if (m_rgbStream.readFrame(&m_rgbFrame) == openni::STATUS_OK)
 	{
 		std::vector<CPoint> vertexList;
-		std::vector<openni::RGB888Pixel> colorList;
+		std::vector<JColor> colorList;
 		rgbCoorArray = static_cast<const openni::RGB888Pixel*>(m_rgbFrame.getData());
 
 		if (depthCoorArray != NULL)
@@ -372,13 +374,15 @@ void SensorViewer::dataCollectionOneFrame()
 								if (colorX >= 0 && colorX < m_depthFrame.getWidth() && colorY >= 0 && colorY < m_depthFrame.getHeight())
 								{
 									const openni::RGB888Pixel & colorValue = rgbCoorArray[colorX + colorY * m_depthFrame.getWidth()];
+									JColor j_color;
+									j_color.red = colorValue.r; j_color.green = colorValue.g; j_color.blue = colorValue.b;
 									float fx, fy, fz;
 									openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
 									if (fz <= maxDepthRange)
 									{
 										CPoint newVertex((double)fx, (double)fy, (double)fz);
 										vertexList.push_back(newVertex);
-										colorList.push_back(colorValue);
+										colorList.push_back(j_color);
 									}
 								}
 							}
@@ -386,7 +390,8 @@ void SensorViewer::dataCollectionOneFrame()
 						else
 						{
 							const openni::RGB888Pixel &colorValue = rgbCoorArray[idx];
-
+							JColor j_color;
+							j_color.red = colorValue.r; j_color.green = colorValue.g; j_color.blue = colorValue.b;
 							float fx, fy, fz;
 							openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
 							// limit the depth range
@@ -395,7 +400,7 @@ void SensorViewer::dataCollectionOneFrame()
 								CPoint newVertex((double)fx, (double)fy, (double)fz);
 								//depthOutput << fz << std::endl;
 								vertexList.push_back(newVertex);
-								colorList.push_back(colorValue);
+								colorList.push_back(j_color);
 							}
 						}
 					}
