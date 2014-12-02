@@ -83,6 +83,7 @@ void MeshViewer::loadFile(const char * meshfile, string fileExt)
 	if (fileExt == "ply")
 	{
 		isLoadOK = pointCloud->read_ply(meshfile);
+		pointCloud->normalize();
 	}
 	else if (fileExt == "obj")
 	{

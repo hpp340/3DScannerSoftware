@@ -1,4 +1,8 @@
-
+*.exe
+*.suo
+*.log
+*.tlog
+*.lastbuildstate
 *.ply
 *.obj
 *.m

@@ -136,22 +136,22 @@ openni::Status sensorWindow::startSensor()
 				rgbFail.setText("sensorWindow: Error: rgb sensor start failed.");
 				rgbFail.exec();
 				rgbStream.destroy();
-				return openni::STATUS_ERROR;
+				//return openni::STATUS_ERROR;
 			}
 		}
 		else
 		{
 			std::cout << "sensorWindow: rgb stream can't be created." << std::endl;
-			return openni::STATUS_ERROR;
+			//return openni::STATUS_ERROR;
 		}
 	}
 	else
 	{
 		std::cout << "SensorWindow: there is no rgb sensor..." << std::endl;
-		return openni::STATUS_ERROR;
+		//return openni::STATUS_ERROR;
 	}
 
-	if (!depthStream.isValid() || !rgbStream.isValid())
+	if ((!depthStream.isValid()) && (!rgbStream.isValid()))
 	{
 		std::cout << "sensorWindow: No Valid Stream. Exiting..." << std::endl;
 		openni::OpenNI::shutdown();

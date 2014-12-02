@@ -94,6 +94,7 @@ PlyCloud::PlyCloud(std::vector<CPoint> newVertexList, std::vector<JColor> colorL
 	for (size_t i = 0; i < newVertexList.size(); i++)
 	{
 		JVertex * jVert = new JVertex(newVertexList[i]);
+		jVert->addColor(colorList[i]);
 		addJVert(jVert);
 		newVertexIdList.push_back((int)i);
 	}

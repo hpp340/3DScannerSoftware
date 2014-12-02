@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "header\eigen\Eigen\Dense"
 #include "ICPRecon.h"
+#include <Windows.h>
 
 SensorViewer::SensorViewer(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
@@ -334,7 +335,7 @@ void SensorViewer::viewerStopScan()
 void SensorViewer::dataCollectionOneFrame()
 {
 	std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
-
+	std::cout << GetTickCount() << std::endl;
 	const openni::DepthPixel * depthCoorArray = NULL;
 	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)
 	{
@@ -343,6 +344,7 @@ void SensorViewer::dataCollectionOneFrame()
 	else
 	{
 		std::cout << "SensorViewer: Can't read depth frame. Return." << std::endl;
+		getchar();
 		return;
 	}
 

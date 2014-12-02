@@ -261,6 +261,7 @@ void MainWindow::startPoissonRecon()
 	std::string tempFilename = viewer->getFilename();
 	printf("%s\n", tempFilename);
 	surfaceRecon->acceptPointCloudFromFile(tempFilename);
+	getchar();
 	//surfaceRecon->startRecon< 2, PlyVertex< Real >, false >();
 	surfaceRecon->startRecon< 2, PlyValueVertex< Real >, true >();
 	//viewer->acceptMesh(surfaceRecon->getSurface());
