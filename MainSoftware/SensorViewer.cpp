@@ -16,7 +16,7 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 	isScanStopped = false;
 	hasScanStarted = false;
 	maxDepthRange = _maxDepthRange;
-	
+	// std::ofstream timerecord;
 	// debug need
 	// debugOutput.open("outputdebug.txt");
 }
@@ -321,6 +321,9 @@ void SensorViewer::viewerStartScan()
 {
 	hasScanStarted = true;
 	std::cout << "SensorViewer:startScan..." << std::endl;
+	// new file for time record
+	
+	timerecord.open("timerecord.txt");
 	scanTimer = new QTimer(this);
 	connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()));
 	scanTimer->start(500); 
@@ -330,11 +333,14 @@ void SensorViewer::viewerStopScan()
 {
 	scanTimer->stop();
 	isScanStopped = true;
+	timerecord.close();
 }
 
 void SensorViewer::dataCollectionOneFrame()
 {
 	std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
+	int currentTime;
+	//currentTime = GetTickCount();
 	std::cout << GetTickCount() << std::endl;
 	const openni::DepthPixel * depthCoorArray = NULL;
 	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)
@@ -360,6 +366,8 @@ void SensorViewer::dataCollectionOneFrame()
 
 		if (depthCoorArray != NULL)
 		{
+			// get current time in millisecond
+			currentTime = GetTickCount();
 			for (int y = 0; y < m_depthFrame.getHeight(); y++)
 			{
 				for (int x = 0; x < m_depthFrame.getWidth(); x++)
@@ -419,6 +427,7 @@ void SensorViewer::dataCollectionOneFrame()
 
 		if (depthCoorArray != NULL)
 		{
+			currentTime = GetTickCount();
 			for (int y = 0; y < m_depthFrame.getHeight(); ++y)
 			{
 				for (int x = 0; x < m_depthFrame.getWidth(); ++x)
@@ -447,6 +456,7 @@ void SensorViewer::dataCollectionOneFrame()
 	string scanName = "scanned_point_cloud";
 	std::cout << scanName + std::to_string(numFile) << std::endl;
 	pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
+	timerecord << numFile << " " << currentTime << std::endl;
 	std::cout << "Saved one frame to " << scanName + std::to_string(numFile) + ".ply" << std::endl;
 	numFile++;
 	//getchar();

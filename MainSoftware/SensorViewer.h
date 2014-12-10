@@ -64,6 +64,8 @@ private:
 
 	//debug need
 	//std::ofstream debugOutput;
+	// record the time in millisecond
+	std::ofstream timerecord;
 
 private slots:
 	void updateDisplay();
