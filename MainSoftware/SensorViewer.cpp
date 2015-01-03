@@ -109,25 +109,26 @@ void SensorViewer::updateDisplay()
 
 void SensorViewer::paintGL()
 {
-	int changedIdx;
+	// int changedIdx;
 	std::cout << "SensorViewer: paintGL..." << std::endl;
-	openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIdx);
 
-	if (rc != openni::STATUS_OK)
-	{
-		printf("Wait failed\n");
-		return;
-	}
+	//openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIdx);
 
-	switch (changedIdx)
-	{
-	case 0:
-		m_depthStream.readFrame(&m_depthFrame); break;
-	case 1:
-		m_rgbStream.readFrame(&m_rgbFrame); break;
-	default:
-		printf("Error in wait\n");
-	}
+	//if (rc != openni::STATUS_OK)
+	//{
+	//	printf("Wait failed\n");
+	//	return;
+	//}
+
+	//switch (changedIdx)
+	//{
+	//case 0:
+	//	m_depthStream.readFrame(&m_depthFrame); break;
+	//case 1:
+	//	m_rgbStream.readFrame(&m_rgbFrame); break;
+	//default:
+	//	printf("Error in wait\n");
+	//}
 
 	const openni::DepthPixel * depthCoorArray = NULL;
 	if (m_depthStream.readFrame(&m_depthFrame) == openni::STATUS_OK)
@@ -160,7 +161,7 @@ void SensorViewer::paintGL()
 				//}
 				if (zValue != 0)
 				{
-					if (!m_rgbToDepthRegConverter)
+					if (m_rgbToDepthRegConverter)
 					{
 						int colorX, colorY;
 						if (openni::CoordinateConverter::convertDepthToColor(m_depthStream, m_rgbStream, x, y, zValue, &colorX, &colorY) == openni::STATUS_OK)
@@ -172,14 +173,7 @@ void SensorViewer::paintGL()
 								j_color.red = colorValue.r; j_color.green = colorValue.g; j_color.blue = colorValue.b;
 								float fx, fy, fz;
 								openni::CoordinateConverter::convertDepthToWorld(m_depthStream, x, y, zValue, &fx, &fy, &fz);
-								//if (x == m_depthFrame.getWidth() / 2 && y == m_depthFrame.getHeight() / 2)
-								//{
-								//	debugOutput << fx << " " << fy << " " << fz << std::endl;
-								//}
-								//if (fz != 1032)
-								//{
-								//	getchar();
-								//}
+
 								if (fz <= maxDepthRange)
 								{
 									CPoint newVertex((double)fx, (double)fy, (double)fz);
@@ -376,7 +370,7 @@ void SensorViewer::dataCollectionOneFrame()
 					const openni::DepthPixel & zValue = depthCoorArray[idx];
 					if (zValue != 0)
 					{
-						if (! m_rgbToDepthRegConverter)
+						if (m_rgbToDepthRegConverter)
 						{
 							int colorX, colorY;
 							if (openni::CoordinateConverter::convertDepthToColor(m_depthStream, m_rgbStream, x, y, zValue, &colorX, &colorY) == openni::STATUS_OK)
