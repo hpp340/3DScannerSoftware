@@ -50,11 +50,12 @@ Development
 * Now connected to PrimeSense with OpenNI2 SDK!
 * ICP point-point has been finished and tested without bugs!
 * ICP point-plane finished and passed test.
+* Support OpenNI working with PrimeSense 3D scanner
+* ICP support removed
+* Record the point cloud and time stamp for each frame recorded
 
 Authors
 ---
 * Advisor: David Gu
 * Coder: Jerome Jiang
-* Coder: Jason Zhang
-* Coder: Shawn Cui
 
