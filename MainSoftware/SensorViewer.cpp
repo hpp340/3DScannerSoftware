@@ -320,7 +320,7 @@ void SensorViewer::viewerStartScan()
 	timerecord.open("timerecord.txt");
 	scanTimer = new QTimer(this);
 	connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()));
-	scanTimer->start(500); 
+	scanTimer->start(250); 
 }
 
 void SensorViewer::viewerStopScan()
