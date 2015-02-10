@@ -245,6 +245,15 @@
     <ClCompile Include="SensorScanWriterThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CPPTimer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_CPPTimer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_CPPTimer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -384,6 +393,9 @@
     </CustomBuild>
     <CustomBuild Include="SensorScanWriterThread.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CPPTimer.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

@@ -19,14 +19,18 @@ SensorScanWriterThread::~SensorScanWriterThread()
 void SensorScanWriterThread::run()
 {
 	std::cout << "SensorScanWriterThread: run..." << std::endl;
-	while (!stopped)
-	{
+	timer = new CPPTimer();
+	connect(timer, SIGNAL(triggered()), this, SLOT(dataCollectionOneFrame()), Qt::DirectConnection);
+	timer->start();
+	//while (!stopped)
+	//{
 		//int current = GetTickCount();
-		dataCollectionOneFrame();
+
+		//dataCollectionOneFrame();
 		//int now = GetTickCount();
 		//std::cout << "Thread time inter " << now - current << std::endl;
 		//Sleep(250);
-	}
+	//}
 	//exec();
 	//scanTimer = new QTimer(this);
 	//connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()), Qt::DirectConnection);
@@ -38,6 +42,7 @@ void SensorScanWriterThread::stop()
 {
 	//scanTimer->stop();
 	timerecord.close();
+	timer->stop();
 	stopped = true;
 	this->quit();
 }

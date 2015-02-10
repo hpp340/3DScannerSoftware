@@ -2,6 +2,7 @@
 
 #include "meshviewer.h"
 #include "OpenGLHeader.h"
+#include "CPPTimer.h"
 #include <QThread>
 #include <OpenNI.h>
 #include <QTimer>
@@ -27,6 +28,8 @@ private:
 	int numFile;
 	QTimer * scanTimer;
 	bool stopped;
+	CPPTimer * timer;
+
 protected:
 	openni::VideoStream & m_depthStream;
 	openni::VideoStream & m_rgbStream;
