@@ -236,6 +236,15 @@
     <ClCompile Include="header\ANN\perf.cpp">
       <Filter>ANN</Filter>
     </ClCompile>
+    <ClCompile Include="Debug\moc_SensorScanWriterThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SensorScanWriterThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="SensorScanWriterThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -371,6 +380,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="SurfaceTrim.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SensorScanWriterThread.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

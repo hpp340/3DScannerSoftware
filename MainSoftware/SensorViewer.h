@@ -7,9 +7,11 @@
 #pragma once
 #include "meshviewer.h"
 #include "OpenGLHeader.h"
+#include "SensorScanWriterThread.h"
 #include <OpenNI.h>
 #include <QTimer>
 #include <fstream>
+#include <QThread>
 
 class SensorViewer :
 	public MeshViewer
@@ -67,9 +69,12 @@ private:
 	// record the time in millisecond
 	std::ofstream timerecord;
 
+	SensorScanWriterThread * scanThread;
+	//QThread * scanThread;
+
 private slots:
 	void updateDisplay();
-	void dataCollectionOneFrame();
+	//void dataCollectionOneFrame();
 
 public slots:
 	// start scan the whole object using ICP registration
