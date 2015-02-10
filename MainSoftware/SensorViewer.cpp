@@ -318,7 +318,7 @@ void SensorViewer::viewerStartScan()
 	// new file for time record
 	
 	scanThread = new SensorScanWriterThread(m_depthStream, m_rgbStream, m_rgbToDepthRegConverter, maxDepthRange);
-	scanThread->start();
+	scanThread->start(QThread::TimeCriticalPriority);
 
 	//timerecord.open("timerecord.txt");
 	//scanThread = new QThread(this);
