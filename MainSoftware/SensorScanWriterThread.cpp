@@ -21,10 +21,10 @@ void SensorScanWriterThread::run()
 	std::cout << "SensorScanWriterThread: run..." << std::endl;
 	while (!stopped)
 	{
-		int current = GetTickCount();
+		//int current = GetTickCount();
 		dataCollectionOneFrame();
-		int now = GetTickCount();
-		std::cout << "Thread time inter " << now - current << std::endl;
+		//int now = GetTickCount();
+		//std::cout << "Thread time inter " << now - current << std::endl;
 		//Sleep(250);
 	}
 	//exec();
