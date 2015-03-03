@@ -4,40 +4,69 @@
 
 using namespace MeshLib;
 
-class JFace
+namespace JMesh
 {
-public:
-	// constructor
-	JFace();
 
-	// overload constructor
-	JFace(int);
-	// overload constructor, three vertex id
-	JFace(int, int, int);
-	// overload constructor, three vertex id, three texture id
-	JFace(int, int, int, int, int, int);
+	/*!
+	* \brief Class for face in the data structure.
+	* \details It has the ID of three vertices, face normal and texture ID.
+	* \details If the face normal is not given at start, the class can compute it.
+	* \author Jerome Jiang
+	*/
+	class JFace
+	{
+	public:
+		/// Constructor
+		JFace();
 
-	~JFace();
-	// compute face normal
-	void setFaceNormal(CPoint);
-	// get face normal
-	CPoint getFaceNormal();
-	// set face id
-	void setFaceId(int);
-	// if normal set
-	bool isNormalSet() { return normalSet; };
-	// if texture id set
-	bool isTextureSet() { return normalSet; };
+		/// overload constructor
+		/// Construct with face ID
+		JFace(int);
 
-private:
-	bool normalSet;
-	bool textureSet;
-protected:
-	CPoint faceNormal;
+		/// overload constructor
+		/// Construct with IDs of three vertices
+		JFace(int, int, int);
 
-public:
-	int faceId;
-	int vert1Id, vert2Id, vert3Id;
-	int texture1Id, texture2Id, texture3Id;
-};
+		/// overload constructor
+		/// Construct with three vertex id and three texture id
+		JFace(int, int, int, int, int, int);
+
+		~JFace();
+
+		/// Compute face normal
+		void setFaceNormal(CPoint);
+
+		/// Get face normal
+		CPoint getFaceNormal();
+
+		/// Set face id
+		void setFaceId(int);
+
+		/// flag indicating if face normal is set
+		bool isNormalSet() { return normalSet; };
+
+		/// flag indicating if texture id is set
+		bool isTextureSet() { return normalSet; };
+
+	private:
+		bool normalSet;
+		bool textureSet;
+	protected:
+
+		/// Normal of the face
+		CPoint faceNormal;
+
+	public:
+
+		/// Face ID
+		int faceId;
+
+		/// Three vertex IDs
+		int vert1Id, vert2Id, vert3Id;
+
+		/// Three texture IDs
+		int texture1Id, texture2Id, texture3Id;
+	};
+
+}
 

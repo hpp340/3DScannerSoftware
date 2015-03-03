@@ -1,3 +1,4 @@
+
 #ifndef MESHVIEWER_H
 #define MESHVIEWER_H
 
@@ -20,179 +21,269 @@
 #define PI 3.14159265
 #endif
 
+/*! \brief Draw mode used in MeshViewer. 
+* - POINTS: only point cloud
+* - WIREFRAME: wireframe mode. only edges
+* - FLATLINES: flat shading with edges
+* - SMOOTH: smooth shading without edges
+*/
 enum class DRAW_MODE { NONE, POINTS, WIREFRAME, FLATLINES, FLAT, SMOOTH };
 
+/*!
+* \brief Base class for all the viewers in this software.
+* \details Use OpenGL to render point cloud or triangle meshes, with simple iteractive functions.
+*/
 class MeshViewer : public QGLWidget
 {
 	Q_OBJECT
 public:
-	// constructor
+
+	/*! Constructor 
+	*/
 	MeshViewer(QWidget *_parent = 0);
-	// deconstructor
+
+	/*! Deconstructor
+	*/
 	~MeshViewer();
-	// load mesh file
+
+	/// Load mesh file 
+	/// - sExt is the file extension
 	virtual void loadFile(const char *, string sExt);
-	// save mesh file
+
+	/*! Save mesh file 
+	* - sExt is the file extension
+	*/
 	virtual void saveFile(const char *, string sExt);
-	// return scene center
+
+	/*! Return scene center.
+	* Used to put the whole mesh or point cloud in the center of the window.
+	*/
 	glm::vec3 getCenter() { return center; }
 
-	// return radius
+	/*! Return radius */
 	GLdouble getRadius() { return radius; }
-	// return trackball radius
+
+	/*! Return trackball radius
+	* Trackball is used to rotate and zoom in the scene
+	*/
 	double getTrackballRadius() { return trackballRadius; }
 
-	// size hint
+	/*! size hint. Used by Qt Lib */
 	QSize sizeHint() const;
 
-	// get point cloud
+	/*! Get point cloud shown in current viewer */
 	PlyCloud * getMesh() { return pointCloud; };
-	// return the filename
+
+	/*! Return the filename of current file */
 	std::string getFilename();
-	// accept mesh from other classes
+
+	/*! Accept mesh from other classes. This method is only used to render the mesh after Poisson Surface Reconstruction. */
 	void acceptMesh(PlyCloud *);
-	// set draw mode
+
+	/*! Set draw mode (Render mode). Point Cloud, wireframe, flat shading or smooth shading. */
 	void setDrawMode(DRAW_MODE);
 
 protected:
-	// initialize the members
+
+	/// Initialize the members
 	void init();
-	// initialize GL - triggered by Qt
+
+	/// Initialize OpenGL - triggered by Qt
 	void initializeGL();
-	// draw scene - triggered by Qt
+
+	/// Draw scene - triggered by Qt. This shoule be overwritten to meet our needs.
 	virtual void paintGL();
-	// resize - triggered by Qt
+
+	/// Resize - triggered by Qt. Once the window is resized, this method is called automatically.
 	void resizeGL(int width, int height);
 
-	// set scene position and radius(size) 
-	// center is used as the fixed point for rotation and adjustion for camera&view
+	/// Set scene position and radius(size) 
+	/// center is used as the fixed point for rotation and adjustion for camera&view
 	void setScene(glm::vec3, GLdouble);
 
-	// do the rotation specified by axis and angle
+	/// Do the rotation specified by axis and angle
 	void rotate(glm::vec3, double);
-	// do the translation specified by the transVector
+
+	/// Do the translation specified by the transVector
 	void translate(glm::vec3 transVector);
 
-	// get bounding box of the mesh
+	/// Get bounding box of the mesh
 	void getBoundingBox();
 
 protected:
-	// initialize display functions
+
+	/// Initialize display functions
 	void initDisplay();
-	// initialize light functioins - we may need 3 lights
+
+	/// Initialize light functioins - we may need 3 lights
 	void initLights();
-	// initialize material
+
+	/// Initialize material
 	void initMaterial();
-	// return fovy
+
+	/// Return fovy
 	float fovy() const { return 45.0f; }
-	// return zNear
+
+	/// Return zNear
 	float zNear() { return 0.01 * radius; }
-	// return zFar
+
+	/// Return zFar
 	float zFar() { return 100 * radius; }
-	// initialize texture
+
+	/// Initialize texture
 	bool initTexture();
-	// return modelview matrix
+
+	/// Return modelview matrix
 	GLdouble * getModelViewMatrix() { return matModelView; }
-	// return projection matrix
+
+	/// Return projection matrix
 	GLdouble * getProjectionMatrix() { return matProjection; }
-	// return viewport matrix
+
+	/// Return viewport matrix
 	GLint * getViewPort() { return viewPort; }
 
-	// method for drawing mesh
+	/// Method for drawing mesh
 	virtual void drawMesh();
-	// method for drawing axises
+
+	/// Method for drawing axises
 	virtual void drawAxis();
-	// draw point
+
+	/// Draw point
 	virtual void drawMeshPoints();
-	// draw wireframe
+
+	/// Draw wireframe
 	virtual void drawMeshWireframe();
-	// draw flat lines
+
+	/// Draw flat lines
 	virtual void drawMeshFlatlines();
-	// draw flat
+
+	/// Draw flat
 	virtual void drawMeshFlat();
-	// draw smooth
+
+	/// Draw smooth
 	virtual void drawMeshSmooth();
-	// set default draw mode
+
+	/// Set default draw mode
 	void setDefaultDrawMode();
-	// update projection matrix  
+
+	/// Update projection matrix  
 	void updateProjectionMatrix();
 
-	// make the whole scene visiable on the scene
-	// make camera/eye far enough
+	/// Make the whole scene visiable on the scene
+	/// Make camera/eye far enough
 	void makeWholeSceneVisible();
 
-	// QT mouse event
-	// use virtual method in case we would need to inheritate the class in the future
-	// override qt pre-defined method - cant be changed to other names
+	/// QT mouse event
+	/// Use virtual method in case we would need to inheritate the class in the future
+	/// override qt pre-defined method - cant be changed to other names
 	virtual void mousePressEvent(QMouseEvent *);
 	virtual void mouseReleaseEvent(QMouseEvent *);
 	virtual void mouseMoveEvent(QMouseEvent *);
 	virtual void wheelEvent(QWheelEvent *);
 	//virtual void keyPressEvent(QKeyEvent *);
 
-	// rotation and translation 
-	// rotate and translate the view, instead of the point cloud itself
+	/// Rotation and translation 
+	/// Rotate and translate the view, instead of the point cloud itself
 	void rotationView(QPoint newMousePos);
 	void translateView(QPoint newMousePos);
 
-	// arcball algorithm, used to rotation & translation
-	// map a 2D screen position to a unit sphere
+	/// Arcball algorithm, used to rotation & translation
+	/// map a 2D screen position to a unit sphere
 	bool arcball(QPoint screenPos, glm::vec3 &new3DPos);
 
 protected:
-	// trackball radius, used for controll rotation
+	/// Trackball radius, used for controll rotation
 	double trackballRadius;
 
 protected:
-	// point cloud
+	/// Point cloud rendered in current viewer
 	PlyCloud * pointCloud;
-	// is mesh loaded
+
+	/// Check if mesh is loaded
 	bool isMeshLoaded;
-	// is light on
+
+	/// flag indicating if light is on
 	bool isLightOn;
-	// is texture on
+
+	/// flag indicating if texture is on
 	bool isTextureOn;
-	// is texture loaded
+
+	/// flag indicating if texture is loaded
 	bool isTextureLoaded;
-	// scene center
+
+	/// scene center
 	glm::vec3 center;
-	// scene radius
+
+	/// scene radius
 	GLdouble radius;
-	// texture ID
+
+	/// texture ID
 	GLuint textID;
-	// projection matrix and modelview matrix
+
+	/// projection matrix and modelview matrix
 	GLdouble matModelView[16], matProjection[16];
 	GLint viewPort[4];
 
-	// mouse related variable
-	int mouseButton; // which mouse button
-	QPoint latestMousePos; // latest mouse position
-	glm::vec3 latestMouse3DPos;	// latest mouse 3D position
-	bool isLatestMouseOK; // if the latest mouse position could be mapped onto the arc ball
-	// boundingbox
+	/// mouse related variable
+	int mouseButton; /// indicating which mouse button
+
+	/// indicating latest mouse position
+	QPoint latestMousePos; 
+
+	/// indicating latest mouse 3D position - transformed from 2D position
+	glm::vec3 latestMouse3DPos;	
+
+	/// indicating if the latest mouse position could be mapped onto the arc ball
+	bool isLatestMouseOK; 
+
+	/// boundingbox
 	glm::vec3 minBoundingBox;
+
+	/// boundingbox
 	glm::vec3 maxBoundingBox;
-	// draw mode
+	
+	/// draw mode - point cloud, wireframe, flat shading or smooth shading
 	DRAW_MODE meshDrawMode;
 
 protected:
+
+	/// filename of the openned mesh in this viewer
 	QString filename;
+
+	/// filename of the openned mesh in this viewer, in C++ string
 	std::string sFilename;
+
+	/// filename extension. used to check if the file is illegal
 	std::string sTexFilename;
 
 	// slots
 public slots:
+
+	/// Slots used to open the mesh file
 	void openMesh();
+
+	/// Slots used to save the mesh to file
 	void saveMesh();
-	// light control
+
+
+	/// Slot used for light control - turn the light on
 	void turnOnLight();
+
+	/// Slot used for light control - turn the light off
 	void turnOffLight();
-	// texture control
+
+	/// Slot used for texture control - turn the texture on
 	void textureOn();
+
+	/// Slot used for texture control - turn the texture off
 	void textureOff();
 
 signals:
+
+	/// Signal omitted if the DRAW_MODE is set to WIREFRAME
 	void setDrawModeWireframe();
+
+	/// Signal omitted if the DRAW_MODE is set to POINTS
 	void setDrawModePoints();
 };
 

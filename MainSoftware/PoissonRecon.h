@@ -37,23 +37,37 @@
 #define SPLAT_ORDER 2
 #define MEMORY_USAGE_FIX 1
 
+/*!
+* \brief PoissonRecon is used for Poisson Surface Reconstruction
+* \details We reuse the code of Poisson Surface Reconstruction published on webpage
+* \details http://www.cs.jhu.edu/~misha/Code/PoissonRecon/Version6.13/
+* \details For more details, please refer that page.
+*/
 class PoissonRecon
 {
 public:
 	PoissonRecon();
 	~PoissonRecon();
 
-	// add point cloud
+	/// Add point cloud directly from other classes
 	void acceptPointCloud(PlyCloud *);
-	// add point cloud from file
+
+	/// Add point cloud from file
 	void acceptPointCloudFromFile(std::string);
-	// return point cloud
+
+	/// Return reconstructed surface
 	PlyCloud * getSurface();
 
 
 private:
+
+	/// Input file of point cloud
 	std::string filename;
+
+	/// Point Cloud to be reconstructed
 	PlyCloud * pointCloud;
+
+	/// Reconstructed surface
 	PlyCloud * reconSurface;
 	int depth, minDepth, kernelDepth, samplesPerNode, adaptiveExpo;
 	int isoDivide;
@@ -67,7 +81,7 @@ private:
 	
 
 public:
-	// start recon
+	/// Start the process of reconstruction
 	template<int Degree, class Vertex, bool OutputDensity>
 	void startRecon()
 	{

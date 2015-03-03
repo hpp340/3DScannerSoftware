@@ -11,13 +11,23 @@
 #include "header\recon\MAT.h"
 #include "header\recon\Time.h"
 
+/*!
+* \brief SurfaceTrim is used to trim the surface after Poisson Surface Reconstruction.
+* \details If the surface is not water tight, the reconstructed surface will be bigger than desired with a lot of surface pathes surronding the point cloud.
+* \details This step is used to trim the undesired parts.
+*/
 class SurfaceTrim
 {
 public:
+
+	/// Constructor
 	SurfaceTrim();
+
+	/// Deconstructor
 	~SurfaceTrim();
 
-	// start trimmer
+	/// Start trimmer
+	/// \param filename the filename of mesh to be trimmed
 	bool startSurfaceTrim(char * filename);
 private:
 
