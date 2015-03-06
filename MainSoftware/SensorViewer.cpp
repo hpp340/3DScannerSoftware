@@ -98,7 +98,7 @@ void SensorViewer::run()
 	QTimer * timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(updateDisplay()));
 	//trigger time interval; in millisecond
-	timer->start(250);
+	timer->start(30);
 	//updateGL();
 }
 
