@@ -128,6 +128,8 @@ private:
 	SensorScanWriterThread * scanThread;
 	//QThread * scanThread;
 
+	std::ofstream renderTime;
+
 private slots:
 	
 	/*! Slot that used to re-render the whole scene. Every 250ms this is triggered.*/

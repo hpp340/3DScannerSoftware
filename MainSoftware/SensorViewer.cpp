@@ -16,6 +16,7 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 	isScanStopped = false;
 	hasScanStarted = false;
 	maxDepthRange = _maxDepthRange;
+	renderTime.open("rendertime.txt");
 	// std::ofstream timerecord;
 	// debug need
 	// debugOutput.open("outputdebug.txt");
@@ -24,6 +25,7 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 SensorViewer::~SensorViewer()
 {
 	std::cout << "SensorViewer:destructor..." << std::endl;
+	renderTime.close();
 	//debugOutput.close();
 	//getchar();
 }
@@ -104,6 +106,8 @@ void SensorViewer::run()
 
 void SensorViewer::updateDisplay()
 {
+	int currTime = GetTickCount();
+	renderTime << currTime << std::endl;
 	updateGL();
 }
 
