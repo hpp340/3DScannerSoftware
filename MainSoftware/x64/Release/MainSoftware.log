@@ -1,5 +1,5 @@
-﻿Build started 3/8/2015 10:11:47 PM.
-     1>Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
+﻿Build started 3/8/2015 10:51:08 PM.
+     1>Project "C:\Users\Jiang\Documents\Code\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp ICPRecon.cpp JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp Release\moc_SensorScanWriterThread.cpp Release\moc_SensorViewer.cpp Release\moc_sensorWindow.cpp SensorScanWriterThread.cpp SensorViewer.cpp sensorWindow.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
          AlignResultWindow.cpp
@@ -35,22 +35,22 @@
          mainwindow.cpp
          [WARNING] Assuming that the 2-ring contains all the children of interest...
          [WARNING] Assuming that the 2-ring contains all the children of interest...
-     1>c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\SparseMatrix.inl(784): warning C4189: 'threads' : local variable is initialized but not referenced
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2148) : see reference to function template instantiation 'int SparseSymmetricMatrix<Real>::Solve<float>(const SparseSymmetricMatrix<Real> &,const Vector<float> &,int,Vector<float> &,MapReduceVector<Real> &,T2,int,bool,bool)' being compiled
+     1>c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\header\recon\SparseMatrix.inl(784): warning C4189: 'threads' : local variable is initialized but not referenced
+                 c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2148) : see reference to function template instantiation 'int SparseSymmetricMatrix<Real>::Solve<float>(const SparseSymmetricMatrix<Real> &,const Vector<float> &,int,Vector<float> &,MapReduceVector<Real> &,T2,int,bool,bool)' being compiled
                  with
                  [
                      T2=float
                  ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2148) : see reference to function template instantiation 'int SparseSymmetricMatrix<Real>::Solve<float>(const SparseSymmetricMatrix<Real> &,const Vector<float> &,int,Vector<float> &,MapReduceVector<Real> &,T2,int,bool,bool)' being compiled
+                 c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2148) : see reference to function template instantiation 'int SparseSymmetricMatrix<Real>::Solve<float>(const SparseSymmetricMatrix<Real> &,const Vector<float> &,int,Vector<float> &,MapReduceVector<Real> &,T2,int,bool,bool)' being compiled
                  with
                  [
                      T2=float
                  ]
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2030) : while compiling class template member function 'int Octree<2,true>::_SolveFixedDepthMatrix(int,const BSplineData<2,Real>::Integrator &,const SortedTreeNodes<true> &,Real *,int,bool,int,double,bool,int)'
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(1946) : see reference to function template instantiation 'int Octree<2,true>::_SolveFixedDepthMatrix(int,const BSplineData<2,Real>::Integrator &,const SortedTreeNodes<true> &,Real *,int,bool,int,double,bool,int)' being compiled
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(453) : while compiling class template member function 'Octree<2,true>::Octree(void)'
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\PoissonRecon.h(97) : see reference to function template instantiation 'Octree<2,true>::Octree(void)' being compiled
-                 c:\users\jiang\documents\codes\3dscannersoftware\mainsoftware\PoissonRecon.h(97) : see reference to class template instantiation 'Octree<2,true>' being compiled
+                 c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(2030) : while compiling class template member function 'int Octree<2,true>::_SolveFixedDepthMatrix(int,const BSplineData<2,Real>::Integrator &,const SortedTreeNodes<true> &,Real *,int,bool,int,double,bool,int)'
+                 c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(1946) : see reference to function template instantiation 'int Octree<2,true>::_SolveFixedDepthMatrix(int,const BSplineData<2,Real>::Integrator &,const SortedTreeNodes<true> &,Real *,int,bool,int,double,bool,int)' being compiled
+                 c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\header\recon\MultiGridOctreeData.inl(453) : while compiling class template member function 'Octree<2,true>::Octree(void)'
+                 c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\PoissonRecon.h(97) : see reference to function template instantiation 'Octree<2,true>::Octree(void)' being compiled
+                 c:\users\jiang\documents\code\3dscannersoftware\mainsoftware\PoissonRecon.h(97) : see reference to class template instantiation 'Octree<2,true>' being compiled
                  mainwindow.cpp(266) : see reference to function template instantiation 'void PoissonRecon::startRecon<2,PlyValueVertex<float>,true>(void)' being compiled
          meshviewer.cpp
          PoissonRecon.cpp
@@ -75,7 +75,7 @@
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 GeneratedFiles\qrc_resources.cpp
          qrc_resources.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\\MainSoftware.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib glu32.lib opengl32.lib gdi32.lib user32.lib qtmain.lib Qt5Core.lib Qt5OpenGL.lib Qt5Widgets.lib Qt5Gui.lib SOIL.lib OpenNI2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Release\appIcon.res
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jiang\Documents\Code\3DScannerSoftware\MainSoftware\x64\Release\\MainSoftware.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib glu32.lib opengl32.lib gdi32.lib user32.lib qtmain.lib Qt5Core.lib Qt5OpenGL.lib Qt5Widgets.lib Qt5Gui.lib SOIL.lib OpenNI2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Jiang\Documents\Code\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Release\appIcon.res
          x64\Release\AlignResultWindow.obj
          x64\Release\alignWindow.obj
          x64\Release\checkableAction.obj
@@ -128,9 +128,9 @@
          x64\Release\moc_meshviewer.obj
          Generating code
          Finished generating code
-         MainSoftware.vcxproj -> C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.exe
-     1>Done Building Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" (Build target(s)).
+         MainSoftware.vcxproj -> C:\Users\Jiang\Documents\Code\3DScannerSoftware\MainSoftware\x64\Release\MainSoftware.exe
+     1>Done Building Project "C:\Users\Jiang\Documents\Code\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:01:04.08
+Time Elapsed 00:01:25.44

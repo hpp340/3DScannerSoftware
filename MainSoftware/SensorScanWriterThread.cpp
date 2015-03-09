@@ -53,10 +53,10 @@ void SensorScanWriterThread::stop()
 void SensorScanWriterThread::dataCollectionOneFrame()
 {
 
-	string scanName = "scanned_point_cloud";
-	std::cout << scanName + std::to_string(numFile) << std::endl;
-	std::ofstream newScanned;
-	newScanned.open(scanName + std::to_string(numFile) + ".ply");
+	//string scanName = "scanned_point_cloud";
+	//std::cout << scanName + std::to_string(numFile) << std::endl;
+	//std::ofstream newScanned;
+	//newScanned.open(scanName + std::to_string(numFile) + ".ply");
 
 	std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
 	int currentTime;
@@ -113,8 +113,8 @@ void SensorScanWriterThread::dataCollectionOneFrame()
 										CPoint newVertex((double)fx, (double)fy, (double)fz);
 										vertexList.push_back(newVertex);
 										colorList.push_back(j_color);
-										newScanned << fx << " " << fy << " " << fz << " ";
-										newScanned << j_color.red << " " << j_color.green << " " << j_color.blue << '\n';
+										//newScanned << fx << " " << fy << " " << fz << " ";
+										//newScanned << j_color.red << " " << j_color.green << " " << j_color.blue << '\n';
 									}
 								}
 							}
@@ -133,8 +133,8 @@ void SensorScanWriterThread::dataCollectionOneFrame()
 								//depthOutput << fz << std::endl;
 								vertexList.push_back(newVertex);
 								colorList.push_back(j_color);
-								newScanned << fx << " " << fy << " " << fz << " ";
-								newScanned << j_color.red << " " << j_color.green << " " << j_color.blue << '\n';
+								//newScanned << fx << " " << fy << " " << fz << " ";
+								//newScanned << j_color.red << " " << j_color.green << " " << j_color.blue << '\n';
 							}
 						}
 					}
@@ -177,11 +177,11 @@ void SensorScanWriterThread::dataCollectionOneFrame()
 		//pCloudToBeScanned->normalize();
 	}
 
-	//string scanName = "scanned_point_cloud";
-	//std::cout << scanName + std::to_string(numFile) << std::endl;
-	//pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
+	string scanName = "scanned_point_cloud";
+	std::cout << scanName + std::to_string(numFile) << std::endl;
+	pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
 
-	newScanned.close();
+	/*newScanned.close();*/
 	
 	timerecord << numFile << " " << currentTime << std::endl;
 	//std::cout << "Saved one frame to " << scanName + std::to_string(numFile) + ".ply" << std::endl;

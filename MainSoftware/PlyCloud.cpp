@@ -583,7 +583,7 @@ void PlyCloud::add_face(JFace * f)
 bool PlyCloud::write_ply(const char *filename)
 {
 	std::ofstream outputPlyFile;
-	outputPlyFile.open(filename);
+	outputPlyFile.open(filename, ios::binary);
 	if (outputPlyFile.fail())
 	{
 		std::cout << "Error : Can't new output file." << std::endl;
