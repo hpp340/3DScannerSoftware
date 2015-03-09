@@ -595,31 +595,31 @@ bool PlyCloud::write_ply(const char *filename)
 		return false;
 	}
 	// write header of ply file
-	outputPlyFile << "ply" << endl;
-	outputPlyFile << "format ascii 1.0" << endl;
-	outputPlyFile << "element vertex " << vertex_num << endl;
-	outputPlyFile << "property double x" << endl;
-	outputPlyFile << "property double y" << endl;
-	outputPlyFile << "property double z" << endl;
+	outputPlyFile << "ply" << '\n';
+	outputPlyFile << "format ascii 1.0" << '\n';
+	outputPlyFile << "element vertex " << vertex_num << '\n';
+	outputPlyFile << "property double x" << '\n';
+	outputPlyFile << "property double y" << '\n';
+	outputPlyFile << "property double z" << '\n';
 	if (existNormal)
 	{
-		outputPlyFile << "property double nx" << endl;
-		outputPlyFile << "property double ny" << endl;
-		outputPlyFile << "property double nz" << endl;
+		outputPlyFile << "property double nx" << '\n';
+		outputPlyFile << "property double ny" << '\n';
+		outputPlyFile << "property double nz" << '\n';
 	}
 	if (existColor)
 	{
-		outputPlyFile << "property uchar red" << endl;
-		outputPlyFile << "property uchar green" << endl;
-		outputPlyFile << "property uchar blue" << endl;
+		outputPlyFile << "property uchar red" << '\n';
+		outputPlyFile << "property uchar green" << '\n';
+		outputPlyFile << "property uchar blue" << '\n';
 	}
 	if (existFace)
 	{
-		outputPlyFile << "element face " << face_num << endl;
-		outputPlyFile << "property list uchar int vertex_indices" << endl;
+		outputPlyFile << "element face " << face_num << '\n';
+		outputPlyFile << "property list uchar int vertex_indices" << '\n';
 	}
 
-	outputPlyFile << "end_header" << endl;
+	outputPlyFile << "end_header" << '\n';
 
 	int delected_num = 0;
 	for (size_t i = 0; i < deleted_vertex_list.size(); i++)
