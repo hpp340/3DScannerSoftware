@@ -397,7 +397,15 @@ void MeshViewer::drawMesh()
 		break;
 	case DRAW_MODE::POINTS:
 		std::cout << "POINTS" << std::endl;
-		drawMeshPoints();
+		if (pointCloud->hasColor())
+		{
+			drawMeshColorPoints();
+		}
+		else
+		{
+			drawMeshPoints();
+		}
+
 		break;
 	case DRAW_MODE::WIREFRAME:
 		std::cout << "WIREFRAME" << std::endl;
@@ -507,7 +515,41 @@ void MeshViewer::drawMeshPoints()
 	}
 }
 
+void MeshViewer::drawMeshColorPoints()
+{
+	std::vector<JVertex*> jVertexList = pointCloud->getJVertexList();
+	//std::vector<JColor> colorList = pointCloud->getColorList();
+	std::vector<bool> deletedVertexList = pointCloud->get_deleted_vertex_list();
+	std::cout << "drawMeshColorPoints" << std::endl;
+	for (size_t i = 0; i < jVertexList.size(); i++)
+	{
+		if (!deletedVertexList[i])
+		{
+			CPoint vert = jVertexList[i]->getPoint();
+			JColor colorValue = jVertexList[i]->getColor();
 
+			if (jVertexList[i]->hasNormal())
+			{
+				CPoint norl = jVertexList[i]->getNormal();
+
+				glPointSize(10);
+				glColor3d(colorValue.red / 255.0, colorValue.green / 255.0, colorValue.blue / 255.0);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				glNormal3d(norl[0], norl[1], norl[2]);
+				glEnd();
+			}
+			else
+			{
+				glPointSize(10);
+				glColor3d(colorValue.red / 255.0, colorValue.green / 255.0, colorValue.blue / 255.0);
+				glBegin(GL_POINTS);
+				glVertex3d(vert[0], vert[1], vert[2]);
+				glEnd();
+			}
+		}
+	}
+}
 
 void MeshViewer::drawMeshWireframe()
 {

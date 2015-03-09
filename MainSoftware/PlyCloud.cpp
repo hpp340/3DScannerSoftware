@@ -639,7 +639,7 @@ bool PlyCloud::write_ply(const char *filename)
 				CPoint norm = JVertexList[i]->getNormal();
 				JColor _colorValue = JVertexList[i]->getColor();
 
-				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << " " << _colorValue.red << " " << _colorValue.green << " " << _colorValue.blue << endl;
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << " " << _colorValue.red << " " << _colorValue.green << " " << _colorValue.blue << '\n';
 			}
 		}
 	}
@@ -652,7 +652,7 @@ bool PlyCloud::write_ply(const char *filename)
 			{
 				CPoint vert = JVertexList[i]->getPoint();
 				CPoint norm = JVertexList[i]->getNormal();
-				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << endl;
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << norm[0] << " " << norm[1] << " " << norm[2] << '\n';
 			}
 		}
 	}
@@ -667,7 +667,7 @@ bool PlyCloud::write_ply(const char *filename)
 				int redValue = (int)_colorValue.red;
 				int greenValue = (int)_colorValue.green;
 				int blueValue = (int)_colorValue.blue;
-				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << redValue << " " << greenValue << " " << blueValue << endl;
+				outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << " " << redValue << " " << greenValue << " " << blueValue << '\n';
 			}
 		}
 	}
@@ -676,7 +676,7 @@ bool PlyCloud::write_ply(const char *filename)
 		for (size_t i = 0; i < JVertexList.size(); i++)
 		{
 			CPoint vert = JVertexList[i]->getPoint();
-			outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << endl;
+			outputPlyFile << vert[0] << " " << vert[1] << " " << vert[2] << '\n';
 		}
 	}
 	if (existFace)
@@ -689,7 +689,7 @@ bool PlyCloud::write_ply(const char *filename)
 			int newVert3Id = newVertexIdList[currFace->vert3Id];
 			if (! deleted_face_list[currFace->faceId])
 			{
-				outputPlyFile << "3 " << newVert1Id << " " << newVert2Id << " " << newVert3Id << endl;
+				outputPlyFile << "3 " << newVert1Id << " " << newVert2Id << " " << newVert3Id << '\n';
 			}
 		}
 	}

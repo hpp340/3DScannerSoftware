@@ -151,6 +151,9 @@ protected:
 	/// Draw point
 	virtual void drawMeshPoints();
 
+	/// Draw colorful points
+	void MeshViewer::drawMeshColorPoints();
+
 	/// Draw wireframe
 	virtual void drawMeshWireframe();
 

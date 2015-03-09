@@ -1,7 +1,78 @@
-﻿Build started 11/22/2014 4:30:31 PM.
-     1>Project "C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\\MainSoftware.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib glu32.lib opengl32.lib qtmaind.lib Qt5Cored.lib Qt5OpenGLd.lib Qt5Widgetsd.lib Qt5Guid.lib psapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib SOILd.lib OpenNI2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\MainSoftware.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Debug\appIcon.res
+﻿Build started 3/8/2015 10:02:28 PM.
+     1>Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Moc'ing alignWindow.h...
+         Moc'ing checkableAction.h...
+         Moc'ing AlignResultWindow.h...
+         Moc'ing interactiveMeshViewer.h...
+         Moc'ing MultipleMeshViewer.h...
+         Moc'ing mainwindow.h...
+         Moc'ing meshviewer.h...
+         Rcc'ing resources.qrc...
+         Moc'ing FullFuncMeshViewer.h...
+         Moc'ing SensorViewer.h...
+         Moc'ing sensorWindow.h...
+         Moc'ing SensorScanWriterThread.h...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Idebug /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /Zi /nologo /W3 /WX- /Od /GL /D _CONSOLE /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /openmp /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp Debug\moc_AlignResultWindow.cpp Debug\moc_alignWindow.cpp Debug\moc_checkableAction.cpp Debug\moc_FullFuncMeshViewer.cpp Debug\moc_interactiveMeshViewer.cpp Debug\moc_mainwindow.cpp Debug\moc_meshviewer.cpp Debug\moc_MultipleMeshViewer.cpp Debug\moc_SensorScanWriterThread.cpp Debug\moc_SensorViewer.cpp Debug\moc_sensorWindow.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp ICPRecon.cpp JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp SensorScanWriterThread.cpp SensorViewer.cpp sensorWindow.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp
+         AlignResultWindow.cpp
+         alignWindow.cpp
+         checkableAction.cpp
+         moc_AlignResultWindow.cpp
+         moc_alignWindow.cpp
+         moc_checkableAction.cpp
+         moc_FullFuncMeshViewer.cpp
+         moc_interactiveMeshViewer.cpp
+         moc_mainwindow.cpp
+         moc_meshviewer.cpp
+         moc_MultipleMeshViewer.cpp
+         moc_SensorScanWriterThread.cpp
+         moc_SensorViewer.cpp
+         moc_sensorWindow.cpp
+         FullFuncMeshViewer.cpp
+         ANN.cpp
+         bd_fix_rad_search.cpp
+         bd_pr_search.cpp
+         bd_search.cpp
+         bd_tree.cpp
+         Compiling...
+         brute.cpp
+         kd_dump.cpp
+         kd_fix_rad_search.cpp
+         kd_pr_search.cpp
+         kd_search.cpp
+         kd_split.cpp
+         kd_tree.cpp
+         kd_util.cpp
+         perf.cpp
+         ICPRecon.cpp
+         JFace.cpp
+         CmdLineParser.cpp
+         Factor.cpp
+         Geometry.cpp
+         MarchingCubes.cpp
+         PlyFile.cpp
+         interactiveMeshViewer.cpp
+         JVertex.cpp
+         main.cpp
+         mainwindow.cpp
+         [WARNING] Assuming that the 2-ring contains all the children of interest...
+         [WARNING] Assuming that the 2-ring contains all the children of interest...
+         Compiling...
+         meshviewer.cpp
+         PoissonRecon.cpp
+         SensorScanWriterThread.cpp
+         SensorViewer.cpp
+         sensorWindow.cpp
+         SurfaceTrim.cpp
+         MultipleMeshViewer.cpp
+         PlyCloud.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Idebug /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /Zi /nologo /W3 /WX- /Od /GL /D _CONSOLE /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /openmp /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 GeneratedFiles\qrc_resources.cpp
+         qrc_resources.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _WINDOWS /D UNICODE /D WIN32 /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /D _DEBUG /l"0x0409" /nologo /fo"x64\Debug\appIcon.res" appIcon.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\\MainSoftware.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\lib glu32.lib opengl32.lib qtmaind.lib Qt5Cored.lib Qt5OpenGLd.lib Qt5Widgetsd.lib Qt5Guid.lib psapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib SOILd.lib OpenNI2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\MainSoftware.pdb" /SUBSYSTEM:CONSOLE /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" x64\Debug\appIcon.res
          x64\Debug\AlignResultWindow.obj
          x64\Debug\alignWindow.obj
          x64\Debug\checkableAction.obj
@@ -13,6 +84,7 @@
          x64\Debug\moc_mainwindow.obj
          x64\Debug\moc_meshviewer.obj
          x64\Debug\moc_MultipleMeshViewer.obj
+         x64\Debug\moc_SensorScanWriterThread.obj
          x64\Debug\moc_SensorViewer.obj
          x64\Debug\moc_sensorWindow.obj
          x64\Debug\FullFuncMeshViewer.obj
@@ -45,6 +117,7 @@
          x64\Debug\mainwindow.obj
          x64\Debug\meshviewer.obj
          x64\Debug\PoissonRecon.obj
+         x64\Debug\SensorScanWriterThread.obj
          x64\Debug\SensorViewer.obj
          x64\Debug\sensorWindow.obj
          x64\Debug\SurfaceTrim.obj
@@ -52,13 +125,13 @@
          x64\Debug\PlyCloud.obj
          Generating code
          Finished generating code
-     1>SOILd.lib(image_DXT.obj) : warning LNK4204: 'C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
-     1>SOILd.lib(image_helper.obj) : warning LNK4204: 'C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
-     1>SOILd.lib(SOIL.obj) : warning LNK4204: 'C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
-     1>SOILd.lib(stb_image_aug.obj) : warning LNK4204: 'C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
-         MainSoftware.vcxproj -> C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\MainSoftware.exe
-     1>Done Building Project "C:\Users\Jerome\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" (Build target(s)).
+     1>SOILd.lib(image_DXT.obj) : warning LNK4204: 'C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>SOILd.lib(image_helper.obj) : warning LNK4204: 'C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>SOILd.lib(SOIL.obj) : warning LNK4204: 'C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>SOILd.lib(stb_image_aug.obj) : warning LNK4204: 'C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+         MainSoftware.vcxproj -> C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\x64\Debug\MainSoftware.exe
+     1>Done Building Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:09.18
+Time Elapsed 00:00:57.69
