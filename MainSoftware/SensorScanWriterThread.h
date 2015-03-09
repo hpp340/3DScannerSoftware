@@ -17,6 +17,8 @@ public:
 
 	void stop();
 
+	std::vector<PlyCloud *> getScannedSequence() { return scannedSequence; };
+
 protected:
 	// entry point
 	void run();
@@ -36,6 +38,8 @@ protected:
 	openni::VideoFrameRef m_rgbFrame;
 
 	bool m_rgbToDepthRegConverter;
+
+	std::vector<PlyCloud *> scannedSequence;
 
 private slots:
 	void dataCollectionOneFrame();

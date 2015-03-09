@@ -323,16 +323,6 @@ void SensorViewer::viewerStartScan()
 	
 	scanThread = new SensorScanWriterThread(m_depthStream, m_rgbStream, m_rgbToDepthRegConverter, maxDepthRange);
 	scanThread->start(QThread::TimeCriticalPriority);
-
-	//timerecord.open("timerecord.txt");
-	//scanThread = new QThread(this);
-	//scanTimer = new QTimer();
-	//scanTimer->setInterval(250);
-	//scanTimer->moveToThread(scanThread);
-	//connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()), Qt::DirectConnection);
-	//QObject::connect(scanThread, SIGNAL(started()), scanTimer, SLOT(start()));
-	//QObject::connect(scanThread, SIGNAL(finished()), scanTimer, SLOT(stop()));
-	//scanThread->start();
 }
 
 void SensorViewer::viewerStopScan()

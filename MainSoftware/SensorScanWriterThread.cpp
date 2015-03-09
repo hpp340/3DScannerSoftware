@@ -21,25 +21,8 @@ void SensorScanWriterThread::run()
 	std::cout << "SensorScanWriterThread: run..." << std::endl;
 	while (!stopped)
 	{
-		//int current = GetTickCount();
-
-		//newScanned << "ply" << endl;
-		//newScanned << "format ascii 1.0" << endl;
-		//newScanned << "element vertex " << vertex_num << endl;
-		//newScanned << "property double x" << endl;
-		//newScanned << "property double y" << endl;
-		//newScanned << "property double z" << endl;
-		//pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
 		dataCollectionOneFrame();
-		//int now = GetTickCount();
-		//std::cout << "Thread time inter " << now - current << std::endl;
-		//Sleep(250);
 	}
-	//exec();
-	//scanTimer = new QTimer(this);
-	//connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()), Qt::DirectConnection);
-	//scanTimer->start(250);
-
 }
 
 void SensorScanWriterThread::stop()
@@ -52,12 +35,6 @@ void SensorScanWriterThread::stop()
 
 void SensorScanWriterThread::dataCollectionOneFrame()
 {
-
-	//string scanName = "scanned_point_cloud";
-	//std::cout << scanName + std::to_string(numFile) << std::endl;
-	//std::ofstream newScanned;
-	//newScanned.open(scanName + std::to_string(numFile) + ".ply");
-
 	std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
 	int currentTime;
 	//currentTime = GetTickCount();
@@ -177,9 +154,10 @@ void SensorScanWriterThread::dataCollectionOneFrame()
 		//pCloudToBeScanned->normalize();
 	}
 
-	string scanName = "scanned_point_cloud";
-	std::cout << scanName + std::to_string(numFile) << std::endl;
-	pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
+	scannedSequence.push_back(pCloudToBeScanned);
+	//string scanName = "scanned_point_cloud";
+	//std::cout << scanName + std::to_string(numFile) << std::endl;
+	//pCloudToBeScanned->write_ply((scanName + std::to_string(numFile) + ".ply").c_str());
 
 	/*newScanned.close();*/
 	
