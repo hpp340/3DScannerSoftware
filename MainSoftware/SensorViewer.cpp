@@ -17,9 +17,7 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 	hasScanStarted = false;
 	maxDepthRange = _maxDepthRange;
 	renderTime.open("rendertime.txt");
-	// std::ofstream timerecord;
-	// debug need
-	// debugOutput.open("outputdebug.txt");
+	sensorMode = SENSOR_MODE::SENSOR_SCAN;
 }
 
 SensorViewer::~SensorViewer()
@@ -254,6 +252,14 @@ void SensorViewer::paintGL()
 		drawMesh();
 		glPopMatrix();
 	}
+
+	// Render text
+	//glShadeModel(GL_FLAT);
+	//glDisable(GL_CULL_FACE);
+	//glDisable(GL_DEPTH_TEST);
+	//glDisable(GL_LIGHTING);
+
+
 	//depthOutput.close();
 	//system("PAUSE");
 }

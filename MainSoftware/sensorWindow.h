@@ -9,7 +9,10 @@
 #include <QToolbar> 
 #include <QAction>
 #include <QMessageBox>
+#include <QStatusBar>
 #include "header\PlyCloud.h"
+#include <QLabel>
+#include <QSignalMapper>
 
 /*! \brief sensorWindow creates a window instance to show the scanned point cloud by scanner.
 *  \details The sensor is started once the window is created. And it contains buttons to start scanning and stop scanning.
@@ -37,6 +40,13 @@ private:
 	openni::Status startSensor();
 	// reconstruct point cloud from depth stream
 	//void reconPointCloud(openni::VideoStream &, openni::VideoStream &);
+
+private slots:
+
+	void updateStatusBarToScan();
+	void updateStatusBarToView();
+	void updateStatusBarToAlign();
+	void debug();
 
 private:
 
@@ -92,5 +102,10 @@ private:
 	/*! Button for ICP Reconstruction
 	*/
 	QAction * icpRecon;
+
+	QStatusBar * statusBar;
+
+	QLabel * labelInStatusBar;
+
 };
 

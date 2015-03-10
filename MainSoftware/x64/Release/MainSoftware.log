@@ -1,4 +1,4 @@
-﻿Build started 3/10/2015 1:57:14 AM.
+﻿Build started 3/10/2015 6:13:23 PM.
      1>Project "C:\Users\Jiang\Documents\Codes\3DScannerSoftware\MainSoftware\MainSoftware.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtOpenGL /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtWidgets /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtGui /IC:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\include\QtCore /Irelease /I"C:\Qt\Qt5.3.1\5.3\msvc2013_64_opengl\mkspecs\win32-msvc2013" /nologo /W3 /WX- /O2 /GL /D _CONSOLE /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_NO_DEBUG /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /D UNICODE /D WIN32 /D WIN64 /D _CRT_SECURE_NO_WARNINGS /D _USE_MATH_DEFINES /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt -Zm200 -w34100 -w34189 AlignResultWindow.cpp alignWindow.cpp checkableAction.cpp FullFuncMeshViewer.cpp header\ANN\ANN.cpp header\ANN\bd_fix_rad_search.cpp header\ANN\bd_pr_search.cpp header\ANN\bd_search.cpp header\ANN\bd_tree.cpp header\ANN\brute.cpp header\ANN\kd_dump.cpp header\ANN\kd_fix_rad_search.cpp header\ANN\kd_pr_search.cpp header\ANN\kd_search.cpp header\ANN\kd_split.cpp header\ANN\kd_tree.cpp header\ANN\kd_util.cpp header\ANN\perf.cpp ICPRecon.cpp JFace.cpp header\recon\CmdLineParser.cpp header\recon\Factor.cpp header\recon\Geometry.cpp header\recon\MarchingCubes.cpp header\recon\PlyFile.cpp header\recon\Time.cpp interactiveMeshViewer.cpp JVertex.cpp main.cpp mainwindow.cpp meshviewer.cpp PoissonRecon.cpp Release\moc_FullFuncMeshViewer.cpp Release\moc_MultipleMeshViewer.cpp Release\moc_ScanWriteThread.cpp Release\moc_SensorScanner.cpp Release\moc_SensorViewer.cpp Release\moc_sensorWindow.cpp ScanWriteThread.cpp SensorScanner.cpp SensorViewer.cpp sensorWindow.cpp SurfaceTrim.cpp MultipleMeshViewer.cpp PlyCloud.cpp Release\moc_AlignResultWindow.cpp Release\moc_alignWindow.cpp Release\moc_checkableAction.cpp Release\moc_interactiveMeshViewer.cpp Release\moc_mainwindow.cpp Release\moc_meshviewer.cpp
@@ -137,4 +137,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:01:04.82
+Time Elapsed 00:01:06.75

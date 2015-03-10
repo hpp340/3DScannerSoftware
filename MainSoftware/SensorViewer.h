@@ -8,6 +8,10 @@
 #include <QTimer>
 #include <fstream>
 #include <QThread>
+#include <QPainter>
+
+
+enum class SENSOR_MODE {SENSOR_VIEW, SENSOR_SCAN, SENSOR_ALIGNMENT};
 
 /*!
 * \brief Used to view the scanned scene from PrimeSense Sensor.
@@ -134,9 +138,14 @@ private:
 	/// Scanned Sequence
 	std::vector<PlyCloud *> scannedSequence;
 
+	/// Thread used to write all the scanned frames onto disk
 	ScanWriteThread * writeThread;
 
+	/// Thread used to scan @ 10fps
 	QThread * newScanThread;
+
+	/// An enum class used to indicate the current mode of sensor
+	SENSOR_MODE sensorMode;
 
 private slots:
 	

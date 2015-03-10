@@ -27,18 +27,21 @@ void sensorWindow::initSensorWindow()
 	startScan->setIcon(QIcon(":/icons/images/startscan.png"));
 	startScan->setText(tr("Start Scanning..."));
 	startScan->setStatusTip(tr("Start Scanning such that a complete model is reconstructed"));
+	connect(startScan, SIGNAL(triggered()), this, SLOT(updateStatusBarToScan()));
 	connect(startScan, SIGNAL(triggered()), sensorViewer, SLOT(viewerStartScan()));
 
 	stopScan = new QAction(tr("Stop Scanning"), this);
 	stopScan->setIcon(QIcon(":/icons/images/stopscan.png"));
 	stopScan->setText(tr("Stop Scanning..."));
 	stopScan->setStatusTip(tr("Stop Scanning to start the global registration"));
+	connect(stopScan, SIGNAL(triggered()), this, SLOT(updateStatusBarToView()));
 	connect(stopScan, SIGNAL(triggered()), sensorViewer, SLOT(viewerStopScan()));
 
 	icpRecon = new QAction(tr("Start ICP Reconstruction"), this);
 	icpRecon->setIcon(QIcon(":/icons/images/icprecon.png"));
 	icpRecon->setText(tr("Start ICP Reconstruction"));
 	icpRecon->setStatusTip(tr("Start ICP Reconstruction to get the full body mesh"));
+	connect(icpRecon, SIGNAL(triggered()), this, SLOT(updateStatusBarToAlign()));
 	connect(icpRecon, SIGNAL(triggered()), sensorViewer, SLOT(startICP()));
 
 	sensorTB = new QToolBar();
@@ -46,10 +49,37 @@ void sensorWindow::initSensorWindow()
 	sensorTB->addAction(stopScan);
 	sensorTB->addAction(icpRecon);
 
+	labelInStatusBar = new QLabel();
+	labelInStatusBar->setText("SensorMode:View");
+
+	statusBar = new QStatusBar();
+	statusBar->showMessage("SensorMode:View");
+
 	vLayout->addWidget(sensorTB);
 	vLayout->addWidget(sensorViewer);
+	vLayout->addWidget(statusBar);
 	this->setLayout(vLayout);
 	std::cout << "sensorWindow: sensorWindow initialize..." << std::endl;
+}
+
+void sensorWindow::updateStatusBarToScan()
+{
+	statusBar->showMessage("SensorMode:Scan");
+}
+
+void sensorWindow::updateStatusBarToView()
+{
+	statusBar->showMessage("SensorMode:View");
+}
+
+void sensorWindow::updateStatusBarToAlign()
+{
+	statusBar->showMessage("SensorMode:Align");
+}
+
+void sensorWindow::debug()
+{
+	getchar();
 }
 
 openni::Status sensorWindow::startSensor()
