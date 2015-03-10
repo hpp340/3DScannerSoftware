@@ -2,7 +2,7 @@
 
 #include "meshviewer.h"
 #include "OpenGLHeader.h"
-#include "SensorScanWriterThread.h"
+#include "SensorScanThread.h"
 #include <OpenNI.h>
 #include <QTimer>
 #include <fstream>
@@ -125,10 +125,13 @@ private:
 	/*! record the time of each recorded point cloud frame in millisecond */
 	std::ofstream timerecord;
 
-	SensorScanWriterThread * scanThread;
+	SensorScanThread * scanThread;
 	//QThread * scanThread;
 
 	std::ofstream renderTime;
+
+	/// Scanned Sequence
+	std::vector<PlyCloud *> scannedSequence;
 
 private slots:
 	

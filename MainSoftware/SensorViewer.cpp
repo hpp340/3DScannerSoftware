@@ -321,7 +321,7 @@ void SensorViewer::viewerStartScan()
 	std::cout << "SensorViewer:startScan..." << std::endl;
 	// new file for time record
 	
-	scanThread = new SensorScanWriterThread(m_depthStream, m_rgbStream, m_rgbToDepthRegConverter, maxDepthRange);
+	scanThread = new SensorScanThread(m_depthStream, m_rgbStream, m_rgbToDepthRegConverter, maxDepthRange);
 	scanThread->start(QThread::TimeCriticalPriority);
 }
 
@@ -332,6 +332,9 @@ void SensorViewer::viewerStopScan()
 	scanThread->quit();*/
 	//scanTimer->stop();
 	isScanStopped = true;
+
+	// Get scanned sequence from that thread
+	scannedSequence = scanThread->getScannedSequence();
 //	timerecord.close();
 }
 

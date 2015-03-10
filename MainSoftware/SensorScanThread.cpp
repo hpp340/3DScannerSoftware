@@ -1,10 +1,10 @@
-#include "SensorScanWriterThread.h"
+#include "SensorScanThread.h"
 
 
-SensorScanWriterThread::SensorScanWriterThread(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange) :
+SensorScanThread::SensorScanThread(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 {
-	std::cout << "SensorScanWriterThread: construct ..." << std::endl;
+	std::cout << "SensorScanThread: construct ..." << std::endl;
 	timerecord.open("timerecord.txt");
 	maxDepthRange = _maxDepthRange;
 	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
@@ -12,28 +12,29 @@ m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 	stopped = false;
 }
 
-SensorScanWriterThread::~SensorScanWriterThread()
+SensorScanThread::~SensorScanThread()
 {
 }
 
-void SensorScanWriterThread::run()
+void SensorScanThread::run()
 {
-	std::cout << "SensorScanWriterThread: run..." << std::endl;
+	std::cout << "SensorScanThread: run..." << std::endl;
 	while (!stopped)
 	{
 		dataCollectionOneFrame();
 	}
 }
 
-void SensorScanWriterThread::stop()
+void SensorScanThread::stop()
 {
 	//scanTimer->stop();
 	timerecord.close();
 	stopped = true;
 	this->quit();
+	// TODO: new writing thread
 }
 
-void SensorScanWriterThread::dataCollectionOneFrame()
+void SensorScanThread::dataCollectionOneFrame()
 {
 	std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
 	int currentTime;

@@ -7,13 +7,13 @@
 #include <QTimer>
 #include <fstream>
 
-class SensorScanWriterThread : public QThread
+class SensorScanThread : public QThread
 {
 	Q_OBJECT
 
 public:
-	SensorScanWriterThread(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange);
-	~SensorScanWriterThread();
+	SensorScanThread(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange);
+	~SensorScanThread();
 
 	void stop();
 
