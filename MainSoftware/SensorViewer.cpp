@@ -114,7 +114,7 @@ void SensorViewer::updateDisplay()
 void SensorViewer::paintGL()
 {
 	// int changedIdx;
-	std::cout << "SensorViewer: paintGL..." << std::endl;
+	//std::cout << "SensorViewer: paintGL..." << std::endl;
 
 	//openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIdx);
 
@@ -148,7 +148,7 @@ void SensorViewer::paintGL()
 	const openni::RGB888Pixel * rgbCoorArray = NULL;
 	if (m_rgbStream.readFrame(&m_rgbFrame) == openni::STATUS_OK)
 	{	
-		std::cout << "SensorViewer: Use RGB camera and Depth camera!" << std::endl;
+		//std::cout << "SensorViewer: Use RGB camera and Depth camera!" << std::endl;
 		std::vector<CPoint> vertexList;
 		std::vector<JMesh::JColor> colorList;
 
@@ -247,7 +247,7 @@ void SensorViewer::paintGL()
 		pointCloud = new PlyCloud(vertexList);
 		pointCloud->normalize();
 		setDefaultDrawMode();
-		std::cout << "SensorViewer: start drawing..." << std::endl;
+		//std::cout << "SensorViewer: start drawing..." << std::endl;
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glPushMatrix();
@@ -260,7 +260,7 @@ void SensorViewer::paintGL()
 
 void SensorViewer::drawMesh()
 {
-	std::cout << "SensorViewer:drawmesh start" << std::endl;
+	//std::cout << "SensorViewer:drawmesh start" << std::endl;
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixd(matProjection);
 	glMatrixMode(GL_MODELVIEW);
@@ -321,13 +321,17 @@ void SensorViewer::viewerStartScan()
 	std::cout << "SensorViewer:startScan..." << std::endl;
 	// new file for time record
 	
-	scanThread = new SensorScanThread(m_depthStream, m_rgbStream, m_rgbToDepthRegConverter, maxDepthRange);
-	scanThread->start(QThread::TimeCriticalPriority);
+	newScanThread = new QThread;
+
+	scanThread = new SensorScanner(m_depthStream, m_rgbStream, m_rgbToDepthRegConverter, maxDepthRange);
+
+	scanThread->moveToThread(newScanThread);
+	newScanThread->start();
+	
 }
 
 void SensorViewer::viewerStopScan()
 {
-	scanThread->stop();
 	/*scanThread->wait();
 	scanThread->quit();*/
 	//scanTimer->stop();
@@ -335,6 +339,12 @@ void SensorViewer::viewerStopScan()
 
 	// Get scanned sequence from that thread
 	scannedSequence = scanThread->getScannedSequence();
+
+	newScanThread->quit();
+
+	writeThread = new ScanWriteThread(scannedSequence);
+	writeThread->start();
+	//writeThread->stop();
 //	timerecord.close();
 }
 

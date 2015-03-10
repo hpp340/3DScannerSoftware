@@ -1,42 +1,35 @@
-#include "SensorScanThread.h"
+#include "SensorScanner.h"
 
 
-SensorScanThread::SensorScanThread(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange) :
+SensorScanner::SensorScanner(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange) :
 m_depthStream(depth), m_rgbStream(color), m_streams(NULL)
 {
-	std::cout << "SensorScanThread: construct ..." << std::endl;
+	std::cout << "SensorScanner: construct ..." << std::endl;
 	timerecord.open("timerecord.txt");
 	maxDepthRange = _maxDepthRange;
 	m_rgbToDepthRegConverter = rgbToDepthRegConverter;
 	numFile = 0;
 	stopped = false;
+
+	scanTimer = new QTimer(this);
+	connect(scanTimer, SIGNAL(timeout()), this, SLOT(dataCollectionOneFrame()), Qt::DirectConnection);
+	scanTimer->start(100);
 }
 
-SensorScanThread::~SensorScanThread()
+SensorScanner::~SensorScanner()
 {
-}
-
-void SensorScanThread::run()
-{
-	std::cout << "SensorScanThread: run..." << std::endl;
-	while (!stopped)
-	{
-		dataCollectionOneFrame();
-	}
-}
-
-void SensorScanThread::stop()
-{
-	//scanTimer->stop();
 	timerecord.close();
-	stopped = true;
-	this->quit();
-	// TODO: new writing thread
+	scanTimer->stop();
 }
 
-void SensorScanThread::dataCollectionOneFrame()
+void SensorScanner::printDebug()
 {
-	std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
+	std::cout << "SensorScanner: Debug..." << std::endl;
+}
+
+void SensorScanner::dataCollectionOneFrame()
+{
+	//std::cout << "SensorViewer:dataCollectionOneFrame" << std::endl;
 	int currentTime;
 	//currentTime = GetTickCount();
 	std::cout << GetTickCount() << std::endl;

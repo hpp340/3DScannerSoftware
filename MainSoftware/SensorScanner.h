@@ -2,33 +2,28 @@
 
 #include "meshviewer.h"
 #include "OpenGLHeader.h"
-#include <QThread>
 #include <OpenNI.h>
 #include <QTimer>
 #include <fstream>
 
-class SensorScanThread : public QThread
+class SensorScanner : public QObject
 {
 	Q_OBJECT
 
 public:
-	SensorScanThread(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange);
-	~SensorScanThread();
-
-	void stop();
+	SensorScanner(openni::VideoStream &depth, openni::VideoStream &color, bool rgbToDepthRegConverter, int _maxDepthRange);
+	~SensorScanner();
 
 	std::vector<PlyCloud *> getScannedSequence() { return scannedSequence; };
-
-protected:
-	// entry point
-	void run();
 
 private:
 	std::ofstream timerecord;
 	int maxDepthRange;
 	int numFile;
-	QTimer * scanTimer;
+
 	bool stopped;
+
+	QTimer * scanTimer;
 protected:
 	openni::VideoStream & m_depthStream;
 	openni::VideoStream & m_rgbStream;
@@ -43,6 +38,7 @@ protected:
 
 private slots:
 	void dataCollectionOneFrame();
+	void printDebug();
 
 };
 

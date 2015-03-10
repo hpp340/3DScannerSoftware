@@ -13,7 +13,6 @@ public:
 	ScanWriteThread(std::vector<PlyCloud *> scannedSequence);
 	~ScanWriteThread();
 
-private:
 	void stop();
 
 protected:

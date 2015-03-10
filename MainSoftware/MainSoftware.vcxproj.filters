@@ -239,20 +239,20 @@
     <ClCompile Include="ScanWriteThread.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_SensorScanThread.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_SensorScanThread.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="SensorScanThread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Debug\moc_ScanWriteThread.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Release\moc_ScanWriteThread.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SensorScanner.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SensorScanner.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="SensorScanner.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -391,11 +391,11 @@
     <CustomBuild Include="SurfaceTrim.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="SensorScanThread.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="ScanWriteThread.h">
       <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SensorScanner.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
