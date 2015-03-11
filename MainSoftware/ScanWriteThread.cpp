@@ -4,6 +4,7 @@
 ScanWriteThread::ScanWriteThread(std::vector<PlyCloud *> scannedSequence)
 {
 	m_scannedSequence = scannedSequence;
+	filename = "writeThread_";
 }
 
 
@@ -13,7 +14,6 @@ ScanWriteThread::~ScanWriteThread()
 
 void ScanWriteThread::run()
 {
-	std::string filename = "scanned_pointcloud_";
 	int i = 0;
 	for (std::vector<PlyCloud *>::iterator ptIter = m_scannedSequence.begin(); ptIter != m_scannedSequence.end(); ptIter++, i++)
 	{

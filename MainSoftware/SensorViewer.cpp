@@ -349,6 +349,7 @@ void SensorViewer::viewerStopScan()
 	newScanThread->quit();
 
 	writeThread = new ScanWriteThread(scannedSequence);
+	writeThread->setFilename("scanned_point_cloud_");
 	writeThread->start();
 	//writeThread->stop();
 //	timerecord.close();
@@ -482,6 +483,8 @@ void SensorViewer::viewerStopScan()
 
 void SensorViewer::startICP()
 {
+	bool ok;
+	int iterationTime = QInputDialog::getInt(this, tr("Input the iteration time for ICP(1-150):"), tr("Iteration time"), 15, 1, 150, 1, &ok);
 	if (!(hasScanStarted && isScanStopped))
 	{
 		QMessageBox cantICP;
@@ -491,32 +494,79 @@ void SensorViewer::startICP()
 	}
 	else
 	{
-		// read in files
-		string scanName = "scanned_point_cloud";
-		for (int i = 0; i < numFile; i++)
+		PlyCloud * prevMesh = *(scannedSequence.begin());
+		Eigen::Matrix4d Trans;
+		Trans.setIdentity();
+		
+		// get files from the scanned sequence
+		for (auto plyIter = scannedSequence.begin() + 1; plyIter != scannedSequence.end(); plyIter++)
 		{
-			string fileName1 = scanName + std::to_string(i) + ".ply";
-			PlyCloud * ptCloud1 = new PlyCloud();
-			ptCloud1->read_ply(fileName1.c_str());
-			string fileName2 = scanName + std::to_string(i + 1) + ".ply";
-			PlyCloud * ptCloud2 = new PlyCloud();
-			ptCloud2->read_ply(fileName2.c_str());
-			// the first parameter is the data pointcloud, the second is the target pointcloud
-			ICPRecon * icpReconstruction = new ICPRecon(ptCloud1, ptCloud2);
-			// transformation matrix
-			Eigen::Matrix<double, 3, 3> R;
-			Eigen::Vector3d T;
-			// initialization
-			R.setIdentity();
-			T.setZero();
-			// compute the rotation matrix and the translation vector, which is represented as the 4*4 matrix
-			// all vertex coordinates are represented by homogeneous coordinates
-			icpReconstruction->startRegistration(R, T, 50, ICPOption::POINT_TO_PLANE);
-			std::cout << "Rotation " << std::endl;
-			std::cout << R << std::endl;
-			std::cout << "Translation " << std::endl;
-			std::cout << T << std::endl;
-			getchar();
+			PlyCloud * currMesh = *plyIter;
+			ICPRecon * icp = new ICPRecon(currMesh, prevMesh);
+			Eigen::Matrix3d singleR;
+			Eigen::Vector3d singleT;
+			singleR.setIdentity();
+			singleT.setZero();
+
+			icp->startRegistration(singleR, singleT, iterationTime, ICPOption::POINT_TO_PLANE);
+
+			Eigen::Matrix4d singleTrans;
+			singleTrans.setIdentity();
+
+			singleTrans.block(0, 0, 3, 3) = singleR;
+			singleTrans(0, 3) = singleT(0);
+			singleTrans(1, 3) = singleT(1);
+			singleTrans(2, 3) = singleT(2);
+
+			Trans = Trans * singleTrans;
+
+			// apply transformation
+			std::vector<JVertex *> vertexList = currMesh->getJVertexList();
+			for (auto vIter = vertexList.begin(); vIter != vertexList.end(); vIter++)
+			{
+				JVertex * currVert = *vIter;
+				CPoint point = currVert->getPoint();
+				Eigen::Vector4d currPt;
+				currPt(0) = point[0]; currPt(1) = point[1]; currPt(2) = point[2]; currPt(3) = 1.0;
+				Eigen::Vector4d newPt = Trans * currPt;
+				CPoint newpoint(newPt(0), newPt(1), newPt(2));
+				currVert->addPos(newpoint);
+			}
+
+			prevMesh = *plyIter;
 		}
+
+		ScanWriteThread * icpWriter = new ScanWriteThread(scannedSequence);
+		icpWriter->setFilename("icp_scanned_pointcloud_");
+		icpWriter->start();
+
+		// read in files
+		//string scanName = "scanned_point_cloud";
+		//for (int i = 0; i < numFile; i++)
+		//{
+		//	string fileName1 = scanName + std::to_string(i) + ".ply";
+		//	PlyCloud * ptCloud1 = new PlyCloud();
+		//	ptCloud1->read_ply(fileName1.c_str());
+		//	string fileName2 = scanName + std::to_string(i + 1) + ".ply";
+		//	PlyCloud * ptCloud2 = new PlyCloud();
+		//	ptCloud2->read_ply(fileName2.c_str());
+		//	// the first parameter is the data pointcloud, the second is the target pointcloud
+		//	ICPRecon * icpReconstruction = new ICPRecon(ptCloud1, ptCloud2);
+		//	// transformation matrix
+		//	Eigen::Matrix<double, 3, 3> R;
+		//	Eigen::Vector3d T;
+		//	// initialization
+		//	R.setIdentity();
+		//	T.setZero();
+		//	// compute the rotation matrix and the translation vector, which is represented as the 4*4 matrix
+		//	// all vertex coordinates are represented by homogeneous coordinates
+		//	icpReconstruction->startRegistration(R, T, 50, ICPOption::POINT_TO_PLANE);
+		//	std::cout << "Rotation " << std::endl;
+		//	std::cout << R << std::endl;
+		//	std::cout << "Translation " << std::endl;
+		//	std::cout << T << std::endl;
+		//	getchar();
+		//}
+
 	}
 }

@@ -781,7 +781,9 @@ template< class T >
 template< class T2 >
 int SparseSymmetricMatrix< T >::Solve( const SparseSymmetricMatrix<T>& A , const Vector<T2>& b , int iters , Vector<T2>& x , MapReduceVector< T2 >& scratch , T2 eps , int reset , bool addDCTerm , bool solveNormal )
 {
+#ifndef NDEBUG
 	int threads = scratch.threads();
+#endif
 	eps *= eps;
 	int dim = int( b.Dimensions() );
 	Vector< T2 > r( dim ) , d( dim ) , q( dim ) , temp;
