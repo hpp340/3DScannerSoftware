@@ -15,11 +15,13 @@ public:
 
 	void stop();
 
+	void setFilename(std::string _filename) { filename = _filename; };
+
 protected:
 	void run();
 
 private:
-
+	std::string filename;
 	std::vector<PlyCloud *> m_scannedSequence;
 };
 
